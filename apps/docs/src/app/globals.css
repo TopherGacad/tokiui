@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Include tokiui component classes in Tailwind's scan */
+@source "../../node_modules/@tokiui/ui/src";
+
+/* Theme tokens: CSS variables + @theme mappings */
+@import "@tokiui/ui/styles.css";

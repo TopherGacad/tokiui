@@ -1,0 +1,7 @@
+{
+  "name": "input",
+  "files": ["components/input.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

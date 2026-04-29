@@ -1,0 +1,67 @@
+export const metadata = { title: 'Theming' }
+
+# Theming
+
+tokiui uses CSS custom properties (variables) for all colors and border radius. This means you can change the entire look of your app by overriding a few variables — no component changes required.
+
+## How it works
+
+All components use semantic Tailwind classes like `bg-primary`, `text-muted-foreground`, and `border-border`. These map to CSS variables via the `@theme` block in `@tokiui/ui/styles.css`:
+
+```css
+@theme {
+  --color-primary: hsl(var(--primary));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  /* ... */
+}
+```
+
+The actual HSL values live in `:root` (light) and `.dark` (dark mode):
+
+```css
+:root {
+  --primary: 222.2 47.4% 11.2%;
+}
+.dark {
+  --primary: 210 40% 98%;
+}
+```
+
+## Customizing your theme
+
+Override any variable in your `globals.css` after the import:
+
+```css
+@import "tailwindcss";
+@import "@tokiui/ui/styles.css";
+
+@layer base {
+  :root {
+    --primary: 262 83% 58%;  /* purple */
+    --radius: 0.75rem;        /* rounder corners */
+  }
+  .dark {
+    --primary: 270 76% 70%;
+  }
+}
+```
+
+## Using the playground
+
+Visit the [Playground](/playground) to adjust every token visually. When you're happy, click **Copy CSS variables** and paste the output into your `globals.css`, or click **Copy theme URL** to share the exact theme with someone else.
+
+## Dark mode
+
+Dark mode is controlled by the `.dark` class on `<html>`. Toggle it with JavaScript:
+
+```ts
+document.documentElement.classList.toggle('dark')
+```
+
+Use the `useTheme` hook from `@tokiui/ui` for a localStorage-persisted toggle:
+
+```tsx
+import { useTheme } from '@tokiui/ui'
+
+const { theme, setTheme } = useTheme()
+```

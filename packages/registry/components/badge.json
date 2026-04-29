@@ -1,0 +1,7 @@
+{
+  "name": "badge",
+  "files": ["components/badge.tsx"],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

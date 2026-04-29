@@ -1,0 +1,7 @@
+{
+  "name": "dialog",
+  "files": ["components/dialog.tsx"],
+  "dependencies": ["@radix-ui/react-dialog"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

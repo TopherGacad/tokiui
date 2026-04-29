@@ -1,0 +1,39 @@
+{
+  "name": "@tokiui/docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tokiui/themes": "workspace:*",
+    "@tokiui/ui": "workspace:*",
+    "clsx": "^2.1.1",
+    "culori": "^3.3.0",
+    "next": "^15.0.0",
+    "nuqs": "^2.1.1",
+    "react": "^18.3.1",
+    "react-colorful": "^5.6.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.2"
+  },
+  "devDependencies": {
+    "@next/mdx": "^15.0.0",
+    "@mdx-js/loader": "^3.0.1",
+    "@mdx-js/react": "^3.0.1",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "postcss": "^8.4.40",
+    "rehype-pretty-code": "^0.14.0",
+    "remark-gfm": "^4.0.0",
+    "shiki": "^1.10.3",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.5.4"
+  }
+}

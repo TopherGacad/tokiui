@@ -1,0 +1,51 @@
+export const metadata = { title: 'Installation' }
+
+# Installation
+
+tokiui is a copy-paste component library. You add components directly to your project using the CLI — there is no package to install, no version to pin.
+
+## 1. Initialize your project
+
+Run the CLI from your project root:
+
+```bash
+npx @tokiui/cli init
+```
+
+This will:
+- Ask where to place components (`src/components/ui/` by default)
+- Ask where to place utilities (`src/lib/` by default)
+- Write `src/lib/utils.ts` with the `cn()` helper
+- Create a `tokiui.json` config file
+
+## 2. Add your first component
+
+```bash
+npx @tokiui/cli add button
+```
+
+This copies `button.tsx` into `src/components/ui/` and installs its peer dependencies.
+
+## 3. Import and use
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export default function Page() {
+  return <Button>Click me</Button>
+}
+```
+
+## Prerequisites
+
+- React 18+
+- TypeScript
+- Tailwind CSS v4 with `@tailwindcss/postcss`
+- Your `globals.css` should include:
+
+```css
+@import "tailwindcss";
+@import "@tokiui/ui/styles.css";
+```
+
+The second import provides the CSS variable theme tokens that all components rely on.

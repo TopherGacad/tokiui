@@ -1,0 +1,7 @@
+{
+  "name": "card",
+  "files": ["components/card.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

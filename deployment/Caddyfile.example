@@ -1,0 +1,17 @@
+yourdomain.com {
+    root * /var/www/tokiui/apps/docs/out
+    file_server
+
+    # Serve index.html for all paths (Next.js static export)
+    try_files {path} {path}.html {path}/index.html
+
+    encode gzip
+
+    header {
+        # Security headers
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+}
