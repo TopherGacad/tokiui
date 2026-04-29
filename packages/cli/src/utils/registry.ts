@@ -1,6 +1,6 @@
-// TODO: Replace USERNAME with your actual GitHub username after pushing the repo
+// TODO: Replace TopherGacad with your actual GitHub username after pushing the repo
 const REGISTRY_BASE =
-  'https://raw.githubusercontent.com/USERNAME/tokiui/main/packages/registry'
+  'https://raw.githubusercontent.com/TopherGacad/tokiui/main/packages/registry'
 
 export interface RegistryComponent {
   name: string
@@ -28,7 +28,7 @@ export async function fetchComponent(name: string): Promise<RegistryComponent> {
 
 export async function fetchComponentSource(name: string, file: string): Promise<string> {
   const res = await fetch(
-    `https://raw.githubusercontent.com/USERNAME/tokiui/main/packages/ui/src/${file}`
+    `https://raw.githubusercontent.com/TopherGacad/tokiui/main/packages/ui/src/${file}`
   )
   if (!res.ok) throw new Error(`Failed to fetch source for ${name}/${file}`)
   return res.text()
