@@ -69,6 +69,14 @@ Key tokens: `--background`, `--foreground`, `--primary`, `--primary-foreground`,
 
 Do not theme fonts, sizes, or weights — users use Tailwind defaults for those.
 
+## Server / Client boundary
+
+`@tokiui/ui` has two entry points:
+- `@tokiui/ui` — server-safe (pure components, no hooks). Import components like `Button`, `Card`, etc. here.
+- `@tokiui/ui/client` — client-only (`'use client'`). Import `useTheme` and `useMediaQuery` here.
+
+This split is required for Next.js App Router. Merging hooks back into the main bundle will break the docs build with a "needs `useEffect` in a Client Component" error.
+
 ## Component Conventions
 
 Every component in `packages/ui/src/components/` must:
