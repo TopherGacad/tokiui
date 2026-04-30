@@ -1,6 +1,6 @@
 {
   "name": "@tokiui/ui",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "tokiui React component library — production-grade copy-paste components built on Radix UI and Tailwind CSS v4",
   "license": "MIT",
   "author": "Topher Gacad",
@@ -10,7 +10,15 @@
     "url": "https://github.com/TopherGacad/tokiui.git",
     "directory": "packages/ui"
   },
-  "keywords": ["react", "components", "ui", "tailwind", "radix", "tokiui", "design-system"],
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "tailwind",
+    "radix",
+    "tokiui",
+    "design-system"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -27,7 +35,10 @@
     },
     "./styles.css": "./src/styles.css"
   },
-  "files": ["dist", "src/styles.css"],
+  "files": [
+    "dist",
+    "src/styles.css"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
