@@ -1,0 +1,75 @@
+export const metadata = { title: 'Input' }
+
+import { ComponentPreview } from '@/components/docs/component-preview'
+import { Input, Button } from '@tokiui/ui'
+
+# Input
+
+A styled text input field. Forwards all native `<input>` attributes.
+
+## Usage
+
+```tsx
+import { Input } from '@/components/ui/input'
+
+<Input placeholder="Enter a value" />
+```
+
+## Default
+
+<ComponentPreview>
+  <Input placeholder="Email address" className="max-w-sm" />
+</ComponentPreview>
+
+## With label
+
+<ComponentPreview>
+  <div className="grid gap-1.5 max-w-sm">
+    <label className="text-sm font-medium" htmlFor="email-demo">Email</label>
+    <Input id="email-demo" type="email" placeholder="you@example.com" />
+  </div>
+</ComponentPreview>
+
+```tsx
+<div className="grid gap-1.5">
+  <label htmlFor="email">Email</label>
+  <Input id="email" type="email" placeholder="you@example.com" />
+</div>
+```
+
+## Disabled
+
+<ComponentPreview>
+  <Input placeholder="Disabled input" disabled className="max-w-sm" />
+</ComponentPreview>
+
+```tsx
+<Input placeholder="Disabled input" disabled />
+```
+
+## With button
+
+<ComponentPreview>
+  <div className="flex gap-2 max-w-sm">
+    <Input placeholder="Enter your email" type="email" />
+    <Button>Subscribe</Button>
+  </div>
+</ComponentPreview>
+
+```tsx
+<div className="flex gap-2">
+  <Input placeholder="Enter your email" type="email" />
+  <Button>Subscribe</Button>
+</div>
+```
+
+## Props
+
+| Prop | Type | Default |
+|---|---|---|
+| `type` | `string` | `text` |
+| `placeholder` | `string` | — |
+| `disabled` | `boolean` | `false` |
+| `className` | `string` | — |
+
+`Input` forwards all standard `<input>` HTML attributes and accepts a `ref`.

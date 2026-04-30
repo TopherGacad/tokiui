@@ -2,6 +2,15 @@
   "name": "@tokiui/cli",
   "version": "0.0.1",
   "description": "CLI for adding tokiui components to your project",
+  "license": "MIT",
+  "author": "Topher Gacad",
+  "homepage": "https://github.com/TopherGacad/tokiui#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TopherGacad/tokiui.git",
+    "directory": "packages/cli"
+  },
+  "keywords": ["cli", "tokiui", "components", "react", "tailwind"],
   "main": "./dist/index.js",
   "bin": {
     "tokiui": "./dist/index.js"

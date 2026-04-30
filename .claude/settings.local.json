@@ -5,7 +5,24 @@
       "Bash(pnpm build *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(git branch *)",
+      "Bash(timeout 180 npx next build)",
+      "Bash(tasklist)",
+      "PowerShell(pnpm exec *)",
+      "PowerShell(pnpm build *)",
+      "PowerShell(Remove-Item *)",
+      "Bash(pnpm --filter @tokiui/ui build)",
+      "Bash(pnpm --filter @tokiui/docs build)",
+      "Bash(node_modules/.bin/next build *)",
+      "PowerShell(Get-Process *)",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"require\\('./next.config.mjs'\\)\")",
+      "Bash(node --input-type=module)",
+      "Bash(node -e ' *)",
+      "Bash(NODE_OPTIONS=\"--stack-trace-limit=50\" node_modules/.bin/next build)"
     ]
   }
 }

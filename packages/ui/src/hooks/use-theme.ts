@@ -1,24 +1,24 @@
-import { useEffect, useState } from 'react'
+'use client'
 
-type Theme = 'light' | 'dark' | 'system'
+import { useEffect, useState, useCallback } from 'react'
 
-export function useTheme() {
-  const [theme, setThemeState] = useState<Theme>('system')
+type Theme = 'light' | 'dark'
+
+export function useTheme(): [Theme, () => void] {
+  const [theme, setTheme] = useState<Theme>('light')
 
   useEffect(() => {
     const stored = localStorage.getItem('tokiui-theme') as Theme | null
-    if (stored) setThemeState(stored)
+    const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    setTheme(stored ?? preferred)
   }, [])
 
   useEffect(() => {
-    const root = document.documentElement
-    const isDark =
-      theme === 'dark' ||
-      (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
-
-    root.classList.toggle('dark', isDark)
+    document.documentElement.dataset.theme = theme
     localStorage.setItem('tokiui-theme', theme)
   }, [theme])
 
-  return { theme, setTheme: setThemeState }
+  const toggle = useCallback(() => setTheme(t => (t === 'dark' ? 'light' : 'dark')), [])
+
+  return [theme, toggle]
 }

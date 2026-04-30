@@ -1,103 +1,83 @@
-import Link from 'next/link'
 import { Header } from '@/components/site/header'
 import { Footer } from '@/components/site/footer'
-import { Button } from '@tokiui/ui'
+import { Hero } from '@/components/site/hero'
+import { ComponentPreview } from '@/components/site/component-preview'
+import { ThemeTeaser } from '@/components/site/theme-teaser'
+import { Icon } from '@/components/site/icons'
+
+const CHANGELOG = [
+  { v: '0.1.4', date: '2 days ago', entry: 'Added DateRange, Combobox, and Toast. Fixed focus ring on Switch in dark mode.' },
+  { v: '0.1.3', date: '9 days ago', entry: "Token export now writes to tailwind.config.ts directly. New 'orbit' theme preset." },
+  { v: '0.1.2', date: '3 weeks ago', entry: 'Button variant API simplified — variant + size only. Migration codemod included.' },
+]
+
+const FEATURES = [
+  {
+    icon: <Icon.tokens />,
+    title: 'Wired to our design tokens',
+    desc: 'Every primitive reads from the same token map our designers ship from Figma. Update once, propagate everywhere.',
+  },
+  {
+    icon: <Icon.upgrade />,
+    title: 'Owned, but versioned',
+    desc: 'Components install as code. When we ship a breaking change, a codemod migrates your usage — no fork rot.',
+  },
+  {
+    icon: <Icon.a11y />,
+    title: 'Accessible by default',
+    desc: 'Built on Radix primitives. Keyboard, focus, ARIA — handled, audited, and covered by our internal a11y tests.',
+  },
+]
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <>
+      <a href="#main" className="skip-link">Skip to content</a>
       <Header />
+      <main id="main">
+        <Hero />
 
-      <main className="flex-1">
-        {/* Hero */}
-        <section className="container mx-auto px-4 py-24 text-center">
-          <div className="mx-auto max-w-3xl">
-            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl">
-              Beautiful components.
-              <br />
-              <span className="text-muted-foreground">Yours to own.</span>
-            </h1>
-            <p className="mb-10 text-lg text-muted-foreground sm:text-xl">
-              A copy-paste React component library built with Tailwind CSS and Radix UI. Add
-              components directly to your project — no dependencies, no lock-in.
-            </p>
-            <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-              <Button asChild size="lg">
-                <Link href="/docs/installation">Get Started</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/playground">Theme Playground</Link>
-              </Button>
+        <section className="section section--tight" id="changelog" data-screen-label="Changelog">
+          <div className="container">
+            <div className="changelog-head">
+              <h2 className="changelog-head__title">What&apos;s new</h2>
+              <a href="#" className="changelog-head__link">
+                Full changelog <Icon.arrow />
+              </a>
             </div>
-          </div>
-        </section>
-
-        {/* Install snippet */}
-        <section className="container mx-auto px-4 pb-24">
-          <div className="mx-auto max-w-xl">
-            <div className="rounded-lg border bg-card p-4 font-mono text-sm">
-              <span className="text-muted-foreground">$ </span>
-              <span>npx @tokiui/cli add button</span>
-            </div>
-          </div>
-        </section>
-
-        {/* Feature grid */}
-        <section className="border-t bg-muted/40">
-          <div className="container mx-auto px-4 py-24">
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {features.map((f) => (
-                <div key={f.title} className="rounded-lg border bg-card p-6">
-                  <div className="mb-3 text-2xl">{f.icon}</div>
-                  <h3 className="mb-2 font-semibold">{f.title}</h3>
-                  <p className="text-sm text-muted-foreground">{f.description}</p>
+            <div className="changelog">
+              {CHANGELOG.map((c) => (
+                <div key={c.v} className="changelog__item">
+                  <span className="changelog__v mono">v{c.v}</span>
+                  <span className="changelog__date mono">{c.date}</span>
+                  <span className="changelog__entry">{c.entry}</span>
                 </div>
               ))}
             </div>
           </div>
         </section>
-      </main>
 
+        <section className="section" data-screen-label="Features">
+          <div className="container">
+            <div className="section-head">
+              <h2 className="section-title">Built for the way we ship.</h2>
+            </div>
+            <div className="features">
+              {FEATURES.map((f, i) => (
+                <div key={i} className="feature-card">
+                  <div className="feature-card__icon">{f.icon}</div>
+                  <h3 className="feature-card__title">{f.title}</h3>
+                  <p className="feature-card__desc">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ComponentPreview />
+        <ThemeTeaser />
+      </main>
       <Footer />
-    </div>
+    </>
   )
 }
-
-const features = [
-  {
-    icon: '📋',
-    title: 'Copy & paste',
-    description:
-      'Copy components into your project. You own the code — customize freely without waiting for library updates.',
-  },
-  {
-    icon: '🎨',
-    title: 'Theme playground',
-    description:
-      'Customize every color token, radius, and more in real time. Share themes via URL.',
-  },
-  {
-    icon: '♿',
-    title: 'Accessible by default',
-    description:
-      'Built on Radix UI primitives. Keyboard navigation, focus management, and ARIA attributes included.',
-  },
-  {
-    icon: '🌗',
-    title: 'Dark mode',
-    description:
-      'Every component supports light and dark mode via CSS variables. Toggle with a single class.',
-  },
-  {
-    icon: '📱',
-    title: 'Mobile first',
-    description:
-      'Responsive components with minimum 44×44px touch targets and mobile-optimized interactions.',
-  },
-  {
-    icon: '⚡',
-    title: 'Tailwind CSS v4',
-    description:
-      'Fully typed class names, alpha modifiers on every color token, and zero runtime overhead.',
-  },
-]

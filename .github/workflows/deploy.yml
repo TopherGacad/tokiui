@@ -1,12 +1,16 @@
 name: Deploy Docs
 
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: [CI]
+    branches: [main]
+    types: [completed]
 
 jobs:
   deploy:
-    name: Deploy to VPS
+    name: Deploy to server
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +24,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Build docs
+      - name: Build static export
         run: pnpm --filter @tokiui/docs build
 
       - name: Deploy to server
@@ -29,8 +33,14 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /var/www/tokiui
-            git pull origin main
-            pnpm install --frozen-lockfile
-            pnpm --filter @tokiui/docs build
+          script: mkdir -p /var/www/tokiui
+
+      - name: Copy static files to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: apps/docs/out/
+          target: /var/www/tokiui/
+          strip_components: 2

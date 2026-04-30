@@ -24,6 +24,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  outputFileTracingExcludes: {
+    '*': ['**/*'],
+  },
 }
 
 export default withMDX(nextConfig)

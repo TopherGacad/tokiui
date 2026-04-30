@@ -1,14 +1,15 @@
-import { cn } from '@/lib/utils'
+import { CopyButton } from './copy-button'
 
 interface CodeBlockProps {
-  children: React.ReactNode
+  children: string
   className?: string
 }
 
 export function CodeBlock({ children, className }: CodeBlockProps) {
   return (
-    <div className={cn('relative rounded-lg border bg-muted/50 p-4', className)}>
-      <pre className="overflow-x-auto text-sm">{children}</pre>
+    <div className={`code-block${className ? ` ${className}` : ''}`}>
+      <CopyButton text={children} className="code-block__copy" />
+      <pre>{children}</pre>
     </div>
   )
 }

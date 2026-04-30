@@ -1,0 +1,78 @@
+export const metadata = { title: 'Card' }
+
+import { ComponentPreview } from '@/components/docs/component-preview'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button } from '@tokiui/ui'
+
+# Card
+
+A contained surface for grouping related content. Composed from sub-components for flexible layouts.
+
+## Usage
+
+```tsx
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card'
+```
+
+## Example
+
+<ComponentPreview>
+  <Card className="w-80">
+    <CardHeader>
+      <CardTitle>Project Alpha</CardTitle>
+      <CardDescription>Deploy your new project in one click.</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <p className="text-sm text-muted-foreground">Your project is ready to be deployed. This action will make it publicly accessible.</p>
+    </CardContent>
+    <CardFooter className="gap-2">
+      <Button size="sm">Deploy</Button>
+      <Button size="sm" variant="outline">Cancel</Button>
+    </CardFooter>
+  </Card>
+</ComponentPreview>
+
+```tsx
+<Card className="w-80">
+  <CardHeader>
+    <CardTitle>Project Alpha</CardTitle>
+    <CardDescription>Deploy your new project in one click.</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Your project is ready to be deployed.</p>
+  </CardContent>
+  <CardFooter>
+    <Button size="sm">Deploy</Button>
+    <Button size="sm" variant="outline">Cancel</Button>
+  </CardFooter>
+</Card>
+```
+
+## Content only
+
+<ComponentPreview>
+  <Card className="w-72">
+    <CardContent className="pt-6">
+      <p className="text-sm text-muted-foreground">A simple card with only content and no header or footer.</p>
+    </CardContent>
+  </Card>
+</ComponentPreview>
+
+## Sub-components
+
+| Component | Element | Description |
+|---|---|---|
+| `Card` | `div` | Outer container with border and background |
+| `CardHeader` | `div` | Top section — holds title and description |
+| `CardTitle` | `h3` | Primary heading inside the header |
+| `CardDescription` | `p` | Secondary text inside the header |
+| `CardContent` | `div` | Main body area |
+| `CardFooter` | `div` | Bottom row — typically holds actions |
+
+All sub-components accept `className` and a `ref`, and forward all standard HTML `div` attributes.

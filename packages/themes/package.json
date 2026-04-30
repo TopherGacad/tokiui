@@ -2,6 +2,15 @@
   "name": "@tokiui/themes",
   "version": "0.0.1",
   "description": "Preset themes for tokiui",
+  "license": "MIT",
+  "author": "Topher Gacad",
+  "homepage": "https://github.com/TopherGacad/tokiui#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TopherGacad/tokiui.git",
+    "directory": "packages/themes"
+  },
+  "keywords": ["themes", "tokiui", "design-tokens", "tailwind", "oklch"],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

@@ -1,20 +1,20 @@
 'use client'
 
-import { useState } from 'react'
-import { Button } from '@tokiui/ui'
+import { useCopy } from '@/components/site/use-copy'
+import { Icon } from '@/components/site/icons'
 
-export function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false)
-
-  async function copy() {
-    await navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+export function CopyButton({ text, className }: { text: string; className?: string }) {
+  const [copied, copy] = useCopy(text, 2000)
 
   return (
-    <Button variant="ghost" size="sm" onClick={copy}>
-      {copied ? 'Copied!' : 'Copy'}
-    </Button>
+    <button
+      type="button"
+      className={`${className ?? 'doc-preview__copy'}${copied ? ' copied' : ''}`}
+      aria-label={copied ? 'Copied' : 'Copy code'}
+      onClick={copy}
+    >
+      {copied ? <Icon.check /> : <Icon.copy />}
+      {copied ? 'Copied' : 'Copy'}
+    </button>
   )
 }

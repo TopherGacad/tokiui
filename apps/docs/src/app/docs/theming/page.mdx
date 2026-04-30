@@ -2,28 +2,28 @@ export const metadata = { title: 'Theming' }
 
 # Theming
 
-tokiui uses CSS custom properties (variables) for all colors and border radius. This means you can change the entire look of your app by overriding a few variables — no component changes required.
+tokiui uses CSS custom properties (variables) for all colors and border radius. Change the entire look of your app by overriding a few variables — no component changes required.
 
 ## How it works
 
-All components use semantic Tailwind classes like `bg-primary`, `text-muted-foreground`, and `border-border`. These map to CSS variables via the `@theme` block in `@tokiui/ui/styles.css`:
+All components use semantic Tailwind classes like `bg-primary` and `text-muted-foreground`. These map to CSS variables via the `@theme` block in `@tokiui/ui/styles.css`:
 
 ```css
 @theme {
-  --color-primary: hsl(var(--primary));
-  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-primary: var(--primary);
+  --color-muted-foreground: var(--muted-foreground);
   /* ... */
 }
 ```
 
-The actual HSL values live in `:root` (light) and `.dark` (dark mode):
+The actual OKLCH values live in `:root` (light) and `[data-theme="dark"]` (dark mode):
 
 ```css
 :root {
-  --primary: 222.2 47.4% 11.2%;
+  --primary: oklch(0.74 0.17 118);
 }
-.dark {
-  --primary: 210 40% 98%;
+[data-theme="dark"] {
+  --primary: oklch(0.78 0.17 118);
 }
 ```
 
@@ -35,33 +35,36 @@ Override any variable in your `globals.css` after the import:
 @import "tailwindcss";
 @import "@tokiui/ui/styles.css";
 
-@layer base {
-  :root {
-    --primary: 262 83% 58%;  /* purple */
-    --radius: 0.75rem;        /* rounder corners */
-  }
-  .dark {
-    --primary: 270 76% 70%;
-  }
+:root {
+  --primary: oklch(0.65 0.20 270);  /* purple */
+  --radius: 14px;                    /* rounder corners */
+}
+[data-theme="dark"] {
+  --primary: oklch(0.72 0.18 270);
 }
 ```
 
 ## Using the playground
 
-Visit the [Playground](/playground) to adjust every token visually. When you're happy, click **Copy CSS variables** and paste the output into your `globals.css`, or click **Copy theme URL** to share the exact theme with someone else.
+Visit the [Playground](/playground) to adjust every token visually. When you're happy, click **Copy CSS variables** and paste the output into your `globals.css`, or click **Copy theme URL** to share the exact theme.
 
 ## Dark mode
 
-Dark mode is controlled by the `.dark` class on `<html>`. Toggle it with JavaScript:
+Dark mode is controlled by the `data-theme="dark"` attribute on `<html>`. Toggle it with JavaScript:
 
 ```ts
-document.documentElement.classList.toggle('dark')
+document.documentElement.dataset.theme = 'dark'
+document.documentElement.dataset.theme = 'light'
 ```
 
-Use the `useTheme` hook from `@tokiui/ui` for a localStorage-persisted toggle:
+Use the `useTheme` hook from `@tokiui/ui/client` for a localStorage-persisted toggle:
 
 ```tsx
-import { useTheme } from '@tokiui/ui'
+'use client'
+import { useTheme } from '@tokiui/ui/client'
 
-const { theme, setTheme } = useTheme()
+export function ThemeToggle() {
+  const [theme, toggle] = useTheme()
+  return <button onClick={toggle}>{theme}</button>
+}
 ```

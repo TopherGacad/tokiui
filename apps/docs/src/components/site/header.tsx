@@ -1,36 +1,28 @@
 import Link from 'next/link'
+import { Icon } from './icons'
 import { ThemeToggle } from './theme-toggle'
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur">
-      <div className="container mx-auto flex h-14 items-center justify-between px-4">
-        <div className="flex items-center gap-6">
-          <Link href="/" className="font-bold tracking-tight">
-            tokiui
-          </Link>
-          <nav className="hidden gap-4 text-sm sm:flex">
-            <Link
-              href="/docs/installation"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Docs
-            </Link>
-            <Link
-              href="/docs/components/button"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Components
-            </Link>
-            <Link
-              href="/playground"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Playground
-            </Link>
-          </nav>
+    <header className="site-header">
+      <div className="site-header__inner">
+        <Link href="/" className="wordmark" aria-label="tokiui home">
+          <Icon.glyph />
+          <span>tokiui</span>
+        </Link>
+        <nav className="nav" aria-label="Primary">
+          <Link href="/docs/installation">Docs</Link>
+          <Link href="/docs/components/button">Components</Link>
+          <Link href="/playground">Playground</Link>
+        </nav>
+        <div className="header-right">
+          <button type="button" className="header-search" aria-label="Search components (⌘K)">
+            <Icon.search />
+            <span>Search</span>
+            <span className="kbd">⌘K</span>
+          </button>
+          <ThemeToggle />
         </div>
-        <ThemeToggle />
       </div>
     </header>
   )
