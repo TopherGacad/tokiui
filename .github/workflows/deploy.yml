@@ -24,8 +24,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Build static export
-        run: pnpm --filter @tokiui/docs build
+      - name: Build all packages then docs
+        run: pnpm build
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
