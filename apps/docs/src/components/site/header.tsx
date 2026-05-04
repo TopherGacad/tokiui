@@ -7,7 +7,7 @@ export function Header() {
     <header className="site-header">
       <div className="site-header__inner">
         <Link href="/" className="wordmark" aria-label="tokiui home">
-          <Icon.glyph />
+          <span className="brand__chip">tu</span>
           <span>tokiui</span>
         </Link>
         <nav className="nav" aria-label="Primary">

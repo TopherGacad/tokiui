@@ -4,6 +4,7 @@ import fs from 'fs-extra'
 export interface TokiuiConfig {
   componentsDir: string
   libDir: string
+  libAlias: string
   style: 'default'
 }
 

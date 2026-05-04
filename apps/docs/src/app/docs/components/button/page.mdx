@@ -1,59 +1,266 @@
-export const metadata = { title: 'Button' }
+export const metadata = { title: 'Button — tokiui' }
 
-import { ComponentPreview } from '@/components/docs/component-preview'
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  ButtonPreview,
+  BtnSolidPreview,
+  BtnTextPreview,
+  BtnSoftPreview,
+  BtnOutlinePreview,
+  BtnDashPreview,
+  BtnGhostPreview,
+  BtnLinkPreview,
+  BtnIconVariantsPreview,
+  BtnIconOnlyPreview,
+  BtnWithIconPreview,
+  BtnGroupSolidPreview,
+  BtnGroupSoftPreview,
+  BtnGroupOutlinePreview,
+  BtnColorNeutralPreview,
+  BtnColorPrimaryPreview,
+  BtnColorSecondaryPreview,
+  BtnColorAccentPreview,
+  BtnColorInfoPreview,
+  BtnColorSuccessPreview,
+  BtnColorWarningPreview,
+  BtnColorDestructivePreview,
+  BtnBorderRoundedPreview,
+  BtnBorderBoxPreview,
+  BtnBorderDashedPreview,
+  BtnLoadingPreview,
+  ButtonPropsTable,
+  ButtonA11yTable,
+} from '@/components/docs/button-demo'
+
+<PageHeader
+  title="Button"
+  description="An interactive element that triggers an action or event — submitting a form, confirming a dialog, navigating a flow. Six variants, three sizes, icon support, groups, and loading states."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Preview
+
+<Showcase title="Button" code={`<Button>Get started</Button>\n<Button variant="outline">Learn more</Button>\n<Button variant="secondary">Cancel</Button>\n<Button variant="ghost">Skip</Button>\n<Button variant="destructive">Delete</Button>`}>
+  <ButtonPreview />
+</Showcase>
+
+## Installation
+
+<TerminalInstall component="button" />
+<ManualInstall component="button" />
+
+## Import
+
+```tsx
 import { Button } from '@tokiui/ui'
-
-# Button
-
-Displays a button. Supports six variants, three sizes, and `asChild` for rendering as any element.
+```
 
 ## Usage
 
-```tsx
-import { Button } from '@/components/ui/button'
+### Basic
 
-<Button>Click me</Button>
-```
+#### Solid
 
-## Variants
+The primary call-to-action. Use once per region — never stack multiple solid buttons side by side.
 
-<ComponentPreview>
-  <div className="flex flex-wrap gap-3">
-    <Button variant="default">Default</Button>
-    <Button variant="secondary">Secondary</Button>
-    <Button variant="outline">Outline</Button>
-    <Button variant="ghost">Ghost</Button>
-    <Button variant="destructive">Destructive</Button>
-    <Button variant="link">Link</Button>
-  </div>
-</ComponentPreview>
+<Showcase title="Solid" code={`<Button>Button</Button>\n<Button disabled>Disabled</Button>`}>
+  <BtnSolidPreview />
+</Showcase>
 
-```tsx
-<Button variant="default">Default</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
-<Button variant="destructive">Destructive</Button>
-<Button variant="link">Link</Button>
-```
+#### Text
 
-## Sizes
+No background or border — lowest visual weight. Good for tertiary actions inside dense layouts.
 
-<ComponentPreview>
-  <div className="flex flex-wrap items-center gap-3">
-    <Button size="sm">Small</Button>
-    <Button size="default">Default</Button>
-    <Button size="lg">Large</Button>
-  </div>
-</ComponentPreview>
+<Showcase title="Text" code={`<Button variant="text">Button</Button>\n<Button variant="text" disabled>Disabled</Button>`}>
+  <BtnTextPreview />
+</Showcase>
 
-## Props
+#### Soft
 
-| Prop | Type | Default |
-|---|---|---|
-| `variant` | `default \| destructive \| outline \| secondary \| ghost \| link` | `default` |
-| `size` | `default \| sm \| lg \| icon` | `default` |
-| `asChild` | `boolean` | `false` |
-| `disabled` | `boolean` | `false` |
+Tinted background at low opacity — sits between solid and ghost in emphasis.
 
-When `asChild` is `true`, the button renders as its child element using Radix Slot — useful for rendering a `<Link>` that looks like a button.
+<Showcase title="Soft" code={`<Button variant="soft">Button</Button>\n<Button variant="soft" disabled>Disabled</Button>`}>
+  <BtnSoftPreview />
+</Showcase>
+
+#### Outlined
+
+Border with transparent background. Use as a secondary action paired with a solid primary.
+
+<Showcase title="Outlined" code={`<Button variant="outline">Button</Button>\n<Button variant="outline" disabled>Disabled</Button>`}>
+  <BtnOutlinePreview />
+</Showcase>
+
+#### Dash
+
+Dashed border — signals a placeholder or additive action like "Add block" or "Upload file".
+
+<Showcase title="Dash" code={`<Button variant="dash">Button</Button>\n<Button variant="dash" disabled>Disabled</Button>`}>
+  <BtnDashPreview />
+</Showcase>
+
+#### Ghost
+
+No background, no border at rest. Hover reveals a muted fill. Use for toolbar actions and nav items.
+
+<Showcase title="Ghost" code={`<Button variant="ghost">Button</Button>\n<Button variant="ghost" disabled>Disabled</Button>`}>
+  <BtnGhostPreview />
+</Showcase>
+
+#### Link
+
+Looks like an anchor tag. Use for inline navigation inside prose or form copy.
+
+<Showcase title="Link" code={`<Button variant="link">Button</Button>\n<Button variant="link" disabled>Disabled</Button>`}>
+  <BtnLinkPreview />
+</Showcase>
+
+#### Icon
+
+Square button for icon-only actions. Always provide an `aria-label`.
+
+<Showcase title="Icon" code={`<Button size="icon" aria-label="Add">\n  <PlusIcon />\n</Button>`}>
+  <BtnIconVariantsPreview />
+</Showcase>
+
+### Icon
+
+#### Icon only
+
+Three sizes — match the size of adjacent inputs and controls.
+
+<Showcase title="Icon only" code={`{/* sm */}\n<Button size="icon" aria-label="Add" style={{ height: 36, width: 36 }}>\n  <PlusIcon />\n</Button>\n\n{/* default */}\n<Button size="icon" aria-label="Add">\n  <PlusIcon />\n</Button>\n\n{/* lg */}\n<Button size="icon" aria-label="Add" style={{ height: 44, width: 44 }}>\n  <PlusIcon />\n</Button>`}>
+  <BtnIconOnlyPreview />
+</Showcase>
+
+#### With icon
+
+Icons are 14 px and inherit the text color. Mark them `aria-hidden` — the label carries the accessible name.
+
+<Showcase title="With icon" code={`{/* leading */}\n<Button><PlusIcon />New project</Button>\n<Button variant="secondary"><DownloadIcon />Download</Button>\n\n{/* trailing */}\n<Button>Continue <ArrowIcon /></Button>`}>
+  <BtnWithIconPreview />
+</Showcase>
+
+### Button group
+
+Wrap two or more Buttons in `.btn-group` for a connected segmented control.
+
+#### Solid
+
+<Showcase title="Solid group" code={`<div className="btn-group">\n  <Button>Day</Button>\n  <Button>Week</Button>\n  <Button>Month</Button>\n</div>`}>
+  <BtnGroupSolidPreview />
+</Showcase>
+
+#### Soft
+
+<Showcase title="Soft group" code={`<div className="btn-group">\n  <Button variant="soft">Day</Button>\n  <Button variant="soft">Week</Button>\n  <Button variant="soft">Month</Button>\n</div>`}>
+  <BtnGroupSoftPreview />
+</Showcase>
+
+#### Outlined
+
+<Showcase title="Outlined group" code={`<div className="btn-group">\n  <Button variant="outline">Day</Button>\n  <Button variant="outline">Week</Button>\n  <Button variant="outline">Month</Button>\n</div>`}>
+  <BtnGroupOutlinePreview />
+</Showcase>
+
+### Color
+
+Each color maps to a semantic role. Apply color consistently — don't use Success for a primary CTA.
+
+#### Neutral
+
+<Showcase title="Neutral" code={`<Button color="neutral">Button</Button>`}>
+  <BtnColorNeutralPreview />
+</Showcase>
+
+#### Primary
+
+<Showcase title="Primary" code={`<Button>Button</Button>\n<Button disabled>Disabled</Button>`}>
+  <BtnColorPrimaryPreview />
+</Showcase>
+
+#### Secondary
+
+<Showcase title="Secondary" code={`<Button variant="secondary">Button</Button>\n<Button variant="secondary" disabled>Disabled</Button>`}>
+  <BtnColorSecondaryPreview />
+</Showcase>
+
+#### Accent
+
+<Showcase title="Accent" code={`<Button color="accent">Button</Button>`}>
+  <BtnColorAccentPreview />
+</Showcase>
+
+#### Info
+
+<Showcase title="Info" code={`<Button color="info">Button</Button>`}>
+  <BtnColorInfoPreview />
+</Showcase>
+
+#### Success
+
+<Showcase title="Success" code={`<Button color="success">Button</Button>`}>
+  <BtnColorSuccessPreview />
+</Showcase>
+
+#### Warning
+
+<Showcase title="Warning" code={`<Button color="warning">Button</Button>`}>
+  <BtnColorWarningPreview />
+</Showcase>
+
+#### Destructive
+
+Use only for irreversible actions — deleting data, leaving a team, cancelling a subscription.
+
+<Showcase title="Destructive" code={`<Button variant="destructive">Button</Button>\n<Button variant="destructive" disabled>Disabled</Button>`}>
+  <BtnColorDestructivePreview />
+</Showcase>
+
+### Borders
+
+#### Rounded
+
+Default shape — `border-radius` inherits from `--radius`.
+
+<Showcase title="Rounded" code={`<Button>Default</Button>\n<Button variant="outline">Outlined</Button>\n<Button variant="secondary">Secondary</Button>`}>
+  <BtnBorderRoundedPreview />
+</Showcase>
+
+#### Box
+
+Sharp corners — zero border-radius. Useful in dense data UIs and toolbars.
+
+<Showcase title="Box" code={`<Button style={{ borderRadius: 0 }}>Default</Button>\n<Button variant="outline" style={{ borderRadius: 0 }}>Outlined</Button>`}>
+  <BtnBorderBoxPreview />
+</Showcase>
+
+#### Dashed
+
+Dashed outline — signals an additive or placeholder action.
+
+<Showcase title="Dashed" code={`<Button variant="dash">Default</Button>\n<Button variant="dash" color="primary">Primary</Button>`}>
+  <BtnBorderDashedPreview />
+</Showcase>
+
+### Loading
+
+Set `disabled` and `aria-busy="true"` while an async action is in flight. Use a `.btn-spinner` inside the button paired with an in-progress label.
+
+<Showcase title="Loading" code={`<Button disabled aria-busy="true">\n  <span className="btn-spinner" aria-hidden="true" />\n  Saving…\n</Button>`}>
+  <BtnLoadingPreview />
+</Showcase>
+
+## API
+
+All standard HTML `<button>` attributes are forwarded to the underlying element.
+
+<ButtonPropsTable />
+
+## Accessibility
+
+<ButtonA11yTable />

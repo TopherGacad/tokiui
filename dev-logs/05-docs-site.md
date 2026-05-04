@@ -256,3 +256,60 @@ import { Button } from '@/components/ui/button'
 ```
 
 **Key:** The `<ComponentPreview>` wrapper renders the actual `@tokiui/ui` component (not a screenshot or mock) — so it reflects live theme variables.
+
+---
+
+## Docs v2 — Component Page Patterns (2026-04-30)
+
+The component pages were upgraded with richer documentation patterns from a design spec in `_design-spec/docs-v2.*`. New components live in `apps/docs/src/components/docs/`:
+
+### New client components
+
+| File | Purpose |
+|---|---|
+| `terminal-install.tsx` | macOS-style terminal with PM tab selector (tokiui CLI, npm, pnpm, yarn, bun) |
+| `manual-install.tsx` | Collapsible accordion showing 3-step manual install process |
+| `showcase.tsx` | Preview/Code tab shell with copy button |
+| `toc-nav.tsx` | Sticky right-column TOC; auto-reads `h2` headings from DOM via IntersectionObserver |
+
+### New server components
+
+| File | Purpose |
+|---|---|
+| `page-header.tsx` | Breadcrumb + `<h1>` + description + meta-row (version, source link, WCAG badge) |
+| `button-demo.tsx` | All Button-specific gallery/table components: `ButtonAnatomy`, `ButtonVariantGallery`, `ButtonSizesGallery`, `ButtonStatesGallery`, `ButtonWithIconsGallery`, `ButtonGroupDemo`, `ButtonLoadingDemo`, `ButtonDoDont`, `ButtonPropsTable`, `ButtonCssVarsTable`, `ButtonA11yTable` |
+
+### Docs layout — 3-column grid
+
+The `docs/layout.tsx` now renders:
+```
+sidebar (232px) | content (flex:1, max-w 820px) | TocNav (220px, hidden <1280px)
+```
+
+The `docs-body` max-width was raised to `1440px` to accommodate the extra column. The `TocNav` client component reads `h2` headings from `#docs-main` after hydration.
+
+### New CSS class groups in globals.css
+
+| Class prefix | Purpose |
+|---|---|
+| `.pill`, `.pill--new` | Sidebar status badges (new, soon) |
+| `.brand__chip` | Header logo chip (monospace "tu" box) |
+| `.crumb`, `.crumb__*` | Page breadcrumb |
+| `.page-title`, `.page-desc`, `.meta-row`, `.meta-pill` | Page header block |
+| `.term`, `.pm-tabs`, `.pm-tab`, `.pm-glyph--*` | Terminal install widget |
+| `.t-tool`, `.t-flag`, `.t-arg` | Terminal syntax colors |
+| `.manual`, `.step` | Manual install accordion |
+| `.tk-key`, `.tk-str`, `.tk-fn`, `.tk-com` | Code syntax colors |
+| `.show`, `.show__*` | Showcase (Preview/Code tab shell) |
+| `.anatomy`, `.anatomy__*` | Component anatomy diagram |
+| `.gal`, `.gal__row`, `.gal__cells` | Variant/size/state gallery grid |
+| `.dodont`, `.dd`, `.dd--do`, `.dd--dont` | Do & don't panels |
+| `.props`, `.props__*` | Compact props table |
+| `.vars`, `.vars__*` | CSS variable reference table |
+| `.a11y`, `.a11y__*` | Accessibility table |
+| `.btn-group`, `.btn-spinner` | Button group utility + loading spinner |
+| `.docs-toc`, `.docs-toc__*` | Right-column table of contents |
+
+### Using on other component pages
+
+Import the relevant components at the top of the MDX page. For each new component type, create a `{component}-demo.tsx` server component file following the `button-demo.tsx` pattern.

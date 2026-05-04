@@ -27,6 +27,7 @@ export const addCommand = new Command('add')
       process.exit(1)
     }
 
+    const libAlias = config.libAlias ?? `@/${config.libDir}`
     let componentName = componentArg
 
     if (!componentName) {
@@ -51,19 +52,19 @@ export const addCommand = new Command('add')
       }
 
       for (const name of answer.components as string[]) {
-        await installComponent(name, cwd, config.componentsDir, config.libDir)
+        await installComponent(name, cwd, config.componentsDir, libAlias)
       }
       return
     }
 
-    await installComponent(componentName, cwd, config.componentsDir, config.libDir)
+    await installComponent(componentName, cwd, config.componentsDir, libAlias)
   })
 
 async function installComponent(
   name: string,
   cwd: string,
   componentsDir: string,
-  libDir: string
+  libAlias: string
 ): Promise<void> {
   const spinner = ora(`Adding ${name}...`).start()
 
@@ -74,13 +75,13 @@ async function installComponent(
 
   // Recursively install registry dependencies first
   for (const dep of meta.registryDependencies) {
-    await installComponent(dep, cwd, componentsDir, libDir)
+    await installComponent(dep, cwd, componentsDir, libAlias)
   }
 
   // Fetch and write component source files
   for (const file of meta.files) {
     const source = await fetchComponentSource(name, file)
-    const transformed = transformImports(source, `@/${libDir}`)
+    const transformed = transformImports(source, libAlias)
     const destPath = path.join(cwd, componentsDir, path.basename(file))
 
     if (fs.existsSync(destPath)) {
