@@ -1,7 +1,10 @@
 'use client'
 
 import { HexColorPicker } from 'react-colorful'
-import { parse, rgb as toRgb, oklch as toOklch } from 'culori'
+import { parse, converter } from 'culori'
+
+const toRgb = converter('rgb')
+const toOklch = converter('oklch')
 import { useState, useRef, useEffect } from 'react'
 
 interface ColorPickerProps {
