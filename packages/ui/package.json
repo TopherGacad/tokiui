@@ -1,6 +1,6 @@
 {
   "name": "@tokiui/ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "tokiui React component library — production-grade copy-paste components built on Radix UI and Tailwind CSS v4",
   "license": "MIT",
   "author": "Topher Gacad",
