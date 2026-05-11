@@ -65,8 +65,8 @@ Tailwind v4 resolves CSS variables at runtime in the browser, so `var()` referen
     --card-foreground:       oklch(0.18 0.005 95);
     --popover:               oklch(1 0 0);
     --popover-foreground:    oklch(0.18 0.005 95);
-    --primary:               oklch(0.74 0.17 118);   /* chartreuse */
-    --primary-foreground:    oklch(0.14 0.005 95);
+    --primary:               oklch(0.52 0.16 145);   /* green */
+    --primary-foreground:    oklch(0.99 0.003 95);
     --secondary:             oklch(0.96 0.005 95);
     --secondary-foreground:  oklch(0.18 0.005 95);
     --muted:                 oklch(0.96 0.005 95);
@@ -77,18 +77,18 @@ Tailwind v4 resolves CSS variables at runtime in the browser, so `var()` referen
     --destructive-foreground: oklch(0.99 0.003 95);
     --border:                oklch(0.92 0.005 95);
     --input:                 oklch(0.96 0.005 95);
-    --ring:                  oklch(0.74 0.17 118);
+    --ring:                  oklch(0.52 0.16 145);
     --radius:                10px;
     --radius-sm:             6px;
     --radius-lg:             14px;
   }
 
   [data-theme="dark"] {
-    --background:            oklch(0.14 0.005 95);
+    --background:            oklch(0.18 0.005 95);   /* GitHub-dark level */
     --foreground:            oklch(0.96 0.003 95);
-    --card:                  oklch(0.17 0.005 95);
-    --primary:               oklch(0.78 0.17 118);   /* slightly brighter on dark */
-    --border:                oklch(0.24 0.006 95);
+    --card:                  oklch(0.21 0.005 95);
+    --primary:               oklch(0.72 0.15 145);   /* brighter green for dark */
+    --border:                oklch(0.28 0.006 95);
     /* ... all other tokens ... */
   }
 }
@@ -106,10 +106,10 @@ document.documentElement.dataset.theme = 'light'  // enable light mode
 
 ## Default Brand Color
 
-The default primary is **chartreuse** — a yellow-green distinctive from shadcn's default blue/neutral:
+The default primary is **green** — a warm green distinctive from shadcn's default blue/neutral:
 
-- Light mode: `oklch(0.74 0.17 118)`
-- Dark mode: `oklch(0.78 0.17 118)` (slightly brighter to maintain contrast on dark backgrounds)
+- Light mode: `oklch(0.52 0.16 145)`
+- Dark mode: `oklch(0.72 0.15 145)` (brighter to maintain contrast on dark backgrounds)
 
 ---
 
@@ -212,3 +212,64 @@ Applied via Tailwind v4 arbitrary animation values with Radix UI data attributes
 'data-[state=open]:animate-[dialog-in_200ms_cubic-bezier(0.16,1,0.3,1)]'
 'data-[state=closed]:animate-[dialog-out_150ms_ease]'
 ```
+
+---
+
+## Theme Presets Package (`@tokiui/themes`)
+
+Theme presets live in `packages/themes/src/` as TypeScript objects. All token values are **full OKLCH CSS color strings** (e.g. `oklch(0.52 0.16 145)`), not bare HSL channels.
+
+### Available presets
+
+| Name | File | Character |
+|---|---|---|
+| Default | `default.ts` | Warm neutral + green primary. Matches `styles.css` exactly. |
+| Rose | `rose.ts` | Cool neutral base + rose/pink primary (`oklch(0.55 0.22 12)`) |
+| Slate | `slate.ts` | Blue-tinted neutral + navy/blue primary (`oklch(0.40 0.19 255)`) |
+| Neon | `neon.ts` | Near-black purple bg + vivid violet primary + cyan-green accent |
+| Newspaper | `newspaper.ts` | Warm sepia/cream bg + dark ink primary |
+
+### Structure
+
+```ts
+// packages/themes/src/rose.ts
+export const roseTheme: Theme = {
+  name: 'rose',
+  label: 'Rose',
+  light: {
+    background: 'oklch(1 0 0)',
+    primary:    'oklch(0.55 0.22 12)',  // full color value, not bare channels
+    radius:     '0.5rem',
+    // ...
+  },
+  dark: {
+    background: 'oklch(0.12 0.008 50)',
+    primary:    'oklch(0.55 0.22 12)',
+    // ...
+  },
+}
+```
+
+### Playground integration
+
+The playground (`apps/docs/src/app/playground/`) uses these presets as starting state. Token values are spread as inline CSS custom properties on the preview container — since values are valid CSS colors, they work directly:
+
+```tsx
+// playground-content.tsx
+<div style={{ ...(activeVars as React.CSSProperties), backgroundColor: activeTokens.background }}>
+  <ComponentShowcase />
+</div>
+```
+
+The `tokensToCssVars()` helper converts camelCase keys to `--kebab-case` CSS variable names and passes values through verbatim.
+
+### Color picker (OKLCH ↔ hex)
+
+`apps/docs/src/components/playground/color-picker.tsx` uses `culori` v3 to:
+- **Display swatch:** `style={{ backgroundColor: value }}` — direct OKLCH value, valid CSS
+- **Hex for picker input:** `oklch(...)` → RGB via `toRgb()` → hex
+- **On pick:** hex → `toOklch()` → formatted `oklch(L C H)` string passed to `onChange`
+
+### CLI `tokiui theme apply`
+
+The CLI command (`packages/cli/src/commands/theme.ts`) reads a base64-encoded JSON of `{ light: ThemeTokens, dark: ThemeTokens }` from the playground URL and replaces CSS variable values in the user's `globals.css`. Since all token values are now valid OKLCH strings, replacing `--background: oklch(0.99 0.003 95)` with `oklch(1 0 0)` (for example) is always valid CSS.

@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { Button } from '@tokiui/ui'
 
 /* ----- Shared inline icons ----- */
@@ -104,12 +104,11 @@ export function ButtonVariantGallery() {
         </div>
       </div>
       <div className="gal__row">
-        <div className="gal__rowlab">Secondary</div>
+        <div className="gal__rowlab">Soft</div>
         <div className="gal__cells">
-          <Button variant="secondary">Cancel</Button>
-          <Button variant="secondary"><Download />Export</Button>
-          <Button variant="secondary">Edit</Button>
-          <Button variant="secondary" disabled>Disabled</Button>
+          <Button variant="soft">Soft action</Button>
+          <Button variant="soft"><Plus />Create</Button>
+          <Button variant="soft" disabled>Disabled</Button>
         </div>
       </div>
       <div className="gal__row">
@@ -126,14 +125,6 @@ export function ButtonVariantGallery() {
           <Button variant="ghost">Skip</Button>
           <Button variant="ghost">Learn more <External /></Button>
           <Button variant="ghost" disabled>Disabled</Button>
-        </div>
-      </div>
-      <div className="gal__row">
-        <div className="gal__rowlab">Destructive</div>
-        <div className="gal__cells">
-          <Button variant="destructive"><Trash />Delete project</Button>
-          <Button variant="destructive">Remove</Button>
-          <Button variant="destructive" disabled>Disabled</Button>
         </div>
       </div>
       <div className="gal__row">
@@ -156,9 +147,9 @@ export function ButtonSizesGallery() {
           <div className="gal__rowlab">{lab}</div>
           <div className="gal__cells">
             <Button size={s}>Continue</Button>
-            <Button variant="secondary" size={s}>Cancel</Button>
+            <Button color="neutral" size={s}>Cancel</Button>
             <Button variant="ghost" size={s}>Skip</Button>
-            <Button variant="secondary" size="icon" aria-label="Add" style={s === 'sm' ? { height: 36, width: 36 } : s === 'lg' ? { height: 44, width: 44 } : {}}>
+            <Button color="neutral" variant="outline" size="icon" aria-label="Add" style={s === 'sm' ? { height: 36, width: 36 } : s === 'lg' ? { height: 44, width: 44 } : {}}>
               <Plus />
             </Button>
           </div>
@@ -172,8 +163,7 @@ export function ButtonSizesGallery() {
 export function ButtonStatesGallery() {
   return (
     <div className="gal">
-      <div className="gal__row">
-        <div className="gal__rowlab">States</div>
+      <div className="gal__row" style={{ gridTemplateColumns: '1fr' }}>
         <div className="gal__cells">
           <div className="gal__cell">
             <Button>Save changes</Button>
@@ -220,7 +210,7 @@ export function ButtonWithIconsGallery() {
         <div className="gal__rowlab">Leading</div>
         <div className="gal__cells">
           <Button><Plus />New project</Button>
-          <Button variant="secondary"><Download />Download</Button>
+          <Button color="neutral"><Download />Download</Button>
           <Button variant="ghost"><Copy />Copy link</Button>
         </div>
       </div>
@@ -234,11 +224,11 @@ export function ButtonWithIconsGallery() {
       <div className="gal__row">
         <div className="gal__rowlab">Icon only</div>
         <div className="gal__cells">
-          <Button variant="secondary" size="icon" aria-label="Add" style={{ height: 36, width: 36 }}><Plus /></Button>
-          <Button variant="secondary" size="icon" aria-label="Add"><Plus /></Button>
-          <Button variant="secondary" size="icon" aria-label="Add" style={{ height: 44, width: 44 }}><Plus /></Button>
+          <Button color="neutral" variant="outline" size="icon" aria-label="Add" style={{ height: 36, width: 36 }}><Plus /></Button>
+          <Button color="neutral" variant="outline" size="icon" aria-label="Add"><Plus /></Button>
+          <Button color="neutral" variant="outline" size="icon" aria-label="Add" style={{ height: 44, width: 44 }}><Plus /></Button>
           <Button variant="ghost" size="icon" aria-label="Copy"><Copy /></Button>
-          <Button variant="destructive" size="icon" aria-label="Delete"><Trash /></Button>
+          <Button color="destructive" size="icon" aria-label="Delete"><Trash /></Button>
         </div>
       </div>
     </div>
@@ -304,7 +294,7 @@ export function ButtonDoDont() {
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
             <Button>Save</Button>
             <Button>Save & close</Button>
-            <Button variant="destructive">Delete</Button>
+            <Button color="destructive">Delete</Button>
           </div>
         </div>
         <p className="dd__caption">{"Don't"} stack multiple primaries — users {"can't"} tell which action is the default.</p>
@@ -315,13 +305,14 @@ export function ButtonDoDont() {
 
 /* ----- Props table ----- */
 const PROPS = [
-  { name: 'variant', type: '"default" | "secondary" | "outline" | "ghost" | "destructive" | "link"', def: '"default"', desc: 'Visual style. Use destructive only for irreversible actions.' },
-  { name: 'size', type: '"default" | "sm" | "lg" | "icon"', def: '"default"', desc: 'Sets height and horizontal padding. icon renders a square.' },
-  { name: 'asChild', type: 'boolean', def: 'false', desc: 'Render the child element instead of a <button>. Useful for <Link>.' },
-  { name: 'disabled', type: 'boolean', def: 'false', desc: 'Disables interaction and reduces opacity.' },
-  { name: 'className', type: 'string', desc: 'Additional classes merged via cn().' },
-  { name: 'children', type: 'ReactNode', desc: 'Label and optional leading/trailing icons.' },
-  { name: 'onClick', type: '(e: MouseEvent) => void', desc: 'Click handler forwarded to the underlying element.' },
+  { name: 'variant', type: '"default" | "outline" | "soft" | "ghost" | "link"', def: '"default"', desc: 'Visual style: solid fill, border, tinted fill, hover-only, or text link.' },
+  { name: 'color',   type: '"default" | "neutral" | "destructive"',             def: '"default"', desc: 'Semantic color applied to the variant. Use destructive only for irreversible actions.' },
+  { name: 'size',    type: '"default" | "sm" | "lg" | "icon"',                  def: '"default"', desc: 'Sets height and horizontal padding. icon renders a square.' },
+  { name: 'asChild',  type: 'boolean',                   def: 'false', desc: 'Render the child element instead of <button>. Useful for <Link>.' },
+  { name: 'disabled', type: 'boolean',                   def: 'false', desc: 'Disables interaction and reduces opacity to 50%.' },
+  { name: 'className', type: 'string',                   desc: 'Additional classes merged via cn().' },
+  { name: 'children', type: 'ReactNode',                 desc: 'Label and optional leading/trailing icons.' },
+  { name: 'onClick',  type: '(e: MouseEvent) => void',   desc: 'Click handler forwarded to the underlying element.' },
 ] as const
 
 export function ButtonPropsTable() {
@@ -347,12 +338,14 @@ export function ButtonPropsTable() {
 
 /* ----- CSS vars table ----- */
 const VARS = [
-  { sw: 'var(--primary)',            name: '--primary',            desc: 'Default button background (default variant).' },
-  { sw: 'var(--primary-foreground)', name: '--primary-foreground', desc: 'Text color on default variant.' },
-  { sw: 'var(--secondary)',          name: '--secondary',          desc: 'Secondary variant background.' },
-  { sw: 'var(--destructive)',        name: '--destructive',        desc: 'Destructive variant background.' },
-  { sw: 'var(--ring)',               name: '--ring',               desc: 'Focus ring color (4 px outer ring).' },
-  { sw: 'var(--radius)',             name: '--radius',             desc: 'Corner radius shared with all components.' },
+  { sw: 'var(--primary)',              name: '--primary',              desc: 'Fill for default variant + default color.' },
+  { sw: 'var(--primary-foreground)',   name: '--primary-foreground',   desc: 'Text color on primary-filled buttons.' },
+  { sw: 'var(--secondary)',            name: '--secondary',            desc: 'Fill for neutral color on solid and soft variants.' },
+  { sw: 'var(--destructive)',          name: '--destructive',          desc: 'Fill for destructive color on solid variant.' },
+  { sw: 'var(--btn-soft)',             name: '--btn-soft',             desc: 'Soft tint: color-mix(primary 18%, background).' },
+  { sw: 'var(--btn-destructive-soft)', name: '--btn-destructive-soft', desc: 'Destructive soft tint: color-mix(destructive 12%, background).' },
+  { sw: 'var(--ring)',                 name: '--ring',                 desc: 'Focus ring color.' },
+  { sw: 'var(--radius)',               name: '--radius',               desc: 'Corner radius shared across all components.' },
 ]
 
 export function ButtonCssVarsTable() {
@@ -396,15 +389,6 @@ export function ButtonA11yTable() {
    PER-VARIANT SHOWCASE COMPONENTS
    ================================================================ */
 
-/* ---- Private helpers ---- */
-
-const PH: CSSProperties = {
-  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-  gap: 8, height: 40, padding: '0 16px', borderRadius: 'var(--radius)',
-  fontSize: 14, fontWeight: 500, fontFamily: 'inherit',
-  cursor: 'not-allowed', border: '1px solid transparent',
-}
-
 function Row({ children }: { children: ReactNode }) {
   return (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
@@ -419,90 +403,35 @@ export function ButtonPreview() {
     <Row>
       <Button>Get started</Button>
       <Button variant="outline">Learn more</Button>
-      <Button variant="secondary">Cancel</Button>
+      <Button color="neutral">Cancel</Button>
       <Button variant="ghost">Skip</Button>
-      <Button variant="destructive">Delete</Button>
+      <Button color="destructive">Delete</Button>
     </Row>
   )
 }
 
 /* ================================================================
-   BASIC — style variants
+   STYLE VARIANTS
    ================================================================ */
 
 export function BtnSolidPreview() {
-  return (
-    <Row>
-      <Button>Button</Button>
-      <Button disabled>Disabled</Button>
-    </Row>
-  )
-}
-
-export function BtnTextPreview() {
-  return (
-    <Row>
-      <button disabled style={{ ...PH, background: 'transparent', border: 'none', color: 'var(--foreground)', opacity: 0.8 }}>Button</button>
-      <button disabled style={{ ...PH, background: 'transparent', border: 'none', color: 'var(--foreground)', opacity: 0.4 }}>Disabled</button>
-    </Row>
-  )
+  return <Row><Button>Save changes</Button></Row>
 }
 
 export function BtnSoftPreview() {
-  return (
-    <Row>
-      <button disabled style={{ ...PH, border: 'none', background: 'color-mix(in oklch, var(--primary) 12%, transparent)', color: 'var(--primary)', opacity: 0.85 }}>Button</button>
-      <button disabled style={{ ...PH, border: 'none', background: 'color-mix(in oklch, var(--primary) 12%, transparent)', color: 'var(--primary)', opacity: 0.4 }}>Disabled</button>
-    </Row>
-  )
+  return <Row><Button variant="soft">Save changes</Button></Row>
 }
 
 export function BtnOutlinePreview() {
-  return (
-    <Row>
-      <Button variant="outline">Button</Button>
-      <Button variant="outline" disabled>Disabled</Button>
-    </Row>
-  )
-}
-
-export function BtnDashPreview() {
-  return (
-    <Row>
-      <button disabled style={{ ...PH, background: 'transparent', border: '1.5px dashed var(--border)', color: 'var(--foreground)', opacity: 0.8 }}>Button</button>
-      <button disabled style={{ ...PH, background: 'transparent', border: '1.5px dashed var(--border)', color: 'var(--foreground)', opacity: 0.4 }}>Disabled</button>
-    </Row>
-  )
+  return <Row><Button variant="outline">Learn more</Button></Row>
 }
 
 export function BtnGhostPreview() {
-  return (
-    <Row>
-      <Button variant="ghost">Button</Button>
-      <Button variant="ghost" disabled>Disabled</Button>
-    </Row>
-  )
+  return <Row><Button variant="ghost">Skip for now</Button></Row>
 }
 
 export function BtnLinkPreview() {
-  return (
-    <Row>
-      <Button variant="link">Button</Button>
-      <Button variant="link" disabled>Disabled</Button>
-    </Row>
-  )
-}
-
-export function BtnIconVariantsPreview() {
-  return (
-    <Row>
-      <Button size="icon" aria-label="Default"><Plus /></Button>
-      <Button variant="secondary" size="icon" aria-label="Secondary"><Plus /></Button>
-      <Button variant="outline" size="icon" aria-label="Outline"><Plus /></Button>
-      <Button variant="ghost" size="icon" aria-label="Ghost"><Plus /></Button>
-      <Button variant="destructive" size="icon" aria-label="Delete"><Trash /></Button>
-    </Row>
-  )
+  return <Row><Button variant="link">View documentation</Button></Row>
 }
 
 /* ================================================================
@@ -513,15 +442,15 @@ export function BtnIconOnlyPreview() {
   return (
     <Row>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-        <Button variant="secondary" size="icon" aria-label="Add" style={{ height: 36, width: 36 }}><Plus /></Button>
+        <Button variant="outline" color="neutral" size="icon" aria-label="Add" style={{ height: 36, width: 36 }}><Plus /></Button>
         <span style={{ fontSize: 11, color: 'var(--muted-foreground)', fontFamily: 'var(--font-mono)' }}>sm</span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-        <Button variant="secondary" size="icon" aria-label="Add"><Plus /></Button>
+        <Button variant="outline" color="neutral" size="icon" aria-label="Add"><Plus /></Button>
         <span style={{ fontSize: 11, color: 'var(--muted-foreground)', fontFamily: 'var(--font-mono)' }}>default</span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-        <Button variant="secondary" size="icon" aria-label="Add" style={{ height: 44, width: 44 }}><Plus /></Button>
+        <Button variant="outline" color="neutral" size="icon" aria-label="Add" style={{ height: 44, width: 44 }}><Plus /></Button>
         <span style={{ fontSize: 11, color: 'var(--muted-foreground)', fontFamily: 'var(--font-mono)' }}>lg</span>
       </div>
     </Row>
@@ -533,7 +462,7 @@ export function BtnWithIconPreview() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'center' }}>
       <Row>
         <Button><Plus />New project</Button>
-        <Button variant="secondary"><Download />Download</Button>
+        <Button color="neutral"><Download />Download</Button>
         <Button variant="outline"><Copy />Copy link</Button>
         <Button variant="ghost"><Trash />Remove</Button>
       </Row>
@@ -569,12 +498,10 @@ export function BtnGroupSolidPreview() {
 export function BtnGroupSoftPreview() {
   return (
     <Row>
-      <div className="btn-group" style={{ display: 'inline-flex' }}>
-        {(['Day', 'Week', 'Month'] as const).map((label) => (
-          <button key={label} disabled style={{ ...PH, border: 'none', background: 'color-mix(in oklch, var(--primary) 12%, transparent)', color: 'var(--primary)', opacity: 0.85 }}>
-            {label}
-          </button>
-        ))}
+      <div className="btn-group">
+        <Button variant="soft">Day</Button>
+        <Button variant="soft">Week</Button>
+        <Button variant="soft">Month</Button>
       </div>
     </Row>
   )
@@ -601,93 +528,58 @@ export function BtnGroupOutlinePreview() {
    COLOR — per-color previews
    ================================================================ */
 
+export function BtnColorPrimaryPreview() {
+  return (
+    <Row>
+      <Button>Button</Button>
+      <Button variant="soft">Soft</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+    </Row>
+  )
+}
+
 export function BtnColorNeutralPreview() {
   return (
     <Row>
-      <button disabled style={{ ...PH, background: 'var(--secondary)', color: 'var(--secondary-foreground)', border: 'none', opacity: 0.85 }}>Button</button>
-      <button disabled style={{ ...PH, background: 'var(--secondary)', color: 'var(--secondary-foreground)', border: 'none', opacity: 0.4 }}>Disabled</button>
-    </Row>
-  )
-}
-
-export function BtnColorPrimaryPreview() {
-  return <Row><Button>Button</Button><Button disabled>Disabled</Button></Row>
-}
-
-export function BtnColorSecondaryPreview() {
-  return <Row><Button variant="secondary">Button</Button><Button variant="secondary" disabled>Disabled</Button></Row>
-}
-
-export function BtnColorAccentPreview() {
-  return (
-    <Row>
-      <button disabled style={{ ...PH, background: 'oklch(0.55 0.20 280)', color: 'white', border: 'none', opacity: 0.85 }}>Button</button>
-      <button disabled style={{ ...PH, background: 'oklch(0.55 0.20 280)', color: 'white', border: 'none', opacity: 0.4 }}>Disabled</button>
-    </Row>
-  )
-}
-
-export function BtnColorInfoPreview() {
-  return (
-    <Row>
-      <button disabled style={{ ...PH, background: 'oklch(0.50 0.20 240)', color: 'white', border: 'none', opacity: 0.85 }}>Button</button>
-      <button disabled style={{ ...PH, background: 'oklch(0.50 0.20 240)', color: 'white', border: 'none', opacity: 0.4 }}>Disabled</button>
-    </Row>
-  )
-}
-
-export function BtnColorSuccessPreview() {
-  return (
-    <Row>
-      <button disabled style={{ ...PH, background: 'oklch(0.52 0.16 155)', color: 'white', border: 'none', opacity: 0.85 }}>Button</button>
-      <button disabled style={{ ...PH, background: 'oklch(0.52 0.16 155)', color: 'white', border: 'none', opacity: 0.4 }}>Disabled</button>
-    </Row>
-  )
-}
-
-export function BtnColorWarningPreview() {
-  return (
-    <Row>
-      <button disabled style={{ ...PH, background: 'oklch(0.78 0.18 85)', color: 'oklch(0.25 0.05 85)', border: 'none', opacity: 0.85 }}>Button</button>
-      <button disabled style={{ ...PH, background: 'oklch(0.78 0.18 85)', color: 'oklch(0.25 0.05 85)', border: 'none', opacity: 0.4 }}>Disabled</button>
+      <Button color="neutral">Button</Button>
+      <Button variant="soft" color="neutral">Soft</Button>
+      <Button variant="outline" color="neutral">Outline</Button>
+      <Button variant="ghost" color="neutral">Ghost</Button>
     </Row>
   )
 }
 
 export function BtnColorDestructivePreview() {
-  return <Row><Button variant="destructive">Button</Button><Button variant="destructive" disabled>Disabled</Button></Row>
+  return (
+    <Row>
+      <Button color="destructive">Button</Button>
+      <Button variant="soft" color="destructive">Soft</Button>
+      <Button variant="outline" color="destructive">Outline</Button>
+      <Button variant="ghost" color="destructive">Ghost</Button>
+    </Row>
+  )
 }
 
 /* ================================================================
-   BORDERS
+   FULL WIDTH
    ================================================================ */
 
-export function BtnBorderRoundedPreview() {
+export function BtnFullWidthStackedPreview() {
   return (
-    <Row>
-      <Button>Default</Button>
-      <Button variant="outline">Outlined</Button>
-      <Button variant="secondary">Secondary</Button>
-    </Row>
+    <div style={{ width: '100%', maxWidth: 320, display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <Button className="w-full">Create account</Button>
+      <Button variant="outline" className="w-full">Sign in instead</Button>
+    </div>
   )
 }
 
-export function BtnBorderBoxPreview() {
+export function BtnFullWidthRowPreview() {
   return (
-    <Row>
-      <Button style={{ borderRadius: 0 }}>Default</Button>
-      <Button variant="outline" style={{ borderRadius: 0 }}>Outlined</Button>
-      <Button variant="secondary" style={{ borderRadius: 0 }}>Secondary</Button>
-    </Row>
-  )
-}
-
-export function BtnBorderDashedPreview() {
-  return (
-    <Row>
-      <button disabled style={{ ...PH, background: 'transparent', border: '1.5px dashed var(--border)', color: 'var(--foreground)', opacity: 0.8 }}>Default</button>
-      <button disabled style={{ ...PH, background: 'transparent', border: '1.5px dashed var(--primary)', color: 'var(--primary)', opacity: 0.8 }}>Primary</button>
-    </Row>
+    <div style={{ width: '100%', maxWidth: 320, display: 'flex', gap: 8 }}>
+      <Button variant="outline" color="neutral" className="w-full">Cancel</Button>
+      <Button className="w-full">Save changes</Button>
+    </div>
   )
 }
 
@@ -702,7 +594,7 @@ export function BtnLoadingPreview() {
         <span className="btn-spinner" aria-hidden="true" />
         Saving…
       </Button>
-      <Button variant="secondary" disabled aria-busy="true">
+      <Button color="neutral" disabled aria-busy="true">
         <span className="btn-spinner" aria-hidden="true" />
         Processing…
       </Button>

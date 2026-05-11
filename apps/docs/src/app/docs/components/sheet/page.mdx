@@ -1,0 +1,168 @@
+export const metadata = { title: 'Sheet — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  SheetSidesPreview,
+  SheetFormPreview,
+  SheetNavigationPreview,
+  SheetBottomPreview,
+} from '@/components/docs/sheet-demo'
+
+<PageHeader
+  title="Sheet"
+  description="A panel that slides in from any edge of the screen. Built on the same Dialog primitive — same focus trap, backdrop, and keyboard handling — but with edge-anchored positioning and slide animations."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="sheet" />
+<ManualInstall component="sheet" />
+
+## Import
+
+```tsx
+import {
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+  SheetBody,
+} from '@tokiui/ui'
+```
+
+## Sides
+
+Use the `side` prop on `SheetContent` to control which edge the panel slides in from. Defaults to `right`.
+
+<Showcase title="Sides" code={`<Sheet>
+  <SheetTrigger>right</SheetTrigger>
+  <SheetContent side="right">
+    <SheetHeader>
+      <SheetTitle>Sheet — right</SheetTitle>
+      <SheetDescription>Opens from the right edge.</SheetDescription>
+    </SheetHeader>
+    <SheetBody>
+      Add your content here.
+    </SheetBody>
+  </SheetContent>
+</Sheet>`}>
+  <SheetSidesPreview />
+</Showcase>
+
+## Edit form
+
+A right sheet is the standard pattern for edit forms — keeps context visible behind the panel while editing.
+
+<Showcase title="Edit form" code={`<Sheet>
+  <SheetTrigger>Edit profile</SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Edit profile</SheetTitle>
+      <SheetDescription>Update your personal information.</SheetDescription>
+    </SheetHeader>
+    <SheetBody>
+      {/* form fields */}
+    </SheetBody>
+    <SheetFooter>
+      <SheetClose>Cancel</SheetClose>
+      <button>Save changes</button>
+    </SheetFooter>
+  </SheetContent>
+</Sheet>`}>
+  <SheetFormPreview />
+</Showcase>
+
+## Navigation
+
+A left sheet works well for mobile navigation drawers — use `SheetFooter` for user identity at the bottom.
+
+<Showcase title="Navigation" code={`<Sheet>
+  <SheetTrigger>Menu</SheetTrigger>
+  <SheetContent side="left">
+    <SheetHeader>
+      <SheetTitle>Navigation</SheetTitle>
+    </SheetHeader>
+    <SheetBody>
+      <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/projects">Projects</a>
+        <a href="/settings">Settings</a>
+      </nav>
+    </SheetBody>
+    <SheetFooter style={{ justifyContent: 'flex-start' }}>
+      {/* user info */}
+    </SheetFooter>
+  </SheetContent>
+</Sheet>`}>
+  <SheetNavigationPreview />
+</Showcase>
+
+## Bottom sheet
+
+A bottom sheet is a mobile-style action panel — common for contextual menus on touch devices.
+
+<Showcase title="Bottom sheet" code={`<Sheet>
+  <SheetTrigger>More actions</SheetTrigger>
+  <SheetContent side="bottom">
+    <SheetHeader>
+      <SheetTitle>File options</SheetTitle>
+      <SheetDescription>Choose an action for this file.</SheetDescription>
+    </SheetHeader>
+    <SheetBody>
+      <button>Share link</button>
+      <button>Copy to clipboard</button>
+      <button>Download</button>
+      <button style={{ color: 'var(--destructive)' }}>Delete</button>
+    </SheetBody>
+  </SheetContent>
+</Sheet>`}>
+  <SheetBottomPreview />
+</Showcase>
+
+## API
+
+### Sheet
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `open` | `boolean` | — | Controlled open state |
+| `defaultOpen` | `boolean` | `false` | Uncontrolled initial open state |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes |
+| `modal` | `boolean` | `true` | When true, interaction outside the sheet is blocked |
+
+### SheetContent
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'right'` | Edge the sheet slides in from |
+| `size` | `'sm' \| 'default' \| 'lg' \| 'xl' \| 'full'` | `'default'` | Width of a left or right sheet (ignored for top/bottom) |
+| `className` | `string` | — | Merged with the panel class list |
+
+## Sub-components
+
+| Component | Description |
+|---|---|
+| `SheetTrigger` | Opens the sheet |
+| `SheetClose` | Closes the sheet — also rendered as an × button inside `SheetContent` |
+| `SheetHeader` | Top section with bottom border — wrap `SheetTitle` and `SheetDescription` here |
+| `SheetBody` | Scrollable middle section with padding |
+| `SheetFooter` | Bottom section with top border — for action buttons |
+| `SheetTitle` | Accessible title (required for screen readers) |
+| `SheetDescription` | Accessible description |
+
+## Accessibility
+
+- Focus is trapped inside the sheet while it is open
+- `Escape` closes the sheet
+- The backdrop click closes the sheet
+- `SheetTitle` maps to `aria-labelledby` on the panel; `SheetDescription` to `aria-describedby`
+- The built-in × button has a visually hidden "Close" label for screen readers

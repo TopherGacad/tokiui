@@ -1,0 +1,7 @@
+{
+  "name": "form",
+  "files": ["components/form.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

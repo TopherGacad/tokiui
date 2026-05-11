@@ -130,8 +130,8 @@ export function PlaygroundContent() {
             style={{
               ...(activeVars as React.CSSProperties),
               fontFamily,
-              backgroundColor: `hsl(${activeTokens.background})`,
-              color: `hsl(${activeTokens.foreground})`,
+              backgroundColor: activeTokens.background,
+              color: activeTokens.foreground,
             }}
           >
             <ComponentShowcase />

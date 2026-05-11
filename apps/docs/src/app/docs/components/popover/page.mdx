@@ -1,0 +1,236 @@
+export const metadata = { title: 'Popover — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  PopoverBasicPreview,
+  PopoverFormPreview,
+  PopoverColorPickerPreview,
+  PopoverChecklistPreview,
+  PopoverSidesPreview,
+  PopoverSettingsPreview,
+} from '@/components/docs/popover-demo'
+
+<PageHeader
+  title="Popover"
+  description="A non-modal floating panel anchored to a trigger. Use for pickers, settings panels, option lists, and any interactive content that shouldn't block the page."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="popover" />
+<ManualInstall component="popover" />
+
+## Import
+
+```tsx
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@tokiui/ui'
+```
+
+## Basic
+
+<Showcase title="Basic" code={`<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="outline">Open popover</Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <p className="text-sm font-semibold">Dimensions</p>
+    <p className="text-sm text-muted-foreground mt-1">
+      Set the dimensions for the layer. This affects all breakpoints.
+    </p>
+  </PopoverContent>
+</Popover>`}>
+  <PopoverBasicPreview />
+</Showcase>
+
+## Form in popover
+
+Inline editing without navigating away. Useful for quick field edits on cards, tables, and list items.
+
+<Showcase title="Form" code={`'use client'
+import { useState } from 'react'
+
+export function EditPopover() {
+  const [open, setOpen] = useState(false)
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Edit details</Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-72">
+        <div className="flex flex-col gap-3">
+          <p className="text-sm font-semibold">Edit profile</p>
+          <div className="grid gap-1.5">
+            <label className="text-xs font-medium" htmlFor="name">Name</label>
+            <Input id="name" defaultValue="Alex Johnson" />
+          </div>
+          <div className="grid gap-1.5">
+            <label className="text-xs font-medium" htmlFor="username">Username</label>
+            <Input id="username" defaultValue="@alexjohnson" />
+          </div>
+          <Button className="w-full" onClick={() => setOpen(false)}>Save</Button>
+        </div>
+      </PopoverContent>
+    </Popover>
+  )
+}`}>
+  <PopoverFormPreview />
+</Showcase>
+
+## Color picker
+
+A grid of swatches in a popover — the most common pattern for compact color selection.
+
+<Showcase title="Color picker" code={`const COLORS = ['#ef4444', '#f97316', '#eab308', '#22c55e', ...]
+
+export function ColorPicker() {
+  const [color, setColor] = useState('#3b82f6')
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" color="neutral">
+          <span className="w-3.5 h-3.5 rounded-sm border" style={{ background: color }} />
+          Pick color
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto">
+        <div className="grid grid-cols-6 gap-1.5">
+          {COLORS.map((c) => (
+            <button
+              key={c}
+              onClick={() => setColor(c)}
+              className="w-6 h-6 rounded cursor-pointer border"
+              style={{ background: c, borderColor: color === c ? 'var(--ring)' : 'var(--border)' }}
+            />
+          ))}
+        </div>
+      </PopoverContent>
+    </Popover>
+  )
+}`}>
+  <PopoverColorPickerPreview />
+</Showcase>
+
+## Option checklist
+
+Toggle visibility of columns, filters, or any set of options. Closes on outside click.
+
+<Showcase title="Checklist" code={`const COLUMNS = ['Status', 'Priority', 'Assignee', 'Due date', 'Labels', 'Estimate']
+
+export function ColumnToggle() {
+  const [visible, setVisible] = useState(['Status', 'Priority', 'Assignee'])
+  const toggle = (col: string) =>
+    setVisible((v) => v.includes(col) ? v.filter((c) => c !== col) : [...v, col])
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" color="neutral">Columns</Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-48 p-0">
+        {COLUMNS.map((col) => (
+          <button key={col} onClick={() => toggle(col)} className="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-muted">
+            <Checkbox checked={visible.includes(col)} />
+            {col}
+          </button>
+        ))}
+      </PopoverContent>
+    </Popover>
+  )
+}`}>
+  <PopoverChecklistPreview />
+</Showcase>
+
+## Positioning
+
+Use `side` and `align` on `PopoverContent` to control placement. The popover flips automatically if it would overflow the viewport.
+
+<Showcase title="Sides" code={`<PopoverContent side="top">Opens above</PopoverContent>
+<PopoverContent side="right">Opens right</PopoverContent>
+<PopoverContent side="bottom">Opens below</PopoverContent>
+<PopoverContent side="left">Opens left</PopoverContent>`}>
+  <PopoverSidesPreview />
+</Showcase>
+
+## Settings panel
+
+A radio-style option list — one selection from a set. Common for notification preferences, themes, and display modes.
+
+<Showcase title="Settings" code={`export function NotificationSettings() {
+  const [setting, setSetting] = useState('mentions')
+  const options = [
+    { value: 'all',      label: 'All activity',   desc: 'Every comment and update'  },
+    { value: 'mentions', label: 'Mentions only',   desc: 'Only when you are tagged'  },
+    { value: 'none',     label: 'Off',             desc: 'No notifications'          },
+  ]
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" color="neutral">Notifications</Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-64 p-0">
+        {options.map((opt) => (
+          <button key={opt.value} onClick={() => setSetting(opt.value)}
+            className="flex items-start gap-2.5 w-full px-3 py-2 text-left hover:bg-muted"
+          >
+            <RadioIndicator checked={setting === opt.value} />
+            <span>
+              <span className="block text-sm font-medium">{opt.label}</span>
+              <span className="block text-xs text-muted-foreground">{opt.desc}</span>
+            </span>
+          </button>
+        ))}
+      </PopoverContent>
+    </Popover>
+  )
+}`}>
+  <PopoverSettingsPreview />
+</Showcase>
+
+## API
+
+### Popover (root)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `open` | `boolean` | — | Controlled open state |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes |
+| `defaultOpen` | `boolean` | `false` | Uncontrolled initial open state |
+| `modal` | `boolean` | `false` | Whether to use modal behavior |
+
+### PopoverContent
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Preferred side |
+| `sideOffset` | `number` | `8` | Distance from trigger in px |
+| `align` | `'start' \| 'center' \| 'end'` | `'center'` | Alignment along the side |
+| `alignOffset` | `number` | `0` | Offset along the align axis |
+| `className` | `string` | — | Merged with content class list |
+| `onInteractOutside` | `(e) => void` | — | Block outside-click dismiss |
+
+## Popover vs Tooltip vs Dialog
+
+| | Tooltip | Popover | Dialog |
+|---|---|---|---|
+| Trigger | Hover / focus | Click | Click |
+| Interactive content | No | Yes | Yes |
+| Blocks page | No | No | Yes |
+| Traps focus | No | No | Yes |
+| Use for | Labels, hints | Pickers, settings | Forms, confirmations |
+
+## Accessibility
+
+- `PopoverContent` uses `role="dialog"` — screen readers announce it when opened
+- Focus moves into the popover on open
+- Pressing `Escape` closes the popover
+- Clicking outside closes the popover (block with `onInteractOutside={(e) => e.preventDefault()}`)
+- Always provide a visible label or `aria-label` on `PopoverTrigger`

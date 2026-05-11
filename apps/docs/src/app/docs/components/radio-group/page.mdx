@@ -1,0 +1,246 @@
+export const metadata = { title: 'Radio Group — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  RadioGroupWithLabelPreview,
+  RadioGroupDescriptionPreview,
+  RadioGroupHorizontalPreview,
+  RadioGroupDisabledPreview,
+  RadioGroupCardPreview,
+  RadioGroupControlledPreview,
+  RadioGroupSizesPreview,
+  RadioGroupColorsPreview,
+  RadioGroupErrorPreview,
+} from '@/components/docs/radio-group-demo'
+
+<PageHeader
+  title="Radio Group"
+  description="A set of mutually exclusive options where only one can be selected at a time. Built on Radix UI — fully keyboard navigable and screen reader accessible."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="radio-group" />
+<ManualInstall component="radio-group" />
+
+## Import
+
+```tsx
+import { RadioGroup, RadioGroupItem } from '@tokiui/ui'
+```
+
+## With label
+
+Connect each `RadioGroupItem` to a `<label>` using matching `id` / `htmlFor`.
+
+<Showcase title="With label" code={`<RadioGroup defaultValue="free">
+  <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+    <RadioGroupItem id="plan-free" value="free" />
+    <label htmlFor="plan-free" style={{ fontSize: 14, fontWeight: 500 }}>Free</label>
+  </div>
+  <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+    <RadioGroupItem id="plan-pro" value="pro" />
+    <label htmlFor="plan-pro" style={{ fontSize: 14, fontWeight: 500 }}>Pro</label>
+  </div>
+  <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+    <RadioGroupItem id="plan-enterprise" value="enterprise" />
+    <label htmlFor="plan-enterprise" style={{ fontSize: 14, fontWeight: 500 }}>Enterprise</label>
+  </div>
+</RadioGroup>`}>
+  <RadioGroupWithLabelPreview />
+</Showcase>
+
+## With description
+
+Stack a secondary line below each label for additional context.
+
+<Showcase title="With description" code={`<RadioGroup defaultValue="comfortable">
+  <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+    <RadioGroupItem id="compact" value="compact" style={{ marginTop: 2 }} />
+    <div>
+      <label htmlFor="compact" style={{ fontSize: 14, fontWeight: 500 }}>Compact</label>
+      <p style={{ fontSize: 13, color: 'var(--muted-foreground)', margin: 0 }}>
+        Tight spacing, more content visible at once.
+      </p>
+    </div>
+  </div>
+  {/* repeat for other options... */}
+</RadioGroup>`}>
+  <RadioGroupDescriptionPreview />
+</Showcase>
+
+## Horizontal
+
+Override the default vertical layout by passing `style` or `className` directly to `RadioGroup`.
+
+<Showcase title="Horizontal" code={`<RadioGroup defaultValue="system" style={{ display: 'flex', gap: 20 }}>
+  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+    <RadioGroupItem id="theme-light" value="light" />
+    <label htmlFor="theme-light" style={{ fontSize: 14, fontWeight: 500 }}>Light</label>
+  </div>
+  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+    <RadioGroupItem id="theme-dark" value="dark" />
+    <label htmlFor="theme-dark" style={{ fontSize: 14, fontWeight: 500 }}>Dark</label>
+  </div>
+  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+    <RadioGroupItem id="theme-system" value="system" />
+    <label htmlFor="theme-system" style={{ fontSize: 14, fontWeight: 500 }}>System</label>
+  </div>
+</RadioGroup>`}>
+  <RadioGroupHorizontalPreview />
+</Showcase>
+
+## Disabled
+
+Pass `disabled` on the root `RadioGroup` to disable all items, or on individual `RadioGroupItem` to disable specific options.
+
+<Showcase title="Disabled" code={`{/* Entire group disabled */}
+<RadioGroup defaultValue="monthly" disabled>
+  <RadioGroupItem value="monthly" id="monthly" />
+  <RadioGroupItem value="annual" id="annual" />
+</RadioGroup>
+
+{/* Individual item disabled */}
+<RadioGroup defaultValue="card">
+  <RadioGroupItem value="card" id="card" />
+  <RadioGroupItem value="paypal" id="paypal" />
+  <RadioGroupItem value="crypto" id="crypto" disabled />
+</RadioGroup>`}>
+  <RadioGroupDisabledPreview />
+</Showcase>
+
+## Card style
+
+Wrap each item in a styled `<label>` to create a card-style selector with highlighted selection.
+
+<Showcase title="Card style" code={`'use client'
+import { useState } from 'react'
+
+const PLANS = [
+  { value: 'starter', label: 'Starter', price: '$0',  desc: 'For personal projects' },
+  { value: 'pro',     label: 'Pro',     price: '$12', desc: 'For growing teams'      },
+]
+
+export function PlanPicker() {
+  const [value, setValue] = useState('pro')
+
+  return (
+    <RadioGroup value={value} onValueChange={setValue} style={{ gap: 8 }}>
+      {PLANS.map((plan) => (
+        <label
+          key={plan.value}
+          htmlFor={\`plan-\${plan.value}\`}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 12,
+            padding: '12px 14px', borderRadius: 'var(--radius-sm)',
+            border: \`1px solid \${value === plan.value ? 'var(--primary)' : 'var(--border)'}\`,
+            background: value === plan.value
+              ? 'color-mix(in oklch, var(--primary) 6%, var(--background))'
+              : 'var(--background)',
+            cursor: 'pointer', transition: 'all 0.15s',
+          }}
+        >
+          <RadioGroupItem id={\`plan-\${plan.value}\`} value={plan.value} />
+          <span style={{ flex: 1 }}>
+            <span style={{ fontSize: 14, fontWeight: 500 }}>{plan.label}</span>
+            <span style={{ display: 'block', fontSize: 12, color: 'var(--muted-foreground)' }}>{plan.desc}</span>
+          </span>
+          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--primary)' }}>{plan.price}/mo</span>
+        </label>
+      ))}
+    </RadioGroup>
+  )
+}`}>
+  <RadioGroupCardPreview />
+</Showcase>
+
+## Controlled
+
+Use `value` and `onValueChange` to fully control the selected state from outside.
+
+<Showcase title="Controlled" code={`'use client'
+import { useState } from 'react'
+
+export function NotificationPicker() {
+  const [value, setValue] = useState('email')
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <RadioGroup value={value} onValueChange={setValue}>
+        <RadioGroupItem value="email" id="notify-email" />
+        <RadioGroupItem value="sms"   id="notify-sms" />
+        <RadioGroupItem value="push"  id="notify-push" />
+      </RadioGroup>
+      <p style={{ fontSize: 13, color: 'var(--muted-foreground)', margin: 0 }}>
+        Selected: <code>{value}</code>
+      </p>
+    </div>
+  )
+}`}>
+  <RadioGroupControlledPreview />
+</Showcase>
+
+## Size
+
+Three sizes inherited by all items in the group.
+
+<Showcase title="Sizes" code={`<RadioGroup size="sm" defaultValue="a">…</RadioGroup>\n<RadioGroup size="default" defaultValue="a">…</RadioGroup>\n<RadioGroup size="lg" defaultValue="a">…</RadioGroup>`}>
+  <RadioGroupSizesPreview />
+</Showcase>
+
+## Color
+
+Applies to the checked indicator on all items. Set once on `RadioGroup` or override per `RadioGroupItem`.
+
+<Showcase title="Colors" code={`<RadioGroup color="success" defaultValue="on">…</RadioGroup>\n<RadioGroup color="warning" defaultValue="on">…</RadioGroup>\n<RadioGroup color="info" defaultValue="on">…</RadioGroup>`}>
+  <RadioGroupColorsPreview />
+</Showcase>
+
+## Error state
+
+Add `error` to mark the entire group invalid. Pair with a visible error message below.
+
+<Showcase title="Error" code={`<RadioGroup error>\n  <RadioGroupItem value="agree" id="agree" />\n  <RadioGroupItem value="deny" id="deny" />\n</RadioGroup>\n<p style={{ color: 'var(--destructive)', fontSize: 12 }}>\n  You must make a selection.\n</p>`}>
+  <RadioGroupErrorPreview />
+</Showcase>
+
+## API
+
+### RadioGroup
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `sm \| default \| lg` | `default` | Size inherited by all items |
+| `color` | `default \| success \| warning \| info \| destructive` | `default` | Checked color inherited by all items |
+| `error` | `boolean` | `false` | Applies destructive border to all items |
+| `value` | `string` | — | Controlled selected value |
+| `defaultValue` | `string` | — | Uncontrolled initial value |
+| `onValueChange` | `(value: string) => void` | — | Called when selection changes |
+| `disabled` | `boolean` | `false` | Disables all items in the group |
+| `required` | `boolean` | `false` | Marks the group as required in a form |
+| `name` | `string` | — | Input name for form submission |
+| `orientation` | `horizontal \| vertical` | `vertical` | Layout and arrow key navigation direction |
+| `className` | `string` | — | Additional class names |
+
+### RadioGroupItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | **required** | The value this item represents |
+| `size` | `sm \| default \| lg` | — | Overrides the group size for this item |
+| `color` | `default \| success \| warning \| info \| destructive` | — | Overrides the group color for this item |
+| `error` | `boolean` | — | Overrides the group error state for this item |
+| `disabled` | `boolean` | `false` | Disables this specific item |
+| `className` | `string` | — | Additional class names |
+
+## Accessibility
+
+- Arrow keys (`↑` `↓` or `←` `→`) move between items; `Space` selects the focused item
+- `RadioGroup` renders as `role="radiogroup"`; each item as `role="radio"` with `aria-checked`
+- Connect a visible `<label>` using `htmlFor` matching each item's `id`
+- Disabled items have `aria-disabled="true"` and are skipped during keyboard navigation

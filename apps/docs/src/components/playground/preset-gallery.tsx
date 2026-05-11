@@ -21,7 +21,7 @@ export function PresetGallery({ onSelect }: PresetGalleryProps) {
           >
             <span
               className="h-3 w-3 rounded-full border"
-              style={{ backgroundColor: `hsl(${theme.light.primary})` }}
+              style={{ backgroundColor: theme.light.primary }}
             />
             {theme.label}
           </button>

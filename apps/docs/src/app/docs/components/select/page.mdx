@@ -1,0 +1,321 @@
+export const metadata = { title: 'Select — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  SelectBasicPreview,
+  SelectGroupedPreview,
+  SelectWithIconsPreview,
+  SelectDisabledPreview,
+  SelectControlledPreview,
+  SelectSizesPreview,
+  SelectScrollablePreview,
+  SelectInFormPreview,
+  SelectErrorPreview,
+  SelectClearablePreview,
+} from '@/components/docs/select-demo'
+
+<PageHeader
+  title="Select"
+  description="A dropdown that lets users pick one option from a list. Built on Radix UI — keyboard navigable, screen reader accessible, and auto-positions to avoid viewport overflow."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="select" />
+<ManualInstall component="select" />
+
+## Import
+
+```tsx
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+  SelectGroup,
+  SelectLabel,
+  SelectSeparator,
+} from '@tokiui/ui'
+```
+
+## Basic
+
+`SelectValue` renders the selected item's text or the `placeholder` when nothing is selected.
+
+<Showcase title="Basic" code={`<Select>
+  <SelectTrigger className="w-[200px]">
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana">Banana</SelectItem>
+    <SelectItem value="blueberry">Blueberry</SelectItem>
+    <SelectItem value="mango">Mango</SelectItem>
+    <SelectItem value="pineapple">Pineapple</SelectItem>
+  </SelectContent>
+</Select>`}>
+  <SelectBasicPreview />
+</Showcase>
+
+## Grouped
+
+Use `SelectGroup` and `SelectLabel` to organize options into named sections. Use `SelectSeparator` between groups.
+
+<Showcase title="Grouped" code={`<Select>
+  <SelectTrigger className="w-[220px]">
+    <SelectValue placeholder="Select timezone" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>North America</SelectLabel>
+      <SelectItem value="est">Eastern (EST)</SelectItem>
+      <SelectItem value="cst">Central (CST)</SelectItem>
+      <SelectItem value="pst">Pacific (PST)</SelectItem>
+    </SelectGroup>
+    <SelectSeparator />
+    <SelectGroup>
+      <SelectLabel>Europe</SelectLabel>
+      <SelectItem value="gmt">London (GMT)</SelectItem>
+      <SelectItem value="cet">Paris (CET)</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>`}>
+  <SelectGroupedPreview />
+</Showcase>
+
+## With icons
+
+Pass any JSX as `SelectItem` children — icons, descriptions, and badges all work. For the trigger display, use a controlled select and render the selected item manually.
+
+<Showcase title="With icons" code={`<Select value={value} onValueChange={setValue}>
+  <SelectTrigger className="w-[200px]">
+    {selected ? (
+      <div className="flex items-center gap-2 min-w-0 flex-1">
+        <span className="text-muted-foreground shrink-0 flex">{selected.icon}</span>
+        <span className="truncate">{selected.label}</span>
+      </div>
+    ) : (
+      <SelectValue placeholder="Select role" />
+    )}
+  </SelectTrigger>
+  <SelectContent>
+    {roles.map((role) => (
+      <SelectItem key={role.value} value={role.value}>
+        <span className="flex items-center gap-2.5">
+          <span className="text-muted-foreground">{role.icon}</span>
+          <span>
+            <span className="block font-medium">{role.label}</span>
+            <span className="block text-xs text-muted-foreground">{role.desc}</span>
+          </span>
+        </span>
+      </SelectItem>
+    ))}
+  </SelectContent>
+</Select>`}>
+  <SelectWithIconsPreview />
+</Showcase>
+
+## Disabled
+
+Disable the entire select via the `disabled` prop on `Select`, or disable individual items via `disabled` on `SelectItem`.
+
+<Showcase title="Disabled" code={`{/* Entire select disabled */}
+<Select disabled>
+  <SelectTrigger className="w-[200px]">
+    <SelectValue placeholder="Disabled select" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="a">Option A</SelectItem>
+  </SelectContent>
+</Select>
+
+{/* Individual item disabled */}
+<Select>
+  <SelectTrigger className="w-[200px]">
+    <SelectValue placeholder="Select plan" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="free">Free</SelectItem>
+    <SelectItem value="pro">Pro</SelectItem>
+    <SelectItem value="enterprise" disabled>Enterprise (contact us)</SelectItem>
+  </SelectContent>
+</Select>`}>
+  <SelectDisabledPreview />
+</Showcase>
+
+## Controlled
+
+Use `value` and `onValueChange` for full control over the selected state.
+
+<Showcase title="Controlled" code={`'use client'
+import { useState } from 'react'
+
+export function StatusSelect() {
+  const [status, setStatus] = useState('todo')
+
+  return (
+    <Select value={status} onValueChange={setStatus}>
+      <SelectTrigger className="w-[200px]">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="backlog">Backlog</SelectItem>
+        <SelectItem value="todo">Todo</SelectItem>
+        <SelectItem value="in-progress">In Progress</SelectItem>
+        <SelectItem value="done">Done</SelectItem>
+      </SelectContent>
+    </Select>
+  )
+}`}>
+  <SelectControlledPreview />
+</Showcase>
+
+## Size
+
+Three heights to match surrounding form controls.
+
+<Showcase title="Sizes" code={`<SelectTrigger size="sm">…</SelectTrigger>\n<SelectTrigger size="default">…</SelectTrigger>\n<SelectTrigger size="lg">…</SelectTrigger>`}>
+  <SelectSizesPreview />
+</Showcase>
+
+## Error state
+
+Add `error` to `SelectTrigger` to apply a destructive border and ring. Pair with a visible error message.
+
+<Showcase title="Error" code={`<Select>\n  <SelectTrigger error>\n    <SelectValue placeholder="Select a role" />\n  </SelectTrigger>\n  <SelectContent>…</SelectContent>\n</Select>`}>
+  <SelectErrorPreview />
+</Showcase>
+
+## Clearable
+
+Pass `clearable` and `onClear` to show a × button when a value is selected.
+
+<Showcase title="Clearable" code={`<Select value={value} onValueChange={setValue}>\n  <SelectTrigger clearable onClear={() => setValue(undefined)}>\n    <SelectValue placeholder="Select plan" />\n  </SelectTrigger>\n  <SelectContent>…</SelectContent>\n</Select>`}>
+  <SelectClearablePreview />
+</Showcase>
+
+## Scrollable
+
+For long option lists, the dropdown automatically shows scroll buttons at the top and bottom when the list overflows.
+
+<Showcase title="Scrollable" code={`<Select>
+  <SelectTrigger className="w-[200px]">
+    <SelectValue placeholder="Select country" />
+  </SelectTrigger>
+  <SelectContent>
+    {countries.map((c) => (
+      <SelectItem key={c} value={c.toLowerCase()}>
+        {c}
+      </SelectItem>
+    ))}
+  </SelectContent>
+</Select>`}>
+  <SelectScrollablePreview />
+</Showcase>
+
+## With form composition
+
+Use `FormField` and `FormLabel` from `@tokiui/ui` to build accessible labeled fields with consistent spacing.
+
+<Showcase title="Form composition" code={`import { FormField, FormLabel, Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@tokiui/ui'
+
+<FormField>
+  <FormLabel>Email frequency</FormLabel>
+  <Select>
+    <SelectTrigger>
+      <SelectValue placeholder="Choose frequency" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="realtime">Real-time</SelectItem>
+      <SelectItem value="daily">Daily digest</SelectItem>
+      <SelectItem value="weekly">Weekly summary</SelectItem>
+      <SelectItem value="never">Never</SelectItem>
+    </SelectContent>
+  </Select>
+</FormField>
+
+<FormField>
+  <FormLabel required>Language</FormLabel>
+  <Select defaultValue="en">
+    <SelectTrigger>
+      <SelectValue />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="en">English</SelectItem>
+      <SelectItem value="es">Español</SelectItem>
+      <SelectItem value="fr">Français</SelectItem>
+      <SelectItem value="de">Deutsch</SelectItem>
+    </SelectContent>
+  </Select>
+</FormField>`}>
+  <SelectInFormPreview />
+</Showcase>
+
+## API
+
+### Select (root)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | Controlled selected value |
+| `onValueChange` | `(value: string) => void` | — | Called when selection changes |
+| `defaultValue` | `string` | — | Uncontrolled initial value |
+| `disabled` | `boolean` | `false` | Disables the entire select |
+| `open` | `boolean` | — | Controlled open state |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes |
+
+### SelectTrigger
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `sm \| default \| lg` | `default` | Trigger height and text size |
+| `error` | `boolean` | `false` | Applies destructive border and ring |
+| `clearable` | `boolean` | `false` | Shows × button when a value is selected |
+| `onClear` | `() => void` | — | Called when × is clicked — use to reset the value |
+| `disabled` | `boolean` | `false` | Disables the trigger independently |
+| `className` | `string` | — | Additional class names — use for width |
+
+### SelectContent
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `position` | `'popper' \| 'item-aligned'` | `'popper'` | `popper` anchors below trigger; `item-aligned` aligns selected item with trigger |
+| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Preferred side |
+| `sideOffset` | `number` | `4` | Distance from trigger in px |
+| `align` | `'start' \| 'center' \| 'end'` | `'start'` | Alignment along the side |
+
+### SelectItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | **required** | The value submitted when this item is selected |
+| `disabled` | `boolean` | `false` | Prevents selection of this item |
+
+## Sub-components
+
+| Component | Description |
+|---|---|
+| `Select` | Root state container |
+| `SelectTrigger` | The button that opens the dropdown — styled like an Input |
+| `SelectValue` | Renders selected item text or placeholder |
+| `SelectContent` | The dropdown panel |
+| `SelectItem` | A single option |
+| `SelectGroup` | Groups related items together |
+| `SelectLabel` | Non-interactive label for a group |
+| `SelectSeparator` | Horizontal divider between groups |
+| `SelectScrollUpButton` | Appears at top when content overflows |
+| `SelectScrollDownButton` | Appears at bottom when content overflows |
+
+## Accessibility
+
+- Full keyboard navigation: `↑` `↓` to move, `Enter` / `Space` to select, `Escape` to close
+- `SelectTrigger` uses `role="combobox"` with `aria-expanded` and `aria-haspopup`
+- Selected item is announced by screen readers via `aria-selected`
+- Connect a visible `<label>` using `htmlFor` matching the trigger's `id`
+- Disabled items use `aria-disabled="true"` and are skipped during keyboard navigation

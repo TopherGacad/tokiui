@@ -1,0 +1,186 @@
+export const metadata = { title: 'Tabs — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  TabsBasicPreview,
+  TabsWithCardsPreview,
+  TabsUnderlinePreview,
+  TabsPillPreview,
+  TabsVerticalPreview,
+  TabsDisabledPreview,
+} from '@/components/docs/tabs-demo'
+
+<PageHeader
+  title="Tabs"
+  description="Organises content into switchable panels. Built on Radix UI — fully keyboard navigable with arrow keys, screen reader accessible, and supports horizontal and vertical orientations."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="tabs" />
+<ManualInstall component="tabs" />
+
+## Import
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@tokiui/ui'
+```
+
+## Basic
+
+`defaultValue` sets the initially active tab. `Tabs` manages selection state internally.
+
+<Showcase title="Basic" code={`<Tabs defaultValue="account">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+    <TabsTrigger value="billing">Billing</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">
+    Manage your account settings and preferences.
+  </TabsContent>
+  <TabsContent value="password">
+    Change your password and manage security options.
+  </TabsContent>
+  <TabsContent value="billing">
+    View your billing history and manage your subscription.
+  </TabsContent>
+</Tabs>`}>
+  <TabsBasicPreview />
+</Showcase>
+
+## With content cards
+
+Wrap `TabsContent` in card-style containers to separate the tab panel visually from the rest of the page.
+
+<Showcase title="With content cards" code={`<Tabs defaultValue="profile">
+  <TabsList>
+    <TabsTrigger value="profile">Profile</TabsTrigger>
+    <TabsTrigger value="notifications">Notifications</TabsTrigger>
+    <TabsTrigger value="security">Security</TabsTrigger>
+  </TabsList>
+  <TabsContent value="profile">
+    <div style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius)', marginTop: 8 }}>
+      {/* card content */}
+    </div>
+  </TabsContent>
+</Tabs>`}>
+  <TabsWithCardsPreview />
+</Showcase>
+
+## Underline variant
+
+Override `TabsList` and `TabsTrigger` with `className` to replace the default pill style with a bottom-border indicator. Useful for data tables and list pages with a badge count per tab.
+
+<Showcase title="Underline variant" code={`<Tabs defaultValue="all">
+  <TabsList className="h-auto gap-0 rounded-none border-b border-border bg-transparent p-0">
+    <TabsTrigger
+      value="all"
+      className="rounded-none border-b-2 border-transparent px-3 pb-2.5 pt-1 shadow-none data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none"
+    >
+      All <span>128</span>
+    </TabsTrigger>
+    {/* repeat for other tabs */}
+  </TabsList>
+  <TabsContent value="all">…</TabsContent>
+</Tabs>`}>
+  <TabsUnderlinePreview />
+</Showcase>
+
+## Pill variant
+
+A compact segmented control for toggling between a small set of options — common for date range selectors and view modes.
+
+<Showcase title="Pill variant" code={`const ranges = ['Day', 'Week', 'Month', 'Year']
+
+<div style={{ display: 'flex', gap: 4, padding: 4, borderRadius: 999, background: 'var(--muted)' }}>
+  {ranges.map((r) => (
+    <button
+      key={r}
+      onClick={() => setActive(r.toLowerCase())}
+      style={{
+        padding: '5px 14px',
+        borderRadius: 999,
+        background: active === r.toLowerCase() ? 'var(--background)' : 'transparent',
+        color: active === r.toLowerCase() ? 'var(--foreground)' : 'var(--muted-foreground)',
+        boxShadow: active === r.toLowerCase() ? '0 1px 3px oklch(0 0 0 / 0.10)' : 'none',
+        border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 500,
+      }}
+    >
+      {r}
+    </button>
+  ))}
+</div>`}>
+  <TabsPillPreview />
+</Showcase>
+
+## Vertical
+
+Set `orientation="vertical"` for side navigation tabs. Override `TabsList` with `flex-direction: column` and adjust `TabsTrigger` alignment.
+
+<Showcase title="Vertical" code={`<Tabs defaultValue="general" orientation="vertical" style={{ display: 'flex', gap: 0 }}>
+  <TabsList style={{ flexDirection: 'column', height: 'auto', alignItems: 'stretch', minWidth: 140 }}>
+    <TabsTrigger value="general"      style={{ justifyContent: 'flex-start' }}>General</TabsTrigger>
+    <TabsTrigger value="team"         style={{ justifyContent: 'flex-start' }}>Team</TabsTrigger>
+    <TabsTrigger value="integrations" style={{ justifyContent: 'flex-start' }}>Integrations</TabsTrigger>
+    <TabsTrigger value="billing"      style={{ justifyContent: 'flex-start' }}>Billing</TabsTrigger>
+  </TabsList>
+  <div style={{ flex: 1, paddingLeft: 20 }}>
+    <TabsContent value="general">…</TabsContent>
+  </div>
+</Tabs>`}>
+  <TabsVerticalPreview />
+</Showcase>
+
+## Disabled
+
+Pass `disabled` on individual `TabsTrigger` to prevent selection.
+
+<Showcase title="Disabled" code={`<Tabs defaultValue="overview">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="analytics">Analytics</TabsTrigger>
+    <TabsTrigger value="reports"  disabled>Reports</TabsTrigger>
+    <TabsTrigger value="settings" disabled>Settings</TabsTrigger>
+  </TabsList>
+</Tabs>`}>
+  <TabsDisabledPreview />
+</Showcase>
+
+## API
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | — | Controlled active tab |
+| `defaultValue` | `string` | — | Uncontrolled initial active tab |
+| `onValueChange` | `(value: string) => void` | — | Called when active tab changes |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Affects arrow key navigation direction |
+| `activationMode` | `'automatic' \| 'manual'` | `'automatic'` | `automatic` activates on focus; `manual` requires Enter/Space |
+
+### TabsTrigger
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | **required** | The tab this trigger activates |
+| `disabled` | `boolean` | `false` | Prevents selection |
+
+### TabsContent
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | **required** | Matches the trigger `value` this panel belongs to |
+| `forceMount` | `boolean` | — | Keep content mounted even when inactive — useful for animations |
+
+## Accessibility
+
+- Arrow keys (`←` `→` or `↑` `↓`) move between tabs
+- `TabsList` has `role="tablist"`, each trigger has `role="tab"` with `aria-selected`
+- Active panel has `role="tabpanel"` and is linked to its trigger via `aria-controls` / `aria-labelledby`
+- Disabled triggers have `aria-disabled="true"` and are skipped during keyboard navigation

@@ -2,10 +2,15 @@ import Link from 'next/link'
 import { Icon } from './icons'
 import { ThemeToggle } from './theme-toggle'
 
-export function Header() {
+interface HeaderProps {
+  mobileNav?: React.ReactNode
+}
+
+export function Header({ mobileNav }: HeaderProps) {
   return (
     <header className="site-header">
       <div className="site-header__inner">
+        {mobileNav && <div className="mobile-menu-slot">{mobileNav}</div>}
         <Link href="/" className="wordmark" aria-label="tokiui home">
           <span className="brand__chip">tu</span>
           <span>tokiui</span>

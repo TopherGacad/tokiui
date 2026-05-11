@@ -18,6 +18,14 @@ function DownloadIcon() {
   )
 }
 
+function toComponentName(slug: string): string {
+  return slug
+    .split('-')
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join('')
+}
+
 interface ManualInstallProps {
   component: string
   componentPath?: string
@@ -27,7 +35,7 @@ export function ManualInstall({ component, componentPath }: ManualInstallProps) 
   const [open, setOpen] = useState(false)
   const path = componentPath ?? `components/ui/${component}.tsx`
   const importPath = `@/components/ui/${component}`
-  const name = component.charAt(0).toUpperCase() + component.slice(1)
+  const name = toComponentName(component)
 
   return (
     <div className={`manual${open ? ' is-open' : ''}`}>
@@ -35,6 +43,7 @@ export function ManualInstall({ component, componentPath }: ManualInstallProps) 
         type="button"
         className="manual__head"
         aria-expanded={open}
+        aria-controls="manual-body"
         onClick={() => setOpen((v) => !v)}
       >
         <span className="manual__head-l">
@@ -45,7 +54,7 @@ export function ManualInstall({ component, componentPath }: ManualInstallProps) 
         <span className="manual__chev"><ChevronIcon /></span>
       </button>
       {open && (
-        <div className="manual__body">
+        <div id="manual-body" className="manual__body">
           <div className="step">
             <span className="step__num">1</span>
             <div>

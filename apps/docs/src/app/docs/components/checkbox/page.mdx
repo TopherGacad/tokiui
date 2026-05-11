@@ -1,0 +1,289 @@
+export const metadata = { title: 'Checkbox — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  CheckboxWithLabelPreview,
+  CheckboxDescriptionPreview,
+  CheckboxIndeterminatePreview,
+  CheckboxDisabledPreview,
+  CheckboxControlledPreview,
+  CheckboxSizesPreview,
+  CheckboxColorsPreview,
+  CheckboxErrorPreview,
+  CheckboxGroupComponentPreview,
+  CheckboxGroupPreview,
+} from '@/components/docs/checkbox-demo'
+
+<PageHeader
+  title="Checkbox"
+  description="A binary toggle for forms and settings. Supports checked, unchecked, and indeterminate states. Built on Radix UI — fully keyboard accessible and screen reader friendly."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="checkbox" />
+<ManualInstall component="checkbox" />
+
+## Import
+
+```tsx
+import { Checkbox } from '@tokiui/ui'
+```
+
+## With label
+
+Connect a `<label>` to the checkbox using matching `id` / `htmlFor` so clicking the label toggles the checkbox.
+
+<Showcase title="With label" code={`<div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+  <Checkbox id="terms" />
+  <label htmlFor="terms" style={{ fontSize: 14, fontWeight: 500 }}>
+    Accept terms and conditions
+  </label>
+</div>`}>
+  <CheckboxWithLabelPreview />
+</Showcase>
+
+## With description
+
+Stack a secondary description below the label for additional context.
+
+<Showcase title="With description" code={`<div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+  <Checkbox id="marketing" defaultChecked style={{ marginTop: 2 }} />
+  <div>
+    <label htmlFor="marketing" style={{ fontSize: 14, fontWeight: 500 }}>
+      Marketing emails
+    </label>
+    <p style={{ fontSize: 13, color: 'var(--muted-foreground)', margin: 0 }}>
+      Receive emails about new products, features, and promotions.
+    </p>
+  </div>
+</div>`}>
+  <CheckboxDescriptionPreview />
+</Showcase>
+
+## Indeterminate
+
+Set `checked="indeterminate"` to show the dash state — useful for parent checkboxes in a tree where only some children are selected.
+
+<Showcase title="Indeterminate" code={`'use client'
+import { useState } from 'react'
+
+const PERMISSIONS = ['Read files', 'Write files', 'Delete files']
+
+export function FilePermissions() {
+  const [checked, setChecked] = useState([true, false, false])
+
+  const allChecked = checked.every(Boolean)
+  const someChecked = checked.some(Boolean)
+  const parentState = allChecked ? true : someChecked ? 'indeterminate' : false
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+        <Checkbox
+          id="all-perms"
+          checked={parentState}
+          onCheckedChange={() => setChecked(checked.fill(!allChecked).slice())}
+        />
+        <label htmlFor="all-perms" style={{ fontSize: 14, fontWeight: 600 }}>
+          File permissions
+        </label>
+      </div>
+      <div style={{ paddingLeft: 26, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {PERMISSIONS.map((perm, i) => (
+          <div key={perm} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+            <Checkbox
+              id={\`perm-\${i}\`}
+              checked={checked[i]}
+              onCheckedChange={(val) =>
+                setChecked(checked.map((c, idx) => (idx === i ? !!val : c)))
+              }
+            />
+            <label htmlFor={\`perm-\${i}\`} style={{ fontSize: 14 }}>{perm}</label>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}`}>
+  <CheckboxIndeterminatePreview />
+</Showcase>
+
+## Disabled
+
+Pass `disabled` to prevent interaction. Both unchecked and checked variants are shown at reduced opacity.
+
+<Showcase title="Disabled" code={`<div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+  <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+    <Checkbox id="dis-1" disabled />
+    <label htmlFor="dis-1" style={{ fontSize: 14, opacity: 0.5, cursor: 'not-allowed' }}>
+      Disabled unchecked
+    </label>
+  </div>
+  <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+    <Checkbox id="dis-2" disabled defaultChecked />
+    <label htmlFor="dis-2" style={{ fontSize: 14, opacity: 0.5, cursor: 'not-allowed' }}>
+      Disabled checked
+    </label>
+  </div>
+</div>`}>
+  <CheckboxDisabledPreview />
+</Showcase>
+
+## Controlled
+
+Use `checked` and `onCheckedChange` to fully control the checkbox state from outside.
+
+<Showcase title="Controlled" code={`'use client'
+import { useState } from 'react'
+
+export function DarkModeToggle() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+        <Checkbox
+          id="dark-mode"
+          checked={checked}
+          onCheckedChange={(val) => setChecked(!!val)}
+        />
+        <label htmlFor="dark-mode" style={{ fontSize: 14, fontWeight: 500 }}>
+          Enable dark mode
+        </label>
+      </div>
+      <p style={{ fontSize: 13, color: 'var(--muted-foreground)', margin: 0 }}>
+        State: <code>{String(checked)}</code>
+      </p>
+    </div>
+  )
+}`}>
+  <CheckboxControlledPreview />
+</Showcase>
+
+## Size
+
+Three sizes to match surrounding form controls.
+
+<Showcase title="Sizes" code={`<Checkbox size="sm" />\n<Checkbox />\n<Checkbox size="lg" />`}>
+  <CheckboxSizesPreview />
+</Showcase>
+
+## Color
+
+Color applies to the checked and indeterminate states. Use semantic colors to reflect the meaning of the field.
+
+<Showcase title="Colors" code={`<Checkbox color="default" defaultChecked />\n<Checkbox color="success" defaultChecked />\n<Checkbox color="warning" defaultChecked />\n<Checkbox color="info" defaultChecked />\n<Checkbox color="destructive" defaultChecked />`}>
+  <CheckboxColorsPreview />
+</Showcase>
+
+## Error state
+
+Add `error` to apply a destructive border. Pair with a visible error message below the group.
+
+<Showcase title="Error" code={`<Checkbox error />\n<p style={{ color: 'var(--destructive)', fontSize: 12 }}>\n  You must accept the terms to continue.\n</p>`}>
+  <CheckboxErrorPreview />
+</Showcase>
+
+## CheckboxGroup
+
+Wrap multiple checkboxes in `CheckboxGroup` to share `size`, `color`, and `error` across all items without repeating the props.
+
+<Showcase title="CheckboxGroup" code={`import { Checkbox, CheckboxGroup } from '@tokiui/ui'\n\n<CheckboxGroup color="success">\n  <Checkbox id="email" />\n  <Checkbox id="alerts" defaultChecked />\n  <Checkbox id="updates" />\n</CheckboxGroup>`}>
+  <CheckboxGroupComponentPreview />
+</Showcase>
+
+## Checkbox group (card style)
+
+Combine multiple checkboxes in a card-style list. Highlight the selected card with a primary border and tinted background.
+
+<Showcase title="Checkbox group" code={`'use client'
+import { useState } from 'react'
+
+const FRAMEWORKS = [
+  { id: 'next',   label: 'Next.js',   desc: 'React framework'  },
+  { id: 'nuxt',   label: 'Nuxt',      desc: 'Vue framework'    },
+  { id: 'astro',  label: 'Astro',     desc: 'Content sites'    },
+  { id: 'remix',  label: 'Remix',     desc: 'Full-stack React' },
+  { id: 'svelte', label: 'SvelteKit', desc: 'Svelte framework' },
+]
+
+export function FrameworkPicker() {
+  const [selected, setSelected] = useState(['next'])
+
+  function toggle(id) {
+    setSelected((prev) =>
+      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
+    )
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, maxWidth: 320 }}>
+      {FRAMEWORKS.map((fw) => (
+        <label
+          key={fw.id}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 10,
+            padding: '10px 12px', borderRadius: 'var(--radius-sm)',
+            border: \`1px solid \${selected.includes(fw.id) ? 'var(--primary)' : 'var(--border)'}\`,
+            background: selected.includes(fw.id)
+              ? 'color-mix(in oklch, var(--primary) 6%, var(--background))'
+              : 'var(--background)',
+            cursor: 'pointer', transition: 'all 0.15s',
+          }}
+        >
+          <Checkbox
+            checked={selected.includes(fw.id)}
+            onCheckedChange={() => toggle(fw.id)}
+          />
+          <span>
+            <span style={{ display: 'block', fontSize: 14, fontWeight: 500 }}>{fw.label}</span>
+            <span style={{ display: 'block', fontSize: 12, color: 'var(--muted-foreground)' }}>{fw.desc}</span>
+          </span>
+        </label>
+      ))}
+    </div>
+  )
+}`}>
+  <CheckboxGroupPreview />
+</Showcase>
+
+## API
+
+### Checkbox
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `sm \| default \| lg` | `default` | Checkbox size |
+| `color` | `default \| success \| warning \| info \| destructive` | `default` | Checked/indeterminate color |
+| `error` | `boolean` | `false` | Applies destructive border |
+| `checked` | `boolean \| 'indeterminate'` | — | Controlled checked state |
+| `defaultChecked` | `boolean` | `false` | Uncontrolled initial state |
+| `onCheckedChange` | `(checked: boolean \| 'indeterminate') => void` | — | Called when state changes |
+| `disabled` | `boolean` | `false` | Prevents interaction |
+| `required` | `boolean` | `false` | Marks the input as required in a form |
+| `name` | `string` | — | Input name for form submission |
+| `value` | `string` | `'on'` | Value submitted in a form when checked |
+| `className` | `string` | — | Additional class names |
+
+### CheckboxGroup
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `sm \| default \| lg` | `default` | Inherited by all child Checkboxes |
+| `color` | `default \| success \| warning \| info \| destructive` | `default` | Inherited by all child Checkboxes |
+| `error` | `boolean` | `false` | Inherited by all child Checkboxes |
+| `orientation` | `vertical \| horizontal` | `vertical` | Layout direction |
+| `className` | `string` | — | Additional class names |
+
+## Accessibility
+
+- Rendered as `<button role="checkbox">` — keyboard activatable with `Space`
+- `aria-checked` reflects the current state including `"mixed"` for indeterminate
+- Connect a visible `<label>` using `htmlFor` matching the checkbox `id`
+- Disabled checkboxes use `aria-disabled="true"` and are excluded from tab order

@@ -1,0 +1,191 @@
+export const metadata = { title: 'Textarea — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  TextareaBasicPreview,
+  TextareaWithLabelPreview,
+  TextareaDescriptionPreview,
+  TextareaDisabledPreview,
+  TextareaCharCountPreview,
+  TextareaAutoResizePreview,
+  TextareaErrorPreview,
+  TextareaInFormPreview,
+  TextareaSizesPreview,
+  TextareaShowCountPreview,
+} from '@/components/docs/textarea-demo'
+
+<PageHeader
+  title="Textarea"
+  description="A multi-line text input that matches the Input component in style. Supports auto-resize, character limits, and error states."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="textarea" />
+<ManualInstall component="textarea" />
+
+## Import
+
+```tsx
+import { Textarea } from '@tokiui/ui'
+```
+
+## Basic
+
+<Showcase title="Basic" code={`<Textarea placeholder="Write something…" />`}>
+  <TextareaBasicPreview />
+</Showcase>
+
+## Size
+
+Three sizes to match surrounding form controls.
+
+<Showcase title="Sizes" code={`<Textarea size="sm" placeholder="Small" />\n<Textarea size="default" placeholder="Default" />\n<Textarea size="lg" placeholder="Large" />`}>
+  <TextareaSizesPreview />
+</Showcase>
+
+## With label
+
+Connect the label using `htmlFor` / `id` so clicking the label focuses the field.
+
+<Showcase title="With label" code={`<div style={{ display: 'grid', gap: 6 }}>
+  <label htmlFor="bio" style={{ fontSize: 13, fontWeight: 500 }}>Bio</label>
+  <Textarea id="bio" placeholder="Tell us about yourself." rows={3} />
+</div>`}>
+  <TextareaWithLabelPreview />
+</Showcase>
+
+## With description
+
+Add helper text below the field to guide the user.
+
+<Showcase title="With description" code={`<div style={{ display: 'grid', gap: 6 }}>
+  <label htmlFor="desc" style={{ fontSize: 13, fontWeight: 500 }}>Project description</label>
+  <Textarea id="desc" placeholder="Describe your project…" rows={3} />
+  <p style={{ fontSize: 12, color: 'var(--muted-foreground)', margin: 0 }}>
+    This will appear on your public project page.
+  </p>
+</div>`}>
+  <TextareaDescriptionPreview />
+</Showcase>
+
+## Disabled
+
+<Showcase title="Disabled" code={`<Textarea disabled defaultValue="This field is read-only." rows={3} />`}>
+  <TextareaDisabledPreview />
+</Showcase>
+
+## Character count
+
+Track remaining characters with a controlled textarea and `maxLength`.
+
+<Showcase title="Character count" code={`'use client'
+import { useState } from 'react'
+
+const MAX = 280
+
+export function PostInput() {
+  const [value, setValue] = useState('')
+  const remaining = MAX - value.length
+
+  return (
+    <div style={{ display: 'grid', gap: 6 }}>
+      <Textarea
+        placeholder="What's on your mind?"
+        rows={4}
+        maxLength={MAX}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <span style={{
+          fontSize: 12,
+          color: remaining <= 20 ? 'var(--destructive)' : 'var(--muted-foreground)',
+        }}>
+          {remaining}/{MAX}
+        </span>
+      </div>
+    </div>
+  )
+}`}>
+  <TextareaCharCountPreview />
+</Showcase>
+
+## Auto-resize
+
+Pass `autoResize` to make the field grow with its content. The `resize` handle is removed automatically.
+
+<Showcase title="Auto-resize" code={`<Textarea
+  placeholder="Start typing — the field grows with your content…"
+  autoResize
+  rows={2}
+/>`}>
+  <TextareaAutoResizePreview />
+</Showcase>
+
+## Error state
+
+Add `error` to apply a destructive border and ring. Pair with a visible error message below.
+
+<Showcase title="Error state" code={`<Textarea error placeholder="Your feedback is required." />\n<p style={{ color: 'var(--destructive)', fontSize: 12 }}>Feedback is required.</p>`}>
+  <TextareaErrorPreview />
+</Showcase>
+
+## Built-in counter
+
+Pass `showCount` to display a live character count. Add `maxLength` to cap input and show `n / max` — the counter turns destructive at the limit.
+
+<Showcase title="Built-in counter" code={`<Textarea showCount maxLength={160} placeholder="Tell us about yourself." />`}>
+  <TextareaShowCountPreview />
+</Showcase>
+
+## With form composition
+
+Use `FormField` and `FormLabel` from `@tokiui/ui` to build accessible labeled fields with consistent spacing.
+
+<Showcase title="Form composition" code={`import { FormField, FormLabel, Input, Textarea, Button } from '@tokiui/ui'
+
+<FormField>
+  <FormLabel required>Subject</FormLabel>
+  <Input placeholder="What is this regarding?" />
+</FormField>
+
+<FormField>
+  <FormLabel required>Message</FormLabel>
+  <Textarea placeholder="Write your message here…" rows={5} />
+</FormField>
+
+<Button type="submit">Send message</Button>`}>
+  <TextareaInFormPreview />
+</Showcase>
+
+## API
+
+### Textarea
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `sm \| default \| lg` | `default` | Field height and text size |
+| `error` | `boolean` | `false` | Applies destructive border and ring |
+| `showCount` | `boolean` | `false` | Shows a live character count below the field |
+| `maxLength` | `number` | — | Caps input length; shows `n / max` counter when set |
+| `autoResize` | `boolean` | `false` | Grows the field height to fit content as the user types |
+| `rows` | `number` | — | Initial number of visible text rows |
+| `placeholder` | `string` | — | Placeholder text when the field is empty |
+| `disabled` | `boolean` | `false` | Prevents interaction |
+| `value` | `string` | — | Controlled value |
+| `defaultValue` | `string` | — | Uncontrolled initial value |
+| `onChange` | `React.ChangeEventHandler` | — | Called on every keystroke |
+| `className` | `string` | — | Additional class names |
+
+## Accessibility
+
+- Use `<label>` with `htmlFor` matching the textarea `id`
+- Set `aria-invalid="true"` on the textarea when it has a validation error
+- Connect the error message with `aria-describedby` pointing to the error element's `id`
+- Disabled textareas have `aria-disabled="true"` implicitly via the `disabled` attribute

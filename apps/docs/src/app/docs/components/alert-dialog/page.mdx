@@ -1,0 +1,264 @@
+export const metadata = { title: 'Alert Dialog — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  BasicAlertDialogPreview,
+  DestructiveAlertDialogPreview,
+  WithIconAlertDialogPreview,
+  WithInputAlertDialogPreview,
+  InfoAlertDialogPreview,
+  AlertDialogLoadingPreview,
+  AlertDialogPropsTable,
+} from '@/components/docs/alert-dialog-demo'
+
+<PageHeader
+  title="Alert Dialog"
+  description="A modal that interrupts the user with a critical decision. Unlike Dialog, it cannot be dismissed by clicking the backdrop or pressing Escape — the user must choose an action."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="alert-dialog" />
+<ManualInstall component="alert-dialog" />
+
+## Import
+
+```tsx
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from '@tokiui/ui'
+```
+
+## Basic
+
+A simple two-choice confirmation. `AlertDialogCancel` and `AlertDialogAction` are pre-styled as outline-neutral and solid-primary buttons respectively — override with `className` when needed.
+
+<Showcase title="Basic" code={`<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="outline">Leave page</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Leave page?</AlertDialogTitle>
+      <AlertDialogDescription>
+        You have unsaved changes. If you leave now, your progress will be lost.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Stay</AlertDialogCancel>
+      <AlertDialogAction>Leave</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
+  <BasicAlertDialogPreview />
+</Showcase>
+
+## Destructive
+
+For irreversible actions. Pass `color="destructive"` to `AlertDialogAction` and `level="destructive"` to `AlertDialogContent` to add a red top border.
+
+<Showcase title="Destructive" code={`<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button color="destructive">Delete account</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent level="destructive">
+    <AlertDialogHeader>
+      <AlertDialogTitle>Delete account?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This will permanently delete your account and remove all your data
+        from our servers. This action cannot be undone.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction color="destructive">Delete account</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
+  <DestructiveAlertDialogPreview />
+</Showcase>
+
+## With icon
+
+Add a visual icon to reinforce the severity of the action. Use a tinted circle background to match the intent color.
+
+<Showcase title="With icon" code={`<AlertDialogContent>
+  <AlertDialogHeader>
+    <div className="flex gap-3 items-start">
+      <div className="w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center shrink-0">
+        <TriangleAlert className="text-destructive" size={18} />
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <AlertDialogTitle>Remove member?</AlertDialogTitle>
+        <AlertDialogDescription>
+          Alex Johnson will immediately lose access to all projects and
+          resources in this workspace.
+        </AlertDialogDescription>
+      </div>
+    </div>
+  </AlertDialogHeader>
+  <AlertDialogFooter>
+    <AlertDialogCancel>Cancel</AlertDialogCancel>
+    <AlertDialogAction color="destructive">Remove</AlertDialogAction>
+  </AlertDialogFooter>
+</AlertDialogContent>`}>
+  <WithIconAlertDialogPreview />
+</Showcase>
+
+## With input confirmation
+
+Require the user to type a specific phrase before enabling the confirm button — for high-stakes destructive actions.
+
+<Showcase title="With input" code={`'use client'
+import { useState } from 'react'
+
+export function DeleteRepoDialog() {
+  const [value, setValue] = useState('')
+  const confirmed = value === 'DELETE'
+
+  return (
+    <AlertDialog onOpenChange={() => setValue('')}>
+      <AlertDialogTrigger asChild>
+        <Button color="destructive" variant="outline">Delete repository</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete repository</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action is irreversible. Type{' '}
+            <strong className="text-foreground">DELETE</strong> to confirm.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <Input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder='Type "DELETE" to confirm'
+        />
+        <AlertDialogFooter>
+          <AlertDialogCancel onClick={() => setValue('')}>Cancel</AlertDialogCancel>
+          <AlertDialogAction color="destructive" disabled={!confirmed}>
+            Delete
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+}`}>
+  <WithInputAlertDialogPreview />
+</Showcase>
+
+## Loading state
+
+Pass `loading` to `AlertDialogAction` to show a spinner and block dismissal while an async action is in flight.
+
+<Showcase title="Loading state" code={`'use client'
+import { useState } from 'react'
+
+export function ConfirmDeleteDialog() {
+  const [loading, setLoading] = useState(false)
+
+  async function handleDelete() {
+    setLoading(true)
+    await new Promise((r) => setTimeout(r, 1800))
+    setLoading(false)
+  }
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button color="destructive">Delete project</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent level="destructive">
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete project?</AlertDialogTitle>
+          <AlertDialogDescription>
+            All data will be permanently removed. This action cannot be undone.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel disabled={loading}>Cancel</AlertDialogCancel>
+          <AlertDialogAction color="destructive" loading={loading} onClick={handleDelete}>
+            Delete
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+}`}>
+  <AlertDialogLoadingPreview />
+</Showcase>
+
+## Neutral / info
+
+Not all alert dialogs are destructive. Use the default action style for confirmations that are important but not dangerous.
+
+<Showcase title="Neutral" code={`<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="outline">Publish changes</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Ready to publish?</AlertDialogTitle>
+      <AlertDialogDescription>
+        Your changes will go live immediately and be visible to all users.
+        Make sure you have reviewed everything before proceeding.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Review again</AlertDialogCancel>
+      <AlertDialogAction>Publish now</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`}>
+  <InfoAlertDialogPreview />
+</Showcase>
+
+## Dialog vs Alert Dialog
+
+| | Dialog | Alert Dialog |
+|---|---|---|
+| Backdrop click closes | Yes | No |
+| Escape key closes | Yes | No |
+| Close button (×) | Yes | No |
+| Actions required | No | Yes |
+| ARIA role | `dialog` | `alertdialog` |
+| Use for | Forms, settings, info | Critical decisions, destructive actions |
+
+## API
+
+<AlertDialogPropsTable />
+
+## Sub-components
+
+| Component | Description |
+|---|---|
+| `AlertDialog` | Root state container |
+| `AlertDialogTrigger` | Element that opens the dialog — use `asChild` |
+| `AlertDialogContent` | The panel — no built-in close button |
+| `AlertDialogHeader` | Wraps title and description |
+| `AlertDialogTitle` | Required accessible title |
+| `AlertDialogDescription` | Accessible description |
+| `AlertDialogFooter` | Action row — reverses column order on mobile |
+| `AlertDialogAction` | Confirm button — closes dialog on click |
+| `AlertDialogCancel` | Cancel button — closes dialog on click |
+
+## Accessibility
+
+- Cannot be closed by clicking the backdrop or pressing Escape
+- `AlertDialogTitle` is required — becomes the `aria-labelledby` for `role="alertdialog"`
+- Focus is trapped inside while open
+- `AlertDialogAction` receives focus by default on open — place Cancel first in the DOM if you want it focused instead
+- Use `AlertDialogDescription` to describe what will happen — screen readers announce this

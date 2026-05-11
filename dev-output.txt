@@ -86,3 +86,1140 @@
 @tokiui/themes:dev: [32mDTS[39m ⚡️ Build success in 721ms
 @tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1923ms
 @tokiui/docs:dev:  ✓ Ready in 2.3s
+@tokiui/docs:dev:  ○ Compiling / ...
+@tokiui/docs:dev:  ✓ Compiled / in 4.4s (780 modules)
+@tokiui/docs:dev:  GET / 200 in 5360ms
+@tokiui/docs:dev:  ⚠ Cross origin request detected from 192.168.10.85 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+@tokiui/docs:dev: Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+@tokiui/docs:dev:  GET / 200 in 93ms
+@tokiui/docs:dev: [?25h
+@tokiui/cli:dev: [34mCLI[39m Change detected: change src/utils/config.ts
+@tokiui/cli:dev: [34mCLI[39m Cleaning output folder
+@tokiui/cli:dev: [34mCJS[39m Build start
+@tokiui/cli:dev: [32mCJS[39m [1mdist\index.js [22m[32m10.66 KB[39m
+@tokiui/cli:dev: [32mCJS[39m ⚡️ Build success in 12ms
+@tokiui/cli:dev: [34mCLI[39m Change detected: change src/commands/init.ts
+@tokiui/cli:dev: [34mCLI[39m Cleaning output folder
+@tokiui/cli:dev: [34mCJS[39m Build start
+@tokiui/cli:dev: [32mCJS[39m [1mdist\index.js [22m[32m16.10 KB[39m
+@tokiui/cli:dev: [32mCJS[39m ⚡️ Build success in 10ms
+@tokiui/cli:dev: [34mCLI[39m Change detected: change src/commands/add.ts
+@tokiui/cli:dev: [31mError: ENOENT: no such file or directory, unlink 'D:\Production\tokiui\packages\cli\dist\index.js'
+@tokiui/cli:dev:     at Object.unlinkSync (node:fs:1886:11)
+@tokiui/cli:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:73
+@tokiui/cli:dev:     at Array.forEach (<anonymous>)
+@tokiui/cli:dev:     at removeFiles (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:9)
+@tokiui/cli:dev:     at async buildAll (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\index.js:1595:17)[39m
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/button.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [31mError: ENOENT: no such file or directory, unlink 'D:\Production\tokiui\packages\ui\dist\index.js.map'
+@tokiui/ui:dev:     at Object.unlinkSync (node:fs:1886:11)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:73
+@tokiui/ui:dev:     at Array.forEach (<anonymous>)
+@tokiui/ui:dev:     at removeFiles (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:9)
+@tokiui/ui:dev:     at async buildAll (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\index.js:1595:17)[39m
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2545ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1249ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mError: ENOENT: no such file or directory, unlink 'D:\Production\tokiui\packages\ui\dist\client.d.ts'
+@tokiui/ui:dev:     at Object.unlinkSync (node:fs:1886:11)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:73
+@tokiui/ui:dev:     at Array.forEach (<anonymous>)
+@tokiui/ui:dev:     at removeFiles (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:9)
+@tokiui/ui:dev:     at async Object.buildStart (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6807:9)
+@tokiui/ui:dev:     at async Promise.all (index 0)
+@tokiui/ui:dev:     at async PluginDriver.hookParallel (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3615:9)
+@tokiui/ui:dev:     at async D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:24200:13
+@tokiui/ui:dev:     at async catchUnfinishedHookActions (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:23707:16)
+@tokiui/ui:dev:     at async Object.rollupInternal (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:24197:5)[39m
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1280ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1605ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1545ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1481ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1446ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1249ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/button.tsx(65,18): error TS2320: Interface 'ButtonProps' cannot simultaneously extend types 'ButtonHTMLAttributes<HTMLButtonElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { default: string; outline: string; soft: string; ghost: string; link: string; }; color: { default: string; neutral: string; destructive: string; }; size: { default: string; sm: string; lg: string; icon: string; }; }> & ClassProp) | undefined) => string>'.
+@tokiui/ui:dev:   Named property 'color' of types 'ButtonHTMLAttributes<HTMLButtonElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { default: string; outline: string; soft: string; ghost: string; link: string; }; color: { default: string; neutral: string; destructive: string; }; size: { default: string; sm: string; lg: string; icon: string; }; }> & ClassProp) | undefined) => string>' are not identical.
+@tokiui/ui:dev: src/components/button.tsx(77,49): error TS2322: Type 'string | undefined' is not assignable to type '"default" | "neutral" | "destructive" | null | undefined'.
+@tokiui/ui:dev:   Type 'string' is not assignable to type '"default" | "neutral" | "destructive" | null | undefined'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/button.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1544ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1670ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1222ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change package.json
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m11.12 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m17.86 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 19ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m14.20 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m18.75 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 20ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m14.91 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m24.38 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 23ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m18.82 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m25.70 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 24ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1517ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change package.json
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m18.82 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m25.70 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 14ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m14.91 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m24.38 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 15ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m16.90 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m27.56 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 97ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m21.23 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m29.13 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 98ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1599ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1785ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change package.json
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m21.27 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m29.19 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 165ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m16.94 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m27.62 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 202ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [31mError: ENOENT: no such file or directory, unlink 'D:\Production\tokiui\packages\ui\dist\index.js'
+@tokiui/ui:dev:     at Object.unlinkSync (node:fs:1886:11)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:73
+@tokiui/ui:dev:     at Array.forEach (<anonymous>)
+@tokiui/ui:dev:     at removeFiles (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:9)
+@tokiui/ui:dev:     at async buildAll (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\index.js:1595:17)[39m
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2047ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2165ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2004ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change package.json
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m27.90 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m38.67 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 98ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m22.60 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m36.99 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 99ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m29.75 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m41.14 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 69ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m24.26 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m39.43 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 76ms
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mError: ENOENT: no such file or directory, unlink 'D:\Production\tokiui\packages\ui\dist\client.d.ts'
+@tokiui/ui:dev:     at Object.unlinkSync (node:fs:1886:11)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:73
+@tokiui/ui:dev:     at Array.forEach (<anonymous>)
+@tokiui/ui:dev:     at removeFiles (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:9)
+@tokiui/ui:dev:     at async Object.buildStart (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6807:9)
+@tokiui/ui:dev:     at async Promise.all (index 0)
+@tokiui/ui:dev:     at async PluginDriver.hookParallel (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3615:9)
+@tokiui/ui:dev:     at async D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:24200:13
+@tokiui/ui:dev:     at async catchUnfinishedHookActions (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:23707:16)
+@tokiui/ui:dev:     at async Object.rollupInternal (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:24197:5)[39m
+@tokiui/ui:dev: [34mCLI[39m Change detected: change package.json
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m24.27 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m39.44 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 31ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m29.76 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m41.15 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 38ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m31.29 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m43.37 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 32ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m25.62 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m41.60 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 33ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 3147ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change package.json
+@tokiui/ui:dev: [31mError: EPERM: operation not permitted, unlink 'D:\Production\tokiui\packages\ui\dist\index.js'
+@tokiui/ui:dev:     at Object.unlinkSync (node:fs:1886:11)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:73
+@tokiui/ui:dev:     at Array.forEach (<anonymous>)
+@tokiui/ui:dev:     at removeFiles (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:9)
+@tokiui/ui:dev:     at async buildAll (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\index.js:1595:17)[39m
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1816ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1833ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1711ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1892ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1895ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1873ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change package.json
+@tokiui/ui:dev: [31mError: ENOENT: no such file or directory, unlink 'D:\Production\tokiui\packages\ui\dist\index.mjs'
+@tokiui/ui:dev:     at Object.unlinkSync (node:fs:1886:11)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:73
+@tokiui/ui:dev:     at Array.forEach (<anonymous>)
+@tokiui/ui:dev:     at removeFiles (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:9)
+@tokiui/ui:dev:     at async buildAll (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\index.js:1595:17)[39m
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1709ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1970ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change package.json
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m36.85 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m51.77 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 121ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m30.78 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m49.71 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 121ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m44.09 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m61.90 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 29ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m36.84 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m59.50 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 28ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2136ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1868ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m41.06 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m66.04 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 38ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m48.94 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m68.58 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 38ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2089ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/button.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m49.00 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m68.70 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 385ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m41.12 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m66.16 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 386ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 3752ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/button.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m50.81 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m71.27 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 72ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m42.93 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m68.74 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 73ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1943ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/button.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m44.04 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m70.53 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 57ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m52.05 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m73.02 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 57ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2181ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m45.44 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m73.02 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 48ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m53.70 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m75.58 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 57ms
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mError: EPERM: operation not permitted, unlink 'D:\Production\tokiui\packages\ui\dist\client.d.ts'
+@tokiui/ui:dev:     at Object.unlinkSync (node:fs:1886:11)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:73
+@tokiui/ui:dev:     at Array.forEach (<anonymous>)
+@tokiui/ui:dev:     at removeFiles (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:9)
+@tokiui/ui:dev:     at async Object.buildStart (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6807:9)
+@tokiui/ui:dev:     at async Promise.all (index 0)
+@tokiui/ui:dev:     at async PluginDriver.hookParallel (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3615:9)
+@tokiui/ui:dev:     at async D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:24200:13
+@tokiui/ui:dev:     at async catchUnfinishedHookActions (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:23707:16)
+@tokiui/ui:dev:     at async Object.rollupInternal (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:24197:5)[39m
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/input.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m58.03 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m81.68 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 38ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m49.37 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m79.25 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 69ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2415ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/badge.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m60.87 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m85.90 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 29ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m52.08 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m83.52 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 30ms
+@tokiui/ui:dev: src/components/badge.tsx(71,18): error TS2320: Interface 'BadgeProps' cannot simultaneously extend types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>'.
+@tokiui/ui:dev:   Named property 'color' of types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>' are not identical.
+@tokiui/ui:dev: src/components/badge.tsx(82,46): error TS2322: Type 'string | undefined' is not assignable to type '"default" | "secondary" | "destructive" | "success" | "warning" | "info" | null | undefined'.
+@tokiui/ui:dev:   Type 'string' is not assignable to type '"default" | "secondary" | "destructive" | "success" | "warning" | "info" | null | undefined'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/badge.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/badge.tsx(71,18): error TS2320: Interface 'BadgeProps' cannot simultaneously extend types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>'.
+@tokiui/ui:dev:   Named property 'color' of types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>' are not identical.
+@tokiui/ui:dev: src/components/badge.tsx(82,46): error TS2322: Type 'string | undefined' is not assignable to type '"default" | "secondary" | "destructive" | "success" | "warning" | "info" | null | undefined'.
+@tokiui/ui:dev:   Type 'string' is not assignable to type '"default" | "secondary" | "destructive" | "success" | "warning" | "info" | null | undefined'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/badge.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/card.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m63.69 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m91.34 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 26ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m54.68 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m88.98 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 28ms
+@tokiui/ui:dev: src/components/badge.tsx(71,18): error TS2320: Interface 'BadgeProps' cannot simultaneously extend types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>'.
+@tokiui/ui:dev:   Named property 'color' of types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>' are not identical.
+@tokiui/ui:dev: src/components/badge.tsx(82,46): error TS2322: Type 'string | undefined' is not assignable to type '"success" | "warning" | "info" | "destructive" | "default" | "secondary" | null | undefined'.
+@tokiui/ui:dev:   Type 'string' is not assignable to type '"success" | "warning" | "info" | "destructive" | "default" | "secondary" | null | undefined'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/badge.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m54.69 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m88.98 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 50ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m63.73 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m91.43 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 50ms
+@tokiui/ui:dev: src/components/badge.tsx(71,18): error TS2320: Interface 'BadgeProps' cannot simultaneously extend types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>'.
+@tokiui/ui:dev:   Named property 'color' of types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>' are not identical.
+@tokiui/ui:dev: src/components/badge.tsx(82,46): error TS2322: Type 'string | undefined' is not assignable to type '"default" | "destructive" | "success" | "warning" | "info" | "secondary" | null | undefined'.
+@tokiui/ui:dev:   Type 'string' is not assignable to type '"default" | "destructive" | "success" | "warning" | "info" | "secondary" | null | undefined'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/badge.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m63.73 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m91.50 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 38ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m54.69 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m88.98 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 38ms
+@tokiui/ui:dev: src/components/badge.tsx(71,18): error TS2320: Interface 'BadgeProps' cannot simultaneously extend types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>'.
+@tokiui/ui:dev:   Named property 'color' of types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>' are not identical.
+@tokiui/ui:dev: src/components/badge.tsx(82,46): error TS2322: Type 'string | undefined' is not assignable to type '"default" | "destructive" | "success" | "warning" | "info" | "secondary" | null | undefined'.
+@tokiui/ui:dev:   Type 'string' is not assignable to type '"default" | "destructive" | "success" | "warning" | "info" | "secondary" | null | undefined'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/badge.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/input.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m54.69 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m89.00 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 37ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m63.73 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m91.52 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 55ms
+@tokiui/ui:dev: src/components/badge.tsx(71,18): error TS2320: Interface 'BadgeProps' cannot simultaneously extend types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>'.
+@tokiui/ui:dev:   Named property 'color' of types 'HTMLAttributes<HTMLSpanElement>' and 'VariantProps<(props?: (ConfigVariants<{ variant: { solid: string; soft: string; outline: string; }; color: { default: string; secondary: string; destructive: string; success: string; warning: string; info: string; }; size: { sm: string; md: string; lg: string; }; }> & ClassProp) | undefined) => string>' are not identical.
+@tokiui/ui:dev: src/components/badge.tsx(82,46): error TS2322: Type 'string | undefined' is not assignable to type '"default" | "destructive" | "success" | "warning" | "info" | "secondary" | null | undefined'.
+@tokiui/ui:dev:   Type 'string' is not assignable to type '"default" | "destructive" | "success" | "warning" | "info" | "secondary" | null | undefined'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/badge.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/badge.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m63.73 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m91.53 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 64ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m54.69 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m89.01 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 72ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2398ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/dialog.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m65.14 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m108.03 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 71ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m74.60 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m110.46 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 72ms
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/form.tsx(3,1): error TS6133: 'Alert' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m82.58 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m122.58 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 56ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m72.05 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m119.59 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 64ms
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/radio-group.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/alert.tsx(105,69): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(106,36): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(107,38): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/button.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m83.14 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m123.51 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 70ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m72.58 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m120.52 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 71ms
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/alert.tsx(105,69): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(106,36): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(107,38): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m83.19 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m123.52 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 30ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m72.60 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m120.52 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 31ms
+@tokiui/ui:dev: src/components/checkbox.tsx(52,26): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/checkbox.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/alert.tsx(105,69): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(106,36): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(107,38): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/radio-group.tsx(3,20): error TS6133: 'VariantProps' is declared but its value is never read.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/radio-group.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: src/components/alert.tsx(105,69): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(106,36): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(107,38): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/switch.tsx(105,15): error TS2484: Export declaration conflicts with exported declaration of 'SwitchProps'.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/switch.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: src/components/alert.tsx(105,69): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(106,36): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(107,38): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: src/components/alert.tsx(105,69): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(106,36): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: src/components/alert.tsx(107,38): error TS2538: Type 'null' cannot be used as an index type.
+@tokiui/ui:dev: 
+@tokiui/ui:dev: [31mDTS[39m [31mBuild failed[39m
+@tokiui/ui:dev: [31mRollupError: [plugin dts] src/components/alert.tsx: Failed to compile. Check the logs above.
+@tokiui/ui:dev:     at getRollupError (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:289:41)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\parseAst.js:285:42)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:913:32)
+@tokiui/ui:dev:     at Object.error (D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:22929:42)
+@tokiui/ui:dev:     at generateDtsFromTs (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6429:22)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:59
+@tokiui/ui:dev:     at _nullishCoalesce (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:1:472)
+@tokiui/ui:dev:     at Object.transform (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\rollup.js:6436:18)
+@tokiui/ui:dev:     at D:\Production\tokiui\node_modules\.pnpm\rollup@4.60.2\node_modules\rollup\dist\shared\rollup.js:3705:40[39m
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2312ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/index.ts
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m84.11 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m125.60 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 69ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m73.44 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m122.57 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 70ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 4225ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2305ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/input.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m84.10 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m125.60 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 70ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m73.43 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m122.56 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 73ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2876ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/input.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m84.10 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m125.60 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 87ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m73.43 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m122.56 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 87ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2512ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1997ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 1945ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/input.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m73.45 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m122.58 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 39ms
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m84.12 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m125.62 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 42ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2295ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/input.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m84.23 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m125.73 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 33ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m73.56 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m122.69 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 34ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2001ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 5183ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 560ms
+@tokiui/ui:dev: [34mCLI[39m Change detected: change src/components/input.tsx
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [34mCLI[39m Cleaning output folder
+@tokiui/ui:dev: [34mCJS[39m Build start
+@tokiui/ui:dev: [34mESM[39m Build start
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js      [22m[32m84.70 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js     [22m[32m2.26 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\client.js.map [22m[32m2.21 KB[39m
+@tokiui/ui:dev: [32mCJS[39m [1mdist\index.js.map  [22m[32m126.64 KB[39m
+@tokiui/ui:dev: [32mCJS[39m ⚡️ Build success in 134ms
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs      [22m[32m74.00 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs     [22m[32m1.17 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\index.mjs.map  [22m[32m123.61 KB[39m
+@tokiui/ui:dev: [32mESM[39m [1mdist\client.mjs.map [22m[32m2.07 KB[39m
+@tokiui/ui:dev: [32mESM[39m ⚡️ Build success in 134ms
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 3021ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2455ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2325ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 2195ms
+@tokiui/themes:dev: [34mCLI[39m Change detected: change src/default.ts
+@tokiui/themes:dev: [34mDTS[39m Build start
+@tokiui/themes:dev: [34mCLI[39m Cleaning output folder
+@tokiui/themes:dev: [34mCJS[39m Build start
+@tokiui/themes:dev: [34mESM[39m Build start
+@tokiui/themes:dev: [32mESM[39m [1mdist\index.mjs [22m[32m7.21 KB[39m
+@tokiui/themes:dev: [32mESM[39m ⚡️ Build success in 57ms
+@tokiui/themes:dev: [32mCJS[39m [1mdist\index.js [22m[32m8.38 KB[39m
+@tokiui/themes:dev: [32mCJS[39m ⚡️ Build success in 69ms
+@tokiui/themes:dev: [32mDTS[39m ⚡️ Build success in 967ms
+@tokiui/themes:dev: [34mCLI[39m Change detected: change src/rose.ts
+@tokiui/themes:dev: [34mDTS[39m Build start
+@tokiui/themes:dev: [34mCLI[39m Cleaning output folder
+@tokiui/themes:dev: [34mCJS[39m Build start
+@tokiui/themes:dev: [34mESM[39m Build start
+@tokiui/themes:dev: [32mCJS[39m [1mdist\index.js [22m[32m8.62 KB[39m
+@tokiui/themes:dev: [32mCJS[39m ⚡️ Build success in 38ms
+@tokiui/themes:dev: [32mESM[39m [1mdist\index.mjs [22m[32m7.45 KB[39m
+@tokiui/themes:dev: [32mESM[39m ⚡️ Build success in 68ms
+@tokiui/themes:dev: [32mDTS[39m ⚡️ Build success in 525ms
+@tokiui/themes:dev: [34mCLI[39m Change detected: change src/slate.ts
+@tokiui/themes:dev: [34mDTS[39m Build start
+@tokiui/themes:dev: [31mError: ENOENT: no such file or directory, unlink 'D:\Production\tokiui\packages\themes\dist\index.mjs'
+@tokiui/themes:dev:     at Object.unlinkSync (node:fs:1886:11)
+@tokiui/themes:dev:     at D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:73
+@tokiui/themes:dev:     at Array.forEach (<anonymous>)
+@tokiui/themes:dev:     at removeFiles (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\chunk-TWFEYLU4.js:143:9)
+@tokiui/themes:dev:     at async buildAll (D:\Production\tokiui\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.12_typescript@5.9.3\node_modules\tsup\dist\index.js:1595:17)[39m
+@tokiui/themes:dev: [32mDTS[39m ⚡️ Build success in 504ms
+@tokiui/themes:dev: [34mDTS[39m Build start
+@tokiui/themes:dev: [32mDTS[39m ⚡️ Build success in 495ms
+@tokiui/themes:dev: [34mDTS[39m Build start
+@tokiui/themes:dev: [32mDTS[39m ⚡️ Build success in 506ms
+@tokiui/ui:dev: [34mDTS[39m Build start
+@tokiui/ui:dev: [32mDTS[39m ⚡️ Build success in 3571ms
+^CTerminate batch job (Y/N)? 
+ ELIFECYCLE  Command failed with exit code 3221225786.
+^CTerminate batch job (Y/N)? 
+^C

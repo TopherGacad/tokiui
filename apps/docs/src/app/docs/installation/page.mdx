@@ -2,31 +2,59 @@ export const metadata = { title: 'Installation' }
 
 # Installation
 
-tokiui is a copy-paste component library. You add components directly to your project using the CLI — there is no package to install, no version to pin.
+tokiui is a copy-paste component library. The CLI adds component source files directly into your project — there is no npm package to version-pin and no theme provider to wrap your app in.
 
-## 1. Initialize your project
+**Requirements:** React 18+, TypeScript, Node.js 18+, Tailwind CSS v4.
 
-Run the CLI from your project root:
+Select your framework:
+
+<FrameworkCards />
+
+---
+
+## Next.js
+
+### 1. Create the project
+
+When the wizard asks about Tailwind CSS, **choose No** — tokiui will configure it.
+
+```bash
+npx create-next-app@latest my-app --typescript --app
+cd my-app
+```
+
+### 2. Initialize tokiui
 
 ```bash
 npx @tokiui/cli init
 ```
 
-This will:
-- Ask where to place components (`src/components/ui/` by default)
-- Ask where to place utilities (`src/lib/` by default)
-- Write `src/lib/utils.ts` with the `cn()` helper
-- Create a `tokiui.json` config file
+The CLI asks three questions — component directory, utility directory, and globals.css path — then handles everything automatically:
 
-## 2. Add your first component
+- Installs `@tokiui/ui`, `tailwindcss`, `@tailwindcss/postcss`, `clsx`, `tailwind-merge`
+- Writes the `cn()` helper to your lib directory
+- Creates `postcss.config.mjs`
+- Prepends the required imports to `globals.css`
+- Adds the `@/*` path alias to `tsconfig.json`
+- Creates `tokiui.json` to save your choices for future `add` commands
+
+<Callout type="warning">
+If a `tailwind.config.ts` file exists the CLI will warn and exit — that file belongs to Tailwind CSS v3. tokiui requires **Tailwind CSS v4**. Remove it and re-run `init`, or [migrate from v3](https://tailwindcss.com/docs/upgrade-guide) first.
+</Callout>
+
+### 3. Add a component
 
 ```bash
 npx @tokiui/cli add button
 ```
 
-This copies `button.tsx` into `src/components/ui/` and installs its peer dependencies.
+Run without an argument to pick from an interactive list:
 
-## 3. Import and use
+```bash
+npx @tokiui/cli add
+```
+
+### 4. Import and use
 
 ```tsx
 import { Button } from '@/components/ui/button'
@@ -36,16 +64,205 @@ export default function Page() {
 }
 ```
 
-## Prerequisites
+Start the dev server:
 
-- React 18+
-- TypeScript
-- Tailwind CSS v4 with `@tailwindcss/postcss`
-- Your `globals.css` should include:
+```bash
+npm run dev
+```
+
+---
+
+## Vite
+
+### 1. Create the project
+
+```bash
+npm create vite@latest my-app -- --template react-ts
+cd my-app
+npm install
+```
+
+### 2. Initialize tokiui
+
+```bash
+npx @tokiui/cli init
+```
+
+The CLI asks three questions — component directory, utility directory, and globals.css path. Point the CSS path to `src/index.css` (Vite's default global stylesheet).
+
+It then handles everything automatically:
+
+- Installs `@tokiui/ui`, `tailwindcss`, `@tailwindcss/postcss`, `clsx`, `tailwind-merge`
+- Writes the `cn()` helper to your lib directory
+- Creates `postcss.config.mjs`
+- Prepends the required imports to `src/index.css`
+- Adds the `@/*` path alias to `tsconfig.json`
+- Creates `tokiui.json` to save your choices for future `add` commands
+
+<Callout>
+Vite scaffolds a `src/index.css` with some default styles. The CLI prepends the Tailwind imports at the top — the existing styles remain. You can remove them once you're set up.
+</Callout>
+
+### 3. Add a component
+
+```bash
+npx @tokiui/cli add button
+```
+
+### 4. Import and use
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export default function App() {
+  return <Button>Click me</Button>
+}
+```
+
+Start the dev server:
+
+```bash
+npm run dev
+```
+
+---
+
+## Remix
+
+### 1. Create the project
+
+```bash
+npx create-remix@latest my-app
+cd my-app
+```
+
+When prompted, select TypeScript. Remix v2+ uses Vite internally so no additional bundler config is needed.
+
+### 2. Create a global stylesheet
+
+Remix doesn't auto-import a global CSS file, so create one manually:
+
+```bash
+touch app/tailwind.css
+```
+
+### 3. Initialize tokiui
+
+```bash
+npx @tokiui/cli init
+```
+
+When the CLI asks for your globals.css path, point it to `app/tailwind.css`. Use `app/components/ui` and `app/lib` for the component and utility directories.
+
+It then handles everything automatically:
+
+- Installs `@tokiui/ui`, `tailwindcss`, `@tailwindcss/postcss`, `clsx`, `tailwind-merge`
+- Writes the `cn()` helper to your lib directory
+- Creates `postcss.config.mjs`
+- Prepends the required imports to `app/tailwind.css`
+- Adds the `@/*` path alias to `tsconfig.json`
+- Creates `tokiui.json` to save your choices for future `add` commands
+
+### 4. Link the stylesheet in your root route
+
+Open `app/root.tsx` and add the stylesheet using Vite's `?url` import:
+
+```tsx
+import type { LinksFunction } from '@remix-run/node'
+import stylesheet from './tailwind.css?url'
+
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: stylesheet },
+]
+```
+
+### 5. Add a component
+
+```bash
+npx @tokiui/cli add button
+```
+
+### 6. Import and use
+
+```tsx
+import { Button } from '@/components/ui/button'
+
+export default function Index() {
+  return <Button>Click me</Button>
+}
+```
+
+Start the dev server:
+
+```bash
+npm run dev
+```
+
+---
+
+## Manual setup
+
+If you prefer to skip the CLI and wire things up yourself:
+
+**Install packages**
+
+```bash
+npm install @tokiui/ui tailwindcss @tailwindcss/postcss clsx tailwind-merge
+```
+
+**Add to your global CSS file**
 
 ```css
 @import "tailwindcss";
 @import "@tokiui/ui/styles.css";
 ```
 
-The second import provides the CSS variable theme tokens that all components rely on.
+**Create `postcss.config.mjs`**
+
+```js
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+}
+```
+
+**Add path alias to `tsconfig.json`**
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+**Add the `cn()` utility to `src/lib/utils.ts`**
+
+```ts
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+```
+
+**Create `tokiui.json` at your project root**
+
+```json
+{
+  "componentsDir": "src/components/ui",
+  "utilsDir": "src/lib",
+  "globalsCss": "src/app/globals.css"
+}
+```
+
+Then add components with the CLI:
+
+```bash
+npx @tokiui/cli add button
+```

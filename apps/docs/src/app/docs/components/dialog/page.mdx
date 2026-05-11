@@ -1,24 +1,36 @@
-export const metadata = { title: 'Dialog' }
+export const metadata = { title: 'Dialog — tokiui' }
 
-import { ComponentPreview } from '@/components/docs/component-preview'
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
 import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-  Button,
-  Input,
-} from '@tokiui/ui'
+  BasicDialogPreview,
+  AlertDialogPreview,
+  FormDialogPreview,
+  ScrollableDialogPreview,
+  SizeVariantsPreview,
+  LoadingDialogPreview,
+  NoBackdropDialogPreview,
+  CustomFooterDialogPreview,
+  WizardDialogPreview,
+  NestedDialogPreview,
+  StackedActionsPreview,
+} from '@/components/docs/modal-demo'
 
-# Dialog
+<PageHeader
+  title="Dialog"
+  description="A modal dialog built on Radix UI. Renders over the page via a portal, traps focus, locks scroll, and closes on Escape. Four sizes, scrollable body, and a composable footer."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
 
-A modal dialog built on Radix UI. Includes focus trapping, Escape to close, and scroll lock.
+## Installation
 
-## Usage
+<TerminalInstall component="dialog" />
+<ManualInstall component="dialog" />
+
+## Import
 
 ```tsx
 import {
@@ -26,79 +38,448 @@ import {
   DialogTrigger,
   DialogContent,
   DialogHeader,
+  DialogBody,
+  DialogFooter,
   DialogTitle,
   DialogDescription,
-  DialogFooter,
   DialogClose,
-} from '@/components/ui/dialog'
+} from '@tokiui/ui'
 ```
 
-## Example
+## Basic
 
-<ComponentPreview>
-  <Dialog>
-    <DialogTrigger asChild>
-      <Button variant="outline">Open dialog</Button>
-    </DialogTrigger>
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>Edit profile</DialogTitle>
-        <DialogDescription>
-          Make changes to your profile here. Click save when you are done.
-        </DialogDescription>
-      </DialogHeader>
-      <div className="grid gap-3 py-2">
-        <div className="grid gap-1.5">
-          <label className="text-sm font-medium" htmlFor="dialog-name">Name</label>
-          <Input id="dialog-name" defaultValue="Pedro Duarte" />
-        </div>
-        <div className="grid gap-1.5">
-          <label className="text-sm font-medium" htmlFor="dialog-username">Username</label>
-          <Input id="dialog-username" defaultValue="@peduarte" />
-        </div>
-      </div>
-      <DialogFooter>
-        <DialogClose asChild>
-          <Button variant="outline">Cancel</Button>
-        </DialogClose>
-        <Button>Save changes</Button>
-      </DialogFooter>
-    </DialogContent>
-  </Dialog>
-</ComponentPreview>
+A trigger button opens the dialog. `DialogClose` wraps any element that should close it — use `asChild` to avoid a wrapper `<button>`.
 
-```tsx
-<Dialog>
+<Showcase title="Basic dialog" code={`import {
+  Dialog, DialogTrigger, DialogContent,
+  DialogHeader, DialogFooter,
+  DialogTitle, DialogDescription, DialogClose,
+} from '@tokiui/ui'
+import { Button } from '@tokiui/ui'
+
+export function BasicDialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Open dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Welcome back</DialogTitle>
+          <DialogDescription>
+            Your session has been restored. You can continue where you left off.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button>Got it</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}`}>
+  <BasicDialogPreview />
+</Showcase>
+
+## Alert / confirmation
+
+Use `size="sm"` for short destructive confirmations. Keep the message direct — state exactly what will happen and that it cannot be undone.
+
+<Showcase title="Alert dialog" code={`<Dialog>
   <DialogTrigger asChild>
-    <Button variant="outline">Open dialog</Button>
+    <Button color="destructive">Delete project</Button>
+  </DialogTrigger>
+  <DialogContent size="sm">
+    <DialogHeader>
+      <DialogTitle>Delete project?</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone. All data, members, and history
+        will be permanently removed.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose asChild>
+        <Button variant="outline" color="neutral">Cancel</Button>
+      </DialogClose>
+      <DialogClose asChild>
+        <Button color="destructive">Delete</Button>
+      </DialogClose>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`}>
+  <AlertDialogPreview />
+</Showcase>
+
+## Form
+
+Place form fields between `DialogHeader` and `DialogFooter`. The close button in the top-right and the footer Cancel both dismiss — no extra wiring needed.
+
+<Showcase title="Form dialog" code={`<Dialog>
+  <DialogTrigger asChild>
+    <Button>Edit profile</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Edit profile</DialogTitle>
-      <DialogDescription>
-        Make changes to your profile here.
-      </DialogDescription>
+      <DialogDescription>Update your display name and email address.</DialogDescription>
     </DialogHeader>
-    <div className="grid gap-3 py-2">
-      <Input defaultValue="Pedro Duarte" />
+    <div className="grid gap-3">
+      <div className="grid gap-1.5">
+        <label className="text-sm font-medium" htmlFor="name">Name</label>
+        <Input id="name" defaultValue="Alex Johnson" />
+      </div>
+      <div className="grid gap-1.5">
+        <label className="text-sm font-medium" htmlFor="email">Email</label>
+        <Input id="email" type="email" defaultValue="alex@example.com" />
+      </div>
     </div>
     <DialogFooter>
       <DialogClose asChild>
-        <Button variant="outline">Cancel</Button>
+        <Button variant="outline" color="neutral">Cancel</Button>
       </DialogClose>
-      <Button>Save changes</Button>
+      <DialogClose asChild>
+        <Button>Save changes</Button>
+      </DialogClose>
     </DialogFooter>
   </DialogContent>
-</Dialog>
-```
+</Dialog>`}>
+  <FormDialogPreview />
+</Showcase>
 
-## Accessibility
+## Scrollable content
 
-- Focus is trapped inside the dialog while open
-- Pressing `Escape` closes the dialog
-- Scroll is locked on the body while open
-- `DialogTitle` is required — it becomes the `aria-labelledby` for the dialog
-- `DialogDescription` is optional but recommended for `aria-describedby`
+For long content, override `DialogContent` to flex column and add `DialogBody` for the scrollable middle section. The header and footer stay fixed.
+
+<Showcase title="Scrollable content" code={`<Dialog>
+  <DialogTrigger asChild>
+    <Button variant="outline">Terms of service</Button>
+  </DialogTrigger>
+  <DialogContent className="flex flex-col max-h-[80vh] p-0 gap-0 overflow-hidden">
+    <DialogHeader className="px-6 pt-6 pb-4 shrink-0">
+      <DialogTitle>Terms of service</DialogTitle>
+      <DialogDescription>Please read carefully before accepting.</DialogDescription>
+    </DialogHeader>
+    <DialogBody className="px-6 py-2">
+      {/* long content here */}
+    </DialogBody>
+    <DialogFooter className="px-6 pb-6 pt-4 shrink-0">
+      <DialogClose asChild>
+        <Button variant="outline" color="neutral">Decline</Button>
+      </DialogClose>
+      <DialogClose asChild>
+        <Button>I accept</Button>
+      </DialogClose>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`}>
+  <ScrollableDialogPreview />
+</Showcase>
+
+## Sizes
+
+The `size` prop on `DialogContent` sets the max width. All sizes are full-width on small screens.
+
+| Size | Max width | Use for |
+|---|---|---|
+| `sm` | 384 px | Confirmations, short messages |
+| `default` | 512 px | Forms, standard content |
+| `lg` | 672 px | Data-heavy content, multi-column forms |
+| `full` | viewport − 48 px | Focused workflows that need maximum space |
+
+<Showcase title="Size variants" code={`<DialogContent size="sm">…</DialogContent>
+<DialogContent size="default">…</DialogContent>
+<DialogContent size="lg">…</DialogContent>
+<DialogContent size="full">…</DialogContent>`}>
+  <SizeVariantsPreview />
+</Showcase>
+
+## Loading state
+
+Control the open state manually so you can block dismiss while an async action is in flight. Use `aria-busy` on the submit button and disable both actions during the request.
+
+<Showcase title="Loading state" code={`'use client'
+import { useState } from 'react'
+
+export function SaveDialog() {
+  const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  async function handleSave() {
+    setLoading(true)
+    await saveToCloud()
+    setLoading(false)
+    setOpen(false)
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={(o) => { if (!loading) setOpen(o) }}>
+      <DialogTrigger asChild>
+        <Button onClick={() => setOpen(true)}>Save to cloud</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Save changes</DialogTitle>
+          <DialogDescription>
+            Your work will be saved to the cloud and synced across devices.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button variant="outline" color="neutral" disabled={loading} onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button disabled={loading} aria-busy={loading} onClick={handleSave}>
+            {loading ? 'Saving…' : 'Save'}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}`}>
+  <LoadingDialogPreview />
+</Showcase>
+
+## Unsaved changes guard
+
+Prevent accidental dismissal when a form is dirty. Block `onInteractOutside` and `onEscapeKeyDown` until the user explicitly saves or discards.
+
+<Showcase title="Unsaved changes guard" code={`'use client'
+import { useState } from 'react'
+
+export function GuardedDialog() {
+  const [open, setOpen] = useState(false)
+  const [dirty, setDirty] = useState(false)
+
+  function handleOpenChange(next: boolean) {
+    if (!next && dirty) return  // block close while dirty
+    setOpen(next)
+    if (!next) setDirty(false)
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogTrigger asChild>
+        <Button variant="outline" onClick={() => setOpen(true)}>Edit with guard</Button>
+      </DialogTrigger>
+      <DialogContent
+        onInteractOutside={(e) => e.preventDefault()}
+        onEscapeKeyDown={(e) => { if (dirty) e.preventDefault() }}
+      >
+        <DialogHeader>
+          <DialogTitle>Unsaved changes guard</DialogTitle>
+          <DialogDescription>
+            Backdrop clicks and Escape are blocked while you have unsaved changes.
+          </DialogDescription>
+        </DialogHeader>
+        <Input
+          onChange={(e) => setDirty(e.target.value.length > 0)}
+          placeholder="Type to mark as dirty…"
+        />
+        <DialogFooter>
+          <Button variant="outline" color="neutral" onClick={() => { setDirty(false); setOpen(false) }}>
+            Discard
+          </Button>
+          <Button onClick={() => { setDirty(false); setOpen(false) }}>Save</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}`}>
+  <NoBackdropDialogPreview />
+</Showcase>
+
+## Custom footer layout
+
+Override `DialogFooter` with your own flex layout when you need a destructive action on the left and safe actions on the right.
+
+<Showcase title="Custom footer" code={`<DialogContent>
+  <DialogHeader>
+    <DialogTitle>Manage subscription</DialogTitle>
+    <DialogDescription>
+      Changes take effect at the start of your next billing cycle.
+    </DialogDescription>
+  </DialogHeader>
+  {/* Destructive left, safe actions right */}
+  <div className="flex justify-between items-center gap-2 flex-wrap">
+    <DialogClose asChild>
+      <Button variant="ghost" color="destructive">Cancel plan</Button>
+    </DialogClose>
+    <div className="flex gap-2">
+      <DialogClose asChild>
+        <Button variant="outline" color="neutral">Maybe later</Button>
+      </DialogClose>
+      <DialogClose asChild>
+        <Button>Upgrade to Team</Button>
+      </DialogClose>
+    </div>
+  </div>
+</DialogContent>`}>
+  <CustomFooterDialogPreview />
+</Showcase>
+
+## Multi-step wizard
+
+Manage a `step` state inside the dialog. Reset it on close with a short `setTimeout` so the animation completes before the step resets.
+
+<Showcase title="Multi-step wizard" code={`'use client'
+import { useState } from 'react'
+
+const STEPS = ['Account', 'Profile', 'Review']
+
+export function WizardDialog() {
+  const [step, setStep] = useState(1)
+  const total = STEPS.length
+
+  function reset() { setTimeout(() => setStep(1), 200) }
+
+  return (
+    <Dialog onOpenChange={(open) => { if (!open) reset() }}>
+      <DialogTrigger asChild>
+        <Button>Create account</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <div className="flex justify-between items-center">
+            <DialogTitle>{STEPS[step - 1]}</DialogTitle>
+            <span className="text-xs text-muted-foreground font-mono">{step} / {total}</span>
+          </div>
+          <DialogDescription>
+            {step === 1 && 'Set up your login credentials.'}
+            {step === 2 && 'Tell us how to address you.'}
+            {step === 3 && 'Review your details before finishing.'}
+          </DialogDescription>
+        </DialogHeader>
+        {/* Progress bar */}
+        <div className="h-[3px] bg-muted rounded-full overflow-hidden">
+          <div
+            className="h-full bg-primary rounded-full transition-[width] duration-300"
+            style={{ width: \`\${(step / total) * 100}%\` }}
+          />
+        </div>
+        {/* Step content */}
+        {step === 1 && <div className="grid gap-3">{/* email + password inputs */}</div>}
+        {step === 2 && <div className="grid gap-3">{/* name + username inputs */}</div>}
+        {step === 3 && <div className="bg-muted rounded-lg p-4 text-sm text-muted-foreground">Review summary…</div>}
+        <DialogFooter>
+          {step > 1 ? (
+            <Button variant="outline" color="neutral" onClick={() => setStep((s) => s - 1)}>Back</Button>
+          ) : (
+            <DialogClose asChild>
+              <Button variant="outline" color="neutral">Cancel</Button>
+            </DialogClose>
+          )}
+          {step < total ? (
+            <Button onClick={() => setStep((s) => s + 1)}>Next</Button>
+          ) : (
+            <DialogClose asChild><Button>Finish</Button></DialogClose>
+          )}
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}`}>
+  <WizardDialogPreview />
+</Showcase>
+
+## Nested dialogs
+
+Render a second `Dialog` inside the first to create a two-step confirmation flow. Radix manages each layer's focus and overlay independently.
+
+<Showcase title="Nested dialogs" code={`<Dialog>
+  <DialogTrigger asChild>
+    <Button variant="outline" color="destructive">Delete account</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Delete your account</DialogTitle>
+      <DialogDescription>
+        This will remove all your projects, data, and team memberships.
+        This cannot be undone.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose asChild>
+        <Button variant="outline" color="neutral">Cancel</Button>
+      </DialogClose>
+      {/* Second dialog opens from within the first */}
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button color="destructive">Continue</Button>
+        </DialogTrigger>
+        <DialogContent size="sm">
+          <DialogHeader>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
+              Type <strong>DELETE</strong> to confirm. This is permanent.
+            </DialogDescription>
+          </DialogHeader>
+          <Input placeholder='Type "DELETE" to confirm' />
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline" color="neutral">Go back</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button color="destructive">Delete permanently</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`}>
+  <NestedDialogPreview />
+</Showcase>
+
+## Stacked actions
+
+Remove default padding and gap from `DialogContent` to build a list of full-width action rows — useful for mobile share sheets and action menus.
+
+<Showcase title="Stacked actions" code={`<Dialog>
+  <DialogTrigger asChild>
+    <Button variant="outline">Share</Button>
+  </DialogTrigger>
+  <DialogContent size="sm" className="p-0 gap-0 overflow-hidden">
+    <DialogTitle className="sr-only">Share options</DialogTitle>
+    <div>
+      {actions.map((action) => (
+        <DialogClose key={action.label} asChild>
+          <button className="flex flex-col gap-1 w-full px-5 py-3.5 text-left hover:bg-muted transition-colors">
+            <span className="text-sm font-medium">{action.label}</span>
+            <span className="text-xs text-muted-foreground">{action.desc}</span>
+          </button>
+        </DialogClose>
+      ))}
+      <DialogClose asChild>
+        <button className="w-full px-5 py-3.5 text-sm font-medium text-center text-muted-foreground hover:bg-muted transition-colors">
+          Cancel
+        </button>
+      </DialogClose>
+    </div>
+  </DialogContent>
+</Dialog>`}>
+  <StackedActionsPreview />
+</Showcase>
+
+## API
+
+### DialogContent
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `'sm' \| 'default' \| 'lg' \| 'full'` | `'default'` | Max width of the dialog panel |
+| `scrollBehavior` | `'outside' \| 'inside'` | `'outside'` | `outside` scrolls the whole dialog; `inside` fixes header/footer and scrolls only `DialogBody` |
+| `fullscreenMobile` | `boolean` | `false` | On small screens, slides up from the bottom edge as a sheet instead of centering |
+| `className` | `string` | — | Merged with the panel's class list |
+| All Radix `Content` props | | | `onOpenAutoFocus`, `onCloseAutoFocus`, `onInteractOutside`, `onEscapeKeyDown`, … |
+
+### Dialog (root)
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `open` | `boolean` | — | Controlled open state |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes |
+| `defaultOpen` | `boolean` | `false` | Uncontrolled initial state |
+| `modal` | `boolean` | `true` | Whether to use modal behavior (focus trap + scroll lock) |
 
 ## Sub-components
 
@@ -106,11 +487,22 @@ import {
 |---|---|
 | `Dialog` | Root state container |
 | `DialogTrigger` | Element that opens the dialog — use `asChild` to avoid a wrapper |
-| `DialogContent` | The panel rendered inside the overlay — includes the close button |
+| `DialogContent` | Panel rendered inside the overlay — includes the built-in close button |
 | `DialogOverlay` | The backdrop — rendered automatically by `DialogContent` |
 | `DialogHeader` | Top section wrapping title and description |
-| `DialogTitle` | Required accessible title |
-| `DialogDescription` | Optional accessible description |
-| `DialogFooter` | Bottom row for actions |
+| `DialogTitle` | Required accessible title (becomes `aria-labelledby`) |
+| `DialogDescription` | Optional accessible description (becomes `aria-describedby`) |
+| `DialogBody` | Scrollable middle section — use with `overflow-hidden` on `DialogContent` |
+| `DialogFooter` | Bottom row for actions — reverses column order on mobile |
 | `DialogClose` | Element that closes the dialog — use `asChild` to wrap your own button |
 | `DialogPortal` | Renders content into `document.body` — used internally by `DialogContent` |
+
+## Accessibility
+
+- Focus is trapped inside the dialog while open
+- Pressing `Escape` closes the dialog (block with `onEscapeKeyDown={(e) => e.preventDefault()}`)
+- Scroll is locked on the body while open
+- `DialogTitle` is required — screen readers announce it when the dialog opens
+- `DialogDescription` is optional but strongly recommended for context
+- Use `DialogTitle` with `className="sr-only"` when no visible title is needed (action sheets, share menus)
+- All interactive elements inside the dialog are reachable with `Tab`

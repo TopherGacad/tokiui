@@ -2,11 +2,11 @@ export const metadata = { title: 'Theming' }
 
 # Theming
 
-tokiui uses CSS custom properties (variables) for all colors and border radius. Change the entire look of your app by overriding a few variables — no component changes required.
+tokiui uses CSS custom properties for all colors and border radius. Change the entire look of your app by overriding a few variables in your `globals.css` — no component changes required.
 
 ## How it works
 
-All components use semantic Tailwind classes like `bg-primary` and `text-muted-foreground`. These map to CSS variables via the `@theme` block in `@tokiui/ui/styles.css`:
+All components use semantic Tailwind classes like `bg-primary` and `text-muted-foreground`. These classes are wired to CSS variables via the `@theme` block inside `@tokiui/ui/styles.css`:
 
 ```css
 @theme {
@@ -16,16 +16,67 @@ All components use semantic Tailwind classes like `bg-primary` and `text-muted-f
 }
 ```
 
-The actual OKLCH values live in `:root` (light) and `[data-theme="dark"]` (dark mode):
+The actual values live in `:root` (light) and `[data-theme="dark"]` (dark mode). tokiui uses the **OKLCH color space** — a perceptually uniform model where equal steps in lightness or chroma look equal to the human eye, making it easier to build consistent palettes.
 
 ```css
 :root {
-  --primary: oklch(0.74 0.17 118);
+  --primary: oklch(0.52 0.16 145);
 }
 [data-theme="dark"] {
-  --primary: oklch(0.78 0.17 118);
+  --primary: oklch(0.72 0.15 145);
 }
 ```
+
+## Token reference
+
+All overridable tokens and their light-mode defaults:
+
+| Token | Default | Usage |
+|---|---|---|
+| `--background` | `oklch(0.99 0.003 95)` | Page background |
+| `--foreground` | `oklch(0.18 0.005 95)` | Body text |
+| `--card` | `oklch(1 0 0)` | Card surfaces |
+| `--card-foreground` | `oklch(0.18 0.005 95)` | Text on cards |
+| `--popover` | `oklch(1 0 0)` | Popover/dropdown surfaces |
+| `--popover-foreground` | `oklch(0.18 0.005 95)` | Text in popovers |
+| `--primary` | `oklch(0.52 0.16 145)` | Primary actions, focus rings |
+| `--primary-foreground` | `oklch(0.99 0.003 95)` | Text on primary backgrounds |
+| `--secondary` | `oklch(0.96 0.005 95)` | Secondary button fills |
+| `--secondary-foreground` | `oklch(0.18 0.005 95)` | Text on secondary fills |
+| `--muted` | `oklch(0.96 0.005 95)` | Subtle backgrounds |
+| `--muted-foreground` | `oklch(0.50 0.008 95)` | Placeholder and hint text |
+| `--accent` | `oklch(0.96 0.005 95)` | Hover states |
+| `--accent-foreground` | `oklch(0.18 0.005 95)` | Text on accent backgrounds |
+| `--destructive` | `oklch(0.62 0.20 25)` | Error and danger states |
+| `--destructive-foreground` | `oklch(0.99 0.003 95)` | Text on destructive fills |
+| `--border` | `oklch(0.92 0.005 95)` | Borders and dividers |
+| `--input` | `oklch(0.96 0.005 95)` | Input field backgrounds |
+| `--ring` | `oklch(0.52 0.16 145)` | Focus ring color |
+| `--radius` | `10px` | Base border radius |
+
+### Status tokens
+
+Used by `Alert`, `Badge`, and `Button` for semantic intent. Override these to match your brand's status colors.
+
+| Token | Default | Usage |
+|---|---|---|
+| `--success` | `oklch(0.56 0.17 148)` | Positive feedback, confirmations |
+| `--success-foreground` | `oklch(0.99 0.003 95)` | Text on success fills |
+| `--warning` | `oklch(0.74 0.14 75)` | Cautionary states |
+| `--warning-foreground` | `oklch(0.18 0.005 95)` | Text on warning fills |
+| `--info` | `oklch(0.58 0.17 232)` | Informational messages |
+| `--info-foreground` | `oklch(0.99 0.003 95)` | Text on info fills |
+
+### Radius tokens
+
+Changing `--radius` shifts all derived sizes proportionally:
+
+| Token | Formula | Default |
+|---|---|---|
+| `--radius-sm` | `calc(var(--radius) - 4px)` | `6px` |
+| `--radius-md` | `calc(var(--radius) - 2px)` | `8px` |
+| `--radius-lg` | `var(--radius)` | `10px` |
+| `--radius-xl` | `calc(var(--radius) + 4px)` | `14px` |
 
 ## Customizing your theme
 
@@ -36,28 +87,32 @@ Override any variable in your `globals.css` after the import:
 @import "@tokiui/ui/styles.css";
 
 :root {
-  --primary: oklch(0.65 0.20 270);  /* purple */
-  --radius: 14px;                    /* rounder corners */
+  --primary: oklch(0.55 0.22 270);  /* purple */
+  --ring:    oklch(0.55 0.22 270);
+  --radius:  14px;                   /* rounder corners */
 }
+
 [data-theme="dark"] {
-  --primary: oklch(0.72 0.18 270);
+  --primary: oklch(0.72 0.20 270);
 }
 ```
 
-## Using the playground
-
-Visit the [Playground](/playground) to adjust every token visually. When you're happy, click **Copy CSS variables** and paste the output into your `globals.css`, or click **Copy theme URL** to share the exact theme.
+<Callout>
+Override both `:root` and `[data-theme="dark"]` when changing color tokens — the dark value usually needs a higher lightness to maintain contrast.
+</Callout>
 
 ## Dark mode
 
-Dark mode is controlled by the `data-theme="dark"` attribute on `<html>`. Toggle it with JavaScript:
+Dark mode is driven by the `data-theme="dark"` attribute on the `<html>` element:
 
 ```ts
 document.documentElement.dataset.theme = 'dark'
 document.documentElement.dataset.theme = 'light'
 ```
 
-Use the `useTheme` hook from `@tokiui/ui/client` for a localStorage-persisted toggle:
+### useTheme hook
+
+Use the `useTheme` hook from `@tokiui/ui/client` for a `localStorage`-persisted toggle that also reads the system preference on first load:
 
 ```tsx
 'use client'
@@ -65,6 +120,68 @@ import { useTheme } from '@tokiui/ui/client'
 
 export function ThemeToggle() {
   const [theme, toggle] = useTheme()
-  return <button onClick={toggle}>{theme}</button>
+  return <button onClick={toggle}>Switch to {theme === 'dark' ? 'light' : 'dark'}</button>
 }
 ```
+
+### Preventing flash of unstyled content
+
+In SSR frameworks (Next.js, Remix) the page renders on the server before JavaScript runs, so there's a brief flash where dark mode isn't applied. Fix this by adding a blocking inline script to your HTML `<head>` that reads `localStorage` and sets the attribute before first paint.
+
+**Next.js App Router** — add to `app/layout.tsx`:
+
+```tsx
+const themeScript = `(function() {
+  try {
+    var stored = localStorage.getItem('tokiui-theme')
+    var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark' : 'light'
+    document.documentElement.dataset.theme = stored || preferred
+  } catch(e) {}
+})()`
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>{children}</body>
+    </html>
+  )
+}
+```
+
+**Remix** — add to `app/root.tsx`:
+
+```tsx
+const themeScript = `(function() {
+  try {
+    var stored = localStorage.getItem('tokiui-theme')
+    var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark' : 'light'
+    document.documentElement.dataset.theme = stored || preferred
+  } catch(e) {}
+})()`
+
+export default function App() {
+  return (
+    <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Outlet />
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  )
+}
+```
+
+<Callout>
+The script must be a plain inline script — not `async`, not `defer`, not a module. It needs to block rendering so the attribute is set before the browser paints anything.
+</Callout>

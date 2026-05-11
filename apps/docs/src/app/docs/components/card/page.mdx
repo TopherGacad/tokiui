@@ -1,45 +1,46 @@
-export const metadata = { title: 'Card' }
+export const metadata = { title: 'Card — tokiui' }
 
-import { ComponentPreview } from '@/components/docs/component-preview'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button } from '@tokiui/ui'
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  CardDefaultPreview,
+  CardShadowPreview,
+  CardStatusPreview,
+  CardInteractivePreview,
+  CardImagePreview,
+} from '@/components/docs/card-demo'
 
-# Card
+<PageHeader
+  title="Card"
+  description="A contained surface for grouping related content. Shadow variants, semantic status borders, interactive hover, and an optional image slot."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
 
-A contained surface for grouping related content. Composed from sub-components for flexible layouts.
+## Installation
 
-## Usage
+<TerminalInstall component="card" />
+<ManualInstall component="card" />
+
+## Import
 
 ```tsx
 import {
   Card,
+  CardImage,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
   CardFooter,
-} from '@/components/ui/card'
+} from '@tokiui/ui'
 ```
 
-## Example
+## Default
 
-<ComponentPreview>
-  <Card className="w-80">
-    <CardHeader>
-      <CardTitle>Project Alpha</CardTitle>
-      <CardDescription>Deploy your new project in one click.</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <p className="text-sm text-muted-foreground">Your project is ready to be deployed. This action will make it publicly accessible.</p>
-    </CardContent>
-    <CardFooter className="gap-2">
-      <Button size="sm">Deploy</Button>
-      <Button size="sm" variant="outline">Cancel</Button>
-    </CardFooter>
-  </Card>
-</ComponentPreview>
-
-```tsx
-<Card className="w-80">
+<Showcase title="Default" code={`<Card>
   <CardHeader>
     <CardTitle>Project Alpha</CardTitle>
     <CardDescription>Deploy your new project in one click.</CardDescription>
@@ -49,30 +50,81 @@ import {
   </CardContent>
   <CardFooter>
     <Button size="sm">Deploy</Button>
-    <Button size="sm" variant="outline">Cancel</Button>
+    <Button size="sm" variant="outline" color="neutral">Cancel</Button>
   </CardFooter>
-</Card>
-```
+</Card>`}>
+  <CardDefaultPreview />
+</Showcase>
 
-## Content only
+## Shadow
 
-<ComponentPreview>
-  <Card className="w-72">
-    <CardContent className="pt-6">
-      <p className="text-sm text-muted-foreground">A simple card with only content and no header or footer.</p>
-    </CardContent>
-  </Card>
-</ComponentPreview>
+Four shadow levels to control elevation. Default is `sm`.
 
-## Sub-components
+<Showcase title="Shadow" code={`<Card shadow="none">…</Card>\n<Card shadow="sm">…</Card>\n<Card shadow="md">…</Card>\n<Card shadow="lg">…</Card>`}>
+  <CardShadowPreview />
+</Showcase>
+
+## Status border
+
+A colored left border communicates status without disrupting layout. Use with alerts, log entries, and notification cards.
+
+<Showcase title="Status border" code={`<Card status="success">…</Card>\n<Card status="warning">…</Card>\n<Card status="info">…</Card>\n<Card status="destructive">…</Card>`}>
+  <CardStatusPreview />
+</Showcase>
+
+## Interactive
+
+Add `interactive` for a hover lift effect on clickable cards. Pairs with an `onClick` or wrapping `<a>` tag.
+
+<Showcase title="Interactive" code={`<Card interactive onClick={() => openIntegration(name)}>\n  <CardContent>\n    <p>{name}</p>\n  </CardContent>\n</Card>`}>
+  <CardInteractivePreview />
+</Showcase>
+
+## CardImage
+
+Use `CardImage` to add a media slot at the top of the card. The `aspectRatio` prop constrains the image container.
+
+<Showcase title="CardImage" code={`<Card>
+  <CardImage
+    src="/trail.jpg"
+    alt="Mountain landscape"
+    aspectRatio="16/9"
+  />
+  <CardHeader>
+    <CardTitle>Mountain Trail</CardTitle>
+    <CardDescription>A scenic route through alpine terrain.</CardDescription>
+  </CardHeader>
+</Card>`}>
+  <CardImagePreview />
+</Showcase>
+
+## API
+
+### Card
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `shadow` | `none \| sm \| md \| lg` | `sm` | Box shadow level |
+| `status` | `none \| success \| warning \| info \| destructive` | `none` | Colored left border |
+| `interactive` | `boolean` | `false` | Hover lift and active scale effect |
+| `className` | `string` | — | Additional class names |
+
+### CardImage
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `src` | `string` | — | Image source URL |
+| `alt` | `string` | `''` | Alt text for the image |
+| `aspectRatio` | `16/9 \| 4/3 \| 1/1 \| 3/2` | `16/9` | Constrains the image container height |
+
+### Sub-components
 
 | Component | Element | Description |
 |---|---|---|
-| `Card` | `div` | Outer container with border and background |
 | `CardHeader` | `div` | Top section — holds title and description |
-| `CardTitle` | `h3` | Primary heading inside the header |
-| `CardDescription` | `p` | Secondary text inside the header |
+| `CardTitle` | `h3` | Primary heading |
+| `CardDescription` | `p` | Secondary muted text |
 | `CardContent` | `div` | Main body area |
 | `CardFooter` | `div` | Bottom row — typically holds actions |
 
-All sub-components accept `className` and a `ref`, and forward all standard HTML `div` attributes.
+All sub-components accept `className`, a `ref`, and forward all standard HTML attributes.

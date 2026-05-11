@@ -24,6 +24,11 @@
       "name": "badge",
       "label": "Badge",
       "description": "Displays a badge or a component that looks like a badge."
+    },
+    {
+      "name": "form",
+      "label": "Form",
+      "description": "Composable form field primitives — FormField, FormLabel, FormHelperText, and FormMessage."
     }
   ]
 }

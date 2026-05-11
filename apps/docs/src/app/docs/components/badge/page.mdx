@@ -1,54 +1,112 @@
-export const metadata = { title: 'Badge' }
+export const metadata = { title: 'Badge — tokiui' }
 
-import { ComponentPreview } from '@/components/docs/component-preview'
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  BadgeVariantsPreview,
+  BadgeSolidColorsPreview,
+  BadgeSoftColorsPreview,
+  BadgeOutlineColorsPreview,
+  BadgeSizesPreview,
+  BadgeDotPreview,
+  BadgeDismissPreview,
+} from '@/components/docs/badge-demo'
+
+<PageHeader
+  title="Badge"
+  description="A compact label for status, category, or count. Three variants, six colors, three sizes, dot indicator, and optional dismiss."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="badge" />
+<ManualInstall component="badge" />
+
+## Import
+
+```tsx
 import { Badge } from '@tokiui/ui'
-
-# Badge
-
-Displays a short status label or category tag. Supports four variants.
-
-## Usage
-
-```tsx
-import { Badge } from '@/components/ui/badge'
-
-<Badge>New</Badge>
 ```
 
-## Variants
+## Variant
 
-<ComponentPreview>
-  <div className="flex flex-wrap gap-3">
-    <Badge variant="default">Default</Badge>
-    <Badge variant="secondary">Secondary</Badge>
-    <Badge variant="outline">Outline</Badge>
-    <Badge variant="destructive">Destructive</Badge>
-  </div>
-</ComponentPreview>
+Three visual styles control the fill. Combine with `color` to add semantic meaning.
 
-```tsx
-<Badge variant="default">Default</Badge>
-<Badge variant="secondary">Secondary</Badge>
-<Badge variant="outline">Outline</Badge>
-<Badge variant="destructive">Destructive</Badge>
-```
+### Solid
 
-## Examples
+Full background. Use for high-emphasis labels that must stand out.
 
-<ComponentPreview>
-  <div className="flex flex-wrap gap-2">
-    <Badge>New</Badge>
-    <Badge variant="secondary">Beta</Badge>
-    <Badge variant="outline">v1.0.0</Badge>
-    <Badge variant="destructive">Deprecated</Badge>
-  </div>
-</ComponentPreview>
+<Showcase title="Solid" code={`<Badge variant="solid">Solid</Badge>`}>
+  <BadgeVariantsPreview />
+</Showcase>
 
-## Props
+### Soft
 
-| Prop | Type | Default |
-|---|---|---|
-| `variant` | `default \| secondary \| outline \| destructive` | `default` |
-| `className` | `string` | — |
+Tinted background at low opacity — less prominent than solid, more distinct than outline.
+
+<Showcase title="Soft" code={`<Badge variant="soft">Soft</Badge>\n<Badge variant="outline">Outline</Badge>`}>
+  <BadgeVariantsPreview />
+</Showcase>
+
+## Color
+
+Six semantic colors available on every variant. Default maps to your primary brand color.
+
+### Solid colors
+
+<Showcase title="Solid colors" code={`<Badge variant="solid" color="default">Default</Badge>\n<Badge variant="solid" color="secondary">Secondary</Badge>\n<Badge variant="solid" color="success">Success</Badge>\n<Badge variant="solid" color="warning">Warning</Badge>\n<Badge variant="solid" color="info">Info</Badge>\n<Badge variant="solid" color="destructive">Destructive</Badge>`}>
+  <BadgeSolidColorsPreview />
+</Showcase>
+
+### Soft colors
+
+<Showcase title="Soft colors" code={`<Badge variant="soft" color="default">Default</Badge>\n<Badge variant="soft" color="success">Success</Badge>\n<Badge variant="soft" color="warning">Warning</Badge>\n<Badge variant="soft" color="info">Info</Badge>\n<Badge variant="soft" color="destructive">Destructive</Badge>`}>
+  <BadgeSoftColorsPreview />
+</Showcase>
+
+### Outline colors
+
+<Showcase title="Outline colors" code={`<Badge variant="outline" color="default">Default</Badge>\n<Badge variant="outline" color="success">Success</Badge>\n<Badge variant="outline" color="warning">Warning</Badge>\n<Badge variant="outline" color="info">Info</Badge>\n<Badge variant="outline" color="destructive">Destructive</Badge>`}>
+  <BadgeOutlineColorsPreview />
+</Showcase>
+
+## Size
+
+Three sizes to match surrounding text and UI density.
+
+<Showcase title="Sizes" code={`<Badge size="sm">Small</Badge>\n<Badge size="md">Medium</Badge>\n<Badge size="lg">Large</Badge>`}>
+  <BadgeSizesPreview />
+</Showcase>
+
+## Dot indicator
+
+Add `dot` for a status dot before the label. Pair with semantic colors to communicate state at a glance.
+
+<Showcase title="Dot" code={`<Badge variant="soft" color="success" dot>Active</Badge>\n<Badge variant="soft" color="warning" dot>Pending</Badge>\n<Badge variant="soft" color="destructive" dot>Offline</Badge>\n<Badge variant="soft" color="info" dot>Syncing</Badge>`}>
+  <BadgeDotPreview />
+</Showcase>
+
+## Dismissible
+
+Pass `onDismiss` to render a × button. Common for tag inputs and filter chips.
+
+<Showcase title="Dismissible" code={`<Badge variant="soft" onDismiss={() => removeTag(tag)}>\n  {tag}\n</Badge>`}>
+  <BadgeDismissPreview />
+</Showcase>
+
+## API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `solid \| soft \| outline` | `solid` | Visual fill style |
+| `color` | `default \| secondary \| destructive \| success \| warning \| info` | `default` | Semantic color |
+| `size` | `sm \| md \| lg` | `md` | Badge size |
+| `dot` | `boolean` | `false` | Prepends a status dot |
+| `onDismiss` | `() => void` | — | Renders a dismiss × button and calls this on click |
+| `className` | `string` | — | Additional class names |
 
 `Badge` forwards all standard `<span>` HTML attributes and accepts a `ref`.

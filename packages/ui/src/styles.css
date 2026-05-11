@@ -17,6 +17,12 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -29,14 +35,36 @@
 
 @layer base {
   :root {
+    --tooltip-bg: oklch(0.18 0.005 95);
+    --tooltip-fg: oklch(0.97 0.005 95);
+
+    --alert-success-bg:         color-mix(in oklch, var(--success)     13%, var(--background));
+    --alert-success-border:     color-mix(in oklch, var(--success)     40%, var(--background));
+    --alert-warning-bg:         color-mix(in oklch, var(--warning)     16%, var(--background));
+    --alert-warning-border:     color-mix(in oklch, var(--warning)     42%, var(--background));
+    --alert-info-bg:            color-mix(in oklch, var(--info)        13%, var(--background));
+    --alert-info-border:        color-mix(in oklch, var(--info)        40%, var(--background));
+    --alert-destructive-bg:     color-mix(in oklch, var(--destructive) 11%, var(--background));
+    --alert-destructive-border: color-mix(in oklch, var(--destructive) 40%, var(--background));
+
+    --btn-soft: color-mix(in oklch, var(--primary) 18%, var(--background));
+    --btn-soft-hover: color-mix(in oklch, var(--primary) 24%, var(--background));
+    --btn-destructive-soft: color-mix(in oklch, var(--destructive) 12%, var(--background));
+    --btn-destructive-soft-hover: color-mix(in oklch, var(--destructive) 18%, var(--background));
+    --btn-success-soft: color-mix(in oklch, var(--success) 16%, var(--background));
+    --btn-success-soft-hover: color-mix(in oklch, var(--success) 22%, var(--background));
+    --btn-warning-soft: color-mix(in oklch, var(--warning) 16%, var(--background));
+    --btn-warning-soft-hover: color-mix(in oklch, var(--warning) 22%, var(--background));
+    --btn-info-soft: color-mix(in oklch, var(--info) 16%, var(--background));
+    --btn-info-soft-hover: color-mix(in oklch, var(--info) 22%, var(--background));
     --background: oklch(0.99 0.003 95);
     --foreground: oklch(0.18 0.005 95);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.18 0.005 95);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.18 0.005 95);
-    --primary: oklch(0.74 0.17 118);
-    --primary-foreground: oklch(0.14 0.005 95);
+    --primary: oklch(0.52 0.16 145);
+    --primary-foreground: oklch(0.99 0.003 95);
     --secondary: oklch(0.96 0.005 95);
     --secondary-foreground: oklch(0.18 0.005 95);
     --muted: oklch(0.96 0.005 95);
@@ -45,34 +73,48 @@
     --accent-foreground: oklch(0.18 0.005 95);
     --destructive: oklch(0.62 0.20 25);
     --destructive-foreground: oklch(0.99 0.003 95);
+    --success: oklch(0.56 0.17 148);
+    --success-foreground: oklch(0.99 0.003 95);
+    --warning: oklch(0.74 0.14 75);
+    --warning-foreground: oklch(0.18 0.005 95);
+    --info: oklch(0.58 0.17 232);
+    --info-foreground: oklch(0.99 0.003 95);
     --border: oklch(0.92 0.005 95);
     --input: oklch(0.96 0.005 95);
-    --ring: oklch(0.74 0.17 118);
+    --ring: oklch(0.52 0.16 145);
     --radius: 10px;
     --radius-sm: 6px;
     --radius-lg: 14px;
   }
 
   [data-theme="dark"] {
-    --background: oklch(0.14 0.005 95);
+    --tooltip-bg: oklch(0.30 0.006 95);
+    --tooltip-fg: oklch(0.96 0.003 95);
+    --background: oklch(0.18 0.005 95);
     --foreground: oklch(0.96 0.003 95);
-    --card: oklch(0.17 0.005 95);
+    --card: oklch(0.21 0.005 95);
     --card-foreground: oklch(0.96 0.003 95);
-    --popover: oklch(0.17 0.005 95);
+    --popover: oklch(0.21 0.005 95);
     --popover-foreground: oklch(0.96 0.003 95);
-    --primary: oklch(0.78 0.17 118);
+    --primary: oklch(0.72 0.15 145);
     --primary-foreground: oklch(0.14 0.005 95);
-    --secondary: oklch(0.20 0.006 95);
+    --secondary: oklch(0.24 0.006 95);
     --secondary-foreground: oklch(0.96 0.003 95);
-    --muted: oklch(0.20 0.006 95);
+    --muted: oklch(0.24 0.006 95);
     --muted-foreground: oklch(0.62 0.008 95);
-    --accent: oklch(0.20 0.006 95);
+    --accent: oklch(0.24 0.006 95);
     --accent-foreground: oklch(0.96 0.003 95);
     --destructive: oklch(0.62 0.20 25);
     --destructive-foreground: oklch(0.99 0.003 95);
-    --border: oklch(0.24 0.006 95);
-    --input: oklch(0.20 0.006 95);
-    --ring: oklch(0.78 0.17 118);
+    --success: oklch(0.70 0.16 148);
+    --success-foreground: oklch(0.14 0.005 95);
+    --warning: oklch(0.80 0.13 75);
+    --warning-foreground: oklch(0.14 0.005 95);
+    --info: oklch(0.70 0.16 232);
+    --info-foreground: oklch(0.14 0.005 95);
+    --border: oklch(0.28 0.006 95);
+    --input: oklch(0.24 0.006 95);
+    --ring: oklch(0.72 0.15 145);
   }
 
   * {
@@ -82,6 +124,17 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -96,11 +149,91 @@
 }
 
 @keyframes dialog-in {
-  from { opacity: 0; transform: translate(-50%, -48%) scale(0.96) }
-  to   { opacity: 1; transform: translate(-50%, -50%) scale(1) }
+  from { opacity: 0; transform: translateY(6px) scale(0.97) }
+  to   { opacity: 1; transform: translateY(0) scale(1) }
 }
 
 @keyframes dialog-out {
-  from { opacity: 1; transform: translate(-50%, -50%) scale(1) }
-  to   { opacity: 0; transform: translate(-50%, -48%) scale(0.96) }
+  from { opacity: 1; transform: translateY(0) scale(1) }
+  to   { opacity: 0; transform: translateY(6px) scale(0.97) }
+}
+
+@keyframes popover-in {
+  from { opacity: 0; transform: scale(0.96) }
+  to   { opacity: 1; transform: scale(1) }
+}
+
+@keyframes popover-out {
+  from { opacity: 1; transform: scale(1) }
+  to   { opacity: 0; transform: scale(0.96) }
+}
+
+@keyframes sheet-in-right  { from { transform: translateX(100%) } to { transform: translateX(0) } }
+@keyframes sheet-out-right { from { transform: translateX(0) } to { transform: translateX(100%) } }
+@keyframes sheet-in-left   { from { transform: translateX(-100%) } to { transform: translateX(0) } }
+@keyframes sheet-out-left  { from { transform: translateX(0) } to { transform: translateX(-100%) } }
+@keyframes sheet-in-top    { from { transform: translateY(-100%) } to { transform: translateY(0) } }
+@keyframes sheet-out-top   { from { transform: translateY(0) } to { transform: translateY(-100%) } }
+@keyframes sheet-in-bottom { from { transform: translateY(100%) } to { transform: translateY(0) } }
+@keyframes sheet-out-bottom { from { transform: translateY(0) } to { transform: translateY(100%) } }
+
+/* ── Sonner (toast) — map to tokiui design tokens ──────────────────────── */
+[data-sonner-toaster] {
+  --border-radius: var(--radius-md, 8px);
+}
+
+[data-sonner-toast][data-styled='true'] {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 6px 20px rgba(0, 0, 0, 0.09);
+}
+
+[data-sonner-toast][data-styled='true'] [data-description] {
+  color: var(--muted-foreground);
+}
+
+[data-sonner-toaster][data-sonner-theme='light'] {
+  --normal-bg:     var(--card);
+  --normal-border: var(--border);
+  --normal-text:   var(--card-foreground);
+
+  --success-bg:     color-mix(in oklch, var(--success)     10%, var(--card));
+  --success-border: color-mix(in oklch, var(--success)     35%, var(--card));
+  --success-text:   color-mix(in oklch, var(--success)     70%, oklch(0.15 0 0));
+
+  --info-bg:        color-mix(in oklch, var(--info)         10%, var(--card));
+  --info-border:    color-mix(in oklch, var(--info)         35%, var(--card));
+  --info-text:      color-mix(in oklch, var(--info)         70%, oklch(0.15 0 0));
+
+  --warning-bg:     color-mix(in oklch, var(--warning)      12%, var(--card));
+  --warning-border: color-mix(in oklch, var(--warning)      38%, var(--card));
+  --warning-text:   color-mix(in oklch, var(--warning)      55%, oklch(0.15 0 0));
+
+  --error-bg:       color-mix(in oklch, var(--destructive)   9%, var(--card));
+  --error-border:   color-mix(in oklch, var(--destructive)  35%, var(--card));
+  --error-text:     color-mix(in oklch, var(--destructive)  70%, oklch(0.15 0 0));
+}
+
+[data-sonner-toaster][data-sonner-theme='dark'] {
+  --normal-bg:           var(--card);
+  --normal-bg-hover:     var(--accent);
+  --normal-border:       var(--border);
+  --normal-border-hover: color-mix(in oklch, var(--border) 60%, var(--foreground));
+  --normal-text:         var(--card-foreground);
+
+  --success-bg:     color-mix(in oklch, var(--success)     13%, var(--card));
+  --success-border: color-mix(in oklch, var(--success)     32%, var(--card));
+  --success-text:   var(--success);
+
+  --info-bg:        color-mix(in oklch, var(--info)         13%, var(--card));
+  --info-border:    color-mix(in oklch, var(--info)         32%, var(--card));
+  --info-text:      var(--info);
+
+  --warning-bg:     color-mix(in oklch, var(--warning)      13%, var(--card));
+  --warning-border: color-mix(in oklch, var(--warning)      32%, var(--card));
+  --warning-text:   var(--warning);
+
+  --error-bg:       color-mix(in oklch, var(--destructive)  13%, var(--card));
+  --error-border:   color-mix(in oklch, var(--destructive)  32%, var(--card));
+  --error-text:     var(--destructive);
 }

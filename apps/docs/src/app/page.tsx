@@ -32,7 +32,6 @@ const FEATURES = [
 export default function HomePage() {
   return (
     <>
-      <a href="#main" className="skip-link">Skip to content</a>
       <Header />
       <main id="main">
         <Hero />

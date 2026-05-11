@@ -1,0 +1,125 @@
+export const metadata = { title: 'Alert — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  AlertVariantsPreview,
+  AlertTitleOnlyPreview,
+  AlertBodyOnlyPreview,
+  AlertDismissPreview,
+  AlertCustomIconPreview,
+} from '@/components/docs/alert-demo'
+
+<PageHeader
+  title="Alert"
+  description="An inline message that communicates status or feedback. Five semantic variants with automatic icons — supports titles, body text, custom icons, and a dismiss button."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="alert" />
+<ManualInstall component="alert" />
+
+## Import
+
+```tsx
+import { Alert } from '@tokiui/ui'
+```
+
+## Variants
+
+Five variants covering the full range of status intent. Each non-default variant comes with a matching icon and soft background.
+
+<Showcase title="Variants" code={`<Alert variant="default" title="Heads up">You can add components to your app using the CLI.</Alert>
+<Alert variant="success" title="Deployment complete">Your changes are live on production.</Alert>
+<Alert variant="info" title="Update available">Version 2.4.0 is ready to install.</Alert>
+<Alert variant="warning" title="Session expiring">Your session will expire in 5 minutes. Save your work.</Alert>
+<Alert variant="destructive" title="Action required">Your payment method has expired. Update it to keep access.</Alert>`}>
+  <AlertVariantsPreview />
+</Showcase>
+
+## Title only
+
+Omit `children` for a compact single-line alert.
+
+<Showcase title="Title only" code={`<Alert title="Changes saved." variant="success" />
+<Alert title="Insufficient permissions." variant="destructive" />`}>
+  <AlertTitleOnlyPreview />
+</Showcase>
+
+## Body only
+
+Omit `title` when a brief sentence is sufficient without a heading.
+
+<Showcase title="Body only" code={`<Alert variant="info">
+  Your free trial ends in 3 days. Upgrade to keep access to all features.
+</Alert>
+<Alert variant="warning">
+  Some of your API keys are nearing their rate limits.
+</Alert>`}>
+  <AlertBodyOnlyPreview />
+</Showcase>
+
+## Dismissable
+
+Pass `onDismiss` to show a × button in the top-right corner. Wire it to your state to remove the alert.
+
+<Showcase title="Dismissable" code={`'use client'
+import { useState } from 'react'
+
+export function DismissableAlerts() {
+  const [visible, setVisible] = useState(true)
+
+  if (!visible) return null
+
+  return (
+    <Alert
+      variant="success"
+      title="Deployment complete"
+      onDismiss={() => setVisible(false)}
+    >
+      Your changes are live on production.
+    </Alert>
+  )
+}`}>
+  <AlertDismissPreview />
+</Showcase>
+
+## Custom icon
+
+Pass any JSX to `icon` to replace the default icon. Pass `null` to suppress it entirely.
+
+<Showcase title="Custom icon" code={`<Alert variant="info" title="New feature available" icon={<RocketIcon />}>
+  Press ⌘K to open the command palette.
+</Alert>
+
+{/* No icon */}
+<Alert variant="default" title="No icon" icon={null}>
+  The icon prop accepts null to suppress the default icon.
+</Alert>`}>
+  <AlertCustomIconPreview />
+</Showcase>
+
+## API
+
+### Alert
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `'default' \| 'success' \| 'warning' \| 'info' \| 'destructive'` | `'default'` | Color scheme and default icon |
+| `title` | `ReactNode` | — | Bold heading rendered above the body |
+| `icon` | `ReactNode` | auto | Custom icon — pass `null` to suppress the default |
+| `onDismiss` | `() => void` | — | Shows a × button; called when clicked |
+| `className` | `string` | — | Additional class names |
+| `children` | `ReactNode` | — | Body text |
+
+## Accessibility
+
+- `role="alert"` is set on the root element so screen readers announce the content immediately
+- The dismiss button has `aria-label="Dismiss"` for screen readers
+- Icons are `aria-hidden="true"` — they are decorative and do not add information
+- Pair with `aria-live="polite"` on a container if you are inserting alerts dynamically

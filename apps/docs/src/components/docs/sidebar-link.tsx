@@ -11,7 +11,7 @@ interface SidebarLinkProps {
 
 export function SidebarLink({ href, children, pill }: SidebarLinkProps) {
   const pathname = usePathname()
-  const active = pathname === href
+  const active = pathname === href || pathname.startsWith(href + '/')
 
   return (
     <Link
@@ -19,9 +19,7 @@ export function SidebarLink({ href, children, pill }: SidebarLinkProps) {
       className={`docs-sidebar__link${active ? ' docs-sidebar__link--active' : ''}`}
     >
       <span>{children}</span>
-      {pill && (
-        <span className={`pill${pill === 'new' ? ' pill--new' : ''}`}>{pill}</span>
-      )}
+      {pill === 'new' && <span className="sidebar-dot" aria-label="New" />}
     </Link>
   )
 }

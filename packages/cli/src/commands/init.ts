@@ -227,7 +227,7 @@ export const initCommand = new Command('init')
     // ── Done ─────────────────────────────────────────────────────────
     console.log(kleur.green('\n  ✓ tokiui initialized\n'))
     console.log(`  ${kleur.bold('Add your first component:')}\n`)
-    console.log(`  ${kleur.cyan('npx tokiui add button')}\n`)
+    console.log(`  ${kleur.cyan('npx @tokiui/cli add button')}\n`)
 
     if (!isNext) {
       console.log(

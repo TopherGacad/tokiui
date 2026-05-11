@@ -1,20 +1,20 @@
 'use client'
 
 import { HexColorPicker } from 'react-colorful'
-import { formatHsl, parse } from 'culori'
+import { parse, rgb as toRgb, oklch as toOklch } from 'culori'
 import { useState, useRef, useEffect } from 'react'
 
 interface ColorPickerProps {
   label: string
   value: string
-  onChange: (hsl: string) => void
+  onChange: (oklch: string) => void
 }
 
 export function ColorPicker({ label, value, onChange }: ColorPickerProps) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const hex = hslToHex(value)
+  const hex = oklchToHex(value)
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -26,15 +26,15 @@ export function ColorPicker({ label, value, onChange }: ColorPickerProps) {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
-  function handleHexChange(hex: string) {
-    const parsed = parse(hex)
+  function handleHexChange(newHex: string) {
+    const parsed = parse(newHex)
     if (!parsed) return
-    const hslStr = formatHsl(parsed)
-    // Convert "hsl(262, 83%, 58%)" → "262 83% 58%"
-    const match = hslStr.match(/hsl\((\d+(?:\.\d+)?),\s*(\d+(?:\.\d+)?)%,\s*(\d+(?:\.\d+)?)%\)/)
-    if (match) {
-      onChange(`${match[1]} ${match[2]}% ${match[3]}%`)
-    }
+    const color = toOklch(parsed)
+    if (!color) return
+    const l = Math.round(color.l * 1000) / 1000
+    const c = Math.round((color.c ?? 0) * 1000) / 1000
+    const h = Math.round(color.h ?? 0)
+    onChange(`oklch(${l} ${c} ${h})`)
   }
 
   return (
@@ -46,10 +46,10 @@ export function ColorPicker({ label, value, onChange }: ColorPickerProps) {
       >
         <span
           className="h-5 w-5 flex-shrink-0 rounded border"
-          style={{ backgroundColor: `hsl(${value})` }}
+          style={{ backgroundColor: value }}
         />
         <span className="min-w-0 flex-1 truncate text-muted-foreground">{label}</span>
-        <span className="font-mono text-xs text-muted-foreground">{value}</span>
+        <span className="font-mono text-xs text-muted-foreground">{hex}</span>
       </button>
       {open && (
         <div className="absolute left-0 top-full z-50 mt-1 rounded-lg border bg-popover p-3 shadow-lg">
@@ -60,22 +60,14 @@ export function ColorPicker({ label, value, onChange }: ColorPickerProps) {
   )
 }
 
-function hslToHex(hsl: string): string {
-  const parts = hsl.split(' ')
-  if (parts.length < 3) return '#000000'
-  const h = parseFloat(parts[0])
-  const s = parseFloat(parts[1])
-  const l = parseFloat(parts[2])
-  const parsed = parse(`hsl(${h}, ${s}%, ${l}%)`)
+function oklchToHex(oklchStr: string): string {
+  const parsed = parse(oklchStr)
   if (!parsed) return '#000000'
-  const r = Math.round((parsed.r ?? 0) * 255)
-    .toString(16)
-    .padStart(2, '0')
-  const g = Math.round((parsed.g ?? 0) * 255)
-    .toString(16)
-    .padStart(2, '0')
-  const b = Math.round((parsed.b ?? 0) * 255)
-    .toString(16)
-    .padStart(2, '0')
+  const rgbColor = toRgb(parsed)
+  if (!rgbColor) return '#000000'
+  const clamp = (n: number) => Math.max(0, Math.min(1, n))
+  const r = Math.round(clamp(rgbColor.r ?? 0) * 255).toString(16).padStart(2, '0')
+  const g = Math.round(clamp(rgbColor.g ?? 0) * 255).toString(16).padStart(2, '0')
+  const b = Math.round(clamp(rgbColor.b ?? 0) * 255).toString(16).padStart(2, '0')
   return `#${r}${g}${b}`
 }

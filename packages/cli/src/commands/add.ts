@@ -10,6 +10,9 @@ import {
   fetchRegistryIndex,
   fetchComponent,
   fetchComponentSource,
+  assertSafeFilePath,
+  assertSafeDependency,
+  assertSafeComponentName,
 } from '../utils/registry'
 import { transformImports } from '../utils/transforms'
 
@@ -51,35 +54,53 @@ export const addCommand = new Command('add')
         process.exit(0)
       }
 
+      // Track installed components across the batch to avoid re-installs
+      const visited = new Set<string>()
       for (const name of answer.components as string[]) {
-        await installComponent(name, cwd, config.componentsDir, libAlias)
+        await installComponent(name, cwd, config.componentsDir, libAlias, visited)
       }
       return
     }
 
-    await installComponent(componentName, cwd, config.componentsDir, libAlias)
+    await installComponent(componentName, cwd, config.componentsDir, libAlias, new Set())
   })
 
 async function installComponent(
   name: string,
   cwd: string,
   componentsDir: string,
-  libAlias: string
+  libAlias: string,
+  visited: Set<string>
 ): Promise<void> {
+  // Guard: prevent circular/duplicate installs
+  if (visited.has(name)) return
+  visited.add(name)
+
+  // Validate the component name before using it in any URL or path
+  assertSafeComponentName(name)
+
   const spinner = ora(`Adding ${name}...`).start()
 
-  const meta = await fetchComponent(name).catch(() => {
-    spinner.fail(`Component "${name}" not found`)
+  const meta = await fetchComponent(name).catch((err: unknown) => {
+    spinner.fail(`${err instanceof Error ? err.message : String(err)}`)
     process.exit(1)
   })
 
   // Recursively install registry dependencies first
   for (const dep of meta.registryDependencies) {
-    await installComponent(dep, cwd, componentsDir, libAlias)
+    await installComponent(dep, cwd, componentsDir, libAlias, visited)
   }
 
-  // Fetch and write component source files
+  // Validate and write component source files
   for (const file of meta.files) {
+    // Reject path traversal / absolute paths before any fetch or write
+    try {
+      assertSafeFilePath(file)
+    } catch (err) {
+      spinner.fail(`Security: ${err instanceof Error ? err.message : String(err)}`)
+      process.exit(1)
+    }
+
     const source = await fetchComponentSource(name, file)
     const transformed = transformImports(source, libAlias)
     const destPath = path.join(cwd, componentsDir, path.basename(file))
@@ -103,8 +124,19 @@ async function installComponent(
     await fs.writeFile(destPath, transformed)
   }
 
-  // Install npm dependencies
+  // Validate dependency names before invoking the package manager.
+  // assertSafeDependency throws for anything not in the approved allowlist.
   if (meta.dependencies.length > 0) {
+    for (const dep of meta.dependencies) {
+      try {
+        assertSafeDependency(dep)
+      } catch (err) {
+        spinner.fail(`Security: ${err instanceof Error ? err.message : String(err)}`)
+        process.exit(1)
+      }
+    }
+
+    console.log(kleur.dim(`  Installing: ${meta.dependencies.join(', ')}`))
     const pm = detectPackageManager(cwd)
     const installCmd = pm === 'npm' ? 'install' : 'add'
     await execa(pm, [installCmd, ...meta.dependencies], { cwd })

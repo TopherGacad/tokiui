@@ -14,7 +14,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'fixed inset-0 z-50 bg-black/60 backdrop-blur-sm',
+      'fixed inset-0 z-50 bg-black/50 backdrop-blur-sm',
       'data-[state=open]:animate-[fade-in_150ms_ease]',
       'data-[state=closed]:animate-[fade-out_150ms_ease]',
       className
@@ -24,19 +24,51 @@ const DialogOverlay = React.forwardRef<
 ))
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
+type DialogSize = 'sm' | 'default' | 'lg' | 'full'
+type ScrollBehavior = 'outside' | 'inside'
+
+const sizeMap: Record<DialogSize, string> = {
+  sm:      'sm:max-w-sm',
+  default: 'sm:max-w-lg',
+  lg:      'sm:max-w-2xl',
+  full:    'sm:max-w-[calc(100vw-48px)] sm:max-h-[calc(100vh-48px)]',
+}
+
+export interface DialogContentProps
+  extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
+  size?: DialogSize
+  scrollBehavior?: ScrollBehavior
+  fullscreenMobile?: boolean
+}
+
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+  DialogContentProps
+>(({ className, children, size = 'default', scrollBehavior = 'outside', fullscreenMobile = false, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2',
-        'w-[calc(100%-2rem)] sm:w-full max-w-lg',
-        'max-h-[90vh] overflow-y-auto',
-        'grid gap-4 border bg-background p-6 shadow-lg sm:rounded-lg',
+        'fixed z-50',
+        fullscreenMobile
+          ? [
+              'inset-x-0 bottom-0 w-full rounded-t-xl',
+              'sm:inset-auto sm:left-1/2 sm:top-1/2 sm:bottom-auto',
+              'sm:-translate-x-1/2 sm:-translate-y-1/2',
+              'sm:w-full sm:rounded-xl',
+            ]
+          : [
+              'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+              'w-[calc(100%-2rem)] sm:w-full rounded-xl',
+            ],
+        sizeMap[size],
+        'max-h-[90vh]',
+        scrollBehavior === 'inside'
+          ? 'flex flex-col overflow-hidden'
+          : 'grid gap-4 overflow-y-auto',
+        scrollBehavior === 'outside' && 'gap-4',
+        'bg-card border border-border p-6 shadow-xl',
         'data-[state=open]:animate-[dialog-in_200ms_cubic-bezier(0.16,1,0.3,1)]',
         'data-[state=closed]:animate-[dialog-out_150ms_ease]',
         className
@@ -46,27 +78,15 @@ const DialogContent = React.forwardRef<
       {children}
       <DialogPrimitive.Close
         className={cn(
-          'absolute right-4 top-4 rounded-sm opacity-70 transition-opacity',
-          'hover:opacity-100',
-          'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+          'absolute right-4 top-4 rounded-md p-1',
+          'text-muted-foreground hover:text-foreground hover:bg-muted',
+          'transition-colors duration-150',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
           'disabled:pointer-events-none',
-          'flex h-6 w-6 items-center justify-center'
         )}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <line x1="18" y1="6" x2="6" y2="18" />
-          <line x1="6" y1="6" x2="18" y2="18" />
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12" />
         </svg>
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
@@ -76,15 +96,17 @@ const DialogContent = React.forwardRef<
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
 const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)} {...props} />
+  <div className={cn('flex flex-col gap-1.5 text-center sm:text-left shrink-0', className)} {...props} />
 )
 DialogHeader.displayName = 'DialogHeader'
 
+const DialogBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={cn('flex-1 min-h-0 overflow-y-auto', className)} {...props} />
+)
+DialogBody.displayName = 'DialogBody'
+
 const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn('flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)}
-    {...props}
-  />
+  <div className={cn('flex flex-col-reverse gap-2 sm:flex-row sm:justify-end shrink-0', className)} {...props} />
 )
 DialogFooter.displayName = 'DialogFooter'
 
@@ -94,7 +116,7 @@ const DialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn('text-lg font-semibold leading-none tracking-tight', className)}
+    className={cn('text-base font-semibold leading-none tracking-tight text-foreground', className)}
     {...props}
   />
 ))
@@ -106,7 +128,7 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn('text-sm text-muted-foreground', className)}
+    className={cn('text-sm text-muted-foreground leading-relaxed', className)}
     {...props}
   />
 ))
@@ -120,6 +142,7 @@ export {
   DialogTrigger,
   DialogContent,
   DialogHeader,
+  DialogBody,
   DialogFooter,
   DialogTitle,
   DialogDescription,

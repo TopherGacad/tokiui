@@ -1,0 +1,319 @@
+export const metadata = { title: 'Dropdown Menu — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  DropdownMenuBasicPreview,
+  DropdownMenuIconsPreview,
+  DropdownMenuShortcutsPreview,
+  DropdownMenuCheckboxPreview,
+  DropdownMenuRadioPreview,
+  DropdownMenuSubmenuPreview,
+  DropdownMenuAvatarPreview,
+  DropdownMenuComplexPreview,
+} from '@/components/docs/dropdown-menu-demo'
+
+<PageHeader
+  title="Dropdown Menu"
+  description="A contextual menu that opens from a trigger. Supports icons, keyboard shortcuts, checkboxes, radio groups, and nested submenus. Built on Radix UI — fully keyboard navigable and WAI-ARIA compliant."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="dropdown-menu" />
+<ManualInstall component="dropdown-menu" />
+
+## Import
+
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+} from '@tokiui/ui'
+```
+
+## Basic
+
+`DropdownMenuTrigger` opens the menu. Use `asChild` to forward the trigger behaviour to your own button element.
+
+<Showcase title="Basic" code={`<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <button>Open menu</button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuItem>Help</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Sign out</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`}>
+  <DropdownMenuBasicPreview />
+</Showcase>
+
+## With icons
+
+Place an icon as the first child of `DropdownMenuItem` — the `gap-2` on the item handles spacing automatically.
+
+<Showcase title="With icons" code={`<DropdownMenuContent className="w-48">
+  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+  <DropdownMenuSeparator />
+  <DropdownMenuGroup>
+    <DropdownMenuItem><UserIcon />Profile</DropdownMenuItem>
+    <DropdownMenuItem><SettingsIcon />Settings</DropdownMenuItem>
+    <DropdownMenuItem><BellIcon />Notifications</DropdownMenuItem>
+  </DropdownMenuGroup>
+  <DropdownMenuSeparator />
+  <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
+    <LogOutIcon />Sign out
+  </DropdownMenuItem>
+</DropdownMenuContent>`}>
+  <DropdownMenuIconsPreview />
+</Showcase>
+
+## With shortcuts
+
+`DropdownMenuShortcut` renders the keyboard shortcut flush to the right of the item via `ml-auto`.
+
+<Showcase title="With shortcuts" code={`<DropdownMenuItem>
+  <UserIcon />Profile
+  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+</DropdownMenuItem>
+<DropdownMenuItem>
+  <SettingsIcon />Settings
+  <DropdownMenuShortcut>⌘,</DropdownMenuShortcut>
+</DropdownMenuItem>`}>
+  <DropdownMenuShortcutsPreview />
+</Showcase>
+
+## Checkbox items
+
+`DropdownMenuCheckboxItem` shows a checkmark indicator when `checked`. Use it for toggling view options and persistent settings.
+
+<Showcase title="Checkbox items" code={`'use client'
+import { useState } from 'react'
+
+export function ViewMenu() {
+  const [state, setState] = useState({ statusBar: true, activityBar: true, panel: false })
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild><button>View</button></DropdownMenuTrigger>
+      <DropdownMenuContent className="w-48">
+        <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuCheckboxItem
+          checked={state.statusBar}
+          onCheckedChange={(v) => setState(p => ({ ...p, statusBar: v }))}
+        >
+          Status Bar
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem
+          checked={state.panel}
+          onCheckedChange={(v) => setState(p => ({ ...p, panel: v }))}
+        >
+          Panel
+        </DropdownMenuCheckboxItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}`}>
+  <DropdownMenuCheckboxPreview />
+</Showcase>
+
+## Radio group
+
+`DropdownMenuRadioGroup` with `DropdownMenuRadioItem` works like a radio button group — only one value selected at a time.
+
+<Showcase title="Radio group" code={`'use client'
+import { useState } from 'react'
+
+export function PanelPositionMenu() {
+  const [position, setPosition] = useState('bottom')
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild><button>Panel position</button></DropdownMenuTrigger>
+      <DropdownMenuContent className="w-44">
+        <DropdownMenuLabel>Position</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+          <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="left">Left</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}`}>
+  <DropdownMenuRadioPreview />
+</Showcase>
+
+## With submenu
+
+Nest `DropdownMenuSub` inside the content to create a flyout submenu. `DropdownMenuSubTrigger` renders a chevron automatically.
+
+<Showcase title="With submenu" code={`<DropdownMenuContent className="w-52">
+  <DropdownMenuItem><UserIcon />View profile</DropdownMenuItem>
+  <DropdownMenuSub>
+    <DropdownMenuSubTrigger><ShareIcon />Share</DropdownMenuSubTrigger>
+    <DropdownMenuSubContent>
+      <DropdownMenuItem>Copy link</DropdownMenuItem>
+      <DropdownMenuItem>Email</DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>Twitter / X</DropdownMenuItem>
+      <DropdownMenuItem>LinkedIn</DropdownMenuItem>
+    </DropdownMenuSubContent>
+  </DropdownMenuSub>
+  <DropdownMenuSeparator />
+  <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
+    <TrashIcon />Delete
+  </DropdownMenuItem>
+</DropdownMenuContent>`}>
+  <DropdownMenuSubmenuPreview />
+</Showcase>
+
+## Avatar dropdown
+
+A user avatar as the trigger. The content opens `align="end"` so it stays within the right edge of the screen. The non-interactive header block shows user identity at a glance.
+
+<Showcase title="Avatar dropdown" code={`<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <button style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--primary)', color: 'var(--primary-foreground)' }}>
+      JR
+    </button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent className="w-56" align="end">
+    <div style={{ padding: '10px 12px 8px' }}>
+      <p style={{ fontSize: 13, fontWeight: 600, margin: 0 }}>Jordan Rivera</p>
+      <p style={{ fontSize: 12, color: 'var(--muted-foreground)', margin: 0 }}>jordan@example.com</p>
+    </div>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem><UserIcon />Profile</DropdownMenuItem>
+    <DropdownMenuItem><SettingsIcon />Account settings</DropdownMenuItem>
+    <DropdownMenuItem><CreditCardIcon />Billing</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
+      <LogOutIcon />Sign out
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`}>
+  <DropdownMenuAvatarPreview />
+</Showcase>
+
+## Complex dropdown
+
+A workspace switcher with a user header, active workspace indicator, grouped actions, and a create option — common in SaaS navigation bars.
+
+<Showcase title="Complex dropdown" code={`<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <button>Acme Corp</button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent className="w-64">
+    {/* User header */}
+    <div style={{ padding: '10px 12px 8px', display: 'flex', gap: 10 }}>
+      <Avatar />
+      <div>
+        <p style={{ fontSize: 13, fontWeight: 600, margin: 0 }}>Jordan Rivera</p>
+        <p style={{ fontSize: 11, color: 'var(--muted-foreground)', margin: 0 }}>jordan@example.com</p>
+      </div>
+    </div>
+    <DropdownMenuSeparator />
+    {/* Workspace switcher */}
+    <DropdownMenuLabel>Workspaces</DropdownMenuLabel>
+    {WORKSPACES.map((ws) => (
+      <DropdownMenuItem key={ws.id} onSelect={() => setWorkspace(ws.id)}>
+        <WorkspaceIcon />
+        <span>{ws.name}<span>{ws.role}</span></span>
+        {workspace === ws.id && <CheckIcon />}
+      </DropdownMenuItem>
+    ))}
+    <DropdownMenuItem><PlusIcon />Create workspace</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem><SettingsIcon />Settings</DropdownMenuItem>
+    <DropdownMenuItem><UsersIcon />Invite teammates</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
+      <LogOutIcon />Sign out
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`}>
+  <DropdownMenuComplexPreview />
+</Showcase>
+
+## API
+
+### DropdownMenu
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `open` | `boolean` | — | Controlled open state |
+| `defaultOpen` | `boolean` | `false` | Uncontrolled initial open state |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes |
+| `modal` | `boolean` | `true` | When true, interaction outside the menu is blocked |
+
+### DropdownMenuContent
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Preferred side to open |
+| `sideOffset` | `number` | `6` | Distance from trigger in px |
+| `align` | `'start' \| 'center' \| 'end'` | `'center'` | Alignment along the side |
+| `className` | `string` | — | Use `w-[...]` to set a fixed menu width |
+
+### DropdownMenuItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | `ReactNode` | — | Icon rendered before the label in a muted color |
+| `description` | `string` | — | Secondary text rendered below the label |
+| `disabled` | `boolean` | `false` | Prevents selection |
+| `onSelect` | `(event: Event) => void` | — | Called when the item is selected |
+| `inset` | `boolean` | `false` | Adds left padding to align with icon items |
+
+### DropdownMenuSubTrigger
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | `ReactNode` | — | Icon rendered before the label |
+| `inset` | `boolean` | `false` | Adds left padding to align with icon items |
+
+## Sub-components
+
+| Component | Description |
+|---|---|
+| `DropdownMenuLabel` | Non-interactive section heading |
+| `DropdownMenuSeparator` | Horizontal divider |
+| `DropdownMenuShortcut` | Right-aligned keyboard shortcut text |
+| `DropdownMenuGroup` | Groups items together logically |
+| `DropdownMenuCheckboxItem` | Item with a toggleable checkmark |
+| `DropdownMenuRadioGroup` | Container for mutually exclusive radio items |
+| `DropdownMenuRadioItem` | Single radio option within a group |
+| `DropdownMenuSub` | Root for a nested submenu |
+| `DropdownMenuSubTrigger` | Item that opens a submenu on hover/focus |
+| `DropdownMenuSubContent` | The submenu panel |
+
+## Accessibility
+
+- Opens with `Enter`, `Space`, or `ArrowDown` on the trigger
+- Arrow keys navigate between items; `Escape` closes the menu
+- `DropdownMenuContent` has `role="menu"`; each item has `role="menuitem"`
+- Disabled items have `aria-disabled="true"` and are skipped during keyboard navigation
+- Checkbox items use `role="menuitemcheckbox"`; radio items use `role="menuitemradio"`
