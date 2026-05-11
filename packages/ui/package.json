@@ -35,6 +35,9 @@
     },
     "./styles.css": "./src/styles.css"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist",
     "src/styles.css"
