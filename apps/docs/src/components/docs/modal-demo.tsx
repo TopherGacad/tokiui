@@ -503,7 +503,7 @@ export function StackedActionsPreview() {
       <DialogContent size="sm" className="p-0 gap-0 overflow-hidden">
         <DialogTitle className="sr-only">Share options</DialogTitle>
         <div>
-          {ACTIONS.map((action, i) => (
+          {ACTIONS.map((action) => (
             <DialogClose key={action.label} asChild>
               <button
                 style={{
