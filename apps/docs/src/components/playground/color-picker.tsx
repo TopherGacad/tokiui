@@ -34,7 +34,7 @@ export function ColorPicker({ label, value, onChange }: ColorPickerProps) {
     if (!parsed) return
     const color = toOklch(parsed)
     if (!color) return
-    const l = Math.round(color.l * 1000) / 1000
+    const l = Math.round((color.l ?? 0) * 1000) / 1000
     const c = Math.round((color.c ?? 0) * 1000) / 1000
     const h = Math.round(color.h ?? 0)
     onChange(`oklch(${l} ${c} ${h})`)
