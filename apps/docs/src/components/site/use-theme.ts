@@ -26,13 +26,13 @@ export function useTheme(): [string, () => void, boolean] {
       setTheme(next)
     }
 
+    const root = document.documentElement
     if ('startViewTransition' in document) {
       // Modern browsers: full-page crossfade via View Transitions API
       (document as Document & { startViewTransition: (cb: () => void) => void })
         .startViewTransition(apply)
     } else {
       // Fallback: briefly add a class that forces transitions on everything
-      const root = document.documentElement
       root.classList.add('theme-transitioning')
       apply()
       setTimeout(() => root.classList.remove('theme-transitioning'), 300)

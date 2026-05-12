@@ -25,10 +25,10 @@ export function ComponentShowcase() {
         <p className="mb-3 text-sm font-medium text-muted-foreground">Buttons</p>
         <div className="flex flex-wrap gap-2">
           <Button>Default</Button>
-          <Button variant="secondary">Secondary</Button>
+          <Button variant="soft">Soft</Button>
           <Button variant="outline">Outline</Button>
           <Button variant="ghost">Ghost</Button>
-          <Button variant="destructive">Destructive</Button>
+          <Button variant="link">Link</Button>
         </div>
       </section>
 
@@ -37,9 +37,9 @@ export function ComponentShowcase() {
         <p className="mb-3 text-sm font-medium text-muted-foreground">Badges</p>
         <div className="flex flex-wrap gap-2">
           <Badge>Default</Badge>
-          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="soft">Soft</Badge>
           <Badge variant="outline">Outline</Badge>
-          <Badge variant="destructive">Destructive</Badge>
+          <Badge variant="solid">Solid</Badge>
         </div>
       </section>
 
