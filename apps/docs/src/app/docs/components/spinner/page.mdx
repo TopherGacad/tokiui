@@ -1,0 +1,141 @@
+export const metadata = { title: 'Spinner — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  SpinnerBasicPreview,
+  SpinnerSizesPreview,
+  SpinnerColorsPreview,
+  SpinnerVariantsPreview,
+  SpinnerInlinePreview,
+  SpinnerInButtonPreview,
+  SpinnerSectionPreview,
+  SpinnerCardOverlayPreview,
+  SpinnerPageLoaderPreview,
+  SpinnerTypingPreview,
+  SpinnerFormSubmitPreview,
+} from '@/components/docs/spinner-demo'
+
+<PageHeader
+  title="Spinner"
+  description="An animated loading indicator. Supports four design variants, four sizes, and eight color options."
+  version="v0.3.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="spinner" />
+<ManualInstall component="spinner" />
+
+## Import
+
+```tsx
+import { Spinner } from '@tokiui/ui'
+```
+
+## Basic
+
+<Showcase title="Basic" code={`<Spinner />`}>
+  <SpinnerBasicPreview />
+</Showcase>
+
+## Sizes
+
+Four sizes to match surrounding context — from tight inline use to full-section overlays.
+
+<Showcase title="Sizes" code={`<Spinner size="sm" />\n<Spinner size="default" />\n<Spinner size="lg" />\n<Spinner size="xl" />`}>
+  <SpinnerSizesPreview />
+</Showcase>
+
+## Colors
+
+<Showcase title="Colors" code={`<Spinner color="default" />\n<Spinner color="neutral" />\n<Spinner color="green" />\n<Spinner color="amber" />\n<Spinner color="sky" />\n<Spinner color="red" />\n<Spinner color="white" />`}>
+  <SpinnerColorsPreview />
+</Showcase>
+
+## Variants
+
+Four spinner designs for different contexts. `arc` is the default and works everywhere. `ring` is more minimal. `dots` is ideal for chat or inline copy. `bars` suits media players and audio contexts.
+
+<Showcase title="Variants" code={`<Spinner variant="arc" />\n<Spinner variant="ring" />\n<Spinner variant="dots" />\n<Spinner variant="bars" />`}>
+  <SpinnerVariantsPreview />
+</Showcase>
+
+## Inline with text
+
+Use `color="current"` to inherit the parent's text color so the spinner blends naturally with surrounding copy.
+
+<Showcase title="Inline" code={`<div className="flex items-center gap-2 text-sm text-muted-foreground">\n  <Spinner size="sm" color="current" />\n  <span>Loading data…</span>\n</div>`}>
+  <SpinnerInlinePreview />
+</Showcase>
+
+## Inside a button
+
+For custom loading buttons. If you use the `Button` component, the `loading` prop handles this automatically.
+
+<Showcase title="In a button" code={`<button disabled className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground opacity-80 cursor-not-allowed">\n  <Spinner size="sm" color="current" />\n  Saving…\n</button>`}>
+  <SpinnerInButtonPreview />
+</Showcase>
+
+## Section loading
+
+Center a spinner inside a container to signal that a region is loading.
+
+<Showcase title="Section loading" code={`<div className="flex items-center justify-center rounded-lg border h-32">\n  <div className="flex flex-col items-center gap-3">\n    <Spinner size="lg" />\n    <p className="text-sm text-muted-foreground">Loading content…</p>\n  </div>\n</div>`}>
+  <SpinnerSectionPreview />
+</Showcase>
+
+## Usage examples
+
+### Card overlay
+
+Overlay a spinner on top of a card or widget while its data is loading. Position the card `relative` and the overlay `absolute inset-0`.
+
+<Showcase title="Card overlay" code={`<div className="relative rounded-xl border bg-card p-5">\n  {/* card content */}\n  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 rounded-xl bg-background/70 backdrop-blur-[2px]">\n    <Spinner size="lg" />\n    <p className="text-sm text-muted-foreground">Loading profile…</p>\n  </div>\n</div>`}>
+  <SpinnerCardOverlayPreview />
+</Showcase>
+
+### Page loader
+
+Cover the entire viewport during a route transition or initial data fetch.
+
+<Showcase title="Page loader" code={`<div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-background/80 backdrop-blur-sm">\n  <Spinner size="xl" />\n  <p className="text-sm font-medium">Loading page…</p>\n</div>`}>
+  <SpinnerPageLoaderPreview />
+</Showcase>
+
+### Typing indicator
+
+The `dots` variant fits naturally inside a chat bubble to show that someone is composing a reply.
+
+<Showcase title="Typing indicator" code={`<div className="rounded-2xl rounded-tl-sm border bg-card px-3.5 py-2.5">\n  <Spinner variant="dots" size="sm" color="neutral" />\n</div>`}>
+  <SpinnerTypingPreview />
+</Showcase>
+
+### Form submit state
+
+Use the `Button` component's `loading` prop when submitting a form — it disables the button and shows a spinner automatically.
+
+<Showcase title="Form submit" code={`<Button loading className="w-full">\n  Sending message…\n</Button>`}>
+  <SpinnerFormSubmitPreview />
+</Showcase>
+
+## API
+
+### Spinner
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `arc \| ring \| dots \| bars` | `arc` | Visual design of the spinner |
+| `size` | `sm \| default \| lg \| xl` | `default` | Diameter of the spinner |
+| `color` | `default \| current \| neutral \| white \| green \| amber \| sky \| red` | `default` | Color of the spinner |
+| `label` | `string` | `'Loading…'` | Accessible label read by screen readers |
+| `className` | `string` | — | Additional class names |
+
+## Accessibility
+
+- Uses `role="status"` so screen readers announce it as a live region
+- `aria-label` defaults to `'Loading…'` — pass a more descriptive label when context matters (e.g. `label="Saving your changes"`)
+- Respects `prefers-reduced-motion` — all animations are disabled for users who prefer reduced motion

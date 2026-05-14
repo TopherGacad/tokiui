@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority'
 import { cn } from '../lib/utils'
 
 type RadioSize  = 'sm' | 'default' | 'lg'
-type RadioColor = 'default' | 'success' | 'warning' | 'info' | 'destructive'
+type RadioColor = 'default' | 'success' | 'warning' | 'info' | 'error'
 
 type RadioGroupContextValue = {
   size:  RadioSize
@@ -65,7 +65,7 @@ const radioItemVariants = cva(
         success:     'data-[state=checked]:bg-success     data-[state=checked]:border-success     focus-visible:ring-success/40',
         warning:     'data-[state=checked]:bg-warning     data-[state=checked]:border-warning     focus-visible:ring-warning/40',
         info:        'data-[state=checked]:bg-info        data-[state=checked]:border-info        focus-visible:ring-info/40',
-        destructive: 'data-[state=checked]:bg-destructive data-[state=checked]:border-destructive focus-visible:ring-destructive/40',
+        error:       'data-[state=checked]:bg-destructive data-[state=checked]:border-destructive focus-visible:ring-destructive/40',
       },
     },
     defaultVariants: {
@@ -82,11 +82,11 @@ const dotSize: Record<RadioSize, string> = {
 }
 
 const dotColor: Record<RadioColor, string> = {
-  default:     'bg-primary-foreground',
-  success:     'bg-success-foreground',
-  warning:     'bg-warning-foreground',
-  info:        'bg-info-foreground',
-  destructive: 'bg-destructive-foreground',
+  default: 'bg-primary-foreground',
+  success: 'bg-success-foreground',
+  warning: 'bg-warning-foreground',
+  info:    'bg-info-foreground',
+  error:   'bg-destructive-foreground',
 }
 
 export interface RadioGroupItemProps

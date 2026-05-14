@@ -1,0 +1,7 @@
+{
+  "name": "skeleton",
+  "files": ["components/skeleton.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

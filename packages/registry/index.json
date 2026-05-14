@@ -29,6 +29,26 @@
       "name": "form",
       "label": "Form",
       "description": "Composable form field primitives — FormField, FormLabel, FormHelperText, and FormMessage."
+    },
+    {
+      "name": "spinner",
+      "label": "Spinner",
+      "description": "An animated loading indicator. Supports four sizes and eight color variants."
+    },
+    {
+      "name": "skeleton",
+      "label": "Skeleton",
+      "description": "A placeholder that mimics content layout while data loads."
+    },
+    {
+      "name": "separator",
+      "label": "Separator",
+      "description": "A thin line that visually divides content. Supports horizontal and vertical orientations."
+    },
+    {
+      "name": "avatar",
+      "label": "Avatar",
+      "description": "Displays a user avatar with image, initials fallback, color variants, status indicators, and group stacking."
     }
   ]
 }

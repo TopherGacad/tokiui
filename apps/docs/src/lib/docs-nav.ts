@@ -30,6 +30,10 @@ export const nav: NavSection[] = [
       { label: 'Tabs',          href: '/docs/components/tabs',          pill: 'new' },
       { label: 'Dropdown Menu', href: '/docs/components/dropdown-menu', pill: 'new' },
       { label: 'Sheet',         href: '/docs/components/sheet',         pill: 'new' },
+      { label: 'Spinner',       href: '/docs/components/spinner',       pill: 'new' },
+      { label: 'Skeleton',      href: '/docs/components/skeleton',      pill: 'new' },
+      { label: 'Separator',     href: '/docs/components/separator',     pill: 'new' },
+      { label: 'Avatar',        href: '/docs/components/avatar',        pill: 'new' },
     ],
   },
 ]

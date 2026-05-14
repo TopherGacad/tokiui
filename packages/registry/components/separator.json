@@ -1,0 +1,7 @@
+{
+  "name": "separator",
+  "files": ["components/separator.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

@@ -130,6 +130,18 @@ export type { SelectTriggerProps } from './components/select'
 export { Alert, alertVariants } from './components/alert'
 export type { AlertProps } from './components/alert'
 
+export { Spinner, spinnerVariants } from './components/spinner'
+export type { SpinnerProps, SpinnerVariant } from './components/spinner'
+
+export { Skeleton } from './components/skeleton'
+export type { SkeletonProps } from './components/skeleton'
+
+export { Separator } from './components/separator'
+export type { SeparatorProps } from './components/separator'
+
+export { Avatar, AvatarGroup, avatarVariants } from './components/avatar'
+export type { AvatarProps, AvatarGroupProps, AvatarColor, AvatarStatus } from './components/avatar'
+
 export { cn } from './lib/utils'
 
 export {

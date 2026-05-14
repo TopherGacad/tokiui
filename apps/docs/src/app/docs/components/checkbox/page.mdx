@@ -176,9 +176,9 @@ Three sizes to match surrounding form controls.
 
 ## Color
 
-Color applies to the checked and indeterminate states. Use semantic colors to reflect the meaning of the field.
+Color applies to the checked and indeterminate states.
 
-<Showcase title="Colors" code={`<Checkbox color="default" defaultChecked />\n<Checkbox color="success" defaultChecked />\n<Checkbox color="warning" defaultChecked />\n<Checkbox color="info" defaultChecked />\n<Checkbox color="destructive" defaultChecked />`}>
+<Showcase title="Colors" code={`<Checkbox color="default" defaultChecked />\n<Checkbox color="success" defaultChecked />\n<Checkbox color="warning" defaultChecked />\n<Checkbox color="info" defaultChecked />\n<Checkbox color="error" defaultChecked />`}>
   <CheckboxColorsPreview />
 </Showcase>
 
@@ -260,7 +260,7 @@ export function FrameworkPicker() {
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `size` | `sm \| default \| lg` | `default` | Checkbox size |
-| `color` | `default \| success \| warning \| info \| destructive` | `default` | Checked/indeterminate color |
+| `color` | `default \| success \| warning \| info \| error` | `default` | Checked/indeterminate color |
 | `error` | `boolean` | `false` | Applies destructive border |
 | `checked` | `boolean \| 'indeterminate'` | — | Controlled checked state |
 | `defaultChecked` | `boolean` | `false` | Uncontrolled initial state |
@@ -276,7 +276,7 @@ export function FrameworkPicker() {
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `size` | `sm \| default \| lg` | `default` | Inherited by all child Checkboxes |
-| `color` | `default \| success \| warning \| info \| destructive` | `default` | Inherited by all child Checkboxes |
+| `color` | `default \| success \| warning \| info \| error` | `default` | Inherited by all child Checkboxes |
 | `error` | `boolean` | `false` | Inherited by all child Checkboxes |
 | `orientation` | `vertical \| horizontal` | `vertical` | Layout direction |
 | `className` | `string` | — | Additional class names |

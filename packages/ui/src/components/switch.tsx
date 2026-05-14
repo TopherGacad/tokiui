@@ -3,7 +3,7 @@ import * as SwitchPrimitive from '@radix-ui/react-switch'
 import { cn } from '../lib/utils'
 
 type SwitchSize  = 'sm' | 'default' | 'lg'
-type SwitchColor = 'default' | 'success' | 'warning' | 'info' | 'destructive'
+type SwitchColor = 'default' | 'success' | 'warning' | 'info' | 'error'
 
 const sizes: Record<SwitchSize, { root: string; thumb: string; on: string }> = {
   sm:      { root: 'h-4 w-7',  thumb: 'h-3 w-3', on: 'data-[state=checked]:translate-x-3' },
@@ -16,7 +16,7 @@ const colorMap: Record<SwitchColor, { checked: string; ring: string }> = {
   success:     { checked: 'data-[state=checked]:bg-success',     ring: 'focus-visible:ring-success/40'     },
   warning:     { checked: 'data-[state=checked]:bg-warning',     ring: 'focus-visible:ring-warning/40'     },
   info:        { checked: 'data-[state=checked]:bg-info',        ring: 'focus-visible:ring-info/40'        },
-  destructive: { checked: 'data-[state=checked]:bg-destructive', ring: 'focus-visible:ring-destructive/40' },
+  error:       { checked: 'data-[state=checked]:bg-destructive', ring: 'focus-visible:ring-destructive/40' },
 }
 
 export interface SwitchProps

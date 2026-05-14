@@ -1,0 +1,132 @@
+export const metadata = { title: 'Avatar — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  AvatarSizesPreview,
+  AvatarImagePreview,
+  AvatarFallbackPreview,
+  AvatarColorsPreview,
+  AvatarAutoColorPreview,
+  AvatarStatusPreview,
+  AvatarGroupPreview,
+  AvatarTeamPreview,
+  AvatarContextPreview,
+} from '@/components/docs/avatar-demo'
+
+<PageHeader
+  title="Avatar"
+  description="Displays a user avatar with image, initials fallback, color variants, and presence status indicators."
+  version="v0.3.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="avatar" />
+<ManualInstall component="avatar" />
+
+## Import
+
+```tsx
+import { Avatar, AvatarGroup } from '@tokiui/ui'
+```
+
+## Sizes
+
+<Showcase title="Sizes" code={`<Avatar size="sm"      fallback="SM" />\n<Avatar size="default" fallback="MD" />\n<Avatar size="lg"      fallback="LG" />\n<Avatar size="xl"      fallback="XL" />`}>
+  <AvatarSizesPreview />
+</Showcase>
+
+## With image
+
+Pass `src` to display a photo. If the image fails to load, the component falls back to `fallback` initials or the default user icon.
+
+<Showcase title="With image" code={`<Avatar src="/photo.jpg" alt="Alex" />\n<Avatar src="/photo.jpg" alt="Jordan" size="lg" />\n<Avatar src="broken.png" alt="Fallback" fallback="FU" />`}>
+  <AvatarImagePreview />
+</Showcase>
+
+## Fallback states
+
+When no `src` is provided, the avatar renders `fallback` initials. Without a `fallback`, a generic user icon is shown.
+
+<Showcase title="Fallback states" code={`<Avatar fallback="JD" />\n<Avatar fallback="A" />\n<Avatar />`}>
+  <AvatarFallbackPreview />
+</Showcase>
+
+## Colors
+
+Use the `color` prop to choose a semantic background. The `default` color follows the theme surface, while the rest use semantic tokens.
+
+<Showcase title="Colors" code={`<Avatar color="default" fallback="Df" />\n<Avatar color="primary" fallback="Pr" />\n<Avatar color="green"   fallback="Gr" />\n<Avatar color="amber"   fallback="Am" />\n<Avatar color="sky"     fallback="Sk" />\n<Avatar color="red"     fallback="Re" />\n<Avatar color="slate"   fallback="Sl" />`}>
+  <AvatarColorsPreview />
+</Showcase>
+
+## Auto color
+
+Set `color="auto"` to deterministically derive a color from the `fallback` string. The same name always resolves to the same color — useful in user lists where manual color assignment would be impractical.
+
+<Showcase title="Auto color" code={`<Avatar color="auto" fallback="ML" />\n<Avatar color="auto" fallback="ST" />\n<Avatar color="auto" fallback="RC" />`}>
+  <AvatarAutoColorPreview />
+</Showcase>
+
+## Status
+
+Add a `status` dot to show user presence. The dot scales with the avatar size and is positioned at the bottom-right.
+
+<Showcase title="Status" code={`<Avatar status="online"  fallback="O" color="primary" />\n<Avatar status="offline" fallback="X" color="primary" />\n<Avatar status="busy"    fallback="B" color="primary" />\n<Avatar status="away"    fallback="A" color="primary" />`}>
+  <AvatarStatusPreview />
+</Showcase>
+
+## Group
+
+Wrap avatars in `AvatarGroup` to stack them with ring separators. Use `max` to cap the visible count — overflow renders as `+N`.
+
+<Showcase title="Group" code={`<AvatarGroup>\n  <Avatar color="auto" fallback="JD" />\n  <Avatar color="auto" fallback="AR" />\n  <Avatar color="auto" fallback="MK" />\n  <Avatar color="auto" fallback="TS" />\n</AvatarGroup>\n\n<AvatarGroup max={3}>\n  <Avatar color="auto" fallback="JD" />\n  <Avatar color="auto" fallback="AR" />\n  <Avatar color="auto" fallback="MK" />\n  <Avatar color="auto" fallback="TS" />\n  <Avatar color="auto" fallback="PL" />\n</AvatarGroup>`}>
+  <AvatarGroupPreview />
+</Showcase>
+
+## Team list
+
+`color="auto"` combined with `status` builds a self-coloring team member list with no manual color assignments.
+
+<Showcase title="Team list" code={`<Avatar color="auto" fallback="ML" status="online" />\n<Avatar color="auto" fallback="ST" status="busy" />\n<Avatar color="auto" fallback="RC" status="away" />`}>
+  <AvatarTeamPreview />
+</Showcase>
+
+## In context
+
+<Showcase title="Comment thread" code={`<div className="flex gap-3">\n  <Avatar color="auto" fallback="JD" className="shrink-0 mt-0.5" />\n  <div>\n    <span className="text-sm font-medium">Jamie Doe</span>\n    <p className="text-sm text-muted-foreground mt-0.5">This looks great!</p>\n  </div>\n</div>`}>
+  <AvatarContextPreview />
+</Showcase>
+
+## API
+
+### Avatar
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `src` | `string` | — | Image URL. Falls back to `fallback` or icon on error |
+| `alt` | `string` | `""` | Alt text for the image (also used as `aria-label` for fallback) |
+| `fallback` | `string` | — | Initials or short text to display when no image is available |
+| `color` | `auto \| default \| primary \| green \| amber \| sky \| red \| slate` | `"default"` | Background color. Use `"auto"` to derive color from `fallback` |
+| `status` | `AvatarStatus` | — | Presence indicator dot: `online`, `offline`, `busy`, or `away` |
+| `size` | `sm \| default \| lg \| xl` | `default` | Controls diameter and font size |
+| `className` | `string` | — | Appended to the root element |
+
+### AvatarGroup
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `sm \| default \| lg \| xl` | `default` | Passed to every child `Avatar` and controls overlap spacing |
+| `max` | `number` | — | Maximum avatars to display. Overflow shown as `+N` |
+| `className` | `string` | — | Appended to the group container |
+
+## Accessibility
+
+- When `src` is set, `alt` is forwarded to the `<img>` element
+- When showing fallback initials, `alt` is used as `aria-label` on the text node
+- The default user icon is `aria-hidden="true"`
+- Status dots have an `aria-label` matching the status string

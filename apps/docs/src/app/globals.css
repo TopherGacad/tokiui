@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @source "../../../../packages/ui/src";
 
+/* Map Tailwind's dark: variant to the data-theme attribute used by this project */
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* Theme tokens: CSS variables + @theme mappings */
 @import "@tokiui/ui/styles.css";
 

@@ -191,7 +191,7 @@ export function CheckboxColorsPreview() {
       <CheckRow id="col-success"     label="Success"     color="success"     defaultChecked />
       <CheckRow id="col-warning"     label="Warning"     color="warning"     defaultChecked />
       <CheckRow id="col-info"        label="Info"        color="info"        defaultChecked />
-      <CheckRow id="col-destructive" label="Destructive" color="destructive" defaultChecked />
+      <CheckRow id="col-error"       label="Error"       color="error"       defaultChecked />
     </div>
   )
 }

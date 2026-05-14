@@ -6,7 +6,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '../lib/utils'
 
 type CheckboxSize  = 'sm' | 'default' | 'lg'
-type CheckboxColor = 'default' | 'success' | 'warning' | 'info' | 'destructive'
+type CheckboxColor = 'default' | 'success' | 'warning' | 'info' | 'error'
 
 type CheckboxGroupContextValue = {
   size:  CheckboxSize
@@ -40,7 +40,7 @@ const checkboxVariants = cva(
         success:     'data-[state=checked]:bg-success     data-[state=checked]:border-success     data-[state=checked]:text-success-foreground     data-[state=indeterminate]:bg-success     data-[state=indeterminate]:border-success     data-[state=indeterminate]:text-success-foreground     focus-visible:ring-success/40',
         warning:     'data-[state=checked]:bg-warning     data-[state=checked]:border-warning     data-[state=checked]:text-warning-foreground     data-[state=indeterminate]:bg-warning     data-[state=indeterminate]:border-warning     data-[state=indeterminate]:text-warning-foreground     focus-visible:ring-warning/40',
         info:        'data-[state=checked]:bg-info        data-[state=checked]:border-info        data-[state=checked]:text-info-foreground        data-[state=indeterminate]:bg-info        data-[state=indeterminate]:border-info        data-[state=indeterminate]:text-info-foreground        focus-visible:ring-info/40',
-        destructive: 'data-[state=checked]:bg-destructive data-[state=checked]:border-destructive data-[state=checked]:text-destructive-foreground data-[state=indeterminate]:bg-destructive data-[state=indeterminate]:border-destructive data-[state=indeterminate]:text-destructive-foreground focus-visible:ring-destructive/40',
+        error:       'data-[state=checked]:bg-destructive data-[state=checked]:border-destructive data-[state=checked]:text-destructive-foreground data-[state=indeterminate]:bg-destructive data-[state=indeterminate]:border-destructive data-[state=indeterminate]:text-destructive-foreground focus-visible:ring-destructive/40',
       },
     },
     defaultVariants: {

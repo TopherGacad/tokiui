@@ -1,0 +1,132 @@
+export const metadata = { title: 'Skeleton — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  SkeletonShapesPreview,
+  SkeletonAnimationPreview,
+  SkeletonCardPreview,
+  SkeletonListPreview,
+  SkeletonProfilePreview,
+  SkeletonTablePreview,
+  SkeletonArticlePreview,
+} from '@/components/docs/skeleton-demo'
+
+<PageHeader
+  title="Skeleton"
+  description="A placeholder that mimics content layout while data loads. Supports pulse and shimmer animations, three shape variants, and composes into any layout pattern."
+  version="v0.3.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="skeleton" />
+<ManualInstall component="skeleton" />
+
+## Import
+
+```tsx
+import { Skeleton } from '@tokiui/ui'
+```
+
+## Shapes
+
+Use `variant` to match the shape of the content being loaded. Control size with `className`.
+
+<Showcase title="Shapes" code={`<Skeleton className="h-10 w-full" />\n<Skeleton variant="text" className="w-3/4" />\n<Skeleton variant="text" className="w-1/2" />\n<Skeleton variant="circle" className="h-12 w-12" />`}>
+  <SkeletonShapesPreview />
+</Showcase>
+
+## Animation
+
+`pulse` fades the opacity in and out. `shimmer` sweeps a light highlight across — useful when you want a more dynamic feel. `none` renders a static placeholder, helpful when paired with an external loading animation.
+
+<Showcase title="Animation" code={`<Skeleton animation="pulse"   className="h-4 w-full" />\n<Skeleton animation="shimmer" className="h-4 w-full" />\n<Skeleton animation="none"    className="h-4 w-full" />`}>
+  <SkeletonAnimationPreview />
+</Showcase>
+
+## Card
+
+<Showcase title="Card" code={`<div className="flex flex-col gap-3 rounded-xl border bg-card p-4">\n  <Skeleton className="h-40 w-full" />\n  <Skeleton variant="text" className="w-3/4" />\n  <Skeleton variant="text" className="w-full" />\n  <Skeleton variant="text" className="w-2/3" />\n  <div className="flex gap-2">\n    <Skeleton className="h-9 w-24" />\n    <Skeleton className="h-9 w-20" />\n  </div>\n</div>`}>
+  <SkeletonCardPreview />
+</Showcase>
+
+## List
+
+<Showcase title="List" code={`{Array.from({ length: 4 }).map((_, i) => (\n  <div key={i} className="flex items-center gap-3">\n    <Skeleton variant="circle" className="h-10 w-10 shrink-0" />\n    <div className="flex flex-col gap-2 flex-1">\n      <Skeleton variant="text" className="w-1/3" />\n      <Skeleton variant="text" className="w-2/3" />\n    </div>\n  </div>\n))}`}>
+  <SkeletonListPreview />
+</Showcase>
+
+## Profile
+
+<Showcase title="Profile" code={`<div className="flex flex-col items-center gap-4 py-6 text-center">\n  <Skeleton variant="circle" className="h-20 w-20" />\n  <div className="w-full space-y-2">\n    <Skeleton variant="text" className="w-1/2 mx-auto h-5" />\n    <Skeleton variant="text" className="w-full" />\n    <Skeleton variant="text" className="w-3/4 mx-auto" />\n  </div>\n  <div className="flex gap-8 pt-1">\n    {[0, 1, 2].map((i) => (\n      <div key={i} className="flex flex-col items-center gap-1.5">\n        <Skeleton className="h-6 w-10" />\n        <Skeleton variant="text" className="w-12" />\n      </div>\n    ))}\n  </div>\n</div>`}>
+  <SkeletonProfilePreview />
+</Showcase>
+
+## Table
+
+<Showcase title="Table" code={`<div className="w-full overflow-hidden rounded-xl border bg-card">\n  <div className="flex items-center gap-4 border-b px-4 py-3">\n    <Skeleton className="h-3 w-32" />\n    <Skeleton className="h-3 w-20 ml-auto" />\n    <Skeleton className="h-3 w-16" />\n    <Skeleton className="h-3 w-14" />\n  </div>\n  {Array.from({ length: 5 }).map((_, i) => (\n    <div key={i} className="flex items-center gap-4 border-b last:border-0 px-4 py-3">\n      <Skeleton variant="circle" className="h-8 w-8 shrink-0" />\n      <Skeleton variant="text" className="w-28" />\n      <Skeleton className="h-5 w-16 rounded-full ml-auto" />\n      <Skeleton variant="text" className="w-16" />\n      <Skeleton variant="text" className="w-12" />\n    </div>\n  ))}\n</div>`}>
+  <SkeletonTablePreview />
+</Showcase>
+
+## Article
+
+<Showcase title="Article" code={`<div className="flex flex-col gap-4">\n  <Skeleton className="h-52 w-full" />\n  <div className="flex items-center gap-2">\n    <Skeleton variant="circle" className="h-8 w-8" />\n    <Skeleton variant="text" className="w-32" />\n    <Skeleton variant="text" className="w-20 ml-auto" />\n  </div>\n  <Skeleton variant="text" className="w-3/4 h-6" />\n  <Skeleton variant="text" className="w-full" />\n  <Skeleton variant="text" className="w-full" />\n  <Skeleton variant="text" className="w-4/5" />\n</div>`}>
+  <SkeletonArticlePreview />
+</Showcase>
+
+## API
+
+### Skeleton
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `default \| circle \| text` | `default` | Shape — `default` is a rounded rectangle, `circle` is fully rounded, `text` is a thin full-width line |
+| `animation` | `pulse \| shimmer \| none` | `pulse` | Loading animation style |
+| `className` | `string` | — | Use to set `width` and `height` (e.g. `w-48 h-6`) |
+
+## Customization
+
+### Color
+
+Skeletons use the `--skeleton-bg` CSS variable. Override it globally in your theme or locally on a wrapper to change the skeleton color across a section:
+
+```css
+/* global override in your globals.css */
+:root        { --skeleton-bg: oklch(0.93 0.01 250); } /* custom tint */
+[data-theme="dark"] { --skeleton-bg: oklch(0.32 0.01 250); }
+```
+
+```tsx
+{/* scoped override — only affects skeletons inside this div */}
+<div style={{ '--skeleton-bg': 'oklch(0.90 0.02 145)' } as React.CSSProperties}>
+  <Skeleton className="h-4 w-48" />
+</div>
+```
+
+### One-off color via className
+
+For a single skeleton that needs a different color, pass a background class directly. This overrides `--skeleton-bg` for that element only:
+
+```tsx
+<Skeleton className="h-4 w-48 bg-primary/15" />
+<Skeleton className="h-4 w-48 bg-blue-200 dark:bg-blue-900" />
+```
+
+### Opacity
+
+`animate-pulse` uses Tailwind's built-in opacity animation. You can slow it down or adjust the range with arbitrary animation utilities:
+
+```tsx
+{/* slower pulse */}
+<Skeleton className="h-4 w-48 [animation-duration:3s]" />
+```
+
+## Accessibility
+
+- `aria-hidden="true"` is set automatically — skeletons are decorative and screen readers ignore them
+- Pair with a live region (`aria-live="polite"`) on the content container so screen readers announce when real content replaces the skeleton
+- Respects `prefers-reduced-motion` — both `pulse` and `shimmer` animations are disabled automatically
