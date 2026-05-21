@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@tokiui/ui'
+import { Button, Badge } from '@tokiui/ui'
 import { useCopy } from './use-copy'
 import { Icon } from './icons'
 
@@ -14,9 +14,9 @@ export function Hero() {
       <div className="hero__grid" />
       <div className="container">
         <div className="hero__inner">
-          <span className="hero__pill">
-            <span className="hero__pill-tag mono">v0.1</span>
-            <span>Internal</span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-[13px] text-muted-foreground shadow-sm mb-7">
+            <Badge variant="soft" color="secondary" size="sm" className="font-mono">v0.3.0</Badge>
+            Now public
           </span>
           <h1 className="hero__title">
             The component library<br />

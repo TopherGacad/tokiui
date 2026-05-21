@@ -1,0 +1,119 @@
+export const metadata = { title: 'Progress — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  ProgressBasicPreview,
+  ProgressSizesPreview,
+  ProgressColorsPreview,
+  ProgressStripedPreview,
+  ProgressIndeterminatePreview,
+  ProgressLabelPreview,
+  ProgressUploadPreview,
+  ProgressStepsPreview,
+} from '@/components/docs/progress-demo'
+
+<PageHeader
+  title="Progress"
+  description="Displays progress toward a goal. Supports three sizes, five color variants, animated stripes, and an indeterminate state for unknown durations."
+  version="v0.3.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="progress" />
+<ManualInstall component="progress" />
+
+## Import
+
+```tsx
+import { Progress } from '@tokiui/ui'
+```
+
+## Basic
+
+Pass `value` (0–100) to set the fill position.
+
+<Showcase title="Basic" code={`<Progress value={60} />`}>
+  <ProgressBasicPreview />
+</Showcase>
+
+## Sizes
+
+Use `size` to control track height. All sizes accept the same props.
+
+<Showcase title="Sizes" code={`<Progress value={65} size="sm" />\n<Progress value={65} />\n<Progress value={65} size="lg" />`}>
+  <ProgressSizesPreview />
+</Showcase>
+
+## Colors
+
+`color` maps to the semantic palette. Use `success`, `warning`, `info`, or `error` when the value carries status meaning.
+
+<Showcase title="Colors" code={`<Progress value={70} color="default" />\n<Progress value={70} color="success" />\n<Progress value={70} color="warning" />\n<Progress value={70} color="info" />\n<Progress value={70} color="error" />`}>
+  <ProgressColorsPreview />
+</Showcase>
+
+## Striped
+
+`variant="striped"` adds animated diagonal stripes. Combine with any color.
+
+<Showcase title="Striped" code={`<Progress value={40} variant="striped" />\n<Progress value={70} variant="striped" color="success" />\n<Progress value={55} variant="striped" color="info" size="lg" />`}>
+  <ProgressStripedPreview />
+</Showcase>
+
+## Indeterminate
+
+Use `variant="indeterminate"` when the duration is unknown — the bar loops indefinitely without a `value`.
+
+<Showcase title="Indeterminate" code={`<Progress variant="indeterminate" />\n<Progress variant="indeterminate" color="success" />\n<Progress variant="indeterminate" color="info" size="lg" />`}>
+  <ProgressIndeterminatePreview />
+</Showcase>
+
+## With Label
+
+`showLabel` renders a row above the bar with the label text and current percentage.
+
+<Showcase title="With Label" code={`<Progress value={30} showLabel />\n<Progress value={75} showLabel label="Storage used" color="success" />\n<Progress variant="indeterminate" showLabel label="Connecting…" color="info" />`}>
+  <ProgressLabelPreview />
+</Showcase>
+
+## Upload
+
+A simulated file upload showing value, label, and color changing on completion.
+
+<Showcase title="Upload" code={`const [value, setValue] = useState(0)\n\n<Progress\n  value={value}\n  color={value === 100 ? 'success' : 'default'}\n  showLabel\n  label={value === 100 ? 'Upload complete' : 'project-report.pdf'}\n/>`}>
+  <ProgressUploadPreview />
+</Showcase>
+
+## Multi-step
+
+Drive progress from a step counter. The label reflects the current step name.
+
+<Showcase title="Multi-step" code={`const steps = ['Account', 'Profile', 'Billing', 'Review']\nconst [step, setStep] = useState(1)\n\n<Progress\n  value={(step / steps.length) * 100}\n  color="success"\n  showLabel\n  label={\`Step \${step} of \${steps.length}: \${steps[step - 1]}\`}\n/>`}>
+  <ProgressStepsPreview />
+</Showcase>
+
+## API
+
+### Progress
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | `0` | Current progress value |
+| `max` | `number` | `100` | Maximum value — `value / max` is used to compute percentage |
+| `size` | `sm \| default \| lg` | `default` | Track height |
+| `color` | `default \| success \| warning \| info \| error` | `default` | Fill color |
+| `variant` | `default \| striped \| indeterminate` | `default` | Visual style — `indeterminate` ignores `value` |
+| `showLabel` | `boolean` | `false` | Render a label row above the bar |
+| `label` | `string` | — | Label text and accessible name. Defaults to `"Progress"` |
+
+## Accessibility
+
+- The track element carries `role="progressbar"` with `aria-valuenow`, `aria-valuemin`, and `aria-valuemax`
+- `aria-valuenow` is omitted for `variant="indeterminate"` per the ARIA spec
+- Pass `label` to provide a meaningful accessible name beyond the default `"Progress"`
+- Both `striped` and `indeterminate` animations respect `prefers-reduced-motion` — they stop when the user has requested reduced motion

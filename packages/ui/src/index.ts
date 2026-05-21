@@ -1,3 +1,16 @@
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from './components/accordion'
+export type {
+  AccordionProps,
+  AccordionItemProps,
+  AccordionTriggerProps,
+  AccordionContentProps,
+} from './components/accordion'
+
 export { Button, ButtonGroup, buttonVariants } from './components/button'
 export type { ButtonProps } from './components/button'
 
@@ -141,6 +154,9 @@ export type { SeparatorProps } from './components/separator'
 
 export { Avatar, AvatarGroup, avatarVariants } from './components/avatar'
 export type { AvatarProps, AvatarGroupProps, AvatarColor, AvatarStatus } from './components/avatar'
+
+export { Progress, progressTrackVariants } from './components/progress'
+export type { ProgressProps, ProgressColor, ProgressVariant } from './components/progress'
 
 export { cn } from './lib/utils'
 

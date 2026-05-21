@@ -1,0 +1,7 @@
+{
+  "name": "progress",
+  "files": ["components/progress.tsx"],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

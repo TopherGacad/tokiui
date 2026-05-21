@@ -56,7 +56,7 @@ export type AvatarStatus = 'online' | 'offline' | 'busy' | 'away'
 
 export interface AvatarProps
   extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof avatarVariants> {
+    Omit<VariantProps<typeof avatarVariants>, 'color'> {
   src?:      string
   alt?:      string
   fallback?: string

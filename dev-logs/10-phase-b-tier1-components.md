@@ -75,6 +75,32 @@ All four entries added to `packages/registry/index.json`.
 
 ---
 
+## Accordion (`accordion.tsx`)
+
+Date: 2026-05-20
+
+- Built on `@radix-ui/react-accordion` primitives
+- `variant` prop: `default` (bordered card stack) | `ghost` (flush, no borders)
+- Exports: `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`
+- `AccordionProps` is a discriminated union (`type: 'single' | 'multiple'`) matching Radix's API
+- Type aliases (not interfaces) used to avoid TS2312 — Radix Root props are themselves a union, interfaces cannot extend unions
+- `AccordionSingleProps` / `AccordionMultipleProps` both intersect `React.HTMLAttributes<HTMLDivElement>` so destructuring works
+- `AccordionContext` passes variant down to children to style trigger/content without prop drilling
+
+---
+
+## tsup watch mode race condition fix
+
+Date: 2026-05-20
+
+- `clean: true` in tsup deleted `packages/ui/dist/` on every watch startup
+- Turbo runs `packages/ui dev` and `apps/docs dev` in parallel (no `dependsOn` for dev tasks)
+- If Next.js resolved `@tokiui/ui` during the ~200ms clean window it cached the failure → all pages 500
+- **Fix:** `clean: !options.watch` in `packages/ui/tsup.config.ts`
+- If you still see 500s after restart: delete `apps/docs/.next` to clear stale compiled output
+
+---
+
 ## Phase B Tier 1 status
 
 | Component | Status |
@@ -84,5 +110,5 @@ All four entries added to `packages/registry/index.json`.
 | Skeleton | ✅ Done |
 | Separator | ✅ Done |
 | Avatar | ✅ Done |
+| Accordion | ✅ Done |
 | Progress | Pending |
-| Accordion | Pending |

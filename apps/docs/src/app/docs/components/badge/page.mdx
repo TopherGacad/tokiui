@@ -12,6 +12,9 @@ import {
   BadgeSizesPreview,
   BadgeDotPreview,
   BadgeDismissPreview,
+  BadgeAnnouncementPreview,
+  BadgeStatusTablePreview,
+  BadgeUserRolesPreview,
 } from '@/components/docs/badge-demo'
 
 <PageHeader
@@ -96,6 +99,32 @@ Pass `onDismiss` to render a × button. Common for tag inputs and filter chips.
 
 <Showcase title="Dismissible" code={`<Badge variant="soft" onDismiss={() => removeTag(tag)}>\n  {tag}\n</Badge>`}>
   <BadgeDismissPreview />
+</Showcase>
+
+## Usage examples
+
+### Announcement chip
+
+Nest a `Badge` inside a pill container to build a version or announcement indicator — common in hero sections.
+
+<Showcase title="Announcement chip" code={`<span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground shadow-sm">\n  <Badge variant="soft" color="success" size="sm">New</Badge>\n  Avatar, Spinner, Skeleton, Separator\n</span>`}>
+  <BadgeAnnouncementPreview />
+</Showcase>
+
+### Status table
+
+Pair a category badge with a status dot badge on each row — effective for issue trackers, order lists, or task boards.
+
+<Showcase title="Status table" code={`<Badge variant="soft" color="secondary" size="sm">Docs</Badge>\n<Badge variant="soft" color="success" size="sm" dot>open</Badge>`}>
+  <BadgeStatusTablePreview />
+</Showcase>
+
+### User roles
+
+Show access levels alongside avatars in a member list. `soft` variant keeps the badge readable without competing with the name.
+
+<Showcase title="User roles" code={`<Avatar color="auto" fallback="ML" size="sm" />\n<span>Morgan Lee</span>\n<Badge variant="soft" color="destructive" size="sm">Admin</Badge>`}>
+  <BadgeUserRolesPreview />
 </Showcase>
 
 ## API

@@ -34,6 +34,8 @@ export const nav: NavSection[] = [
       { label: 'Skeleton',      href: '/docs/components/skeleton',      pill: 'new' },
       { label: 'Separator',     href: '/docs/components/separator',     pill: 'new' },
       { label: 'Avatar',        href: '/docs/components/avatar',        pill: 'new' },
+      { label: 'Accordion',     href: '/docs/components/accordion',     pill: 'new' },
+      { label: 'Progress',      href: '/docs/components/progress',      pill: 'new' },
     ],
   },
 ]

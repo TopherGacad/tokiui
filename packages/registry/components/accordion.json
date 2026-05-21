@@ -1,0 +1,7 @@
+{
+  "name": "accordion",
+  "files": ["components/accordion.tsx"],
+  "dependencies": ["@radix-ui/react-accordion", "class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

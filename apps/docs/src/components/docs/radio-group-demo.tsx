@@ -204,7 +204,7 @@ export function RadioGroupSizesPreview() {
 export function RadioGroupColorsPreview() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-      {(['default', 'success', 'warning', 'info', 'destructive'] as const).map((color) => (
+      {(['default', 'success', 'warning', 'info', 'error'] as const).map((color) => (
         <RadioGroup key={color} defaultValue="on" color={color} style={{ flexDirection: 'row', gap: 16 }}>
           <RadioRow id={`col-${color}-on`}  value="on"  label={color} />
           <RadioRow id={`col-${color}-off`} value="off" label="Off"   />

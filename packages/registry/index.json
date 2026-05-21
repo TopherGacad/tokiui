@@ -49,6 +49,16 @@
       "name": "avatar",
       "label": "Avatar",
       "description": "Displays a user avatar with image, initials fallback, color variants, status indicators, and group stacking."
+    },
+    {
+      "name": "accordion",
+      "label": "Accordion",
+      "description": "A vertically stacked set of collapsible sections with animated open/close and three visual variants."
+    },
+    {
+      "name": "progress",
+      "label": "Progress",
+      "description": "A progress bar with size, color, striped, and indeterminate variants."
     }
   ]
 }

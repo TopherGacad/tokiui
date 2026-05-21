@@ -34,12 +34,12 @@ const badgeVariants = cva(
       { variant: 'solid', color: 'warning',     class: 'bg-warning text-warning-foreground' },
       { variant: 'solid', color: 'info',        class: 'bg-info text-info-foreground' },
       // ── soft ──
-      { variant: 'soft', color: 'default',     class: 'bg-[var(--btn-soft)] text-primary' },
+      { variant: 'soft', color: 'default',     class: 'bg-[var(--badge-default-soft)] text-primary' },
       { variant: 'soft', color: 'secondary',   class: 'bg-secondary text-secondary-foreground' },
-      { variant: 'soft', color: 'destructive', class: 'bg-[var(--btn-destructive-soft)] text-destructive' },
-      { variant: 'soft', color: 'success',     class: 'bg-[var(--btn-success-soft)] text-success' },
-      { variant: 'soft', color: 'warning',     class: 'bg-[var(--btn-warning-soft)] text-warning' },
-      { variant: 'soft', color: 'info',        class: 'bg-[var(--btn-info-soft)] text-info' },
+      { variant: 'soft', color: 'destructive', class: 'bg-[var(--badge-destructive-soft)] text-destructive' },
+      { variant: 'soft', color: 'success',     class: 'bg-[var(--badge-success-soft)] text-success' },
+      { variant: 'soft', color: 'warning',     class: 'bg-[var(--badge-warning-soft)] text-warning' },
+      { variant: 'soft', color: 'info',        class: 'bg-[var(--badge-info-soft)] text-info' },
       // ── outline ──
       { variant: 'outline', color: 'default',     class: 'border-primary/40 text-primary' },
       { variant: 'outline', color: 'secondary',   class: 'border-border text-foreground' },
