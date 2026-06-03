@@ -1,5 +1,13 @@
 # @tokiui/ui
 
+## 0.3.0
+
+### Minor Changes
+
+- a4ba450: Add spinner, skeleton, separatir and Avatar components
+- 847d7ce: Add Phase B Tier 2 navigation components: Breadcrumb, Pagination, Stepper, Navigation Menu, and Sidebar (collapsible icon-rail mode, grouped nav, badges, and collapsible sub-menus).
+- 626ce0e: Add Accordion and Progress components; improve Badge soft colors and Accordion styling
+
 ## 0.2.0
 
 ### Minor Changes
