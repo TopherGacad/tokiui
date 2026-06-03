@@ -1715,13 +1715,23 @@ figure[data-rehype-pretty-code-figure] pre {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--card);
-  overflow: hidden;
+  /* No overflow:hidden here — allows absolutely-positioned dropdowns/popovers to escape */
 }
 .show__bar {
   display: flex; align-items: center; justify-content: space-between;
   gap: 12px; padding: 10px 14px;
   border-bottom: 1px solid var(--border);
   background: color-mix(in oklch, var(--card) 70%, var(--muted));
+  /* Top corners match the card border-radius */
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  overflow: hidden;
+}
+/* Round bottom corners of last child — border-radius alone clips that element's
+   own background without setting overflow:hidden (which would clip dropdowns) */
+.show > :last-child {
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
 }
 .show__title {
   font-family: var(--font-mono); font-size: 11px;
@@ -1740,15 +1750,34 @@ figure[data-rehype-pretty-code-figure] pre {
   background: var(--foreground); color: var(--background);
   box-shadow: var(--shadow-sm);
 }
+.show__body a { text-decoration: none !important; }
+
+/* Live component demos must not inherit prose list typography. The
+   `.docs-prose ul/ol/li` rules above add padding-left + margins with higher
+   specificity than a component's own `p-0`/`m-0` reset, which e.g. indents
+   Sidebar/NavigationMenu/Pagination lists and shifts collapsed icons
+   off-center. Neutralize list spacing inside the demo stages. */
+.show__body :is(ul, ol),
+.doc-preview__stage :is(ul, ol) { margin: 0; padding: 0; }
+.show__body li,
+.doc-preview__stage li { margin: 0; }
+
 .show__body {
   position: relative; min-height: 180px;
   display: flex; align-items: center; justify-content: center;
   padding: 40px 24px;
+  overflow: visible; /* must stay visible so dropdowns/popovers can escape */
   background-image:
     linear-gradient(var(--muted) 1px, transparent 1px),
     linear-gradient(90deg, var(--muted) 1px, transparent 1px);
   background-size: 24px 24px;
   background-color: var(--background);
+}
+/* Extra bottom padding for showcases that contain floating menus/popovers */
+.show__body--overflow {
+  padding-bottom: 280px;
+  align-items: flex-start;
+  padding-top: 40px;
 }
 .show__code {
   position: relative;

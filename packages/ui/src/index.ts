@@ -158,6 +158,101 @@ export type { AvatarProps, AvatarGroupProps, AvatarColor, AvatarStatus } from '.
 export { Progress, progressTrackVariants } from './components/progress'
 export type { ProgressProps, ProgressColor, ProgressVariant } from './components/progress'
 
+export {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+} from './components/pagination'
+export type { PaginationLinkProps } from './components/pagination'
+
+export {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from './components/breadcrumb'
+export type { BreadcrumbLinkProps } from './components/breadcrumb'
+
+export {
+  SidebarProvider,
+  useSidebar,
+  Sidebar,
+  SidebarTrigger,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+  SidebarSeparator,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMenuBadge,
+  SidebarInset,
+} from './components/sidebar'
+export type {
+  SidebarProviderProps,
+  SidebarProps,
+  SidebarTriggerProps,
+  SidebarHeaderProps,
+  SidebarContentProps,
+  SidebarFooterProps,
+  SidebarSeparatorProps,
+  SidebarGroupProps,
+  SidebarGroupLabelProps,
+  SidebarMenuProps,
+  SidebarMenuItemProps,
+  SidebarMenuButtonProps,
+  SidebarMenuBadgeProps,
+  SidebarInsetProps,
+} from './components/sidebar'
+
+export {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NavigationMenuViewport,
+  NavigationMenuIndicator,
+} from './components/navigation-menu'
+export type {
+  NavigationMenuProps,
+  NavigationMenuListProps,
+  NavigationMenuTriggerProps,
+  NavigationMenuContentProps,
+  NavigationMenuLinkProps,
+  NavigationMenuViewportProps,
+  NavigationMenuIndicatorProps,
+} from './components/navigation-menu'
+
+export {
+  Stepper,
+  StepperItem,
+  StepperIndicator,
+  StepperContent,
+  StepperTitle,
+  StepperDescription,
+  StepperSeparator,
+} from './components/stepper'
+export type {
+  StepperProps,
+  StepperItemProps,
+  StepperIndicatorProps,
+  StepperContentProps,
+  StepperTitleProps,
+  StepperDescriptionProps,
+  StepperSeparatorProps,
+} from './components/stepper'
+
 export { cn } from './lib/utils'
 
 export {

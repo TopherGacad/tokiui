@@ -1,0 +1,7 @@
+{
+  "name": "breadcrumb",
+  "files": ["components/breadcrumb.tsx"],
+  "dependencies": ["@radix-ui/react-slot"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

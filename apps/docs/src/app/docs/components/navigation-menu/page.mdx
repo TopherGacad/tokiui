@@ -1,0 +1,122 @@
+export const metadata = { title: 'Navigation Menu — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  NavigationMenuBasicPreview,
+  NavigationMenuFeaturedPreview,
+  NavigationMenuIconPreview,
+  NavigationMenuSimplePreview,
+  NavigationMenuMegaPreview,
+} from '@/components/docs/navigation-menu-demo'
+
+<PageHeader
+  title="Navigation Menu"
+  description="A horizontal navigation bar with animated dropdown panels. Built on Radix UI — keyboard accessible, animated content transitions, and composable link primitives."
+  version="v0.3.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="navigation-menu" />
+<ManualInstall component="navigation-menu" />
+
+## Import
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from '@tokiui/ui'
+```
+
+## Basic
+
+Trigger-based dropdowns with simple link lists. Hover or focus a trigger to open its content panel — clicking another trigger slides the panel to the new content.
+
+<Showcase overflow title="Basic" code={`<NavigationMenu>\n  <NavigationMenuList>\n    <NavigationMenuItem>\n      <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>\n      <NavigationMenuContent>\n        <ul className="grid gap-1 p-3 md:w-[380px]">\n          <li><NavItem href="#" title="Introduction">...</NavItem></li>\n          <li><NavItem href="#" title="Installation">...</NavItem></li>\n        </ul>\n      </NavigationMenuContent>\n    </NavigationMenuItem>\n\n    <NavigationMenuItem>\n      <NavigationMenuLink href="#" className="...">\n        Changelog\n      </NavigationMenuLink>\n    </NavigationMenuItem>\n  </NavigationMenuList>\n</NavigationMenu>`}>
+  <NavigationMenuBasicPreview />
+</Showcase>
+
+## With featured card
+
+Mix a rich featured card alongside regular list items inside `NavigationMenuContent`. Use CSS grid to control the layout of the panel.
+
+<Showcase overflow title="Featured card" code={`<NavigationMenuContent>\n  <div className="grid md:w-[500px] md:grid-cols-[200px_1fr] gap-1 p-3">\n    {/* Featured */}\n    <NavigationMenuLink href="#" className="flex flex-col justify-end rounded-lg bg-gradient-to-b from-primary/20 to-primary/5 p-4 row-span-3">\n      <div className="text-sm font-semibold">tokiui</div>\n      <p className="text-xs text-muted-foreground">Production-grade React components.</p>\n    </NavigationMenuLink>\n\n    {/* Links */}\n    <NavItem href="#" title="Component library">25+ components.</NavItem>\n    <NavItem href="#" title="CLI tool">Add components with one command.</NavItem>\n  </div>\n</NavigationMenuContent>`}>
+  <NavigationMenuFeaturedPreview />
+</Showcase>
+
+## Icon links
+
+Pair each link with an icon badge for a richer panel layout — works well for resource hubs and product feature lists.
+
+<Showcase overflow title="Icon links" code={`<NavigationMenuLink href="#" className="flex gap-3 rounded-md p-3 hover:bg-muted">\n  <div className="flex h-9 w-9 items-center justify-center rounded-md border bg-muted">\n    <BookIcon className="size-4" />\n  </div>\n  <div className="space-y-1">\n    <div className="text-sm font-medium">Documentation</div>\n    <p className="text-xs text-muted-foreground">Guides, examples, and API reference.</p>\n  </div>\n</NavigationMenuLink>`}>
+  <NavigationMenuIconPreview />
+</Showcase>
+
+## Simple link bar
+
+`NavigationMenuLink` used for every item — no dropdowns. An animated underline tracks the active page using CSS `after` pseudo-element and `scale-x` transitions.
+
+<Showcase overflow title="Simple link bar" code={`<NavigationMenu>\n  <NavigationMenuList className="gap-0">\n    {links.map((label) => (\n      <NavigationMenuItem key={label}>\n        <NavigationMenuLink\n          href="#"\n          className={cn(\n            'relative inline-flex h-10 items-center px-4 text-sm font-medium',\n            'after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2px] after:rounded-full after:transition-all',\n            isActive\n              ? 'text-foreground after:bg-primary'\n              : 'text-muted-foreground hover:text-foreground after:scale-x-0 hover:after:scale-x-100 after:bg-border',\n          )}\n        >\n          {label}\n        </NavigationMenuLink>\n      </NavigationMenuItem>\n    ))}\n  </NavigationMenuList>\n</NavigationMenu>`}>
+  <NavigationMenuSimplePreview />
+</Showcase>
+
+## Mega menu
+
+A wide multi-column dropdown with category headings and a footer CTA strip. Use CSS grid inside `NavigationMenuContent` to lay out as many columns as needed.
+
+<Showcase overflow title="Mega menu" code={`<NavigationMenuContent>\n  <div className="grid w-[600px] grid-cols-3 gap-0 p-2">\n    {sections.map((section, i) => (\n      <div key={section.heading} className={cn('px-3 py-2', i < sections.length - 1 && 'border-r border-border')}>\n        <p className="mb-2 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">\n          {section.heading}\n        </p>\n        <ul className="space-y-0.5">\n          {section.items.map((item) => (\n            <li key={item.label}>\n              <NavigationMenuLink href="#" className="flex flex-col rounded-md px-2 py-2 hover:bg-muted">\n                <span className="text-sm font-medium">{item.label}</span>\n                <span className="text-xs text-muted-foreground">{item.desc}</span>\n              </NavigationMenuLink>\n            </li>\n          ))}\n        </ul>\n      </div>\n    ))}\n  </div>\n  <div className="border-t border-border bg-muted/50 px-5 py-3 flex items-center justify-between">\n    <span className="text-xs text-muted-foreground">25+ components, all accessible</span>\n    <NavigationMenuLink href="#" className="text-xs font-medium text-primary">View all →</NavigationMenuLink>\n  </div>\n</NavigationMenuContent>`}>
+  <NavigationMenuMegaPreview />
+</Showcase>
+
+## API
+
+### NavigationMenu
+
+Root element. Automatically renders the `NavigationMenuViewport` below the list. Accepts all Radix `NavigationMenu.Root` props.
+
+### NavigationMenuList
+
+The `<ul>` container that holds `NavigationMenuItem` elements. Renders as a horizontal flex row.
+
+### NavigationMenuItem
+
+Wraps a single item — either a `NavigationMenuTrigger` + `NavigationMenuContent` pair, or a standalone `NavigationMenuLink`.
+
+### NavigationMenuTrigger
+
+A button that opens its sibling `NavigationMenuContent`. Includes a chevron that rotates on open.
+
+| Prop | Type | Notes |
+|---|---|---|
+| All `<button>` props | — | Passed through to the underlying button element |
+
+### NavigationMenuContent
+
+The panel rendered inside the viewport when the parent trigger is open. Animates in/out with directional slide transitions when navigating between triggers.
+
+### NavigationMenuLink
+
+A styled `<a>` (or `asChild` component) for direct navigation — no dropdown. Apply your own hover/focus classes to match your design.
+
+### NavigationMenuViewport
+
+The floating container that hosts `NavigationMenuContent` panels. Automatically included inside `NavigationMenu` — only export separately if you need to override its positioning.
+
+### NavigationMenuIndicator
+
+Optional animated caret that points from the active trigger to the open viewport. Rendered inside `NavigationMenuList`.
+
+## Accessibility
+
+- Full keyboard support: `Tab` to focus triggers, `Enter`/`Space` to open, `Escape` to close, `ArrowLeft`/`ArrowRight` to move between triggers
+- `aria-expanded` on triggers, `aria-controls` linking trigger to content
+- Focus is trapped inside the open content panel until dismissed

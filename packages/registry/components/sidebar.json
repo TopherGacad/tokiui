@@ -1,0 +1,11 @@
+{
+  "name": "sidebar",
+  "files": [
+    "packages/ui/src/components/sidebar.tsx"
+  ],
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "@radix-ui/react-tooltip"
+  ],
+  "registryDependencies": []
+}

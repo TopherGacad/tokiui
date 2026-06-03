@@ -1,0 +1,7 @@
+{
+  "name": "pagination",
+  "files": ["components/pagination.tsx"],
+  "dependencies": ["@radix-ui/react-slot"],
+  "devDependencies": [],
+  "registryDependencies": []
+}
