@@ -59,6 +59,31 @@
       "name": "progress",
       "label": "Progress",
       "description": "A progress bar with size, color, striped, and indeterminate variants."
+    },
+    {
+      "name": "breadcrumb",
+      "label": "Breadcrumb",
+      "description": "A navigation trail showing the user's location in a hierarchy. Supports custom separators, collapsed items, and framework-agnostic links."
+    },
+    {
+      "name": "pagination",
+      "label": "Pagination",
+      "description": "Controls for navigating between pages of content. Supports active states, ellipsis for large ranges, and framework-agnostic links."
+    },
+    {
+      "name": "sidebar",
+      "label": "Sidebar",
+      "description": "A collapsible vertical navigation panel with icon-rail mode, grouped links, badges, and a composable header/footer."
+    },
+    {
+      "name": "navigation-menu",
+      "label": "Navigation Menu",
+      "description": "A horizontal navigation bar with animated dropdown panels. Supports grouped links, rich content, and keyboard navigation."
+    },
+    {
+      "name": "stepper",
+      "label": "Stepper",
+      "description": "A step-by-step progress indicator. Composable pieces — indicator, title, description, separator — for horizontal and vertical layouts."
     }
   ]
 }

@@ -267,6 +267,33 @@
   100% { left: 100%; width: 60%; }
 }
 
+/* ── Navigation Menu ────────────────────────────────────────────────────── */
+
+@keyframes nav-viewport-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.97) }
+  to   { opacity: 1; transform: translateY(0) scale(1) }
+}
+@keyframes nav-viewport-out {
+  from { opacity: 1; transform: translateY(0) scale(1) }
+  to   { opacity: 0; transform: translateY(-6px) scale(0.97) }
+}
+@keyframes nav-content-from-left {
+  from { opacity: 0; transform: translateX(-12px) }
+  to   { opacity: 1; transform: translateX(0) }
+}
+@keyframes nav-content-from-right {
+  from { opacity: 0; transform: translateX(12px) }
+  to   { opacity: 1; transform: translateX(0) }
+}
+@keyframes nav-content-to-left {
+  from { opacity: 1; transform: translateX(0) }
+  to   { opacity: 0; transform: translateX(-12px) }
+}
+@keyframes nav-content-to-right {
+  from { opacity: 1; transform: translateX(0) }
+  to   { opacity: 0; transform: translateX(12px) }
+}
+
 /* ── Sonner (toast) — map to tokiui design tokens ──────────────────────── */
 [data-sonner-toaster] {
   --border-radius: var(--radius-md, 8px);

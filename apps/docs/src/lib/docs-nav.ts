@@ -36,6 +36,11 @@ export const nav: NavSection[] = [
       { label: 'Avatar',        href: '/docs/components/avatar',        pill: 'new' },
       { label: 'Accordion',     href: '/docs/components/accordion',     pill: 'new' },
       { label: 'Progress',      href: '/docs/components/progress',      pill: 'new' },
+      { label: 'Breadcrumb',    href: '/docs/components/breadcrumb',    pill: 'new' },
+      { label: 'Pagination',    href: '/docs/components/pagination',    pill: 'new' },
+      { label: 'Stepper',          href: '/docs/components/stepper',           pill: 'new' },
+      { label: 'Navigation Menu', href: '/docs/components/navigation-menu',   pill: 'new' },
+      { label: 'Sidebar',         href: '/docs/components/sidebar',           pill: 'new' },
     ],
   },
 ]

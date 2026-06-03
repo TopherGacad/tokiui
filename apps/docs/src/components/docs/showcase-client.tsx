@@ -8,6 +8,7 @@ interface ShowcaseClientProps {
   title: string
   code?: string
   highlightedCode?: string
+  overflow?: boolean
   children: React.ReactNode
 }
 
@@ -42,7 +43,7 @@ function CodePanel({ code, highlightedCode, copied, onCopy, panelId, labelId }: 
   )
 }
 
-export function ShowcaseClient({ title, code, highlightedCode, children }: ShowcaseClientProps) {
+export function ShowcaseClient({ title, code, highlightedCode, overflow, children }: ShowcaseClientProps) {
   const uid = useId()
   const [tab, setTab] = useState<'preview' | 'code' | 'split'>('preview')
   const [copied, copy] = useCopy(code ?? '')
@@ -78,7 +79,7 @@ export function ShowcaseClient({ title, code, highlightedCode, children }: Showc
           id={panelId('preview')}
           role="tabpanel"
           aria-labelledby={tabId('preview')}
-          className="show__body"
+          className={`show__body${overflow ? ' show__body--overflow' : ''}`}
         >
           {children}
         </div>
@@ -101,7 +102,7 @@ export function ShowcaseClient({ title, code, highlightedCode, children }: Showc
             id={panelId('split')}
             role="tabpanel"
             aria-labelledby={tabId('split')}
-            className="show__body"
+            className={`show__body${overflow ? ' show__body--overflow' : ''}`}
           >
             {children}
           </div>

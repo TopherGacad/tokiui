@@ -15,10 +15,12 @@ export function TocNav() {
     const headings = Array.from(
       document.querySelectorAll<HTMLHeadingElement>('#docs-main .docs-prose h2')
     )
-    const newItems = headings.map((h) => ({
-      id: h.id,
-      text: h.textContent?.replace(/\s*#\s*$/, '') ?? '',
-    }))
+    const newItems = headings
+      .filter((h) => h.id !== '')
+      .map((h) => ({
+        id: h.id,
+        text: h.textContent?.replace(/\s*#\s*$/, '') ?? '',
+      }))
     setItems(newItems)
 
     const scrollY = window.scrollY + 100

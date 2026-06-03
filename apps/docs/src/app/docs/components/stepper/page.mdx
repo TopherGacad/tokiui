@@ -1,0 +1,105 @@
+export const metadata = { title: 'Stepper — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  StepperBasicPreview,
+  StepperVerticalPreview,
+  StepperIconPreview,
+  StepperWizardPreview,
+} from '@/components/docs/stepper-demo'
+
+<PageHeader
+  title="Stepper"
+  description="A step-by-step progress indicator. Composable pieces — indicator, title, description, and separator — that work in both horizontal and vertical layouts."
+  version="v0.3.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="stepper" />
+<ManualInstall component="stepper" />
+
+## Import
+
+```tsx
+import {
+  Stepper,
+  StepperItem,
+  StepperIndicator,
+  StepperContent,
+  StepperTitle,
+  StepperDescription,
+  StepperSeparator,
+} from '@tokiui/ui'
+```
+
+## Basic
+
+Pass `step` to `Stepper` for the currently active step (1-indexed). Each `StepperItem` derives its status automatically — complete, active, or incomplete.
+
+<Showcase title="Basic" code={`const [step, setStep] = React.useState(1)\n\n<Stepper step={step} className="w-full">\n  {STEPS.map((s, i) => (\n    <React.Fragment key={s.title}>\n      <StepperItem step={i + 1}>\n        <StepperIndicator />\n        <StepperContent>\n          <StepperTitle>{s.title}</StepperTitle>\n          <StepperDescription>{s.description}</StepperDescription>\n        </StepperContent>\n      </StepperItem>\n      {i < STEPS.length - 1 && <StepperSeparator />}\n    </React.Fragment>\n  ))}\n</Stepper>`}>
+  <StepperBasicPreview />
+</Showcase>
+
+## Vertical
+
+Set `orientation="vertical"` on the `Stepper` root. The separator renders as a vertical line connecting steps.
+
+<Showcase title="Vertical" code={`<Stepper step={step} orientation="vertical">\n  {STEPS.map((s, i) => (\n    <React.Fragment key={s.title}>\n      <StepperItem step={i + 1}>\n        <StepperIndicator />\n        <StepperContent>\n          <StepperTitle>{s.title}</StepperTitle>\n          <StepperDescription>{s.description}</StepperDescription>\n        </StepperContent>\n      </StepperItem>\n      {i < STEPS.length - 1 && <StepperSeparator />}\n    </React.Fragment>\n  ))}\n</Stepper>`}>
+  <StepperVerticalPreview />
+</Showcase>
+
+## Custom icons
+
+Pass `icon` to `StepperIndicator` to replace the default step number. Completed steps still show a checkmark regardless of the icon.
+
+<Showcase title="Custom icons" code={`<StepperItem step={1}>\n  <StepperIndicator icon={<UserIcon className="size-4" />} />\n  <StepperContent>\n    <StepperTitle>Identity</StepperTitle>\n    <StepperDescription>Verify who you are</StepperDescription>\n  </StepperContent>\n</StepperItem>`}>
+  <StepperIconPreview />
+</Showcase>
+
+## Onboarding wizard
+
+A compact indicator-only stepper paired with step content panels — a common pattern for multi-step forms and setup flows.
+
+<Showcase title="Onboarding wizard" code={`<Stepper step={step} className="w-full">\n  {STEPS.map((label, i) => (\n    <React.Fragment key={label}>\n      <StepperItem step={i + 1} className="shrink-0">\n        <StepperIndicator />\n      </StepperItem>\n      {i < STEPS.length - 1 && <StepperSeparator />}\n    </React.Fragment>\n  ))}\n</Stepper>`}>
+  <StepperWizardPreview />
+</Showcase>
+
+## API
+
+### Stepper
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `step` | `number` | — | The currently active step (1-indexed) |
+| `orientation` | `horizontal \| vertical` | `horizontal` | Layout direction |
+
+### StepperItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `step` | `number` | — | This item's step number — used to compute complete / active / incomplete status |
+
+### StepperIndicator
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | `ReactNode` | — | Custom icon shown for incomplete and active states. Completed steps always show a checkmark. |
+
+### StepperSeparator
+
+Renders a connecting line between two steps. Place it between `StepperItem` elements — omit it after the last step. Orientation and fill color are derived from context automatically.
+
+### StepperContent / StepperTitle / StepperDescription
+
+Presentational wrappers. `StepperTitle` and `StepperDescription` automatically adjust their text color based on the parent step's status.
+
+## Accessibility
+
+- Wrap a `Stepper` in a `<nav aria-label="Progress">` when it doubles as navigation
+- Mark the active step with `aria-current="step"` on the clickable trigger if steps are interactive
+- Use `aria-disabled` on `StepperItem` for locked steps

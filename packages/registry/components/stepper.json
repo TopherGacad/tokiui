@@ -1,0 +1,8 @@
+{
+  "name": "stepper",
+  "files": [
+    "packages/ui/src/components/stepper.tsx"
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

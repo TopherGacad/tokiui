@@ -1,0 +1,123 @@
+export const metadata = { title: 'Sidebar — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  SidebarBasicPreview,
+  SidebarUserPreview,
+  SidebarIconRailPreview,
+  SidebarSubmenuPreview,
+} from '@/components/docs/sidebar-demo'
+
+<PageHeader
+  title="Sidebar"
+  description="A collapsible vertical navigation panel. Composable header, content, and footer slots — with an icon-rail collapsed mode, badge counts, and tooltip labels."
+  version="v0.3.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="sidebar" />
+<ManualInstall component="sidebar" />
+
+## Import
+
+```tsx
+import {
+  SidebarProvider,
+  Sidebar,
+  SidebarTrigger,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+  SidebarSeparator,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMenuBadge,
+  SidebarInset,
+} from '@tokiui/ui'
+```
+
+## Basic
+
+Wrap your layout in `SidebarProvider`. The `Sidebar` and `SidebarInset` sit inside as flex siblings — the sidebar transitions its width and the inset takes the remaining space. `SidebarTrigger` in the topbar toggles collapse.
+
+<Showcase title="Basic" code={`<SidebarProvider defaultOpen>\n  <Sidebar>\n    <SidebarHeader>...</SidebarHeader>\n    <SidebarContent>\n      <SidebarGroup>\n        <SidebarGroupLabel>Main</SidebarGroupLabel>\n        <SidebarMenu>\n          <SidebarMenuItem>\n            <SidebarMenuButton isActive tooltip="Dashboard">\n              <HomeIcon />\n              <span>Dashboard</span>\n              <SidebarMenuBadge>12</SidebarMenuBadge>\n            </SidebarMenuButton>\n          </SidebarMenuItem>\n        </SidebarMenu>\n      </SidebarGroup>\n    </SidebarContent>\n    <SidebarFooter>...</SidebarFooter>\n  </Sidebar>\n\n  <SidebarInset>\n    <header>\n      <SidebarTrigger />\n    </header>\n    {/* page content */}\n  </SidebarInset>\n</SidebarProvider>`}>
+  <SidebarBasicPreview />
+</Showcase>
+
+## Collapsible sub-menus
+
+Group related links with `SidebarGroup` + `SidebarGroupLabel`, and nest a second `SidebarMenu` inside a `SidebarMenuItem` for expandable sections. A parent `SidebarMenuButton` toggles local open state and rotates a chevron; the nested list animates open with a `grid-rows` transition and collapses out of view when the rail is in icon mode.
+
+<Showcase title="Sub-menus" code={`function NavItem({ icon: Icon, label, items }) {\n  const [open, setOpen] = React.useState(false)\n  return (\n    <SidebarMenuItem>\n      <SidebarMenuButton onClick={() => setOpen(!open)} aria-expanded={open}>\n        <Icon />\n        <span>{label}</span>\n        <ChevronRight className={cn('ml-auto transition-transform', open && 'rotate-90')} />\n      </SidebarMenuButton>\n      <div className={open ? 'grid grid-rows-[1fr]' : 'grid grid-rows-[0fr]'}>\n        <div className="overflow-hidden">\n          <div className="ml-4 border-l border-border pl-2.5">\n            <SidebarMenu>\n              {items.map((sub) => (\n                <SidebarMenuItem key={sub}>\n                  <SidebarMenuButton className="h-8"><span>{sub}</span></SidebarMenuButton>\n                </SidebarMenuItem>\n              ))}\n            </SidebarMenu>\n          </div>\n        </div>\n      </div>\n    </SidebarMenuItem>\n  )\n}`}>
+  <SidebarSubmenuPreview />
+</Showcase>
+
+## With user footer
+
+A common pattern: workspace switcher in the header, navigation in the content area, and a user profile row pinned to the footer. The avatar and email truncate cleanly in collapsed mode.
+
+<Showcase title="User footer" code={`<SidebarFooter>\n  <SidebarMenuButton tooltip="User settings" className="h-auto py-2 gap-3">\n    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-semibold">\n      JD\n    </div>\n    <div className="flex flex-col leading-none min-w-0">\n      <span className="text-sm font-medium truncate">Jane Doe</span>\n      <span className="text-xs text-muted-foreground truncate">jane@example.com</span>\n    </div>\n  </SidebarMenuButton>\n</SidebarFooter>`}>
+  <SidebarUserPreview />
+</Showcase>
+
+## Icon rail
+
+Start collapsed with `defaultOpen={false}`. In collapsed mode each `SidebarMenuButton` with a `tooltip` prop shows a side-anchored tooltip on hover. The trigger in the topbar expands to full width.
+
+<Showcase title="Icon rail" code={`<SidebarProvider defaultOpen={false}>\n  <Sidebar>\n    <SidebarContent>\n      <SidebarMenu>\n        {items.map(({ label, icon: Icon }) => (\n          <SidebarMenuItem key={label}>\n            <SidebarMenuButton tooltip={label} isActive={active === label}>\n              <Icon />\n              <span>{label}</span>\n            </SidebarMenuButton>\n          </SidebarMenuItem>\n        ))}\n      </SidebarMenu>\n    </SidebarContent>\n  </Sidebar>\n  <SidebarInset>...</SidebarInset>\n</SidebarProvider>`}>
+  <SidebarIconRailPreview />
+</Showcase>
+
+## API
+
+### SidebarProvider
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `defaultOpen` | `boolean` | `true` | Initial open state (uncontrolled) |
+| `open` | `boolean` | — | Controlled open state |
+| `onOpenChange` | `(open: boolean) => void` | — | Called when open state changes |
+
+### useSidebar
+
+```tsx
+const { open, setOpen, toggle } = useSidebar()
+```
+
+Access sidebar state from any child without prop drilling.
+
+### Sidebar
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `side` | `left \| right` | `left` | Which side the sidebar is on |
+
+### SidebarMenuButton
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isActive` | `boolean` | `false` | Applies active highlight — `bg-primary/10 text-primary` |
+| `tooltip` | `string` | — | Label shown as a right-anchored tooltip when the sidebar is collapsed |
+| `asChild` | `boolean` | `false` | Renders the child element instead of `<button>` — use with `<Link>` |
+
+### SidebarMenuBadge
+
+Inline count badge that fades out when the sidebar is collapsed. Place it as the last child inside `SidebarMenuButton`.
+
+### SidebarInset
+
+The main content wrapper that sits beside the sidebar in the flex layout. Takes `flex-1` and handles its own overflow.
+
+## Accessibility
+
+- `SidebarTrigger` has `aria-label` that updates between "Collapse sidebar" and "Expand sidebar"
+- Collapsed icon-only buttons include `tooltip` text as a visible label for sighted keyboard and pointer users
+- Navigation landmarks: wrap `Sidebar` in a `<nav aria-label="Main navigation">` for screen readers
