@@ -1,0 +1,7 @@
+{
+  "name": "sheet",
+  "files": ["components/sheet.tsx"],
+  "dependencies": ["@radix-ui/react-dialog"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

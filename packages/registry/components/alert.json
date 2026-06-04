@@ -1,0 +1,7 @@
+{
+  "name": "alert",
+  "files": ["components/alert.tsx"],
+  "dependencies": ["class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

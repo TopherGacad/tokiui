@@ -84,6 +84,71 @@
       "name": "stepper",
       "label": "Stepper",
       "description": "A step-by-step progress indicator. Composable pieces — indicator, title, description, separator — for horizontal and vertical layouts."
+    },
+    {
+      "name": "alert",
+      "label": "Alert",
+      "description": "An inline banner for success, warning, info, or error feedback. Auto icon per variant, optional title, and a dismiss button."
+    },
+    {
+      "name": "alert-dialog",
+      "label": "Alert Dialog",
+      "description": "A modal confirmation dialog that interrupts the user. Destructive/warning/info levels and a loading action button."
+    },
+    {
+      "name": "toast",
+      "label": "Toast",
+      "description": "Toast notifications powered by Sonner — success, error, warning, and info helpers with rich colors."
+    },
+    {
+      "name": "tooltip",
+      "label": "Tooltip",
+      "description": "A popup label shown on hover or focus. Configurable side, delay, arrow, and size."
+    },
+    {
+      "name": "popover",
+      "label": "Popover",
+      "description": "A floating panel anchored to a trigger element."
+    },
+    {
+      "name": "dropdown-menu",
+      "label": "Dropdown Menu",
+      "description": "A menu of actions opened from a trigger. Supports icons, descriptions, submenus, and checkbox/radio items."
+    },
+    {
+      "name": "sheet",
+      "label": "Sheet",
+      "description": "A panel that slides in from any edge, with size variants."
+    },
+    {
+      "name": "select",
+      "label": "Select",
+      "description": "A dropdown select with sizes, error state, and a clearable selection."
+    },
+    {
+      "name": "checkbox",
+      "label": "Checkbox",
+      "description": "A checkbox with sizes, color variants, error state, and a CheckboxGroup for grouped context."
+    },
+    {
+      "name": "radio-group",
+      "label": "Radio Group",
+      "description": "A set of radio buttons with sizes, colors, error state, and horizontal or vertical orientation."
+    },
+    {
+      "name": "switch",
+      "label": "Switch",
+      "description": "A toggle switch with color variants and a SwitchField composition helper."
+    },
+    {
+      "name": "textarea",
+      "label": "Textarea",
+      "description": "A multi-line text input with sizes, error state, a character counter, and auto-resize."
+    },
+    {
+      "name": "tabs",
+      "label": "Tabs",
+      "description": "Tabbed navigation with pills, line, and card variants plus icon and badge slots."
     }
   ]
 }

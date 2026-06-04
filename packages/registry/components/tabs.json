@@ -1,0 +1,7 @@
+{
+  "name": "tabs",
+  "files": ["components/tabs.tsx"],
+  "dependencies": ["@radix-ui/react-tabs", "class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

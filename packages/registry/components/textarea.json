@@ -1,6 +1,6 @@
 {
-  "name": "stepper",
-  "files": ["components/stepper.tsx"],
+  "name": "textarea",
+  "files": ["components/textarea.tsx"],
   "dependencies": [],
   "devDependencies": [],
   "registryDependencies": []

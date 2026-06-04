@@ -1,0 +1,7 @@
+{
+  "name": "popover",
+  "files": ["components/popover.tsx"],
+  "dependencies": ["@radix-ui/react-popover"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

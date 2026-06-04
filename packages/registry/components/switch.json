@@ -1,0 +1,7 @@
+{
+  "name": "switch",
+  "files": ["components/switch.tsx"],
+  "dependencies": ["@radix-ui/react-switch"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

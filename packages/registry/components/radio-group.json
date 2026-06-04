@@ -1,0 +1,7 @@
+{
+  "name": "radio-group",
+  "files": ["components/radio-group.tsx"],
+  "dependencies": ["@radix-ui/react-radio-group", "class-variance-authority"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

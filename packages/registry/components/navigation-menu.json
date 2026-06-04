@@ -1,10 +1,7 @@
 {
   "name": "navigation-menu",
-  "files": [
-    "packages/ui/src/components/navigation-menu.tsx"
-  ],
-  "dependencies": [
-    "@radix-ui/react-navigation-menu"
-  ],
+  "files": ["components/navigation-menu.tsx"],
+  "dependencies": ["@radix-ui/react-navigation-menu"],
+  "devDependencies": [],
   "registryDependencies": []
 }

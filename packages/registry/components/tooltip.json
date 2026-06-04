@@ -1,0 +1,7 @@
+{
+  "name": "tooltip",
+  "files": ["components/tooltip.tsx"],
+  "dependencies": ["@radix-ui/react-tooltip"],
+  "devDependencies": [],
+  "registryDependencies": []
+}

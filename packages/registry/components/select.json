@@ -1,0 +1,7 @@
+{
+  "name": "select",
+  "files": ["components/select.tsx"],
+  "dependencies": ["@radix-ui/react-select"],
+  "devDependencies": [],
+  "registryDependencies": []
+}
