@@ -71,6 +71,20 @@ const PRODUCTS: { name: string; amount: string; pct: number; color: ProgressColo
 
 const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('')
 
+// A fixed charcoal palette scoped to the sidebar — a solid dark anchor against the
+// light content. The Sidebar's children read these tokens, so the whole panel
+// re-themes cleanly (light text, subtle hovers, bright-green active accent) with no
+// per-element overrides. Holds up in dark mode too (≈ the normal sidebar surface).
+const sidebarTheme = {
+  '--card': 'oklch(0.21 0.004 285)',
+  '--foreground': 'oklch(0.98 0 0)',
+  '--muted': 'oklch(0.27 0.006 285)',
+  '--muted-foreground': 'oklch(0.68 0.008 285)',
+  '--border': 'oklch(0.30 0.006 285)',
+  '--primary': 'oklch(0.72 0.15 145)',
+  '--primary-foreground': 'oklch(0.16 0 0)',
+} as React.CSSProperties
+
 export function DashboardFrame() {
   const isDesktop = useMediaQuery('(min-width: 1024px)')
   const [open, setOpen] = useState(true)
@@ -81,7 +95,7 @@ export function DashboardFrame() {
 
   return (
     <SidebarProvider open={open} onOpenChange={setOpen} className="h-dvh bg-background">
-      <Sidebar>
+      <Sidebar style={sidebarTheme}>
         <SidebarHeader>
           <div className="flex items-center gap-2 px-1 py-1.5">
             <span className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary font-mono text-xs font-bold text-primary-foreground">tu</span>
