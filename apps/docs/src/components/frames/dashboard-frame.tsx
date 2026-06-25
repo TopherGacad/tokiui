@@ -85,22 +85,22 @@ export function DashboardFrame() {
         <SidebarHeader>
           <div className="flex items-center gap-2 px-1 py-1.5">
             <span className="flex size-7 shrink-0 items-center justify-center rounded-md bg-primary font-mono text-xs font-bold text-primary-foreground">tu</span>
-            <span className="truncate text-sm font-semibold text-foreground group-data-[state=collapsed]/sidebar:hidden">Acme Inc.</span>
+            <span className="truncate text-sm font-medium text-foreground group-data-[state=collapsed]/sidebar:hidden">Acme Inc.</span>
           </div>
         </SidebarHeader>
-        <SidebarContent>
-          <SidebarGroup>
+        <SidebarContent className="gap-4">
+          <SidebarGroup className="gap-1.5">
             <SidebarGroupLabel>Overview</SidebarGroupLabel>
-            <SidebarMenu>
+            <SidebarMenu className="gap-1">
               <SidebarMenuItem><SidebarMenuButton isActive tooltip="Dashboard"><Grid /><span>Dashboard</span></SidebarMenuButton></SidebarMenuItem>
               <SidebarMenuItem><SidebarMenuButton tooltip="Analytics"><Chart /><span>Analytics</span></SidebarMenuButton></SidebarMenuItem>
               <SidebarMenuItem><SidebarMenuButton tooltip="Orders"><Box /><span>Orders</span><SidebarMenuBadge>12</SidebarMenuBadge></SidebarMenuButton></SidebarMenuItem>
               <SidebarMenuItem><SidebarMenuButton tooltip="Customers"><Users /><span>Customers</span></SidebarMenuButton></SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroup>
-          <SidebarGroup>
+          <SidebarGroup className="gap-1.5">
             <SidebarGroupLabel>Workspace</SidebarGroupLabel>
-            <SidebarMenu>
+            <SidebarMenu className="gap-1">
               <SidebarMenuItem><SidebarMenuButton tooltip="Settings"><Gear /><span>Settings</span></SidebarMenuButton></SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroup>
@@ -120,7 +120,7 @@ export function DashboardFrame() {
         {/* Topbar */}
         <header className="flex h-14 shrink-0 items-center gap-3 border-b border-border px-4">
           <SidebarTrigger />
-          <h1 className="text-sm font-semibold text-foreground">Dashboard</h1>
+          <h1 className="text-sm font-medium text-foreground">Dashboard</h1>
           <div className="ml-auto flex items-center gap-2">
             <Input placeholder="Search…" className="hidden h-9 w-44 lg:block" />
             <Button variant="ghost" color="neutral" size="icon" aria-label="Notifications"><Bell /></Button>
@@ -133,7 +133,7 @@ export function DashboardFrame() {
           {/* Page header */}
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">Overview</h2>
+              <h2 className="text-xl font-medium tracking-tight text-foreground sm:text-2xl">Overview</h2>
               <p className="mt-1 text-sm text-muted-foreground">Performance summary for your workspace this month.</p>
             </div>
             <div className="flex items-center gap-2">
@@ -175,7 +175,7 @@ export function DashboardFrame() {
             <Card shadow="none" className="xl:col-span-2">
               <div className="flex flex-wrap items-start justify-between gap-3 p-5 pb-2">
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground">Revenue trend</h3>
+                  <h3 className="text-sm font-medium text-foreground">Revenue trend</h3>
                   <p className="mt-1 text-2xl font-semibold tracking-tight text-foreground">{series.total}</p>
                   <p className="mt-0.5 text-xs">
                     <span className={series.up ? 'text-success' : 'text-destructive'}>{series.delta}</span>
@@ -204,7 +204,7 @@ export function DashboardFrame() {
 
             {/* Channel donut */}
             <Card shadow="none" className="p-5">
-              <h3 className="text-sm font-semibold text-foreground">Traffic by channel</h3>
+              <h3 className="text-sm font-medium text-foreground">Traffic by channel</h3>
               <div className="mt-4 flex items-center justify-center">
                 <div className="relative">
                   <DonutChart segments={CHANNELS.map((c) => ({ value: c.value, color: c.color }))} />
@@ -233,7 +233,7 @@ export function DashboardFrame() {
             <Card shadow="none" className="xl:col-span-2">
               <div className="flex flex-wrap items-center justify-between gap-3 p-5">
                 <div>
-                  <h3 className="text-sm font-semibold text-foreground">Recent transactions</h3>
+                  <h3 className="text-sm font-medium text-foreground">Recent transactions</h3>
                   <p className="mt-0.5 text-xs text-muted-foreground">240 total this month</p>
                 </div>
                 <Button variant="outline" color="neutral" size="sm">View all</Button>
@@ -288,7 +288,7 @@ export function DashboardFrame() {
             {/* Side panel */}
             <div className="grid gap-4">
               <Card shadow="none" className="p-5">
-                <h3 className="text-sm font-semibold text-foreground">Monthly target</h3>
+                <h3 className="text-sm font-medium text-foreground">Monthly target</h3>
                 <div className="mt-3 flex items-center justify-center">
                   <RadialRing value={78} color="var(--primary)">
                     <span className="text-2xl font-semibold tracking-tight text-foreground">78%</span>
@@ -302,7 +302,7 @@ export function DashboardFrame() {
 
               <Card shadow="none" className="p-5">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-semibold text-foreground">Top products</h3>
+                  <h3 className="text-sm font-medium text-foreground">Top products</h3>
                   <Button variant="ghost" color="neutral" size="sm" className="h-7 text-xs">View all</Button>
                 </div>
                 <div className="mt-4 space-y-4">
