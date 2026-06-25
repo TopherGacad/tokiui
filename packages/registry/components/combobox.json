@@ -1,0 +1,7 @@
+{
+  "name": "combobox",
+  "files": ["components/combobox.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": ["popover"]
+}

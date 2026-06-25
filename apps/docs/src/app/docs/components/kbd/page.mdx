@@ -1,0 +1,73 @@
+export const metadata = { title: 'Kbd — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  KbdPreview,
+  KbdSizesPreview,
+  KbdComboPreview,
+  KbdInContextPreview,
+  KbdPropsTable,
+} from '@/components/docs/kbd-demo'
+
+<PageHeader
+  title="Kbd"
+  description="Displays a keyboard key or shortcut. Use it to document hotkeys, command palettes, and inline shortcut hints."
+  version="v0.4.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Preview
+
+<Showcase title="Kbd" code={`import { Kbd } from '@tokiui/ui'\n\nexport function KbdDemo() {\n  return (\n    <div className="flex items-center gap-2">\n      <Kbd>⌘</Kbd>\n      <Kbd>K</Kbd>\n      <Kbd>Esc</Kbd>\n      <Kbd>⏎</Kbd>\n    </div>\n  )\n}`}>
+  <KbdPreview />
+</Showcase>
+
+## Installation
+
+<TerminalInstall component="kbd" />
+<ManualInstall component="kbd" />
+
+## Import
+
+```tsx
+import { Kbd } from '@tokiui/ui'
+```
+
+## Sizes
+
+Three sizes to match surrounding text density.
+
+<Showcase title="Sizes" code={`<Kbd size="sm">⌘ K</Kbd>\n<Kbd size="md">⌘ K</Kbd>\n<Kbd size="lg">⌘ K</Kbd>`}>
+  <KbdSizesPreview />
+</Showcase>
+
+## Key combinations
+
+Compose multiple `Kbd` elements with a separator to show a multi-key shortcut.
+
+<Showcase title="Combinations" code={`<span className="inline-flex items-center gap-1">\n  <Kbd>⌘</Kbd> + <Kbd>K</Kbd>\n</span>`}>
+  <KbdComboPreview />
+</Showcase>
+
+## In context
+
+A common pattern — a shortcut hint inside a search trigger.
+
+<Showcase title="In context" code={`<button className="search-trigger">\n  <span>Search components…</span>\n  <Kbd size="sm">⌘ K</Kbd>\n</button>`}>
+  <KbdInContextPreview />
+</Showcase>
+
+## API
+
+Renders a semantic `<kbd>` element; all standard HTML attributes are forwarded.
+
+<KbdPropsTable />
+
+## Accessibility
+
+- Renders the native `<kbd>` element, which assistive tech recognizes as keyboard input.
+- For multi-key shortcuts, give the wrapping element a descriptive `aria-label` (e.g. `aria-label="Command K"`) — screen readers read glyphs like ⌘ and ⇧ inconsistently.
+- `Kbd` is presentational; wire the actual shortcut with a key handler and reflect it here.

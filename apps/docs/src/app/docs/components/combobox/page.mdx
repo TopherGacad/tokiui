@@ -1,0 +1,83 @@
+export const metadata = { title: 'Combobox — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  ComboboxPreview,
+  ComboboxSizesPreview,
+  ComboboxClearablePreview,
+  ComboboxControlledPreview,
+  ComboboxStatesPreview,
+  ComboboxPropsTable,
+} from '@/components/docs/combobox-demo'
+
+<PageHeader
+  title="Combobox"
+  description="A searchable single-select dropdown. Type to filter, navigate with the keyboard, and select — for long option lists where a plain Select is unwieldy. Built on Popover."
+  version="v0.4.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Preview
+
+<Showcase title="Combobox" code={`import { Combobox } from '@tokiui/ui'\n\nconst frameworks = [\n  { value: 'next', label: 'Next.js' },\n  { value: 'remix', label: 'Remix' },\n  { value: 'astro', label: 'Astro' },\n]\n\nexport function FrameworkPicker() {\n  return (\n    <Combobox\n      options={frameworks}\n      placeholder="Select framework…"\n      searchPlaceholder="Search framework…"\n    />\n  )\n}`}>
+  <ComboboxPreview />
+</Showcase>
+
+## Installation
+
+<TerminalInstall component="combobox" />
+<ManualInstall component="combobox" />
+
+## Import
+
+```tsx
+import { Combobox } from '@tokiui/ui'
+```
+
+## Sizes
+
+Match the trigger height to surrounding inputs with the `size` prop.
+
+<Showcase title="Sizes" code={`<Combobox size="sm" options={frameworks} />\n<Combobox size="default" options={frameworks} />\n<Combobox size="lg" options={frameworks} />`}>
+  <ComboboxSizesPreview />
+</Showcase>
+
+## Clearable
+
+Set `clearable` to show a clear button once a value is selected. Clearing fires `onValueChange("")`.
+
+<Showcase title="Clearable" code={`<Combobox clearable options={frameworks} defaultValue="next" />`}>
+  <ComboboxClearablePreview />
+</Showcase>
+
+## Controlled
+
+Drive the selection from outside with `value` + `onValueChange`.
+
+<Showcase title="Controlled" code={`'use client'\nimport { useState } from 'react'\nimport { Combobox } from '@tokiui/ui'\n\nexport function Controlled() {\n  const [value, setValue] = useState('astro')\n  return <Combobox options={frameworks} value={value} onValueChange={setValue} />\n}`}>
+  <ComboboxControlledPreview />
+</Showcase>
+
+## States
+
+`error` applies a destructive border and ring; `disabled` blocks interaction. Individual options can be disabled via `{ disabled: true }`.
+
+<Showcase title="States" code={`<Combobox error options={frameworks} placeholder="Error state" />\n<Combobox disabled options={frameworks} placeholder="Disabled" />`}>
+  <ComboboxStatesPreview />
+</Showcase>
+
+## API
+
+<ComboboxPropsTable />
+
+`ComboboxOption` is `{ value: string; label: string; disabled?: boolean }`.
+
+## Accessibility
+
+- The search field is a `role="combobox"` with `aria-controls`, `aria-autocomplete="list"`, and `aria-activedescendant` tracking the highlighted option.
+- The list is a `role="listbox"`; each item is a `role="option"` with `aria-selected`.
+- **Keyboard:** type to filter, <kbd className="kbd">↑</kbd> / <kbd className="kbd">↓</kbd> to move, <kbd className="kbd">Enter</kbd> to select, <kbd className="kbd">Esc</kbd> to close. Focus moves to the search field on open.
+- Disabled options set `aria-disabled` and are skipped on selection.

@@ -253,6 +253,12 @@ export type {
   StepperSeparatorProps,
 } from './components/stepper'
 
+export { Kbd, kbdVariants } from './components/kbd'
+export type { KbdProps } from './components/kbd'
+
+export { Combobox } from './components/combobox'
+export type { ComboboxProps, ComboboxOption } from './components/combobox'
+
 export { cn } from './lib/utils'
 
 export {

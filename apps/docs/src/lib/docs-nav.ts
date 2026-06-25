@@ -41,6 +41,8 @@ export const nav: NavSection[] = [
       { label: 'Stepper',          href: '/docs/components/stepper',           pill: 'new' },
       { label: 'Navigation Menu', href: '/docs/components/navigation-menu',   pill: 'new' },
       { label: 'Sidebar',         href: '/docs/components/sidebar',           pill: 'new' },
+      { label: 'Kbd',             href: '/docs/components/kbd',               pill: 'new' },
+      { label: 'Combobox',        href: '/docs/components/combobox',          pill: 'new' },
     ],
   },
 ]
