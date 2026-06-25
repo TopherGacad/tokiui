@@ -153,6 +153,14 @@
   }
 }
 
+/* Theme-switch crossfade — used by useTheme({ transition: true }). Only affects
+   pages that trigger a root view transition; harmless otherwise. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+}
+
 @keyframes fade-in {
   from { opacity: 0 }
   to   { opacity: 1 }

@@ -5,7 +5,7 @@ import { cn } from '../lib/utils'
 
 const buttonVariants = cva(
   [
-    'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium',
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium',
     'cursor-pointer transition-all duration-150 select-none',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
     'disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed',
@@ -22,6 +22,7 @@ const buttonVariants = cva(
       },
       color: {
         default:     '',
+        contrast:    '',
         neutral:     '',
         destructive: '',
         success:     '',
@@ -33,6 +34,10 @@ const buttonVariants = cva(
         sm:      'h-9  min-w-[44px] px-3 text-xs',
         lg:      'h-11 min-w-[44px] px-8 text-base',
         icon:    'h-10 w-10',
+      },
+      shape: {
+        default: 'rounded-md',
+        pill:    'rounded-full',
       },
     },
     compoundVariants: [
@@ -71,11 +76,18 @@ const buttonVariants = cva(
       { variant: 'link', color: 'success',     class: 'text-success hover:text-success/80' },
       { variant: 'link', color: 'warning',     class: 'text-warning hover:text-warning/80' },
       { variant: 'link', color: 'info',        class: 'text-info hover:text-info/80' },
+      // ── contrast (neutral foreground-filled — for toggle / selected states) ──
+      { variant: 'default', color: 'contrast', class: 'bg-foreground text-background hover:bg-foreground/90' },
+      { variant: 'outline', color: 'contrast', class: 'border-foreground/40 text-foreground hover:bg-foreground hover:text-background' },
+      { variant: 'soft',    color: 'contrast', class: 'bg-foreground/10 text-foreground hover:bg-foreground/20' },
+      { variant: 'ghost',   color: 'contrast', class: 'text-foreground hover:bg-foreground/10' },
+      { variant: 'link',    color: 'contrast', class: 'text-foreground hover:text-foreground/80' },
     ],
     defaultVariants: {
       variant: 'default',
       color: 'default',
       size: 'default',
+      shape: 'default',
     },
   }
 )
@@ -106,13 +118,13 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, color, size, asChild = false, loading = false, fullWidth, startIcon, endIcon, disabled, children, ...props }, ref) => {
+  ({ className, variant, color, size, shape, asChild = false, loading = false, fullWidth, startIcon, endIcon, disabled, children, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button'
     const iconSize = size === 'sm' ? 'size-3.5' : size === 'lg' ? 'size-5' : 'size-4'
     return (
       <Comp
         ref={ref}
-        className={cn(buttonVariants({ variant, color, size }), fullWidth && 'w-full', className)}
+        className={cn(buttonVariants({ variant, color, size, shape }), fullWidth && 'w-full', className)}
         disabled={disabled || loading}
         aria-busy={loading || undefined}
         {...props}
