@@ -14,8 +14,19 @@ pages and intentionally **not** in the docs sidebar.
 - `app/frames/page.tsx` — the gallery: site Header + a responsive grid of live preview tiles + Footer.
 - `components/frames/frame-preview.tsx` — client tile that renders a scaled, non-interactive
   `<iframe>` of the frame (a `ResizeObserver` keeps the scale fitted) and links to the full page.
-- `app/frames/{login,settings,dashboard}/page.tsx` — the frames, rendered standalone/full-bleed.
+- `app/frames/{login,settings,dashboard}/page.tsx` — thin async wrappers: render the frame
+  component + `FrameChrome`, reading the frame's source at build time for the code viewer.
+- `components/frames/{dashboard,login,settings}-frame.tsx` — the clean, copy-paste templates.
 - `components/frames/charts.tsx` — dependency-free SVG/CSS charts (Sparkline, AreaChart, segmented DonutChart, RadialRing) styled entirely with tokiui tokens. tokiui has no chart primitive yet, so these are hand-rolled (flagged gap).
+- `components/frames/frame-chrome.tsx` — floating toolbar (Back + "View code") on standalone frames; "View code" opens a `Sheet` with a file tree, syntax-highlighted source, and copy.
+- `lib/get-frame-source.ts` — reads each frame's source files at build time (`fs`) and highlights them with Shiki (the docs' existing setup). Static export → baked into the page.
+
+## Source viewer ("View code")
+
+Like shadcn blocks: every standalone frame shows a **View code** button that opens a `Sheet`
+with a **file tree**, the **real syntax-highlighted source** (read from disk at build, Shiki-highlighted),
+and a **copy** button. Frame UIs were extracted into `*-frame.tsx` so the shown source is the clean
+template, not docs scaffolding. (Dogfoods `Sheet`; reuses the docs' `CopyButton` + Shiki.)
 
 ## Frames
 
