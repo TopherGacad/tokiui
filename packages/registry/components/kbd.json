@@ -1,0 +1,7 @@
+{
+  "name": "kbd",
+  "files": ["components/kbd.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

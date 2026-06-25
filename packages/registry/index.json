@@ -149,6 +149,16 @@
       "name": "tabs",
       "label": "Tabs",
       "description": "Tabbed navigation with pills, line, and card variants plus icon and badge slots."
+    },
+    {
+      "name": "kbd",
+      "label": "Kbd",
+      "description": "Displays a keyboard key or shortcut. For hotkeys, command palettes, and shortcut hints."
+    },
+    {
+      "name": "combobox",
+      "label": "Combobox",
+      "description": "A searchable single-select dropdown with keyboard navigation, clearable selection, and sizes. Built on Popover."
     }
   ]
 }
