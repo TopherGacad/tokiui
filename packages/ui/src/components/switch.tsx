@@ -25,12 +25,14 @@ export interface SwitchProps
   color?: SwitchColor
   checkedIcon?: React.ReactNode
   uncheckedIcon?: React.ReactNode
+  /** Override the thumb (knob) styling — e.g. its color, incl. data-[state=checked]: variants. */
+  thumbClassName?: string
 }
 
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitive.Root>,
   SwitchProps
->(({ className, size = 'default', color = 'default', checkedIcon, uncheckedIcon, ...props }, ref) => {
+>(({ className, size = 'default', color = 'default', checkedIcon, uncheckedIcon, thumbClassName, ...props }, ref) => {
   const s = sizes[size]
   const c = colorMap[color]
   const hasIcons = !!(checkedIcon || uncheckedIcon)
@@ -57,7 +59,8 @@ const Switch = React.forwardRef<
           'transition-transform duration-200',
           'data-[state=unchecked]:translate-x-0',
           s.thumb, s.on,
-          hasIcons && 'group relative flex items-center justify-center overflow-hidden'
+          hasIcons && 'group relative flex items-center justify-center overflow-hidden',
+          thumbClassName
         )}
       >
         {uncheckedIcon && (

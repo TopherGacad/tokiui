@@ -136,7 +136,7 @@ Use the `size` prop to match the switch to surrounding UI density.
 
 ## Custom color
 
-Override the checked color by passing a Tailwind arbitrary value via `className`. The unchecked track color (`bg-foreground/20`) adapts automatically to both themes.
+Override the checked color by passing a Tailwind arbitrary value via `className`. The unchecked track color (`bg-foreground/20`) adapts automatically to both themes. To recolor the thumb (knob), use `thumbClassName` — it accepts `data-[state=checked]:` variants too.
 
 <Showcase title="Custom color" code={`{/* Success */}
 <Switch className="data-[state=checked]:bg-[oklch(0.65_0.19_145)]" defaultChecked />
@@ -197,6 +197,7 @@ Combine multiple switches in a bordered list for a settings page layout.
 | `name` | `string` | — | Input name for form submission |
 | `value` | `string` | `'on'` | Value submitted in a form when checked |
 | `className` | `string` | — | Additional class names — use `data-[state=checked]:bg-[...]` to override the active color |
+| `thumbClassName` | `string` | — | Styles the thumb (knob) — e.g. `bg-card data-[state=checked]:bg-[...]` to color it per state |
 
 ## Accessibility
 

@@ -306,8 +306,9 @@ export function ButtonDoDont() {
 /* ----- Props table ----- */
 const PROPS = [
   { name: 'variant', type: '"default" | "outline" | "soft" | "ghost" | "link"', def: '"default"', desc: 'Visual style: solid fill, border, tinted fill, hover-only, or text link.' },
-  { name: 'color',   type: '"default" | "neutral" | "destructive"',             def: '"default"', desc: 'Semantic color applied to the variant. Use destructive only for irreversible actions.' },
+  { name: 'color',   type: '"default" | "contrast" | "neutral" | "destructive"', def: '"default"', desc: 'Semantic color. contrast is a neutral, foreground-filled fill for toggle / selected states; use destructive only for irreversible actions.' },
   { name: 'size',    type: '"default" | "sm" | "lg" | "icon"',                  def: '"default"', desc: 'Sets height and horizontal padding. icon renders a square.' },
+  { name: 'shape',   type: '"default" | "pill"',                                def: '"default"', desc: 'Corner style. pill renders fully-rounded (capsule) — for filter chips and segmented toggles.' },
   { name: 'asChild',  type: 'boolean',                   def: 'false', desc: 'Render the child element instead of <button>. Useful for <Link>.' },
   { name: 'disabled', type: 'boolean',                   def: 'false', desc: 'Disables interaction and reduces opacity to 50%.' },
   { name: 'className', type: 'string',                   desc: 'Additional classes merged via cn().' },
@@ -432,6 +433,16 @@ export function BtnGhostPreview() {
 
 export function BtnLinkPreview() {
   return <Row><Button variant="link">View documentation</Button></Row>
+}
+
+export function BtnShapePreview() {
+  return (
+    <Row>
+      <Button shape="pill">Pill</Button>
+      <Button shape="pill" variant="outline" color="neutral">Filter</Button>
+      <Button shape="pill" color="contrast">Selected</Button>
+    </Row>
+  )
 }
 
 /* ================================================================

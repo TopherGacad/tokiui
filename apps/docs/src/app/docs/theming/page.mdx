@@ -124,6 +124,12 @@ export function ThemeToggle() {
 }
 ```
 
+Pass `{ transition: true }` to animate the switch as a full-page crossfade via the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API). It falls back to an instant switch where unsupported, and tokiui ships the default crossfade timing in `styles.css`:
+
+```tsx
+const [theme, toggle] = useTheme({ transition: true })
+```
+
 ### Preventing flash of unstyled content
 
 In SSR frameworks (Next.js, Remix) the page renders on the server before JavaScript runs, so there's a brief flash where dark mode isn't applied. Fix this by adding a blocking inline script to your HTML `<head>` that reads `localStorage` and sets the attribute before first paint.
