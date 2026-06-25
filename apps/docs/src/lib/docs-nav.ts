@@ -45,14 +45,6 @@ export const nav: NavSection[] = [
       { label: 'Combobox',        href: '/docs/components/combobox',          pill: 'new' },
     ],
   },
-  {
-    label: 'Examples',
-    items: [
-      { label: 'Dashboard',    href: '/examples/dashboard', pill: 'new' },
-      { label: 'Login & Auth', href: '/examples/login',     pill: 'new' },
-      { label: 'Settings',     href: '/examples/settings',  pill: 'new' },
-    ],
-  },
 ]
 
 export const flatNav: NavItem[] = nav.flatMap((s) => s.items)

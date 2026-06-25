@@ -24,7 +24,7 @@ function GoogleIcon() {
 
 export default function LoginExample() {
   return (
-    <div className="flex min-h-[calc(100vh-101px)] items-center justify-center px-6 py-12">
+    <div className="flex min-h-screen items-center justify-center px-6 py-12">
       <Card shadow="sm" className="w-full max-w-sm p-7">
         <div className="mb-6 flex flex-col items-center text-center">
           <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-primary font-mono text-sm font-bold text-primary-foreground">
