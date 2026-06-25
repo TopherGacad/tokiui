@@ -11,6 +11,7 @@ import {
   BtnOutlinePreview,
   BtnGhostPreview,
   BtnLinkPreview,
+  BtnShapePreview,
   ButtonStatesGallery,
   BtnIconOnlyPreview,
   BtnWithIconPreview,
@@ -169,6 +170,14 @@ For irreversible actions only — deleting data, leaving a team, cancelling a su
 
 <Showcase title="Destructive" code={`<Button color="destructive">Button</Button>\n<Button variant="soft" color="destructive">Soft</Button>\n<Button variant="outline" color="destructive">Outline</Button>\n<Button variant="ghost" color="destructive">Ghost</Button>`}>
   <BtnColorDestructivePreview />
+</Showcase>
+
+## Shape
+
+Use `shape="pill"` for fully-rounded buttons — filter chips, tags, and segmented toggles. Pair with `color="contrast"` for a neutral, foreground-filled "selected" state.
+
+<Showcase title="Shape & toggle" code={`{/* pill shape */}\n<Button shape="pill">Pill</Button>\n<Button shape="pill" variant="outline" color="neutral">Filter</Button>\n\n{/* contrast = neutral foreground-filled, for selected / toggle states */}\n<Button shape="pill" color="contrast">Selected</Button>`}>
+  <BtnShapePreview />
 </Showcase>
 
 ## Full width
