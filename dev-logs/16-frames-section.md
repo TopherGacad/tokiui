@@ -15,12 +15,13 @@ pages and intentionally **not** in the docs sidebar.
 - `components/frames/frame-preview.tsx` — client tile that renders a scaled, non-interactive
   `<iframe>` of the frame (a `ResizeObserver` keeps the scale fitted) and links to the full page.
 - `app/frames/{login,settings,dashboard}/page.tsx` — the frames, rendered standalone/full-bleed.
+- `components/frames/charts.tsx` — dependency-free SVG/CSS charts (Sparkline, AreaChart, segmented DonutChart, RadialRing) styled entirely with tokiui tokens. tokiui has no chart primitive yet, so these are hand-rolled (flagged gap).
 
 ## Frames
 
 - **Login** — centered auth card: social buttons (`Button`), email/password (`Input`), remember-me (`Checkbox`).
 - **Settings** — tabbed (`Tabs` line): Profile (`Avatar` + `Input` + `Textarea`), Account (`Input` + `Select` + `Separator`), Notifications (`SwitchField`).
-- **Dashboard** — a **full-viewport, responsive** app shell (`components/frames/dashboard-frame.tsx`, client): collapsible `Sidebar` (expanded on desktop, icon-rail on smaller screens via `useMediaQuery`), topbar, stat `Card`s with delta `Badge`s, activity feed, and a table.
+- **Dashboard** — a **full-viewport, responsive analytics** app (`components/frames/dashboard-frame.tsx`, client): collapsible `Sidebar` (icon-rail below `lg` via `useMediaQuery`); KPI cards with **sparklines** + trend `Badge`s; an **interactive revenue area chart** (metric `Tabs` swap the series) + period `Select`; a segmented **channel donut**; a refined transactions table (`Avatar` + status `Badge`s + real `Pagination`); a **radial target ring**; and a `Progress`-based top-products panel.
 
 ## Responsive by default (standard for all frames)
 
