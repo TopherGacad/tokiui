@@ -9,13 +9,16 @@ Date: 2026-06-24
 To validate that tokiui can build our own marketing site with **no visual change**, we
 built a parallel, non-destructive pilot of the landing page that swaps bespoke,
 component-like markup for real `@tokiui/ui` components. The live homepage (`/`) was never
-touched; the pilot lives at **`/pilot`** for side-by-side comparison.
+touched; a temporary `/pilot` route provided side-by-side comparison — **since removed**
+after the approach was validated and the library fixes below landed.
 
-## Pilot route
+## Pilot route (temporary — since removed)
 
-- `apps/docs/src/app/pilot/page.tsx` — mirrors `app/page.tsx`; Features `.feature-card` → `Card`.
-- `apps/docs/src/components/pilot/` — pilot copies of `header`, `theme-toggle`, `hero`,
-  `component-preview`, `theme-teaser` that use tokiui components.
+A throwaway `/pilot` route plus `components/pilot/` copies mirrored the live landing page
+with tokiui components (Features `.feature-card` → `Card`; header/hero/theme-teaser/
+component-preview converted) for side-by-side comparison. It validated the approach and was
+**removed** once the findings were captured and the library fixes landed — the durable
+outcomes are the gap fixes, not the pilot itself.
 
 ### Findings
 
