@@ -9,7 +9,7 @@ export default async function LoginPage() {
   return (
     <>
       <LoginFrame />
-      <FrameChrome title="Login & Auth" files={files} />
+      <FrameChrome title="Login & Auth" files={files} deps={['card', 'input', 'button', 'checkbox']} />
     </>
   )
 }

@@ -18,15 +18,20 @@ pages and intentionally **not** in the docs sidebar.
   component + `FrameChrome`, reading the frame's source at build time for the code viewer.
 - `components/frames/{dashboard,login,settings}-frame.tsx` — the clean, copy-paste templates.
 - `components/frames/charts.tsx` — dependency-free SVG/CSS charts (Sparkline, AreaChart, segmented DonutChart, RadialRing) styled entirely with tokiui tokens. tokiui has no chart primitive yet, so these are hand-rolled (flagged gap).
-- `components/frames/frame-chrome.tsx` — floating toolbar (Back + "View code") on standalone frames; "View code" opens a `Sheet` with a file tree, syntax-highlighted source, and copy.
+- `components/frames/frame-chrome.tsx` — floating toolbar (Back + "View code") on standalone frames; "View code" opens a `Sheet` with a file tabs, syntax-highlighted source, and copy.
 - `lib/get-frame-source.ts` — reads each frame's source files at build time (`fs`) and highlights them with Shiki (the docs' existing setup). Static export → baked into the page.
 
 ## Source viewer ("View code")
 
 Like shadcn blocks: every standalone frame shows a **View code** button that opens a `Sheet`
-with a **file tree**, the **real syntax-highlighted source** (read from disk at build, Shiki-highlighted),
+with a **file tabs**, the **real syntax-highlighted source** (read from disk at build, Shiki-highlighted),
 and a **copy** button. Frame UIs were extracted into `*-frame.tsx` so the shown source is the clean
-template, not docs scaffolding. (Dogfoods `Sheet`; reuses the docs' `CopyButton` + Shiki.)
+template, not docs scaffolding. It's a full-width **bottom `Sheet`**; the copy button stays fixed
+(only the code scrolls). (Dogfoods `Sheet`; reuses the docs' `CopyButton` + Shiki.)
+
+The viewer also shows a **`npx tokiui add …`** command to install the tokiui components the frame
+uses. Note: this installs the *components* — downloading the *frame itself* via `npx tokiui add <frame>`
+would require adding frames to the registry + CLI (future work).
 
 ## Frames
 

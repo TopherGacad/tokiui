@@ -9,7 +9,11 @@ export default async function SettingsPage() {
   return (
     <>
       <SettingsFrame />
-      <FrameChrome title="Settings" files={files} />
+      <FrameChrome
+        title="Settings"
+        files={files}
+        deps={['card', 'tabs', 'input', 'textarea', 'button', 'switch', 'select', 'avatar', 'separator']}
+      />
     </>
   )
 }

@@ -12,7 +12,11 @@ export default async function DashboardPage() {
   return (
     <>
       <DashboardFrame />
-      <FrameChrome title="Dashboard" files={files} />
+      <FrameChrome
+        title="Dashboard"
+        files={files}
+        deps={['card', 'badge', 'button', 'avatar', 'input', 'progress', 'tabs', 'select', 'pagination', 'sidebar']}
+      />
     </>
   )
 }
