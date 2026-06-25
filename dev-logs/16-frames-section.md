@@ -20,7 +20,15 @@ pages and intentionally **not** in the docs sidebar.
 
 - **Login** — centered auth card: social buttons (`Button`), email/password (`Input`), remember-me (`Checkbox`).
 - **Settings** — tabbed (`Tabs` line): Profile (`Avatar` + `Input` + `Textarea`), Account (`Input` + `Select` + `Separator`), Notifications (`SwitchField`).
-- **Dashboard** — app shell: collapsible `Sidebar`, topbar, stat `Card`s with delta `Badge`s, activity feed, and a table.
+- **Dashboard** — a **full-viewport, responsive** app shell (`components/frames/dashboard-frame.tsx`, client): collapsible `Sidebar` (expanded on desktop, icon-rail on smaller screens via `useMediaQuery`), topbar, stat `Card`s with delta `Badge`s, activity feed, and a table.
+
+## Responsive by default (standard for all frames)
+
+Frames are **production-level, responsive pages** — not fixed-size mockups. Each fills the
+viewport and adapts to the screen size (e.g. the dashboard reflows its grids and collapses
+its sidebar to an icon-rail below `lg`). This is the standard for **every frame going
+forward**. The gallery tiles render each frame live in a scaled `<iframe>`, so the preview
+reflects the real, responsive page.
 
 ## Gap surfaced
 
