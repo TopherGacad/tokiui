@@ -18,7 +18,7 @@ const BASIC: { id: string; status: string; tone: Tone; method: string; amount: s
 
 export function TablePreview() {
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden rounded-lg border border-border bg-card">
       <Table>
         <TableHeader>
           <TableRow>
@@ -125,7 +125,7 @@ export function DataTableDemo() {
         <Button variant="outline" color="neutral" size="sm" disabled={selected.size === 0}>Export selected</Button>
       </div>
 
-      <div className="overflow-hidden rounded-lg border border-border">
+      <div className="overflow-hidden rounded-lg border border-border bg-card">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/40 hover:bg-muted/40">
