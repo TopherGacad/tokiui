@@ -1,7 +1,11 @@
 'use client'
 
+// The Remember-me Switch and the "Live" Badge are tokiui components; the email/password
+// Inputs and the Sign-in Button already were. The preview/code tab bar stays bespoke — tokiui
+// <Tabs> renders one panel per value and can't show the "split" (preview + code) mode.
+
 import { useState } from 'react'
-import { Button, Input } from '@tokiui/ui'
+import { Button, Input, Switch, Badge } from '@tokiui/ui'
 
 const SNIPPETS: Record<string, string> = {
   default: `import { Button, Badge, Input } from "@tokiui/ui"
@@ -23,33 +27,6 @@ export function LoginForm() {
   input: `<Input type="email" placeholder="you@company.com" />`,
   switch: `<Switch label="Remember me" />`,
   badge: `<Badge className="badge-accent">● Live</Badge>`,
-}
-
-function SiteSwitch({
-  checked,
-  onChange,
-  label,
-}: {
-  checked: boolean
-  onChange: (v: boolean) => void
-  label?: string
-}) {
-  return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
-      <button
-        type="button"
-        role="switch"
-        aria-checked={checked}
-        className={`switch${checked ? ' on' : ''}`}
-        onClick={() => onChange(!checked)}
-      />
-      {label && (
-        <span style={{ fontSize: 13, color: 'var(--muted-foreground)', cursor: 'pointer', userSelect: 'none' }}>
-          {label}
-        </span>
-      )}
-    </span>
-  )
 }
 
 type Tab = 'preview' | 'code' | 'split'
@@ -104,7 +81,15 @@ export function ComponentPreview() {
                       auth · sign in
                     </span>
                     <span onMouseEnter={() => setHovered('badge')}>
-                      <span className="badge-accent">● Live</span>
+                      {/* tokiui Badge (soft + dot); border re-added inline to match the original pill. */}
+                      <Badge
+                        variant="soft"
+                        color="default"
+                        dot
+                        style={{ borderColor: 'color-mix(in oklch, var(--primary) 40%, var(--border))' }}
+                      >
+                        Live
+                      </Badge>
                     </span>
                   </div>
                   <div onMouseEnter={() => setHovered('input')}>
@@ -126,7 +111,19 @@ export function ComponentPreview() {
                     />
                   </div>
                   <div className="preview__form-row" onMouseEnter={() => setHovered('switch')}>
-                    <SiteSwitch checked={remember} onChange={setRemember} label="Remember me" />
+                    {/* tokiui Switch; track/border/thumb overridden via className + thumbClassName to match. */}
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+                      <Switch
+                        checked={remember}
+                        onCheckedChange={setRemember}
+                        aria-label="Remember me"
+                        className="bg-[var(--muted)] border border-[var(--border-strong)]"
+                        thumbClassName="bg-card data-[state=checked]:bg-[var(--primary-foreground)]"
+                      />
+                      <span style={{ fontSize: 13, color: 'var(--muted-foreground)', cursor: 'pointer', userSelect: 'none' }}>
+                        Remember me
+                      </span>
+                    </span>
                     <a
                       href="#"
                       style={{ fontSize: 13, color: 'var(--muted-foreground)', textDecoration: 'none' }}

@@ -1,5 +1,9 @@
 'use client'
 
+// Theme teaser. The preset pickers are tokiui Buttons (pill shape + contrast "selected" state).
+// The two ThemePreview cards keep their bespoke .btn-demo / .badge-demo ON PURPOSE — they're
+// tinted by fake --t-* preset vars to demo arbitrary tokens; real tokiui components read the
+// REAL tokens, so converting them would defeat the demo (both cards would look identical).
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Button } from '@tokiui/ui'
@@ -14,6 +18,7 @@ const PRESETS = {
 
 type PresetKey = keyof typeof PRESETS
 
+// These demo buttons/badges are intentionally bespoke (tinted by --t-* fake-preset vars; see header).
 function ThemePreview({ preset, name }: { preset: PresetKey; name: string }) {
   const p = PRESETS[preset]
   const style = {
@@ -72,17 +77,25 @@ function PickerGroup({
     <div className="theme-picker__group">
       <span className="theme-picker__label mono">{label}</span>
       <div className="theme-picker__opts">
-        {options.map((o) => (
-          <button
-            key={o}
-            type="button"
-            className={`theme-picker__btn${value === o ? ' active' : ''}`}
-            onClick={() => onChange(o)}
-          >
-            <span className="theme-picker__dot" style={{ background: PRESETS[o].primary }} />
-            {o}
-          </button>
-        ))}
+        {options.map((o) => {
+          const active = value === o
+          return (
+            <Button
+              key={o}
+              shape="pill"
+              variant={active ? 'default' : 'outline'}
+              color={active ? 'contrast' : 'neutral'}
+              onClick={() => onChange(o)}
+              // Only page-specific sizing/typography + the resting tint remain as overrides.
+              className={`h-auto gap-2 px-3 py-1.5 text-[13px] font-normal capitalize shadow-none active:scale-100 ${
+                active ? '' : 'bg-card text-muted-foreground hover:bg-card hover:text-foreground hover:border-[var(--border-strong)]'
+              }`}
+            >
+              <span className="theme-picker__dot" style={{ background: PRESETS[o].primary }} />
+              {o}
+            </Button>
+          )
+        })}
       </div>
     </div>
   )
