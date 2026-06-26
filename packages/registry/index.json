@@ -159,6 +159,11 @@
       "name": "combobox",
       "label": "Combobox",
       "description": "A searchable single-select dropdown with keyboard navigation, clearable selection, and sizes. Built on Popover."
+    },
+    {
+      "name": "table",
+      "label": "Table",
+      "description": "Composable table primitives — header, body, row, head, cell, footer, caption — for building styled and data tables."
     }
   ]
 }

@@ -95,6 +95,17 @@ export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/tabs'
 export type { TabsListProps, TabsTriggerProps } from './components/tabs'
 
 export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+} from './components/table'
+
+export {
   Sheet,
   SheetTrigger,
   SheetClose,

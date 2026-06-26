@@ -43,6 +43,7 @@ export const nav: NavSection[] = [
       { label: 'Sidebar',         href: '/docs/components/sidebar',           pill: 'new' },
       { label: 'Kbd',             href: '/docs/components/kbd',               pill: 'new' },
       { label: 'Combobox',        href: '/docs/components/combobox',          pill: 'new' },
+      { label: 'Table',           href: '/docs/components/table',             pill: 'new' },
     ],
   },
 ]

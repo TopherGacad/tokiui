@@ -1,0 +1,7 @@
+{
+  "name": "table",
+  "files": ["components/table.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

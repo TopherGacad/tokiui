@@ -1,0 +1,55 @@
+export const metadata = { title: 'Table — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import { TablePreview, DataTableDemo, TablePartsTable } from '@/components/docs/table-demo'
+
+<PageHeader
+  title="Table"
+  description="Composable, accessible table primitives. Use them directly for static tables, or compose them with state for a full sortable, paginated, selectable data table."
+  version="v0.5.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Preview
+
+<Showcase title="Table" code={`import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@tokiui/ui'\n\nexport function InvoicesTable() {\n  return (\n    <Table>\n      <TableHeader>\n        <TableRow>\n          <TableHead>Invoice</TableHead>\n          <TableHead>Status</TableHead>\n          <TableHead>Method</TableHead>\n          <TableHead className="text-right">Amount</TableHead>\n        </TableRow>\n      </TableHeader>\n      <TableBody>\n        <TableRow>\n          <TableCell>INV-1001</TableCell>\n          <TableCell>Paid</TableCell>\n          <TableCell>Credit Card</TableCell>\n          <TableCell className="text-right">$1,200.00</TableCell>\n        </TableRow>\n      </TableBody>\n    </Table>\n  )\n}`}>
+  <TablePreview />
+</Showcase>
+
+## Installation
+
+<TerminalInstall component="table" />
+<ManualInstall component="table" />
+
+## Import
+
+```tsx
+import {
+  Table, TableHeader, TableBody, TableFooter,
+  TableRow, TableHead, TableCell, TableCaption,
+} from '@tokiui/ui'
+```
+
+## Data table
+
+The primitives are unopinionated, so you compose them with your own state for sorting, pagination, and row selection — no data-grid dependency. This example pairs `Table` with `useState` + `Checkbox`, `Badge`, `Button`, and `Pagination`. Click the **Amount** or **Date** headers to sort, page through with the controls, and select rows with the checkboxes.
+
+<Showcase title="Data table">
+  <DataTableDemo />
+</Showcase>
+
+## API
+
+A set of styled primitives mapping 1:1 to the HTML table elements; all standard attributes are forwarded.
+
+<TablePartsTable />
+
+## Accessibility
+
+- Renders semantic `<table>` / `<thead>` / `<tbody>` / `<tr>` / `<th>` / `<td>` — assistive tech announces rows, columns, and headers natively.
+- Use `TableHead` for header cells so data cells associate with the correct column.
+- In interactive tables, label controls (`aria-label` on selection checkboxes) and reflect selection with `data-state="selected"` on the row.
+- Add a `TableCaption` (or an adjacent heading) describing the table.
