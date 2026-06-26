@@ -1,3 +1,4 @@
+import { Card } from '@tokiui/ui'
 import { Header } from '@/components/site/header'
 import { Footer } from '@/components/site/footer'
 import { Hero } from '@/components/site/hero'
@@ -63,11 +64,17 @@ export default function HomePage() {
             </div>
             <div className="features">
               {FEATURES.map((f, i) => (
-                <div key={i} className="feature-card">
+                // .feature-card div → tokiui Card. shadow="none" + p-7 + matched hover reproduce
+                // the original exactly (rounded-lg + border already match the tokens).
+                <Card
+                  key={i}
+                  shadow="none"
+                  className="p-7 transition-colors duration-200 hover:border-[var(--border-strong)]"
+                >
                   <div className="feature-card__icon">{f.icon}</div>
                   <h3 className="feature-card__title">{f.title}</h3>
                   <p className="feature-card__desc">{f.desc}</p>
-                </div>
+                </Card>
               ))}
             </div>
           </div>
