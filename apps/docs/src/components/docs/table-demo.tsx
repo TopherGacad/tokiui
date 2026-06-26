@@ -5,6 +5,7 @@ import {
   Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
   Badge, Checkbox, Button, cn,
   Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext, PaginationLink,
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel,
 } from '@tokiui/ui'
 
 type Tone = 'success' | 'warning' | 'destructive'
@@ -77,6 +78,13 @@ function SortIcon({ active, dir }: { active: boolean; dir: 'asc' | 'desc' }) {
   )
 }
 
+const iconAttrs = { className: 'size-4', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true }
+const MoreIcon = () => <svg {...iconAttrs}><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+const EyeIcon = () => <svg {...iconAttrs}><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" /></svg>
+const EditIcon = () => <svg {...iconAttrs}><path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg>
+const CopyIcon = () => <svg {...iconAttrs}><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+const TrashIcon = () => <svg {...iconAttrs}><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /></svg>
+
 export function DataTableDemo() {
   const [sortKey, setSortKey] = useState<SortKey>('date')
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc')
@@ -144,6 +152,7 @@ export function DataTableDemo() {
                   Date <SortIcon active={sortKey === 'date'} dir={sortDir} />
                 </button>
               </TableHead>
+              <TableHead className="w-10"><span className="sr-only">Actions</span></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -159,6 +168,23 @@ export function DataTableDemo() {
                 <TableCell><Badge variant="soft" color={r.tone} size="sm">{r.status}</Badge></TableCell>
                 <TableCell className="text-right tabular-nums text-foreground">{fmt(r.amount)}</TableCell>
                 <TableCell className="whitespace-nowrap text-right text-muted-foreground">{r.date}</TableCell>
+                <TableCell className="w-10">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" color="neutral" size="icon" className="size-8" aria-label={`Actions for ${r.customer}`}>
+                        <MoreIcon />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                      <DropdownMenuItem icon={<EyeIcon />}>View details</DropdownMenuItem>
+                      <DropdownMenuItem icon={<EditIcon />}>Edit</DropdownMenuItem>
+                      <DropdownMenuItem icon={<CopyIcon />}>Copy invoice ID</DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem icon={<TrashIcon />} className="text-destructive focus:bg-[var(--btn-destructive-soft)] focus:text-destructive">Delete</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
