@@ -1762,6 +1762,24 @@ figure[data-rehype-pretty-code-figure] pre {
 .show__body li,
 .doc-preview__stage li { margin: 0; }
 
+/* Same idea for tables: the `.docs-prose th/td` rules (unlayered, so they beat
+   Tailwind utilities) leak into demo tables and override the Table component's
+   alignment/padding/colors. revert-layer rolls each cell back to the component's
+   own utility classes inside demo stages. */
+.show__body :is(table, thead, tbody, tfoot, tr, th, td),
+.doc-preview__stage :is(table, thead, tbody, tfoot, tr, th, td) {
+  background: revert-layer;
+  border: revert-layer;
+  padding: revert-layer;
+  text-align: revert-layer;
+  text-transform: revert-layer;
+  letter-spacing: revert-layer;
+  font-size: revert-layer;
+  font-weight: revert-layer;
+  color: revert-layer;
+  vertical-align: revert-layer;
+}
+
 .show__body {
   position: relative; min-height: 180px;
   display: flex; align-items: center; justify-content: center;
