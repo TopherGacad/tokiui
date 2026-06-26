@@ -18,6 +18,7 @@ export function Header({ mobileNav }: HeaderProps) {
         <nav className="nav" aria-label="Primary">
           <Link href="/docs/installation">Docs</Link>
           <Link href="/docs/components/button">Components</Link>
+          <Link href="/frames">Frames</Link>
           <Link href="/playground">Playground</Link>
         </nav>
         <div className="header-right">

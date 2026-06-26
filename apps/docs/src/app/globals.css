@@ -1794,6 +1794,17 @@ figure[data-rehype-pretty-code-figure] pre {
 .shiki span { color: var(--shiki-light, currentColor); }
 [data-theme="dark"] .shiki span { color: var(--shiki-dark, currentColor); }
 
+/* Frame source viewer (code Sheet) */
+.frame-code .shiki {
+  margin: 0;
+  padding: 20px 24px;
+  background: transparent !important;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  white-space: pre;
+}
+
 .show__highlighted .shiki { background: transparent !important; margin: 0; font: inherit; }
 .show__highlighted .shiki code { font: inherit; }
 
