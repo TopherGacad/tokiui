@@ -1,14 +1,27 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
-// Keeps every document's theme in sync with the shared `tokiui-theme` localStorage key.
-// This is what makes the /frames previews follow the nav toggle: the previews are
-// <iframe>s, and the browser fires a `storage` event in every same-origin browsing
-// context EXCEPT the one that made the change — so when the parent page toggles the
-// theme, each preview iframe receives it here and re-applies data-theme to its own <html>.
-// (Runs in the parent too, harmlessly — the parent's own toggle is handled by useTheme.)
+// Keeps the theme sticky and in sync across documents.
+//
+// 1) Re-assert on every navigation. `data-theme` lives on <html> (set by the pre-paint
+//    script in the root layout) and is NOT React-controlled, so a client-side route change
+//    that remounts components can drop or transiently clobber it. Re-applying the stored
+//    value on each pathname change guarantees dark mode stays dark until the user toggles
+//    it — e.g. navigating back from /frames/dashboard to /frames.
+//
+// 2) Cross-context sync for the /frames previews: they're <iframe>s, and the browser fires
+//    a `storage` event in every same-origin context EXCEPT the one that made the change, so
+//    a parent toggle reaches each preview here and it re-applies data-theme to itself.
 export function ThemeSync() {
+  const pathname = usePathname()
+
+  useEffect(() => {
+    const stored = localStorage.getItem('tokiui-theme')
+    if (stored) document.documentElement.dataset.theme = stored
+  }, [pathname])
+
   useEffect(() => {
     const onStorage = (e: StorageEvent) => {
       if (e.key === 'tokiui-theme' && e.newValue) {
@@ -18,5 +31,6 @@ export function ThemeSync() {
     window.addEventListener('storage', onStorage)
     return () => window.removeEventListener('storage', onStorage)
   }, [])
+
   return null
 }
