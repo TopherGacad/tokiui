@@ -270,6 +270,9 @@ export type { KbdProps } from './components/kbd'
 export { Combobox } from './components/combobox'
 export type { ComboboxProps, ComboboxOption } from './components/combobox'
 
+export { Sparkline, AreaChart, BarChart, DonutChart, RadialChart } from './components/chart'
+export type { SparklineProps, AreaChartProps, BarChartProps, DonutChartProps, DonutSegment, RadialChartProps } from './components/chart'
+
 export { cn } from './lib/utils'
 
 export {
