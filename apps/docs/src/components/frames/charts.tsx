@@ -1,3 +1,7 @@
+'use client'
+
+import { useState } from 'react'
+
 // Lightweight, dependency-free charts for the Frames demos. tokiui has no chart
 // primitive yet, so these are hand-rolled SVG/CSS — but styled entirely with tokiui
 // design tokens so they stay seamless with the component set. (A real Chart component
@@ -34,22 +38,28 @@ export function Sparkline({
   )
 }
 
-/* ---------- Area chart (responsive width, fixed height) ---------- */
+/* ---------- Area chart (responsive, interactive hover) ---------- */
 export function AreaChart({
   data,
   compare,
   height = 220,
   color = 'var(--primary)',
   gradientId = 'tk-area',
+  labels,
+  valueFormat,
 }: {
   data: number[]
   compare?: number[]
   height?: number
   color?: string
   gradientId?: string
+  labels?: string[]
+  valueFormat?: (v: number) => string
 }) {
+  const [hover, setHover] = useState<number | null>(null)
   const W = 100
   const pad = 10
+  const n = data.length
   const all = compare ? [...data, ...compare] : data
   const max = Math.max(...all)
   const min = Math.min(...all)
@@ -65,52 +75,57 @@ export function AreaChart({
   const area = `${line} L${W},${height} L0,${height} Z`
   const grid = [0.25, 0.5, 0.75]
 
+  // Overlay positions as percentages — HTML overlays don't get distorted by the SVG's
+  // horizontal stretch (preserveAspectRatio="none"), so dots stay round.
+  const hx = (i: number) => (n > 1 ? (i / (n - 1)) * 100 : 0)
+  const hy = (v: number) => ((pad + (1 - (v - min) / range) * (height - pad * 2)) / height) * 100
+
+  function onMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const frac = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width))
+    setHover(Math.round(frac * (n - 1)))
+  }
+
   return (
-    <svg
-      width="100%"
-      height={height}
-      viewBox={`0 0 ${W} ${height}`}
-      preserveAspectRatio="none"
-      fill="none"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity={0.26} />
-          <stop offset="100%" stopColor={color} stopOpacity={0} />
-        </linearGradient>
-      </defs>
-      {grid.map((g) => {
-        const y = pad + g * (height - pad * 2)
-        return (
-          <line
-            key={g}
-            x1={0}
-            x2={W}
-            y1={y}
-            y2={y}
-            stroke="var(--border)"
-            strokeWidth={1}
-            strokeDasharray="3 4"
-            vectorEffect="non-scaling-stroke"
-            opacity={0.7}
+    <div className="relative" style={{ height }} onMouseMove={onMove} onMouseLeave={() => setHover(null)}>
+      <svg width="100%" height={height} viewBox={`0 0 ${W} ${height}`} preserveAspectRatio="none" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={color} stopOpacity={0.26} />
+            <stop offset="100%" stopColor={color} stopOpacity={0} />
+          </linearGradient>
+        </defs>
+        {grid.map((g) => {
+          const y = pad + g * (height - pad * 2)
+          return <line key={g} x1={0} x2={W} y1={y} y2={y} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 4" vectorEffect="non-scaling-stroke" opacity={0.7} />
+        })}
+        {compare && (
+          <path d={`M${toPts(compare).join(' L')}`} stroke="var(--muted-foreground)" strokeWidth={1.5} strokeDasharray="4 4" strokeLinejoin="round" vectorEffect="non-scaling-stroke" opacity={0.45} />
+        )}
+        <path d={area} fill={`url(#${gradientId})`} />
+        <path d={line} stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+      </svg>
+
+      {hover !== null && (
+        <>
+          {/* crosshair */}
+          <div className="pointer-events-none absolute inset-y-0 w-px bg-foreground/15" style={{ left: `${hx(hover)}%` }} />
+          {/* active point */}
+          <div
+            className="pointer-events-none absolute size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-[var(--card)]"
+            style={{ left: `${hx(hover)}%`, top: `${hy(data[hover])}%`, background: color }}
           />
-        )
-      })}
-      {compare && (
-        <path
-          d={`M${toPts(compare).join(' L')}`}
-          stroke="var(--muted-foreground)"
-          strokeWidth={1.5}
-          strokeDasharray="4 4"
-          strokeLinejoin="round"
-          vectorEffect="non-scaling-stroke"
-          opacity={0.45}
-        />
+          {/* tooltip */}
+          <div
+            className="pointer-events-none absolute top-1 z-10 whitespace-nowrap rounded-md border border-border bg-card px-2 py-1 text-xs shadow-md"
+            style={{ left: `${hx(hover)}%`, transform: `translateX(${hover === 0 ? '0' : hover === n - 1 ? '-100%' : '-50%'})` }}
+          >
+            {labels?.[hover] && <span className="text-muted-foreground">{labels[hover]} · </span>}
+            <span className="font-medium tabular-nums text-foreground">{valueFormat ? valueFormat(data[hover]) : data[hover]}</span>
+          </div>
+        </>
       )}
-      <path d={area} fill={`url(#${gradientId})`} />
-      <path d={line} stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-    </svg>
+    </div>
   )
 }
 

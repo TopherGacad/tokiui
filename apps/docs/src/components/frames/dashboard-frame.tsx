@@ -38,6 +38,14 @@ const SERIES = {
 }
 type Metric = keyof typeof SERIES
 
+// Plausible per-metric tooltip values (the chart data is a trend shape; these scale it
+// to numbers near each metric's headline total).
+const FMT: Record<Metric, (v: number) => string> = {
+  revenue: (v) => `$${v}k`,
+  orders: (v) => (v * 62).toLocaleString(),
+  users: (v) => (v * 120).toLocaleString(),
+}
+
 type Tone = 'success' | 'warning' | 'destructive'
 type KPI = { key: string; label: string; value: string; delta: string; up: boolean; spark: number[]; color: string; icon: React.ReactNode }
 
@@ -206,7 +214,7 @@ export function DashboardFrame() {
                 </Tabs>
               </div>
               <div className="px-5 pb-5">
-                <AreaChart data={series.data} compare={series.compare} height={220} gradientId={`area-${metric}`} />
+                <AreaChart data={series.data} compare={series.compare} height={220} gradientId={`area-${metric}`} labels={MONTHS} valueFormat={FMT[metric]} />
                 <div className="mt-2 flex justify-between text-[10px] text-muted-foreground">
                   {MONTHS.map((m) => <span key={m}>{m}</span>)}
                 </div>
