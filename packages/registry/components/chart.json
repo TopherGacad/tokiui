@@ -1,0 +1,7 @@
+{
+  "name": "chart",
+  "files": ["components/chart.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": []
+}

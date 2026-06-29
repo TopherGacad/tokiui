@@ -44,6 +44,7 @@ export const nav: NavSection[] = [
       { label: 'Kbd',             href: '/docs/components/kbd',               pill: 'new' },
       { label: 'Combobox',        href: '/docs/components/combobox',          pill: 'new' },
       { label: 'Table',           href: '/docs/components/table',             pill: 'new' },
+      { label: 'Chart',           href: '/docs/components/chart',             pill: 'new' },
     ],
   },
 ]

@@ -9,10 +9,11 @@ import {
   Tabs, TabsList, TabsTrigger,
   Select, SelectTrigger, SelectValue, SelectContent, SelectItem,
   Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis,
+  Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+  Sparkline, AreaChart, DonutChart, RadialChart,
 } from '@tokiui/ui'
 import { useMediaQuery } from '@tokiui/ui/client'
 import type { ProgressColor } from '@tokiui/ui'
-import { Sparkline, AreaChart, DonutChart, RadialRing } from './charts'
 
 /* ----- Icons ----- */
 const ic = 'size-4 shrink-0'
@@ -36,6 +37,14 @@ const SERIES = {
   users:   { total: '8,210',   delta: '+9.1%',  up: true, data: [40, 42, 44, 43, 48, 50, 52, 55, 57, 60, 63, 68], compare: [38, 39, 40, 41, 43, 45, 46, 48, 49, 51, 53, 56] },
 }
 type Metric = keyof typeof SERIES
+
+// Plausible per-metric tooltip values (the chart data is a trend shape; these scale it
+// to numbers near each metric's headline total).
+const FMT: Record<Metric, (v: number) => string> = {
+  revenue: (v) => `$${v}k`,
+  orders: (v) => (v * 62).toLocaleString(),
+  users: (v) => (v * 120).toLocaleString(),
+}
 
 type Tone = 'success' | 'warning' | 'destructive'
 type KPI = { key: string; label: string; value: string; delta: string; up: boolean; spark: number[]; color: string; icon: React.ReactNode }
@@ -205,10 +214,7 @@ export function DashboardFrame() {
                 </Tabs>
               </div>
               <div className="px-5 pb-5">
-                <AreaChart data={series.data} compare={series.compare} height={220} gradientId={`area-${metric}`} />
-                <div className="mt-2 flex justify-between text-[10px] text-muted-foreground">
-                  {MONTHS.map((m) => <span key={m}>{m}</span>)}
-                </div>
+                <AreaChart data={series.data} compare={series.compare} height={220} id={`area-${metric}`} labels={MONTHS} valueFormat={FMT[metric]} />
                 <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-primary" />This period</span>
                   <span className="flex items-center gap-1.5"><span className="h-[2px] w-3.5 rounded bg-muted-foreground" />Previous</span>
@@ -220,13 +226,10 @@ export function DashboardFrame() {
             <Card shadow="none" className="p-5">
               <h3 className="text-sm font-medium text-foreground">Traffic by channel</h3>
               <div className="mt-4 flex items-center justify-center">
-                <div className="relative">
-                  <DonutChart segments={CHANNELS.map((c) => ({ value: c.value, color: c.color }))} />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-xl font-semibold tracking-tight text-foreground">$48.2k</span>
-                    <span className="text-xs text-muted-foreground">total</span>
-                  </div>
-                </div>
+                <DonutChart data={CHANNELS}>
+                  <span className="text-xl font-semibold tracking-tight text-foreground">$48.2k</span>
+                  <span className="text-xs text-muted-foreground">total</span>
+                </DonutChart>
               </div>
               <div className="mt-5 space-y-2.5">
                 {CHANNELS.map((c) => (
@@ -252,38 +255,36 @@ export function DashboardFrame() {
                 </div>
                 <Button variant="outline" color="neutral" size="sm">View all</Button>
               </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-y border-border bg-muted/40 text-left text-[11px] uppercase tracking-wide text-muted-foreground">
-                      <th className="px-5 py-2.5 font-medium">Customer</th>
-                      <th className="px-3 py-2.5 font-medium">Status</th>
-                      <th className="hidden px-3 py-2.5 font-medium sm:table-cell">Method</th>
-                      <th className="px-3 py-2.5 text-right font-medium">Amount</th>
-                      <th className="hidden px-5 py-2.5 text-right font-medium sm:table-cell">Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {TX.map((t) => (
-                      <tr key={t.email} className="border-b border-border transition-colors last:border-0 hover:bg-muted/50">
-                        <td className="px-5 py-3">
-                          <div className="flex items-center gap-3">
-                            <Avatar size="sm" color="auto" fallback={initials(t.name)} />
-                            <div className="min-w-0">
-                              <p className="truncate font-medium text-foreground">{t.name}</p>
-                              <p className="truncate text-xs text-muted-foreground">{t.email}</p>
-                            </div>
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-t border-border bg-muted/40 hover:bg-muted/40">
+                    <TableHead className="px-5 text-[11px] uppercase tracking-wide">Customer</TableHead>
+                    <TableHead className="text-[11px] uppercase tracking-wide">Status</TableHead>
+                    <TableHead className="hidden text-[11px] uppercase tracking-wide sm:table-cell">Method</TableHead>
+                    <TableHead className="text-right text-[11px] uppercase tracking-wide">Amount</TableHead>
+                    <TableHead className="hidden px-5 text-right text-[11px] uppercase tracking-wide sm:table-cell">Date</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {TX.map((t) => (
+                    <TableRow key={t.email}>
+                      <TableCell className="px-5">
+                        <div className="flex items-center gap-3">
+                          <Avatar size="sm" color="auto" fallback={initials(t.name)} />
+                          <div className="min-w-0">
+                            <p className="truncate font-medium text-foreground">{t.name}</p>
+                            <p className="truncate text-xs text-muted-foreground">{t.email}</p>
                           </div>
-                        </td>
-                        <td className="px-3 py-3"><Badge variant="soft" color={t.tone} size="sm">{t.status}</Badge></td>
-                        <td className="hidden whitespace-nowrap px-3 py-3 text-muted-foreground sm:table-cell">{t.method}</td>
-                        <td className="whitespace-nowrap px-3 py-3 text-right font-medium tabular-nums text-foreground">{t.amount}</td>
-                        <td className="hidden whitespace-nowrap px-5 py-3 text-right text-muted-foreground sm:table-cell">{t.date}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                        </div>
+                      </TableCell>
+                      <TableCell><Badge variant="soft" color={t.tone} size="sm">{t.status}</Badge></TableCell>
+                      <TableCell className="hidden whitespace-nowrap text-muted-foreground sm:table-cell">{t.method}</TableCell>
+                      <TableCell className="whitespace-nowrap text-right font-medium tabular-nums text-foreground">{t.amount}</TableCell>
+                      <TableCell className="hidden whitespace-nowrap px-5 text-right text-muted-foreground sm:table-cell">{t.date}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border p-4">
                 <p className="text-xs text-muted-foreground">Showing 1–5 of 240</p>
                 <Pagination className="mx-0 w-auto justify-end">
@@ -304,10 +305,10 @@ export function DashboardFrame() {
               <Card shadow="none" className="p-5">
                 <h3 className="text-sm font-medium text-foreground">Monthly target</h3>
                 <div className="mt-3 flex items-center justify-center">
-                  <RadialRing value={78} color="var(--primary)">
+                  <RadialChart value={78} color="var(--primary)">
                     <span className="text-2xl font-semibold tracking-tight text-foreground">78%</span>
                     <span className="text-[11px] text-muted-foreground">reached</span>
-                  </RadialRing>
+                  </RadialChart>
                 </div>
                 <p className="mt-3 text-center text-sm text-muted-foreground">
                   <span className="font-medium text-foreground">$48.2k</span> of $62k goal

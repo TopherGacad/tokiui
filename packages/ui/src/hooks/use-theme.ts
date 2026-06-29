@@ -18,15 +18,20 @@ export function useTheme(options: UseThemeOptions = {}): [Theme, () => void] {
   const [theme, setTheme] = useState<Theme>('light')
 
   useEffect(() => {
-    const stored = localStorage.getItem('tokiui-theme') as Theme | null
-    const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    setTheme(stored ?? preferred)
+    // Adopt the theme already on the DOM (set by a pre-paint script) if present, else
+    // fall back to the stored value / system preference. Reading the DOM FIRST means we
+    // re-apply the *current* theme on (re)mount instead of clobbering it with the initial
+    // 'light' state — which previously caused a flash to light on remount (and, in pages
+    // with embedded same-origin iframes, propagated that flash via the storage event).
+    const root = document.documentElement
+    const current =
+      (root.dataset.theme as Theme | undefined) ||
+      (localStorage.getItem('tokiui-theme') as Theme | null) ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    root.dataset.theme = current
+    localStorage.setItem('tokiui-theme', current)
+    setTheme(current)
   }, [])
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme
-    localStorage.setItem('tokiui-theme', theme)
-  }, [theme])
 
   const toggle = useCallback(() => {
     // Read the live DOM value so we never toggle from a stale render.

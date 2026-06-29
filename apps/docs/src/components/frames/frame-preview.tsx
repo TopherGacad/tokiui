@@ -10,6 +10,7 @@ const BASE_H = 800
 
 export function FramePreview({ href, title, desc }: { href: string; title: string; desc: string }) {
   const ref = useRef<HTMLDivElement>(null)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
   const [scale, setScale] = useState(0.42)
 
   useEffect(() => {
@@ -22,6 +23,27 @@ export function FramePreview({ href, title, desc }: { href: string; title: strin
     return () => ro.disconnect()
   }, [])
 
+  // The preview is a separate document (iframe), so the nav's theme toggle — which
+  // only sets data-theme on the parent <html> — doesn't reach it. Mirror the parent
+  // theme into the iframe on load and whenever it changes (same-origin).
+  useEffect(() => {
+    const iframe = iframeRef.current
+    if (!iframe) return
+    const root = document.documentElement
+    const sync = () => {
+      const doc = iframe.contentDocument
+      if (doc?.documentElement) doc.documentElement.dataset.theme = root.dataset.theme || 'light'
+    }
+    iframe.addEventListener('load', sync)
+    const mo = new MutationObserver(sync)
+    mo.observe(root, { attributes: true, attributeFilter: ['data-theme'] })
+    sync()
+    return () => {
+      iframe.removeEventListener('load', sync)
+      mo.disconnect()
+    }
+  }, [])
+
   return (
     <Link href={href} className="group block no-underline">
       <div className="overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-[var(--border-strong)]">
@@ -31,6 +53,7 @@ export function FramePreview({ href, title, desc }: { href: string; title: strin
           style={{ height: BASE_H * scale }}
         >
           <iframe
+            ref={iframeRef}
             src={href}
             title={`${title} preview`}
             aria-hidden="true"
