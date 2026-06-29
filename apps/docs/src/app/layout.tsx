@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { Toaster, TooltipProvider } from '@tokiui/ui'
+import { ThemeSync } from '@/components/site/theme-sync'
 import './globals.css'
 
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <ThemeSync />
         <TooltipProvider>
           <NuqsAdapter>{children}</NuqsAdapter>
         </TooltipProvider>
