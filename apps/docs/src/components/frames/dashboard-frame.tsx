@@ -10,10 +10,10 @@ import {
   Select, SelectTrigger, SelectValue, SelectContent, SelectItem,
   Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis,
   Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+  Sparkline, AreaChart, DonutChart, RadialChart,
 } from '@tokiui/ui'
 import { useMediaQuery } from '@tokiui/ui/client'
 import type { ProgressColor } from '@tokiui/ui'
-import { Sparkline, AreaChart, DonutChart, RadialRing } from './charts'
 
 /* ----- Icons ----- */
 const ic = 'size-4 shrink-0'
@@ -214,10 +214,7 @@ export function DashboardFrame() {
                 </Tabs>
               </div>
               <div className="px-5 pb-5">
-                <AreaChart data={series.data} compare={series.compare} height={220} gradientId={`area-${metric}`} labels={MONTHS} valueFormat={FMT[metric]} />
-                <div className="mt-2 flex justify-between text-[10px] text-muted-foreground">
-                  {MONTHS.map((m) => <span key={m}>{m}</span>)}
-                </div>
+                <AreaChart data={series.data} compare={series.compare} height={220} id={`area-${metric}`} labels={MONTHS} valueFormat={FMT[metric]} />
                 <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
                   <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-primary" />This period</span>
                   <span className="flex items-center gap-1.5"><span className="h-[2px] w-3.5 rounded bg-muted-foreground" />Previous</span>
@@ -229,13 +226,10 @@ export function DashboardFrame() {
             <Card shadow="none" className="p-5">
               <h3 className="text-sm font-medium text-foreground">Traffic by channel</h3>
               <div className="mt-4 flex items-center justify-center">
-                <div className="relative">
-                  <DonutChart segments={CHANNELS.map((c) => ({ value: c.value, color: c.color }))} />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-xl font-semibold tracking-tight text-foreground">$48.2k</span>
-                    <span className="text-xs text-muted-foreground">total</span>
-                  </div>
-                </div>
+                <DonutChart data={CHANNELS}>
+                  <span className="text-xl font-semibold tracking-tight text-foreground">$48.2k</span>
+                  <span className="text-xs text-muted-foreground">total</span>
+                </DonutChart>
               </div>
               <div className="mt-5 space-y-2.5">
                 {CHANNELS.map((c) => (
@@ -311,10 +305,10 @@ export function DashboardFrame() {
               <Card shadow="none" className="p-5">
                 <h3 className="text-sm font-medium text-foreground">Monthly target</h3>
                 <div className="mt-3 flex items-center justify-center">
-                  <RadialRing value={78} color="var(--primary)">
+                  <RadialChart value={78} color="var(--primary)">
                     <span className="text-2xl font-semibold tracking-tight text-foreground">78%</span>
                     <span className="text-[11px] text-muted-foreground">reached</span>
-                  </RadialRing>
+                  </RadialChart>
                 </div>
                 <p className="mt-3 text-center text-sm text-muted-foreground">
                   <span className="font-medium text-foreground">$48.2k</span> of $62k goal

@@ -7,7 +7,6 @@ export const metadata = { title: 'Dashboard' }
 export default async function DashboardPage() {
   const files = await getFrameSource([
     'src/components/frames/dashboard-frame.tsx',
-    'src/components/frames/charts.tsx',
   ])
   return (
     <>
@@ -15,7 +14,7 @@ export default async function DashboardPage() {
       <FrameChrome
         title="Dashboard"
         files={files}
-        deps={['card', 'badge', 'button', 'avatar', 'input', 'progress', 'tabs', 'select', 'pagination', 'sidebar']}
+        deps={['card', 'badge', 'button', 'avatar', 'input', 'progress', 'tabs', 'select', 'pagination', 'sidebar', 'chart']}
       />
     </>
   )
