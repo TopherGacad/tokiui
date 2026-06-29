@@ -164,6 +164,11 @@
       "name": "table",
       "label": "Table",
       "description": "Composable table primitives — header, body, row, head, cell, footer, caption — for building styled and data tables."
+    },
+    {
+      "name": "chart",
+      "label": "Chart",
+      "description": "Zero-dependency SVG charts — Area, Bar, Donut, Radial, and Sparkline. Data-driven, token-themed, interactive on hover."
     }
   ]
 }
