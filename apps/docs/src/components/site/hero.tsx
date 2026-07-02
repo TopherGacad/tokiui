@@ -2,7 +2,8 @@
 
 // Hero. The announcement pill is a tokiui Badge and the CTAs + copy button are tokiui Buttons.
 // The install-command bar itself stays bespoke (a specialized widget; no matching component).
-import { Button, Badge } from '@tokiui/ui'
+import Link from 'next/link'
+import { Button, Badge, buttonVariants } from '@tokiui/ui'
 import { useCopy } from './use-copy'
 import { Icon } from './icons'
 
@@ -21,7 +22,7 @@ export function Hero() {
             // match the original pill: card bg, default border, 13px muted text, shadow-sm
             className="mb-7 gap-2 rounded-full border-border bg-card px-3 py-1.5 text-[13px] font-normal text-muted-foreground shadow-sm"
           >
-            <Badge variant="soft" color="secondary" size="sm" className="font-mono">v0.3.0</Badge>
+            <Badge variant="soft" color="secondary" size="sm" className="font-mono">v0.5.0</Badge>
             Now public
           </Badge>
           <h1 className="hero__title">
@@ -29,16 +30,16 @@ export function Hero() {
             <span className="hero__title-em">we ship with.</span>
           </h1>
           <p className="hero__sub">
-            47 components, one token map, zero black-box dependencies.
-            Used in 14 of our internal apps.
+            34 components, one token map, zero black-box dependencies —
+            interactive charts included. Copy-paste-ready and fully themeable.
           </p>
           <div className="hero__ctas">
-            <Button size="lg">
+            <Link href="/docs/components/button" className={buttonVariants({ size: 'lg' })}>
               Browse Components <Icon.arrow />
-            </Button>
-            <Button variant="outline" size="lg">
+            </Link>
+            <Link href="/playground" className={buttonVariants({ variant: 'outline', size: 'lg' })}>
               Open Playground
-            </Button>
+            </Link>
           </div>
 
           <div className="hero__install" role="group" aria-label="Install command">

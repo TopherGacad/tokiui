@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Card } from '@tokiui/ui'
 import { Header } from '@/components/site/header'
 import { Footer } from '@/components/site/footer'
@@ -7,9 +8,9 @@ import { ThemeTeaser } from '@/components/site/theme-teaser'
 import { Icon } from '@/components/site/icons'
 
 const CHANGELOG = [
-  { v: '0.1.4', date: '2 days ago', entry: 'Added DateRange, Combobox, and Toast. Fixed focus ring on Switch in dark mode.' },
-  { v: '0.1.3', date: '9 days ago', entry: "Token export now writes to tailwind.config.ts directly. New 'orbit' theme preset." },
-  { v: '0.1.2', date: '3 weeks ago', entry: 'Button variant API simplified — variant + size only. Migration codemod included.' },
+  { v: '0.5.0', date: 'Latest', entry: 'Table and Chart — zero-dependency SVG charts (area, bar, donut, radial, sparkline). Theme now persists across navigation.' },
+  { v: '0.4.0', date: 'Recent', entry: 'Combobox and Kbd. Button gains shape + contrast options; Switch adds thumbClassName; opt-in useTheme crossfade.' },
+  { v: '0.3.0', date: 'Earlier', entry: 'Navigation suite — Sidebar, Navigation Menu, Stepper, Breadcrumb, Pagination, Accordion, and Progress.' },
 ]
 
 const FEATURES = [
@@ -41,9 +42,9 @@ export default function HomePage() {
           <div className="container">
             <div className="changelog-head">
               <h2 className="changelog-head__title">What&apos;s new</h2>
-              <a href="#" className="changelog-head__link">
+              <Link href="/changelog" className="changelog-head__link">
                 Full changelog <Icon.arrow />
-              </a>
+              </Link>
             </div>
             <div className="changelog">
               {CHANGELOG.map((c) => (

@@ -4,9 +4,10 @@
 // The two ThemePreview cards keep their bespoke .btn-demo / .badge-demo ON PURPOSE — they're
 // tinted by fake --t-* preset vars to demo arbitrary tokens; real tokiui components read the
 // REAL tokens, so converting them would defeat the demo (both cards would look identical).
+import Link from 'next/link'
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
-import { Button } from '@tokiui/ui'
+import { Button, buttonVariants } from '@tokiui/ui'
 import { Icon } from './icons'
 
 const PRESETS = {
@@ -129,9 +130,9 @@ export function ThemeTeaser() {
         </div>
 
         <div className="theme-cta">
-          <Button variant="outline">
+          <Link href="/playground" className={buttonVariants({ variant: 'outline' })}>
             Open the full playground <Icon.arrow />
-          </Button>
+          </Link>
         </div>
       </div>
     </section>
