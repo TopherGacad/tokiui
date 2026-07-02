@@ -1,5 +1,16 @@
 # @tokiui/ui
 
+## 0.5.0
+
+### Minor Changes
+
+- b2fb0b9: Add **Chart** — zero-dependency SVG charts: `Sparkline`, `AreaChart` (interactive crosshair + value tooltip), `BarChart`, `DonutChart`, and `RadialChart`. Data-driven and themed with your design tokens (they retint with light/dark). No charting dependency.
+- e7cf26f: Add **Table** — composable, accessible table primitives (`Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableRow`, `TableHead`, `TableCell`, `TableCaption`). Use them directly for static tables, or compose with state for sortable / paginated / selectable data tables. No new dependencies.
+
+### Patch Changes
+
+- 16459cf: Fix `useTheme` re-applying its initial `light` value to the DOM and `localStorage` on every (re)mount before reading the stored theme, which caused a flash to light on remount. It now adopts the theme already applied to the DOM (by a pre-paint script) or the stored / system value and applies that — no clobber.
+
 ## 0.4.0
 
 ### Minor Changes
