@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Card } from '@tokiui/ui'
+import { Card, Badge } from '@tokiui/ui'
 import { Header } from '@/components/site/header'
 import { Footer } from '@/components/site/footer'
 import { Hero } from '@/components/site/hero'
@@ -16,18 +16,18 @@ const CHANGELOG = [
 const FEATURES = [
   {
     icon: <Icon.tokens />,
-    title: 'Wired to our design tokens',
-    desc: 'Every primitive reads from the same token map our designers ship from Figma. Update once, propagate everywhere.',
+    title: 'One OKLCH token map',
+    desc: 'Every primitive reads from the same set of design tokens. Retheme once and it propagates across every component — light and dark included.',
   },
   {
     icon: <Icon.upgrade />,
     title: 'Owned, but versioned',
-    desc: 'Components install as code. When we ship a breaking change, a codemod migrates your usage — no fork rot.',
+    desc: 'Install components as code you own with the CLI. Updates ship as versioned, documented releases via Changesets — no black-box dependency to fight.',
   },
   {
     icon: <Icon.a11y />,
     title: 'Accessible by default',
-    desc: 'Built on Radix primitives. Keyboard, focus, ARIA — handled, audited, and covered by our internal a11y tests.',
+    desc: 'Built on Radix primitives, so keyboard interaction, focus management, and ARIA are handled for you out of the box.',
   },
 ]
 
@@ -46,12 +46,19 @@ export default function HomePage() {
                 Full changelog <Icon.arrow />
               </Link>
             </div>
-            <div className="changelog">
+            <div className="mt-6 overflow-hidden rounded-xl border border-border bg-card">
               {CHANGELOG.map((c) => (
-                <div key={c.v} className="changelog__item">
-                  <span className="changelog__v mono">v{c.v}</span>
-                  <span className="changelog__date mono">{c.date}</span>
-                  <span className="changelog__entry">{c.entry}</span>
+                <div
+                  key={c.v}
+                  className="flex flex-col gap-2 border-b border-border p-5 transition-colors last:border-0 hover:bg-muted/40 sm:flex-row sm:items-center sm:gap-5"
+                >
+                  <div className="flex shrink-0 items-center gap-2 sm:w-32">
+                    <Badge variant={c.date === 'Latest' ? 'solid' : 'soft'} size="sm" className="font-mono">v{c.v}</Badge>
+                    {c.date === 'Latest' && (
+                      <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">New</span>
+                    )}
+                  </div>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{c.entry}</p>
                 </div>
               ))}
             </div>
