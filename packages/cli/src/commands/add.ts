@@ -28,7 +28,7 @@ export const addCommand = new Command('add')
 
     if (!config) {
       console.log(
-        kleur.red('No tokiui.json found. Run `npx tokiui init` first.')
+        kleur.red('No tokiui.json found. Run `npx @tokiui/cli init` first.')
       )
       process.exit(1)
     }

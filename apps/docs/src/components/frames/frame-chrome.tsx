@@ -33,7 +33,7 @@ export function FrameChrome({ title, files, deps = [], usage }: { title: string;
   if (!standalone || pathname === '/frames') return null
 
   const file = files[active]
-  const cli = deps.length ? `npx tokiui add ${deps.join(' ')}` : ''
+  const cli = deps.length ? `npx @tokiui/cli add ${deps.join(' ')}` : ''
   const pill = 'inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium no-underline transition-colors text-foreground hover:bg-muted'
 
   return (
