@@ -18,7 +18,12 @@ export default async function SidebarBlockPage() {
   return (
     <>
       <BlockPage />
-      <FrameChrome title="Sidebar" files={files} deps={['sidebar-01']} />
+      <FrameChrome
+        title="Sidebar"
+        files={files}
+        deps={['sidebar-shell']}
+        usage="Requires a tokiui project (run npx tokiui init first). The block installs into components/blocks/sidebar-shell/ — import its page.tsx into a route to use it."
+      />
     </>
   )
 }
