@@ -1,6 +1,6 @@
 {
   "name": "@tokiui/cli",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "CLI for adding tokiui components to your project",
   "license": "MIT",
   "author": "Topher Gacad",
