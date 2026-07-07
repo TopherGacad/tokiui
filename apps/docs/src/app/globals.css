@@ -1754,13 +1754,15 @@ figure[data-rehype-pretty-code-figure] pre {
 
 /* Live component demos must not inherit prose list typography. The
    `.docs-prose ul/ol/li` rules above add padding-left + margins with higher
-   specificity than a component's own `p-0`/`m-0` reset, which e.g. indents
+   specificity than a component's own utility classes, which e.g. indents
    Sidebar/NavigationMenu/Pagination lists and shifts collapsed icons
-   off-center. Neutralize list spacing inside the demo stages. */
+   off-center. revert-layer rolls each list back to the component's own
+   utility classes — so SidebarMenuSub keeps its indent + guide — while
+   plain lists fall back to Tailwind's zeroed preflight. */
 .show__body :is(ul, ol),
-.doc-preview__stage :is(ul, ol) { margin: 0; padding: 0; }
+.doc-preview__stage :is(ul, ol) { margin: revert-layer; padding: revert-layer; }
 .show__body li,
-.doc-preview__stage li { margin: 0; }
+.doc-preview__stage li { margin: revert-layer; }
 
 /* Same idea for tables: the `.docs-prose th/td` rules (unlayered, so they beat
    Tailwind utilities) leak into demo tables and override the Table component's

@@ -4,11 +4,11 @@
 
 ---
 
-I want to build a production-grade React component library with Tailwind CSS, similar to shadcn/ui but with my own identity. Please scaffold the complete project foundation following the architecture below. Be thorough — I want a solid, clean, professional foundation I can build on for months.
+I want to build a production-grade React component library with Tailwind CSS, with my own identity and design language. Please scaffold the complete project foundation following the architecture below. Be thorough — I want a solid, clean, professional foundation I can build on for months.
 
 ## PROJECT OVERVIEW
 
-A copy-paste React component library where users run a CLI to install components into their projects (shadcn-style ownership model). It includes a documentation website with a live theme playground where users can customize colors, radius, and fonts in real-time and share themes via URL.
+A copy-paste React component library where users run a CLI to install components into their projects (a source-ownership model — the code lives directly in the user's repo). It includes a documentation website with a live theme playground where users can customize colors, radius, and fonts in real-time and share themes via URL.
 
 ## REPOSITORY STRUCTURE (MONOREPO)
 

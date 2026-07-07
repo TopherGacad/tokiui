@@ -3,27 +3,27 @@
     {
       "name": "button",
       "label": "Button",
-      "description": "Displays a button or a component that looks like a button."
+      "description": "A clickable action element with five variants, semantic colors, loading state, icon slots, and sizes."
     },
     {
       "name": "card",
       "label": "Card",
-      "description": "Displays a card with header, content, and footer."
+      "description": "A surface container with composable header, content, and footer, plus shadow, status-border, and interactive-hover options."
     },
     {
       "name": "input",
       "label": "Input",
-      "description": "Displays a form input field."
+      "description": "A text input with sizes, icon slots, an error state, a clearable button, and a password visibility toggle."
     },
     {
       "name": "dialog",
       "label": "Dialog",
-      "description": "A window overlaid on either the primary window or another dialog window."
+      "description": "A modal overlay for focused tasks, with a mobile bottom-sheet mode and scroll-behavior options."
     },
     {
       "name": "badge",
       "label": "Badge",
-      "description": "Displays a badge or a component that looks like a badge."
+      "description": "A compact status or category label with solid, soft, and outline variants, semantic colors, a dot indicator, and an optional dismiss button."
     },
     {
       "name": "form",
@@ -108,7 +108,7 @@
     {
       "name": "popover",
       "label": "Popover",
-      "description": "A floating panel anchored to a trigger element."
+      "description": "A floating panel anchored to a trigger, for menus, inline forms, and rich content."
     },
     {
       "name": "dropdown-menu",
@@ -169,6 +169,13 @@
       "name": "chart",
       "label": "Chart",
       "description": "Zero-dependency SVG charts — Area, Bar, Donut, Radial, and Sparkline. Data-driven, token-themed, interactive on hover."
+    }
+  ],
+  "blocks": [
+    {
+      "name": "sidebar-shell",
+      "label": "Sidebar",
+      "description": "A collapsible app sidebar — nested nav, badges, icon-rail collapse, and a user footer."
     }
   ]
 }

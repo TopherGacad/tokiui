@@ -3,7 +3,6 @@
 import * as React from 'react'
 import {
   SidebarProvider,
-  useSidebar,
   Sidebar,
   SidebarTrigger,
   SidebarHeader,
@@ -16,6 +15,9 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarMenuBadge,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
   SidebarInset,
 } from '@tokiui/ui'
 import { cn } from '@tokiui/ui'
@@ -347,7 +349,7 @@ function ChevronRight({ open }: { open: boolean }) {
   )
 }
 
-/** A nav item with a collapsible nested sub-menu, built from the base primitives. */
+/** A nav item with a collapsible nested sub-menu, built from the SidebarMenuSub primitives. */
 function CollapsibleNavItem({
   icon: NavIcon,
   label,
@@ -361,49 +363,35 @@ function CollapsibleNavItem({
   active: string
   onSelect: (value: string) => void
 }) {
-  const { open: railOpen } = useSidebar()
   const [open, setOpen] = React.useState(() => items.includes(active))
-  // Only reveal the nested list while the rail is expanded.
-  const expanded = railOpen && open
 
   return (
     <SidebarMenuItem>
       <SidebarMenuButton
         tooltip={label}
         onClick={() => setOpen((o) => !o)}
-        aria-expanded={expanded}
+        aria-expanded={open}
       >
         <NavIcon />
         <span className="truncate">{label}</span>
         <ChevronRight open={open} />
       </SidebarMenuButton>
 
-      {/* grid-rows trick animates height open/closed; indent + rule live on a
-          plain div (not the <ul>) so the demo-stage list reset can't strip them */}
-      <div
-        className={cn(
-          'grid transition-all duration-200 ease-in-out',
-          expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
-        )}
-      >
-        <div className="overflow-hidden">
-          <div className="ml-[1.05rem] mt-0.5 border-l border-border pl-2.5">
-            <SidebarMenu>
-              {items.map((sub) => (
-                <SidebarMenuItem key={sub}>
-                  <SidebarMenuButton
-                    isActive={active === sub}
-                    onClick={() => onSelect(sub)}
-                    className="h-8 font-normal text-[13px]"
-                  >
-                    <span className="truncate">{sub}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </div>
-        </div>
-      </div>
+      {/* SidebarMenuSub draws the indented, guide-lined list and hides itself
+          automatically when the rail collapses to icon mode. */}
+      {open && (
+        <SidebarMenuSub>
+          {items.map((sub) => (
+            <SidebarMenuSubItem key={sub}>
+              <SidebarMenuSubButton asChild isActive={active === sub}>
+                <button type="button" onClick={() => onSelect(sub)}>
+                  {sub}
+                </button>
+              </SidebarMenuSubButton>
+            </SidebarMenuSubItem>
+          ))}
+        </SidebarMenuSub>
+      )}
     </SidebarMenuItem>
   )
 }
