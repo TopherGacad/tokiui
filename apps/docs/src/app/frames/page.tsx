@@ -6,6 +6,8 @@ export const metadata = { title: 'Frames' }
 
 const FRAMES = [
   { href: '/frames/dashboard', title: 'Dashboard', desc: 'App shell — sidebar, stat cards, activity, and a table.' },
+  { href: '/frames/sales-analytics', title: 'Sales analytics', desc: 'Dense sales report — KPIs, referrers, charts, and a per-rep table.' },
+  { href: '/frames/sidebar', title: 'Sidebar', desc: 'Composable app sidebar — collapsible icon rail, nested groups, badges, and a user footer.' },
   { href: '/frames/login', title: 'Login & Auth', desc: 'Centered sign-in with social providers.' },
   { href: '/frames/settings', title: 'Settings', desc: 'Tabbed account settings and forms.' },
 ]
