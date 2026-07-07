@@ -206,6 +206,9 @@ export {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarMenuBadge,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
   SidebarInset,
 } from './components/sidebar'
 export type {
@@ -222,6 +225,9 @@ export type {
   SidebarMenuItemProps,
   SidebarMenuButtonProps,
   SidebarMenuBadgeProps,
+  SidebarMenuSubProps,
+  SidebarMenuSubItemProps,
+  SidebarMenuSubButtonProps,
   SidebarInsetProps,
 } from './components/sidebar'
 
