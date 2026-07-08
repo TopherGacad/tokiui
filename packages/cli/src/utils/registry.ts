@@ -63,6 +63,8 @@ export interface RegistryBlock {
   files: string[]
   dependencies: string[]
   registryDependencies: string[]
+  /** Optional route slug — when set, `add` also writes app/<route>/page.tsx that renders the block. */
+  route?: string
 }
 
 export interface RegistryIndex {

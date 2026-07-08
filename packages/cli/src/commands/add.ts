@@ -237,6 +237,26 @@ async function installBlock(
     await execa(pm, [installCmd, ...block.dependencies], { cwd })
   }
 
-  spinner.succeed(`Added block ${kleur.bold(block.name)} → ${blockDir}/`)
-  console.log(kleur.dim(`  Import ${path.join(blockDir, 'page.tsx')} into a route to use it.`))
+  spinner.succeed(`Added block ${kleur.bold(block.name)}`)
+
+  // Wire up a ready-to-use route so the block renders at a URL with zero manual
+  // importing (mirrors how a scaffolded page just appears). Skips with guidance
+  // if the route already exists.
+  const posixBlockDir = blockDir.split(path.sep).join('/')
+  const pageAlias = `@/${posixBlockDir.replace(/^src\//, '')}/page`
+
+  if (block.route) {
+    const hasSrc = posixBlockDir.startsWith('src/')
+    const routeFile = path.join(cwd, hasSrc ? 'src/app' : 'app', block.route, 'page.tsx')
+    if (fs.existsSync(routeFile)) {
+      console.log(kleur.dim(`  ${block.route}/page.tsx already exists — wire it with: export { default } from '${pageAlias}'`))
+    } else {
+      await fs.ensureDir(path.dirname(routeFile))
+      await fs.writeFile(routeFile, `export { default } from '${pageAlias}'\n`)
+      const rel = path.relative(cwd, routeFile).split(path.sep).join('/')
+      console.log(kleur.green('  ✓') + kleur.dim(` ready at /${block.route}  (${rel})`))
+    }
+  } else {
+    console.log(kleur.dim(`  Import ${pageAlias} into a route to use it.`))
+  }
 }

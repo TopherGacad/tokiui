@@ -3,6 +3,7 @@
   "type": "block",
   "title": "Sidebar",
   "description": "A collapsible app sidebar — nested nav, badges, icon-rail collapse, and a user footer.",
+  "route": "dashboard",
   "dependencies": [],
   "registryDependencies": [],
   "files": [
