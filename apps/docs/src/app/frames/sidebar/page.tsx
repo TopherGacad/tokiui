@@ -22,7 +22,7 @@ export default async function SidebarBlockPage() {
         title="Sidebar"
         files={files}
         deps={['sidebar-shell']}
-        usage="Requires a tokiui project (run npx @tokiui/cli init first). The block installs into components/blocks/sidebar-shell/ — import its page.tsx into a route to use it."
+        usage="Requires a tokiui project (run npx @tokiui/cli init first). Installing drops the block into components/blocks/sidebar-shell/ and wires a ready route at /dashboard — open it and the sidebar is there, no importing needed."
       />
     </>
   )
