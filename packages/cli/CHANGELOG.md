@@ -1,5 +1,11 @@
 # @tokiui/cli
 
+## 0.3.2
+
+### Patch Changes
+
+- 525397a: Blocks that declare a `route` now install a ready-to-use page at `app/<route>/page.tsx`, so the block renders at a URL immediately after `tokiui add` — no manual importing or wiring. The `sidebar-shell` block installs at `/dashboard`.
+
 ## 0.3.1
 
 ### Patch Changes
