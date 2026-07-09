@@ -8,7 +8,7 @@ import { useCopy } from './use-copy'
 import { Icon } from './icons'
 
 export function Hero() {
-  const cmd = 'npx tokiui add button'
+  const cmd = 'npx @tokiui/cli add button'
   const [copied, copy] = useCopy(cmd)
 
   return (
