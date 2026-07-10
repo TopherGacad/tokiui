@@ -101,6 +101,55 @@ Override any variable in your `globals.css` after the import:
 Override both `:root` and `[data-theme="dark"]` when changing color tokens — the dark value usually needs a higher lightness to maintain contrast.
 </Callout>
 
+## Preset themes
+
+Prefer to start from a ready-made palette? `@tokiui/themes` ships five, each a complete light + dark set of OKLCH tokens:
+
+| Preset | Character |
+|---|---|
+| `default` | The neutral, green-tinted palette shipped in `@tokiui/ui/styles.css` |
+| `rose` | Warm, higher-contrast rose primary |
+| `slate` | Cool, desaturated slate neutrals |
+| `neon` | Vivid violet primary with a mint accent and rounded corners |
+| `newspaper` | Near-monochrome, ink-on-paper with tight radii |
+
+A preset is just a set of token values, so you apply one exactly the way you customize your own theme — set the variables in `globals.css`. For example, `neon`:
+
+```css
+:root {
+  --primary: oklch(0.52 0.32 295);
+  --accent:  oklch(0.81 0.22 162);
+  --ring:    oklch(0.52 0.32 295);
+  --radius:  0.75rem;
+}
+[data-theme="dark"] {
+  --primary: oklch(0.65 0.30 295);
+  --accent:  oklch(0.85 0.24 162);
+}
+```
+
+The quickest way to get every value is the [playground](/playground) — select a preset and copy the full token set.
+
+## Designing a theme in the playground
+
+The [playground](/playground) is a live editor for all tokens, with light and dark side by side and real components to preview against. Pick one of the five presets to start, or tune from scratch, then use the toolbar:
+
+- **Copy CSS variables** — copies a complete `:root { … }` and `[data-theme="dark"] { … }` block. Paste it into `globals.css` **after** the tokiui import and it overrides the defaults wholesale.
+- **Copy theme URL** — copies a shareable link that reopens the playground with your exact tokens.
+
+```css
+@import "tailwindcss";
+@import "@tokiui/ui/styles.css";
+
+/* paste your copied blocks below — they win because they come after the import */
+:root { /* … */ }
+[data-theme="dark"] { /* … */ }
+```
+
+<Callout>
+The playground emits the full token set, so pasting a copied block replaces the theme wholesale rather than patching individual values. Keep it **after** the `@tokiui/ui/styles.css` import.
+</Callout>
+
 ## Dark mode
 
 Dark mode is driven by the `data-theme="dark"` attribute on the `<html>` element:

@@ -34,12 +34,16 @@ The CLI asks three questions — component directory, utility directory, and glo
 - Installs `@tokiui/ui`, `tailwindcss`, `@tailwindcss/postcss`, `clsx`, `tailwind-merge`
 - Writes the `cn()` helper to your lib directory
 - Creates `postcss.config.mjs`
-- Prepends the required imports to `globals.css`
+- Sets up `globals.css` so tokiui owns the theme — on a fresh create-next-app it replaces the starter theme (saving a `globals.css.bak` backup)
 - Adds the `@/*` path alias to `tsconfig.json`
 - Creates `tokiui.json` to save your choices for future `add` commands
 
+<Callout>
+On a fresh create-next-app, `init` **replaces** the starter theme in `globals.css` — the `@theme inline` / `prefers-color-scheme` block create-next-app ships — with tokiui's, saving your original to `globals.css.bak`. This is deliberate: that starter theme defines its own `--background`/`--foreground` and would otherwise override tokiui's tokens (the classic symptom is white cards on a dark OS).
+</Callout>
+
 <Callout type="warning">
-If a `tailwind.config.ts` file exists the CLI will warn and exit — that file belongs to Tailwind CSS v3. tokiui requires **Tailwind CSS v4**. Remove it and re-run `init`, or [migrate from v3](https://tailwindcss.com/docs/upgrade-guide) first.
+tokiui requires **Tailwind CSS v4**. If a `tailwind.config.ts` / `tailwind.config.js` file exists (the hallmark of v3), `init` prints a warning but keeps going — tokiui's tokens won't resolve correctly until you [migrate to v4](https://tailwindcss.com/docs/upgrade-guide) and remove the config file.
 </Callout>
 
 ### 3. Add a component
@@ -159,7 +163,7 @@ It then handles everything automatically:
 - Installs `@tokiui/ui`, `tailwindcss`, `@tailwindcss/postcss`, `clsx`, `tailwind-merge`
 - Writes the `cn()` helper to your lib directory
 - Creates `postcss.config.mjs`
-- Prepends the required imports to `app/tailwind.css`
+- Writes the Tailwind + tokiui imports to `app/tailwind.css`
 - Adds the `@/*` path alias to `tsconfig.json`
 - Creates `tokiui.json` to save your choices for future `add` commands
 
@@ -197,6 +201,25 @@ Start the dev server:
 ```bash
 npm run dev
 ```
+
+---
+
+## Blocks
+
+Components are single files. **Blocks** are multi-file compositions — a full sidebar, a dashboard shell — that install as a self-contained folder, and when a block defines a route the CLI wires up a ready-to-use page for you.
+
+```bash
+npx @tokiui/cli add sidebar-shell
+```
+
+This drops the block into `components/blocks/sidebar-shell/` and creates `app/dashboard/page.tsx` (or `src/app/dashboard/page.tsx`) that renders it — so **/dashboard** works immediately, with no importing or wiring:
+
+```text
+✔ Added block sidebar-shell
+  ✓ ready at /dashboard  (app/dashboard/page.tsx)
+```
+
+Blocks pull their primitives from the `@tokiui/ui` you already installed, so there's nothing extra to configure — edit the files under `components/blocks/` to make them yours. Browse what's available in the [Frames gallery](/frames).
 
 ---
 
@@ -256,10 +279,13 @@ export function cn(...inputs: ClassValue[]) {
 ```json
 {
   "componentsDir": "src/components/ui",
-  "utilsDir": "src/lib",
-  "globalsCss": "src/app/globals.css"
+  "libDir": "src/lib",
+  "libAlias": "@/lib",
+  "style": "default"
 }
 ```
+
+`libAlias` must line up with your `@/*` alias and `libDir` — the CLI rewrites each component's `cn()` import to `${libAlias}/utils`. With a `src/` directory, `@/*` maps to `./src/*`, so drop the `src/` prefix (here `src/lib` → `@/lib`).
 
 Then add components with the CLI:
 

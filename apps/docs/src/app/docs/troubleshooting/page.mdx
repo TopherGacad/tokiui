@@ -1,0 +1,41 @@
+export const metadata = { title: 'Troubleshooting' }
+
+# Troubleshooting
+
+## "Component not found", or the CLI installs the wrong thing
+
+Use the **scoped** package name: `npx @tokiui/cli`. A bare `tokiui` on npm is an unrelated package by another author — `npx tokiui add …` runs that one, not this CLI, and will fail or install something else entirely.
+
+```bash
+npx @tokiui/cli add button   # correct
+npx tokiui add button        # wrong — different package
+```
+
+## My styles look broken — white cards on a dark OS, wrong colors
+
+This almost always means another stylesheet's theme is overriding tokiui's tokens. A fresh create-next-app ships its own theme in `globals.css` (its own `--background`/`--foreground` plus a `prefers-color-scheme` block).
+
+`init` replaces that starter theme automatically and saves your original as `globals.css.bak`. If you set styles up by hand, make sure `globals.css` starts with exactly:
+
+```css
+@import "tailwindcss";
+@import "@tokiui/ui/styles.css";
+```
+
+and that any custom `:root` / `@theme` / `prefers-color-scheme` rules come **after** the tokiui import and don't redefine its tokens by accident. See [Theming](/docs/theming).
+
+## I'm on Tailwind CSS v3
+
+tokiui requires **Tailwind v4** — its tokens are defined with v4's `@theme`. If a `tailwind.config.ts` / `.js` exists, `init` warns but continues; tokiui's tokens won't resolve until you [migrate to v4](https://tailwindcss.com/docs/upgrade-guide) and remove the config file.
+
+## Dark mode won't switch
+
+tokiui toggles dark mode with `data-theme="dark"` on `<html>`, not a `.dark` class. Set it directly, or use the `useTheme` hook from `@tokiui/ui/client`. If dark mode flashes on first load, add the blocking theme script from [Theming](/docs/theming).
+
+## React 19 / Next 16 peer warnings
+
+There shouldn't be any — `@tokiui/ui` declares `react: ">=18"`, so React 19 installs cleanly with no `ERESOLVE`. If your package manager warns about peers, it's coming from another dependency, not tokiui.
+
+## A component can't find `@/lib/utils`
+
+The `cn()` import is rewritten to the `libAlias` from your [`tokiui.json`](/docs/configuration). Make sure `libAlias` matches your `tsconfig.json` `@/*` alias and that `<libDir>/utils.ts` exists — rerun `init` if it's missing.

@@ -37,7 +37,67 @@ import {
 
 The primitives are unopinionated, so you compose them with your own state for sorting, pagination, row selection, and row actions — no data-grid dependency. This example pairs `Table` with `useState` + `Checkbox`, `Badge`, `Button`, `Pagination`, and `DropdownMenu`. Click the **Amount** or **Date** headers to sort, page through with the controls, select rows with the checkboxes, and open the **⋯** menu on any row for actions.
 
-<Showcase title="Data table">
+The snippet below is condensed to the essential sort + selection wiring; the live preview also layers in pagination and a per-row action menu, built from the same primitives.
+
+<Showcase title="Data table" code={`'use client'
+import { useMemo, useState } from 'react'
+import {
+  Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+  Badge, Checkbox,
+} from '@tokiui/ui'
+
+const rows = [
+  { id: 'INV-1001', status: 'Paid', tone: 'success', amount: 1200 },
+  { id: 'INV-1002', status: 'Pending', tone: 'warning', amount: 640 },
+  { id: 'INV-1003', status: 'Overdue', tone: 'destructive', amount: 180 },
+]
+
+export function DataTable() {
+  const [dir, setDir] = useState('desc')
+  const [selected, setSelected] = useState(new Set())
+
+  const sorted = useMemo(
+    () => [...rows].sort((a, b) => (dir === 'asc' ? a.amount - b.amount : b.amount - a.amount)),
+    [dir],
+  )
+
+  const toggle = (id) =>
+    setSelected((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-10" />
+          <TableHead>Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead className="text-right">
+            <button onClick={() => setDir((d) => (d === 'asc' ? 'desc' : 'asc'))}>
+              Amount {dir === 'asc' ? '▲' : '▼'}
+            </button>
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {sorted.map((r) => (
+          <TableRow key={r.id} data-state={selected.has(r.id) ? 'selected' : undefined}>
+            <TableCell>
+              <Checkbox checked={selected.has(r.id)} onCheckedChange={() => toggle(r.id)} aria-label="Select row" />
+            </TableCell>
+            <TableCell className="font-medium">{r.id}</TableCell>
+            <TableCell><Badge variant="soft" color={r.tone} size="sm">{r.status}</Badge></TableCell>
+            <TableCell className="text-right tabular-nums">{'$' + r.amount.toLocaleString()}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  )
+}`}>
   <DataTableDemo />
 </Showcase>
 
