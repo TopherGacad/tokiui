@@ -1,0 +1,65 @@
+export const metadata = { title: 'CLI' }
+
+# CLI
+
+`@tokiui/cli` sets your project up and copies components in. Run it with `npx` — there's nothing global to install.
+
+```bash
+npx @tokiui/cli <command>
+```
+
+The CLI auto-detects your package manager (npm, pnpm, yarn, or bun) from the lockfile and uses it for any installs.
+
+<Callout>
+Always use the **scoped** name `@tokiui/cli`. A bare `tokiui` on npm is an unrelated package by another author. See [Troubleshooting](/docs/troubleshooting).
+</Callout>
+
+## init
+
+Sets up tokiui in the current project. Run it once, at the project root.
+
+```bash
+npx @tokiui/cli init
+```
+
+It asks three questions — where components go, where the `cn()` utility goes, and your global CSS path — then:
+
+- Installs `@tokiui/ui`, `tailwindcss`, `@tailwindcss/postcss`, `clsx`, and `tailwind-merge`
+- Writes the `cn()` helper to your lib directory
+- Creates `postcss.config.mjs` (if you don't already have one)
+- Sets up your global CSS so tokiui owns the theme — on a fresh create-next-app it replaces the starter theme and saves a `.bak`
+- Adds the `@/*` path alias to `tsconfig.json` (if missing)
+- Writes [`tokiui.json`](/docs/configuration) to record your choices
+
+See [Installation](/docs/installation) for per-framework walkthroughs.
+
+## add
+
+Copies one or more components — or a block — into your project, reading `tokiui.json` for the destination.
+
+```bash
+npx @tokiui/cli add button
+npx @tokiui/cli add button card input   # several at once
+npx @tokiui/cli add                      # interactive multi-select
+```
+
+For each component the CLI copies the source file into your components directory, rewrites its `cn()` import to your `libAlias`, and installs any npm dependencies. Dependencies come from a fixed allowlist (Radix UI, `class-variance-authority`, `clsx`, `tailwind-merge`, `lucide-react`, `sonner`) — the CLI refuses anything outside it.
+
+### Blocks
+
+If the name is a **block** — a multi-file composition — `add` installs it as a self-contained folder under `components/blocks/<name>/`. When the block declares a route, it also writes `app/<route>/page.tsx`, so the block renders at a URL immediately:
+
+```bash
+npx @tokiui/cli add sidebar-shell
+# ✓ ready at /dashboard  (app/dashboard/page.tsx)
+```
+
+## theme
+
+<Callout type="warning">
+The playground → project round-trip is being reworked. For now, apply a theme by clicking **Copy CSS variables** in the [playground](/playground) and pasting the result into your `globals.css`. See [Theming](/docs/theming).
+</Callout>
+
+## Registry & versioning
+
+`add` fetches component source over HTTPS from this repository, pinned to the git tag that matches the CLI version you ran — so the components you get always match your CLI. When developing against a branch, set the `TOKIUI_REGISTRY_REF` environment variable to fetch from that ref instead.

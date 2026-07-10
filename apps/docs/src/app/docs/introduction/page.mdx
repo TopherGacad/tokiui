@@ -1,0 +1,38 @@
+export const metadata = { title: 'Introduction' }
+
+# Introduction
+
+tokiui is a React component library you **own**. Instead of installing a black-box package and fighting its styles, you run a CLI that copies clean, unminified component source straight into your project. You keep the files, edit them freely, and they all read from one set of design tokens so the whole app stays consistent.
+
+## Why copy-in?
+
+- **No black box.** Every component lands in your repo as readable TypeScript. Change markup, classes, or behavior without patching `node_modules` or ejecting anything.
+- **One token map.** Colors, radii, and status colors are CSS variables in OKLCH. Restyle the entire app by overriding a handful of variables — no component edits, no dependency rebuild.
+- **Accessible foundations.** Interactive components build on Radix primitives, so keyboard, focus, and ARIA are handled for you.
+- **Tailwind v4 native.** Styling is Tailwind utility classes wired to the token map — no config file, no PostCSS gymnastics beyond the one plugin.
+
+## What's in the box
+
+| Piece | What it is |
+|---|---|
+| `@tokiui/ui` | The component library + design tokens (`styles.css`). Installed once by the CLI. |
+| `@tokiui/cli` | `init` sets your project up; `add` copies components and blocks in. |
+| Components | 30+ primitives — buttons, inputs, dialogs, tables, charts, a full sidebar, and more. |
+| Blocks | Multi-file compositions (like an app sidebar shell) that install as a folder and can wire up a ready route. |
+| Themes | Five preset palettes, plus a live [playground](/playground) to design your own. |
+
+## Requirements
+
+- **Node.js 18+**
+- **React 18 or newer** — React 19 is fully supported
+- **Tailwind CSS v4** — tokiui is built on v4's `@theme` tokens and does not support v3
+- Any React framework that loads a global stylesheet: Next.js, Vite, Remix, and more
+
+## Next steps
+
+- [Installation](/docs/installation) — set tokiui up in a new or existing project
+- [CLI](/docs/cli) — the `init` and `add` commands in detail
+- [Configuration](/docs/configuration) — the `tokiui.json` file
+- [Theming](/docs/theming) — tokens, dark mode, and presets
+
+Or jump straight into the [components](/docs/components/button) or the [Frames gallery](/frames).
