@@ -2,7 +2,7 @@
 
 ## Why OKLCH Instead of HSL
 
-Most component libraries (including shadcn/ui) use HSL color values. tokiui uses **OKLCH** — a perceptually uniform color space.
+Most component libraries use HSL color values. tokiui uses **OKLCH** — a perceptually uniform color space.
 
 **The problem with HSL:** Two colors at the same HSL lightness value don't appear equally light to the human eye. `hsl(120, 70%, 50%)` (green) looks much lighter than `hsl(240, 70%, 50%)` (blue) even though they share the same lightness number.
 
@@ -48,8 +48,8 @@ All design tokens are **CSS custom properties** defined in `packages/ui/src/styl
 }
 ```
 
-**Critical difference from shadcn/ui (Tailwind v3):**
-- shadcn: `--color-primary: hsl(var(--primary))` — HSL channels, needed wrapping
+**Critical difference from the conventional HSL setup (Tailwind v3):**
+- Conventional: `--color-primary: hsl(var(--primary))` — HSL channels, needed wrapping
 - tokiui: `--color-primary: var(--primary)` — full OKLCH values, no wrapping needed
 
 Tailwind v4 resolves CSS variables at runtime in the browser, so `var()` references work directly inside `@theme`.
@@ -106,7 +106,7 @@ document.documentElement.dataset.theme = 'light'  // enable light mode
 
 ## Default Brand Color
 
-The default primary is **green** — a warm green distinctive from shadcn's default blue/neutral:
+The default primary is **green** — a warm green, distinct from the typical default blue/neutral:
 
 - Light mode: `oklch(0.52 0.16 145)`
 - Dark mode: `oklch(0.72 0.15 145)` (brighter to maintain contrast on dark backgrounds)

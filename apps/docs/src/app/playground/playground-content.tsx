@@ -71,7 +71,7 @@ export function PlaygroundContent() {
       ':root {',
       ...Object.entries(lightVars).map(([k, v]) => `  ${k}: ${v};`),
       '}',
-      '.dark {',
+      '[data-theme="dark"] {',
       ...Object.entries(darkVars).map(([k, v]) => `  ${k}: ${v};`),
       '}',
     ].join('\n')

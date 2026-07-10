@@ -5,8 +5,12 @@ export const nav: NavSection[] = [
   {
     label: 'Getting Started',
     items: [
-      { label: 'Installation', href: '/docs/installation' },
-      { label: 'Theming',      href: '/docs/theming',      pill: 'new' },
+      { label: 'Introduction',    href: '/docs/introduction'                },
+      { label: 'Installation',    href: '/docs/installation'                },
+      { label: 'CLI',             href: '/docs/cli',             pill: 'new' },
+      { label: 'Configuration',   href: '/docs/configuration',   pill: 'new' },
+      { label: 'Theming',         href: '/docs/theming',         pill: 'new' },
+      { label: 'Troubleshooting', href: '/docs/troubleshooting', pill: 'new' },
     ],
   },
   {
@@ -27,6 +31,7 @@ export const nav: NavSection[] = [
       { label: 'Radio Group',   href: '/docs/components/radio-group',   pill: 'new' },
       { label: 'Switch',        href: '/docs/components/switch',        pill: 'new' },
       { label: 'Textarea',      href: '/docs/components/textarea',      pill: 'new' },
+      { label: 'Form',          href: '/docs/components/form',          pill: 'new' },
       { label: 'Tabs',          href: '/docs/components/tabs',          pill: 'new' },
       { label: 'Dropdown Menu', href: '/docs/components/dropdown-menu', pill: 'new' },
       { label: 'Sheet',         href: '/docs/components/sheet',         pill: 'new' },

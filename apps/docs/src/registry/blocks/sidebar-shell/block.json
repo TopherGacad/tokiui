@@ -1,0 +1,17 @@
+{
+  "name": "sidebar-shell",
+  "type": "block",
+  "title": "Sidebar",
+  "description": "A collapsible app sidebar — nested nav, badges, icon-rail collapse, and a user footer.",
+  "route": "dashboard",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "icons.tsx",
+    "nav-user.tsx",
+    "nav-secondary.tsx",
+    "nav-main.tsx",
+    "app-sidebar.tsx",
+    "page.tsx"
+  ]
+}

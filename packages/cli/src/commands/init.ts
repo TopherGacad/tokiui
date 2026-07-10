@@ -166,29 +166,53 @@ export const initCommand = new Command('init')
       }
     }
 
-    // ── Step 5: Update globals.css ───────────────────────────────────
+    // ── Step 5: Set up global CSS ────────────────────────────────────
+    // tokiui owns the theme (tokens + dark mode via [data-theme="dark"]).
+    // A fresh create-next-app ships its own theme in globals.css — its own
+    // --background/--foreground plus `@media (prefers-color-scheme: dark)` —
+    // which is unlayered and overrides tokiui's tokens (e.g. white cards on a
+    // dark OS). So we REPLACE that starter theme rather than stacking on it,
+    // while preserving a genuinely hand-written stylesheet.
     spinner.start('Setting up global CSS')
     const globalsAbsPath = path.join(cwd, answers.globalsPath as string)
     await fs.ensureDir(path.dirname(globalsAbsPath))
 
-    let css = fs.existsSync(globalsAbsPath)
+    const TOKIUI_CSS = '@import "tailwindcss";\n@import "@tokiui/ui/styles.css";\n'
+    const existingCss = fs.existsSync(globalsAbsPath)
       ? await fs.readFile(globalsAbsPath, 'utf-8')
       : ''
 
-    const prepend: string[] = []
-    if (!css.includes('@import "tailwindcss"') && !css.includes("@import 'tailwindcss'")) {
-      prepend.push('@import "tailwindcss";')
-    }
-    if (!css.includes('@tokiui/ui/styles.css')) {
-      prepend.push('@import "@tokiui/ui/styles.css";')
-    }
-
-    if (prepend.length > 0) {
-      css = prepend.join('\n') + '\n\n' + css
-      await fs.writeFile(globalsAbsPath, css)
-      spinner.succeed(`globals.css updated (${answers.globalsPath})`)
-    } else {
+    if (existingCss.includes('@tokiui/ui/styles.css')) {
       spinner.succeed('globals.css already configured')
+    } else if (!existingCss.trim()) {
+      await fs.writeFile(globalsAbsPath, TOKIUI_CSS)
+      spinner.succeed(`globals.css created (${answers.globalsPath})`)
+    } else {
+      // Starter templates (create-next-app etc.) use these markers; a real
+      // stylesheet almost never does.
+      const isStarterTheme =
+        /@media\s*\(\s*prefers-color-scheme\s*:\s*dark\s*\)/.test(existingCss) ||
+        /@theme\s+inline/.test(existingCss)
+
+      if (isStarterTheme) {
+        await fs.writeFile(globalsAbsPath + '.bak', existingCss)
+        await fs.writeFile(globalsAbsPath, TOKIUI_CSS)
+        spinner.succeed('globals.css set up — tokiui now owns the theme')
+        console.log(
+          kleur.dim(`  Replaced the starter theme (saved a copy to ${path.basename(globalsAbsPath)}.bak).`)
+        )
+      } else {
+        const lead: string[] = []
+        if (!existingCss.includes('@import "tailwindcss"') && !existingCss.includes("@import 'tailwindcss'")) {
+          lead.push('@import "tailwindcss";')
+        }
+        lead.push('@import "@tokiui/ui/styles.css";')
+        await fs.writeFile(globalsAbsPath, lead.join('\n') + '\n\n' + existingCss)
+        spinner.succeed(`globals.css updated (${answers.globalsPath})`)
+        console.log(
+          kleur.dim('  Note: remove any :root / @theme / prefers-color-scheme rules that conflict with tokiui tokens.')
+        )
+      }
     }
 
     // ── Step 6: Update tsconfig.json ────────────────────────────────

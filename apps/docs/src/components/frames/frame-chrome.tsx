@@ -19,7 +19,7 @@ const FileIcon = () => (
 
 const copyBtn = 'inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5 font-mono text-[11px] text-muted-foreground transition-colors hover:text-foreground'
 
-export function FrameChrome({ title, files, deps = [] }: { title: string; files: FrameFile[]; deps?: string[] }) {
+export function FrameChrome({ title, files, deps = [], usage }: { title: string; files: FrameFile[]; deps?: string[]; usage?: string }) {
   const pathname = usePathname()
   const [standalone, setStandalone] = useState(false)
   const [open, setOpen] = useState(false)
@@ -52,7 +52,7 @@ export function FrameChrome({ title, files, deps = [] }: { title: string; files:
         <SheetContent side="bottom" className="flex h-[88vh] flex-col gap-0 p-0">
           <SheetHeader className="pr-12">
             <SheetTitle>{title}</SheetTitle>
-            <SheetDescription>Copy the files into your project — or install the tokiui components it uses with the CLI.</SheetDescription>
+            <SheetDescription>Install it with the CLI, or copy the files into your project.</SheetDescription>
           </SheetHeader>
 
           {cli && (
@@ -62,6 +62,12 @@ export function FrameChrome({ title, files, deps = [] }: { title: string; files:
                 {cli}
               </code>
               <CopyButton text={cli} className={copyBtn} />
+            </div>
+          )}
+
+          {usage && (
+            <div className="border-b border-border px-4 py-2 text-[12px] leading-relaxed text-muted-foreground">
+              {usage}
             </div>
           )}
 

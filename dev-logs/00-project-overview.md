@@ -2,13 +2,13 @@
 
 ## What It Is
 
-tokiui is a production-grade React component library built for internal company use. It follows the **copy-paste model** (popularized by shadcn/ui) where users install individual component source files directly into their own projects via a CLI. Components are also available as a published npm package for projects that prefer a dependency-based approach.
+tokiui is a production-grade React component library built for internal company use. It follows the **copy-paste model** where users install individual component source files directly into their own projects via a CLI. Components are also available as a published npm package for projects that prefer a dependency-based approach.
 
 The library ships with a documentation website, a live theme playground, a CLI tool, and a preset theme collection.
 
 ## Why We Built It
 
-Our company builds web applications using **Next.js and React.js on the frontend** with **Laravel as the API backend**. We previously used shadcn/ui but decided to build our own standard library to:
+Our company builds web applications using **Next.js and React.js on the frontend** with **Laravel as the API backend**. We previously relied on third-party component libraries but decided to build our own standard library to:
 
 - Enforce a consistent design system across all company projects
 - Use a more modern color system (OKLCH instead of HSL)

@@ -21,7 +21,7 @@ const GLYPHS: Record<PmId, string> = {
 interface Cmd { tool: string; flag: string; arg: string }
 
 function buildCmd(pm: PmId, component: string): Cmd {
-  if (pm === 'cli') return { tool: 'npx', flag: 'tokiui', arg: `add ${component}` }
+  if (pm === 'cli') return { tool: 'npx', flag: '@tokiui/cli', arg: `add ${component}` }
   return { tool: pm, flag: pm === 'npm' ? 'install' : 'add', arg: '@tokiui/ui' }
 }
 

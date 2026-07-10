@@ -60,6 +60,64 @@ A tiny inline trend line — great inside KPI cards or table cells.
 import { AreaChart, BarChart, DonutChart, RadialChart, Sparkline } from '@tokiui/ui'
 ```
 
+## API
+
+### AreaChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `data` | `number[]` | — | Series values (required) |
+| `compare` | `number[]` | — | Optional second, dashed baseline series |
+| `labels` | `string[]` | — | X-axis labels; also shown in the hover tooltip |
+| `color` | `string` | `var(--primary)` | Line and fill color |
+| `height` | `number` | `220` | Plot height in px |
+| `showTooltip` | `boolean` | `true` | Hover crosshair + value tooltip |
+| `valueFormat` | `(v: number) => string` | — | Formats the tooltip value |
+| `className` | `string` | — | Additional class names |
+
+### BarChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `data` | `number[]` | — | Bar values (required) |
+| `labels` | `string[]` | — | X-axis labels; also shown on hover |
+| `color` | `string` | `var(--primary)` | Bar color |
+| `height` | `number` | `220` | Chart height in px |
+| `showTooltip` | `boolean` | `true` | Hover highlight + value tooltip |
+| `valueFormat` | `(v: number) => string` | — | Formats the tooltip value |
+| `className` | `string` | — | Additional class names |
+
+### DonutChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `data` | `DonutSegment[]` | — | Segments of `{ label?, value, color }` (required) |
+| `size` | `number` | `152` | Diameter in px |
+| `thickness` | `number` | `18` | Ring thickness in px |
+| `children` | `ReactNode` | — | Rendered centered inside the ring |
+| `className` | `string` | — | Additional class names |
+
+### RadialChart
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | — | Progress value, 0–100 (required) |
+| `size` | `number` | `132` | Diameter in px |
+| `thickness` | `number` | `12` | Arc thickness in px |
+| `color` | `string` | `var(--primary)` | Arc color |
+| `children` | `ReactNode` | — | Rendered centered inside the arc |
+| `className` | `string` | — | Additional class names |
+
+### Sparkline
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `data` | `number[]` | — | Series values (required) |
+| `color` | `string` | `var(--primary)` | Line and fill color |
+| `width` | `number` | `96` | Width in px |
+| `height` | `number` | `32` | Height in px |
+| `className` | `string` | — | Additional class names |
+
 ## When to reach for a charting library
 
 These charts are **presentational** — perfect for dashboards, KPI cards, and summaries, with no dependencies and full token theming. For heavy data-viz (zoom/pan, brushing, smart axes, tens of thousands of points, real-time streams), drop a dedicated library like Recharts into that one view.

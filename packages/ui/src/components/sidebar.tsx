@@ -357,6 +357,72 @@ const SidebarMenuBadge = React.forwardRef<HTMLSpanElement, SidebarMenuBadgeProps
 )
 SidebarMenuBadge.displayName = 'SidebarMenuBadge'
 
+// ── SidebarMenuSub ────────────────────────────────────────────────
+// Nested sub-menu: an indented list with a vertical guide line. Hidden
+// in the collapsed icon rail, where there's no room for nested labels.
+
+export interface SidebarMenuSubProps extends React.HTMLAttributes<HTMLUListElement> {}
+
+const SidebarMenuSub = React.forwardRef<HTMLUListElement, SidebarMenuSubProps>(
+  ({ className, ...props }, ref) => {
+    const { open } = useSidebar()
+    return (
+      <ul
+        ref={ref}
+        className={cn(
+          'm-0 ml-[18px] flex min-w-0 list-none flex-col gap-0.5 border-l border-border py-0.5 pl-2.5',
+          !open && 'hidden',
+          className,
+        )}
+        {...props}
+      />
+    )
+  },
+)
+SidebarMenuSub.displayName = 'SidebarMenuSub'
+
+// ── SidebarMenuSubItem ────────────────────────────────────────────
+
+export interface SidebarMenuSubItemProps extends React.HTMLAttributes<HTMLLIElement> {}
+
+const SidebarMenuSubItem = React.forwardRef<HTMLLIElement, SidebarMenuSubItemProps>(
+  ({ className, ...props }, ref) => (
+    <li ref={ref} className={cn('relative', className)} {...props} />
+  ),
+)
+SidebarMenuSubItem.displayName = 'SidebarMenuSubItem'
+
+// ── SidebarMenuSubButton ──────────────────────────────────────────
+
+export interface SidebarMenuSubButtonProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  asChild?: boolean
+  isActive?: boolean
+}
+
+const SidebarMenuSubButton = React.forwardRef<HTMLAnchorElement, SidebarMenuSubButtonProps>(
+  ({ asChild, isActive, className, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'a'
+    return (
+      <Comp
+        ref={ref}
+        data-active={isActive || undefined}
+        className={cn(
+          'flex min-w-0 items-center gap-2 rounded-md px-2 py-1.5 text-[13px] no-underline',
+          'cursor-pointer select-none overflow-hidden whitespace-nowrap transition-colors duration-150',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+          isActive
+            ? 'font-medium text-primary'
+            : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+          className,
+        )}
+        {...props}
+      />
+    )
+  },
+)
+SidebarMenuSubButton.displayName = 'SidebarMenuSubButton'
+
 // ── SidebarInset ──────────────────────────────────────────────────
 // The main content area that sits beside the sidebar
 
@@ -386,5 +452,8 @@ export {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarMenuBadge,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
   SidebarInset,
 }

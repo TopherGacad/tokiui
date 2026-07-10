@@ -1,0 +1,54 @@
+export const metadata = { title: 'Configuration' }
+
+# Configuration
+
+`init` writes a `tokiui.json` at your project root. It records where things go, so `add` knows where to put components and how to rewrite their imports.
+
+```json
+{
+  "componentsDir": "src/components/ui",
+  "libDir": "src/lib",
+  "libAlias": "@/lib",
+  "style": "default"
+}
+```
+
+## Fields
+
+### componentsDir
+
+Where `add` writes component source files. Blocks install to a sibling `blocks/<name>/` folder next to it.
+
+```json
+"componentsDir": "src/components/ui"
+```
+
+### libDir
+
+Where the `cn()` utility lives — `init` writes `<libDir>/utils.ts`.
+
+```json
+"libDir": "src/lib"
+```
+
+### libAlias
+
+The import path `add` rewrites each component's `cn()` import to; it resolves to `<libAlias>/utils`. It must match your `@/*` TypeScript alias and your `libDir`.
+
+With a `src/` directory, `@/*` maps to `./src/*`, so drop the `src/` prefix: `src/lib` → `@/lib`. Without `src/`, it's just `@/lib`.
+
+```json
+"libAlias": "@/lib"
+```
+
+### style
+
+The token style set. Only `"default"` ships today.
+
+```json
+"style": "default"
+```
+
+<Callout>
+Changing `componentsDir` or `libDir` after you've added components won't move existing files — it only affects future `add` runs. Keep `libAlias` in sync with your `tsconfig.json` `@/*` paths, or rewritten imports will resolve to the wrong place.
+</Callout>

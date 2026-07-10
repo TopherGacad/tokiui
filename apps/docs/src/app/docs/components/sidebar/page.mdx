@@ -40,6 +40,9 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarMenuBadge,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
   SidebarInset,
 } from '@tokiui/ui'
 ```
@@ -54,9 +57,9 @@ Wrap your layout in `SidebarProvider`. The `Sidebar` and `SidebarInset` sit insi
 
 ## Collapsible sub-menus
 
-Group related links with `SidebarGroup` + `SidebarGroupLabel`, and nest a second `SidebarMenu` inside a `SidebarMenuItem` for expandable sections. A parent `SidebarMenuButton` toggles local open state and rotates a chevron; the nested list animates open with a `grid-rows` transition and collapses out of view when the rail is in icon mode.
+Nest a `SidebarMenuSub` inside a `SidebarMenuItem` for expandable sections. A parent `SidebarMenuButton` toggles local open state and rotates a chevron; `SidebarMenuSub` renders an indented, guide-lined list of `SidebarMenuSubButton` links and hides itself automatically when the rail is in icon mode.
 
-<Showcase title="Sub-menus" code={`function NavItem({ icon: Icon, label, items }) {\n  const [open, setOpen] = React.useState(false)\n  return (\n    <SidebarMenuItem>\n      <SidebarMenuButton onClick={() => setOpen(!open)} aria-expanded={open}>\n        <Icon />\n        <span>{label}</span>\n        <ChevronRight className={cn('ml-auto transition-transform', open && 'rotate-90')} />\n      </SidebarMenuButton>\n      <div className={open ? 'grid grid-rows-[1fr]' : 'grid grid-rows-[0fr]'}>\n        <div className="overflow-hidden">\n          <div className="ml-4 border-l border-border pl-2.5">\n            <SidebarMenu>\n              {items.map((sub) => (\n                <SidebarMenuItem key={sub}>\n                  <SidebarMenuButton className="h-8"><span>{sub}</span></SidebarMenuButton>\n                </SidebarMenuItem>\n              ))}\n            </SidebarMenu>\n          </div>\n        </div>\n      </div>\n    </SidebarMenuItem>\n  )\n}`}>
+<Showcase title="Sub-menus" code={`function NavItem({ icon: Icon, label, items }) {\n  const [open, setOpen] = React.useState(false)\n  return (\n    <SidebarMenuItem>\n      <SidebarMenuButton onClick={() => setOpen(!open)} aria-expanded={open}>\n        <Icon />\n        <span>{label}</span>\n        <ChevronRight className={cn('ml-auto transition-transform', open && 'rotate-90')} />\n      </SidebarMenuButton>\n      {open && (\n        <SidebarMenuSub>\n          {items.map((item) => (\n            <SidebarMenuSubItem key={item.label}>\n              <SidebarMenuSubButton asChild isActive={item.active}>\n                <a href={item.href}>{item.label}</a>\n              </SidebarMenuSubButton>\n            </SidebarMenuSubItem>\n          ))}\n        </SidebarMenuSub>\n      )}\n    </SidebarMenuItem>\n  )\n}`}>
   <SidebarSubmenuPreview />
 </Showcase>
 
@@ -111,6 +114,16 @@ Access sidebar state from any child without prop drilling.
 ### SidebarMenuBadge
 
 Inline count badge that fades out when the sidebar is collapsed. Place it as the last child inside `SidebarMenuButton`.
+
+### SidebarMenuSub
+
+Nested sub-menu primitives for expandable navigation — place a `SidebarMenuSub` inside a `SidebarMenuItem`, right after the parent `SidebarMenuButton`. It renders an indented list with a vertical guide and hides automatically in the collapsed icon rail.
+
+| Component | Element | Props |
+|---|---|---|
+| `SidebarMenuSub` | `<ul>` | — |
+| `SidebarMenuSubItem` | `<li>` | — |
+| `SidebarMenuSubButton` | `<a>` | `asChild`, `isActive` |
 
 ### SidebarInset
 

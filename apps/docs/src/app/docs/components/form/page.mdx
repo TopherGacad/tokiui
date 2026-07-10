@@ -1,0 +1,129 @@
+export const metadata = { title: 'Form — tokiui' }
+
+import { PageHeader } from '@/components/docs/page-header'
+import { TerminalInstall } from '@/components/docs/terminal-install'
+import { ManualInstall } from '@/components/docs/manual-install'
+import { Showcase } from '@/components/docs/showcase'
+import {
+  FormFieldPreview,
+  FormRequiredPreview,
+  FormMessagePreview,
+  FormErrorPreview,
+  FormCompletePreview,
+} from '@/components/docs/form-demo'
+
+<PageHeader
+  title="Form"
+  description="Field primitives — FormField, FormLabel, FormHelperText, FormMessage, and FormError. Compose them with any control (Input, Select, Checkbox…) to build accessible, consistent forms without a form library."
+  version="v0.1.0"
+  sourceHref="https://github.com/TopherGacad/tokiui"
+/>
+
+## Installation
+
+<TerminalInstall component="form" />
+<ManualInstall component="form" />
+
+## Import
+
+```tsx
+import {
+  FormField,
+  FormLabel,
+  FormHelperText,
+  FormMessage,
+  FormError,
+} from '@tokiui/ui'
+```
+
+## Anatomy
+
+A field is a `FormField` wrapper — a vertical stack — holding a `FormLabel`, a control, and optionally a `FormHelperText` or `FormMessage`.
+
+<Showcase title="Field" code={`<FormField>\n  <FormLabel>Workspace name</FormLabel>\n  <Input placeholder="Acme Inc." />\n  <FormHelperText>Visible to everyone on your team.</FormHelperText>\n</FormField>`}>
+  <FormFieldPreview />
+</Showcase>
+
+## Required fields
+
+Add `required` to `FormLabel` to append a destructive asterisk. It's decorative (`aria-hidden`) — also set `required` / `aria-required` on the control itself so assistive tech announces it.
+
+<Showcase title="Required" code={`<FormField>\n  <FormLabel required>Email</FormLabel>\n  <Input type="email" placeholder="you@example.com" required />\n</FormField>`}>
+  <FormRequiredPreview />
+</Showcase>
+
+## Validation messages
+
+`FormMessage` renders `role="alert"` destructive text, and renders nothing when it has no children — so you can bind it straight to your validation state. Pair it with `error` on the control.
+
+<Showcase title="Validation message" code={`<FormField>\n  <FormLabel required>Email</FormLabel>\n  <Input error type="email" defaultValue="not-an-email" />\n  <FormMessage>{errors.email}</FormMessage>\n</FormField>`}>
+  <FormMessagePreview />
+</Showcase>
+
+## Form-level errors
+
+`FormError` surfaces a whole-form failure — a rejected submit, an expired session — as a destructive `Alert`. Like `FormMessage`, it renders nothing until it has a `title` or children.
+
+<Showcase title="Form error" code={`<FormError title="Couldn't save changes">\n  Your session expired. Sign in again and retry.\n</FormError>`}>
+  <FormErrorPreview />
+</Showcase>
+
+## Complete example
+
+<Showcase title="Complete form" code={`<form onSubmit={handleSubmit}>\n  <FormField>\n    <FormLabel required>Full name</FormLabel>\n    <Input placeholder="Your full name" />\n  </FormField>\n\n  <FormField>\n    <FormLabel required>Email</FormLabel>\n    <Input type="email" placeholder="you@example.com" />\n    <FormHelperText>We'll only use this for account notifications.</FormHelperText>\n  </FormField>\n\n  <FormField>\n    <FormLabel required>Password</FormLabel>\n    <Input type="password" error />\n    <FormMessage>Must be at least 8 characters.</FormMessage>\n  </FormField>\n\n  <Button type="submit">Create account</Button>\n</form>`}>
+  <FormCompletePreview />
+</Showcase>
+
+## API
+
+### FormField
+
+Renders a `<div>` (a `flex flex-col gap-1.5` stack) and forwards all `<div>` attributes and a `ref`.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Additional class names |
+
+### FormLabel
+
+Renders a `<label>` and forwards all `<label>` attributes.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `required` | `boolean` | `false` | Appends a destructive `*` (decorative, `aria-hidden`) |
+| `htmlFor` | `string` | — | Associates the label with a control `id` |
+| `className` | `string` | — | Additional class names |
+
+### FormHelperText
+
+Renders a muted `<p>` and forwards all `<p>` attributes.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `className` | `string` | — | Additional class names |
+
+### FormMessage
+
+Renders a `<p role="alert">` in the destructive color. Returns `null` when it has no children.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | — | The message; empty → renders nothing |
+| `className` | `string` | — | Additional class names |
+
+### FormError
+
+Renders a destructive `Alert`. Returns `null` when it has neither `title` nor children.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | — | Bold heading for the alert |
+| `children` | `ReactNode` | — | Body text |
+| `className` | `string` | — | Additional class names |
+
+## Accessibility
+
+- Associate every `FormLabel` with its control — either wrap the control in the label, or set `htmlFor` on the label and a matching `id` on the control.
+- `required` on `FormLabel` is a visual asterisk only (`aria-hidden`); also mark the control `required` (or `aria-required`) so it's announced.
+- `FormMessage` renders `role="alert"`, so validation text is announced the moment it appears. Reference it from the control with `aria-describedby` for the tightest association.
+- Keep helper and validation text as real text — never rely on color alone to signal an error.

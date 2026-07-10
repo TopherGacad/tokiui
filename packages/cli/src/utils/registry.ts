@@ -32,6 +32,11 @@ const REGISTRY_BASE =
 const SOURCE_BASE =
   `${ALLOWED_FETCH_ORIGIN}${REGISTRY_REF}/packages/ui/src`
 
+// Blocks (multi-file compositions) live in the docs app's registry dir, which
+// doubles as the live preview source — one source feeds both preview and install.
+const BLOCK_BASE =
+  `${ALLOWED_FETCH_ORIGIN}${REGISTRY_REF}/apps/docs/src/registry/blocks`
+
 // All outbound fetch calls go through this wrapper, which enforces that the URL
 // starts with the expected GitHub origin — prevents any misdirected request.
 async function safeFetch(url: string): Promise<Response> {
@@ -53,8 +58,18 @@ export interface RegistryComponent {
   registryDependencies: string[]
 }
 
+export interface RegistryBlock {
+  name: string
+  files: string[]
+  dependencies: string[]
+  registryDependencies: string[]
+  /** Optional route slug — when set, `add` also writes app/<route>/page.tsx that renders the block. */
+  route?: string
+}
+
 export interface RegistryIndex {
   components: Array<{ name: string; label: string; description: string }>
+  blocks?: Array<{ name: string; label: string; description: string }>
 }
 
 // ── Security: allowed npm dependency scopes and packages ──────────────────────
@@ -181,5 +196,45 @@ export async function fetchComponentSource(name: string, file: string): Promise<
   assertSafeFilePath(file)
   const res = await safeFetch(`${SOURCE_BASE}/${file}`)
   if (!res.ok) throw new Error(`Failed to fetch source for ${name}/${file}`)
+  return res.text()
+}
+
+// ── Block fetchers ──────────────────────────────────────────────────────────
+
+function assertRegistryBlock(data: unknown): asserts data is RegistryBlock {
+  const obj = data as Record<string, unknown>
+  const valid =
+    typeof data === 'object' && data !== null &&
+    typeof obj.name === 'string' &&
+    Array.isArray(obj.files) &&
+    Array.isArray(obj.dependencies) &&
+    Array.isArray(obj.registryDependencies) &&
+    (obj.files as unknown[]).every((f) => typeof f === 'string') &&
+    (obj.dependencies as unknown[]).every((d) => typeof d === 'string') &&
+    (obj.registryDependencies as unknown[]).every((d) => typeof d === 'string')
+
+  if (!valid) {
+    throw new Error(
+      `Received an invalid block definition for "${String(obj.name ?? 'unknown')}" from the registry.`,
+    )
+  }
+}
+
+// Returns null when no block by this name exists, so `add` can fall back to a component.
+export async function fetchBlock(name: string): Promise<RegistryBlock | null> {
+  assertSafeComponentName(name)
+  const res = await safeFetch(`${BLOCK_BASE}/${name}/block.json`)
+  if (res.status === 404) return null
+  if (!res.ok) throw new Error(`Failed to fetch block "${name}": ${res.statusText}`)
+  const data: unknown = await res.json()
+  assertRegistryBlock(data)
+  return data
+}
+
+export async function fetchBlockSource(name: string, file: string): Promise<string> {
+  assertSafeComponentName(name)
+  assertSafeFilePath(file)
+  const res = await safeFetch(`${BLOCK_BASE}/${name}/${file}`)
+  if (!res.ok) throw new Error(`Failed to fetch source for block ${name}/${file}`)
   return res.text()
 }

@@ -1,5 +1,11 @@
 # @tokiui/ui
 
+## 0.6.0
+
+### Minor Changes
+
+- a36d444: Add nested sidebar menu primitives — `SidebarMenuSub`, `SidebarMenuSubItem`, and `SidebarMenuSubButton` — an indented, guide-lined sub-menu for tree-style navigation that collapses out of view when the sidebar is in icon-rail mode.
+
 ## 0.5.0
 
 ### Minor Changes

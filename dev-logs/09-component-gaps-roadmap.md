@@ -1,6 +1,6 @@
 # Component Gaps & Roadmap
 
-Captured after comparing tokiui against Material UI, DaisyUI, Bootstrap, and shadcn/ui.
+Captured after comparing tokiui against Material UI, DaisyUI, and Bootstrap.
 Do not work on Phase B/C until Phase A is stable and release-ready.
 
 ---
@@ -80,7 +80,7 @@ Priority order based on adoption impact.
 | Accordion | Top-5 most-used UI pattern; completely absent |
 | Spinner / Loader | Standalone loading indicator; unblocks loading state story |
 | Skeleton | Placeholder loading states; every async UI needs it |
-| Separator / Divider | Tiny but used constantly; shadcn/ui ships it |
+| Separator / Divider | Tiny but used constantly |
 | Progress | Loading bars and step completion indicators |
 | Avatar | Needed in almost every social/user-centric UI |
 
@@ -91,8 +91,8 @@ Priority order based on adoption impact.
 | Breadcrumb | Standard navigation pattern; every routed app |
 | Pagination | Every list/table needs it |
 | Stepper | Multi-step flows (onboarding, checkout, forms) |
-| Navigation Menu | Hierarchical nav; shadcn/ui has this |
-| Sidebar | Layout component; shadcn/ui ships it |
+| Navigation Menu | Hierarchical nav |
+| Sidebar | Layout component |
 
 ### Tier 3 — Advanced form inputs
 
@@ -101,7 +101,7 @@ Priority order based on adoption impact.
 | Combobox / Autocomplete | Most-requested missing form control |
 | Date Picker / Calendar | Almost every app needs date input |
 | Slider / Range | Common for settings, filters, price ranges |
-| Input OTP | Verification flows; shadcn/ui ships it |
+| Input OTP | Verification flows |
 | Rating | Product/review UIs |
 
 ### Tier 4 — Specialized / differentiators
@@ -110,9 +110,9 @@ Priority order based on adoption impact.
 |---|---|
 | Data Table | Biggest trust signal for enterprise/data-heavy devs |
 | Command Palette | Differentiator; developers specifically look for this |
-| Context Menu | Right-click menus; shadcn/ui has it |
-| Hover Card | Hover-triggered preview cards; shadcn/ui has it |
-| Scroll Area | Custom scrollbar styling; shadcn/ui ships it |
+| Context Menu | Right-click menus |
+| Hover Card | Hover-triggered preview cards |
+| Scroll Area | Custom scrollbar styling |
 | Aspect Ratio | Video/image containers |
 | Resizable | Draggable split panels |
 

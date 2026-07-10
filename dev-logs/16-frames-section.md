@@ -23,7 +23,7 @@ pages and intentionally **not** in the docs sidebar.
 
 ## Source viewer ("View code")
 
-Like shadcn blocks: every standalone frame shows a **View code** button that opens a `Sheet`
+Every standalone frame shows a **View code** button that opens a `Sheet`
 with a **file tabs**, the **real syntax-highlighted source** (read from disk at build, Shiki-highlighted),
 and a **copy** button. Frame UIs were extracted into `*-frame.tsx` so the shown source is the clean
 template, not docs scaffolding. It's a full-width **bottom `Sheet`**; the copy button stays fixed
