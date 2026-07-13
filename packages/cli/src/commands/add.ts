@@ -10,19 +10,19 @@ import {
   fetchRegistryIndex,
   fetchComponent,
   fetchComponentSource,
-  fetchBlock,
-  fetchBlockSource,
+  fetchFrame,
+  fetchFrameSource,
   assertSafeFilePath,
   assertSafeDependency,
   assertSafeComponentName,
-  type RegistryBlock,
+  type RegistryFrame,
 } from '../utils/registry'
 import { transformImports } from '../utils/transforms'
 
 export const addCommand = new Command('add')
-  .description('Add a component to your project')
-  .argument('[component]', 'Component name to add')
-  .action(async (componentArg: string | undefined) => {
+  .description('Add a component or frame to your project')
+  .argument('[name]', 'Component or frame name to add')
+  .action(async (nameArg: string | undefined) => {
     const cwd = process.cwd()
     const config = getConfig(cwd)
 
@@ -34,9 +34,8 @@ export const addCommand = new Command('add')
     }
 
     const libAlias = config.libAlias ?? `@/${config.libDir}`
-    let componentName = componentArg
 
-    if (!componentName) {
+    if (!nameArg) {
       const spinner = ora('Fetching registry...').start()
       const index = await fetchRegistryIndex().catch(() => {
         spinner.fail('Failed to fetch registry')
@@ -44,34 +43,60 @@ export const addCommand = new Command('add')
       })
       spinner.stop()
 
+      const frames = index.frames ?? []
+
+      // Step 1: pick a category, so components and frames aren't jumbled into one
+      // list (a "Sidebar" component next to a "Sidebar" frame is confusing).
+      let category: 'components' | 'frames' = 'components'
+      if (frames.length > 0) {
+        const pick = await prompts({
+          type: 'select',
+          name: 'category',
+          message: 'What would you like to add?',
+          choices: [
+            { title: 'Components', description: `${index.components.length} primitives`, value: 'components' },
+            {
+              title: 'Frames',
+              description: `${frames.length} prebuilt page composition${frames.length === 1 ? '' : 's'}`,
+              value: 'frames',
+            },
+          ],
+          initial: 0,
+        })
+        if (!pick.category) {
+          console.log(kleur.red('Aborted.'))
+          process.exit(0)
+        }
+        category = pick.category as 'components' | 'frames'
+      }
+
+      // Step 2: choose from the selected category only.
+      const list = category === 'frames' ? frames : index.components
       const answer = await prompts({
         type: 'multiselect',
-        name: 'components',
-        message: 'Which components or blocks would you like to add?',
-        choices: [
-          ...index.components.map((c) => ({ title: c.label, value: c.name })),
-          ...(index.blocks ?? []).map((b) => ({ title: `${b.label}  ·  block`, value: b.name })),
-        ],
+        name: 'selected',
+        message: `Which ${category} would you like to add?`,
+        choices: list.map((c) => ({ title: c.label, value: c.name })),
         min: 1,
       })
 
-      if (!answer.components?.length) {
+      if (!answer.selected?.length) {
         console.log(kleur.red('Aborted.'))
         process.exit(0)
       }
 
-      // Track installed components across the batch to avoid re-installs
+      // Track installed names across the batch to avoid re-installs
       const visited = new Set<string>()
-      for (const name of answer.components as string[]) {
+      for (const name of answer.selected as string[]) {
         await install(name, cwd, config.componentsDir, libAlias, visited)
       }
       return
     }
 
-    await install(componentName, cwd, config.componentsDir, libAlias, new Set())
+    await install(nameArg, cwd, config.componentsDir, libAlias, new Set())
   })
 
-// Dispatch: a name resolves to a block if the registry has a block manifest for
+// Dispatch: a name resolves to a frame if the registry has a frame manifest for
 // it, otherwise it's treated as a single component.
 async function install(
   name: string,
@@ -80,9 +105,9 @@ async function install(
   libAlias: string,
   visited: Set<string>,
 ): Promise<void> {
-  const block = await fetchBlock(name).catch(() => null)
-  if (block) {
-    await installBlock(block, cwd, componentsDir, libAlias, visited)
+  const frame = await fetchFrame(name).catch(() => null)
+  if (frame) {
+    await installFrame(frame, cwd, componentsDir, libAlias, visited)
     return
   }
   await installComponent(name, cwd, componentsDir, libAlias, visited)
@@ -168,29 +193,29 @@ async function installComponent(
   spinner.succeed(`Added ${kleur.bold(name)}`)
 }
 
-async function installBlock(
-  block: RegistryBlock,
+async function installFrame(
+  frame: RegistryFrame,
   cwd: string,
   componentsDir: string,
   libAlias: string,
   visited: Set<string>,
 ): Promise<void> {
-  const spinner = ora(`Adding block ${block.name}...`).start()
+  const spinner = ora(`Adding frame ${frame.name}...`).start()
 
-  // Component dependencies are copied into componentsDir (empty for library-backed blocks).
-  if (block.registryDependencies.length > 0) {
+  // Component dependencies are copied into componentsDir (empty for library-backed frames).
+  if (frame.registryDependencies.length > 0) {
     spinner.stop()
-    for (const dep of block.registryDependencies) {
+    for (const dep of frame.registryDependencies) {
       await installComponent(dep, cwd, componentsDir, libAlias, visited)
     }
-    spinner.start(`Adding block ${block.name}...`)
+    spinner.start(`Adding frame ${frame.name}...`)
   }
 
-  // Block files install as a self-contained folder next to componentsDir: blocks/<name>/.
+  // Frame files install as a self-contained folder next to componentsDir: frames/<name>/.
   // Files reference each other with relative imports, so colocating them "just works".
-  const blockDir = path.join(path.dirname(componentsDir), 'blocks', block.name)
+  const frameDir = path.join(path.dirname(componentsDir), 'frames', frame.name)
 
-  for (const file of block.files) {
+  for (const file of frame.files) {
     try {
       assertSafeFilePath(file)
     } catch (err) {
@@ -198,32 +223,32 @@ async function installBlock(
       process.exit(1)
     }
 
-    const source = await fetchBlockSource(block.name, file)
+    const source = await fetchFrameSource(frame.name, file)
     const transformed = transformImports(source, libAlias)
-    const destPath = path.join(cwd, blockDir, file)
+    const destPath = path.join(cwd, frameDir, file)
 
     if (fs.existsSync(destPath)) {
       spinner.stop()
       const { overwrite } = await prompts({
         type: 'confirm',
         name: 'overwrite',
-        message: `${path.join(blockDir, file)} already exists. Overwrite?`,
+        message: `${path.join(frameDir, file)} already exists. Overwrite?`,
         initial: false,
       })
       if (!overwrite) {
         console.log(kleur.dim(`Skipped ${file}`))
-        spinner.start(`Adding block ${block.name}...`)
+        spinner.start(`Adding frame ${frame.name}...`)
         continue
       }
-      spinner.start(`Adding block ${block.name}...`)
+      spinner.start(`Adding frame ${frame.name}...`)
     }
 
     await fs.ensureDir(path.dirname(destPath))
     await fs.writeFile(destPath, transformed)
   }
 
-  if (block.dependencies.length > 0) {
-    for (const dep of block.dependencies) {
+  if (frame.dependencies.length > 0) {
+    for (const dep of frame.dependencies) {
       try {
         assertSafeDependency(dep)
       } catch (err) {
@@ -231,30 +256,30 @@ async function installBlock(
         process.exit(1)
       }
     }
-    console.log(kleur.dim(`  Installing: ${block.dependencies.join(', ')}`))
+    console.log(kleur.dim(`  Installing: ${frame.dependencies.join(', ')}`))
     const pm = detectPackageManager(cwd)
     const installCmd = pm === 'npm' ? 'install' : 'add'
-    await execa(pm, [installCmd, ...block.dependencies], { cwd })
+    await execa(pm, [installCmd, ...frame.dependencies], { cwd })
   }
 
-  spinner.succeed(`Added block ${kleur.bold(block.name)}`)
+  spinner.succeed(`Added frame ${kleur.bold(frame.name)}`)
 
-  // Wire up a ready-to-use route so the block renders at a URL with zero manual
+  // Wire up a ready-to-use route so the frame renders at a URL with zero manual
   // importing (mirrors how a scaffolded page just appears). Skips with guidance
   // if the route already exists.
-  const posixBlockDir = blockDir.split(path.sep).join('/')
-  const pageAlias = `@/${posixBlockDir.replace(/^src\//, '')}/page`
+  const posixFrameDir = frameDir.split(path.sep).join('/')
+  const pageAlias = `@/${posixFrameDir.replace(/^src\//, '')}/page`
 
-  if (block.route) {
-    const hasSrc = posixBlockDir.startsWith('src/')
-    const routeFile = path.join(cwd, hasSrc ? 'src/app' : 'app', block.route, 'page.tsx')
+  if (frame.route) {
+    const hasSrc = posixFrameDir.startsWith('src/')
+    const routeFile = path.join(cwd, hasSrc ? 'src/app' : 'app', frame.route, 'page.tsx')
     if (fs.existsSync(routeFile)) {
-      console.log(kleur.dim(`  ${block.route}/page.tsx already exists — wire it with: export { default } from '${pageAlias}'`))
+      console.log(kleur.dim(`  ${frame.route}/page.tsx already exists — wire it with: export { default } from '${pageAlias}'`))
     } else {
       await fs.ensureDir(path.dirname(routeFile))
       await fs.writeFile(routeFile, `export { default } from '${pageAlias}'\n`)
       const rel = path.relative(cwd, routeFile).split(path.sep).join('/')
-      console.log(kleur.green('  ✓') + kleur.dim(` ready at /${block.route}  (${rel})`))
+      console.log(kleur.green('  ✓') + kleur.dim(` ready at /${frame.route}  (${rel})`))
     }
   } else {
     console.log(kleur.dim(`  Import ${pageAlias} into a route to use it.`))

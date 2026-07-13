@@ -171,7 +171,7 @@
       "description": "Zero-dependency SVG charts — Area, Bar, Donut, Radial, and Sparkline. Data-driven, token-themed, interactive on hover."
     }
   ],
-  "blocks": [
+  "frames": [
     {
       "name": "sidebar-shell",
       "label": "Sidebar",

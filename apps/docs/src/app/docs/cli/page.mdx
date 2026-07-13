@@ -35,7 +35,7 @@ See [Installation](/docs/installation) for per-framework walkthroughs.
 
 ## add
 
-Copies one or more components — or a block — into your project, reading `tokiui.json` for the destination.
+Copies one or more components — or a frame — into your project, reading `tokiui.json` for the destination.
 
 ```bash
 npx @tokiui/cli add button
@@ -45,9 +45,9 @@ npx @tokiui/cli add                      # interactive multi-select
 
 For each component the CLI copies the source file into your components directory, rewrites its `cn()` import to your `libAlias`, and installs any npm dependencies. Dependencies come from a fixed allowlist (Radix UI, `class-variance-authority`, `clsx`, `tailwind-merge`, `lucide-react`, `sonner`) — the CLI refuses anything outside it.
 
-### Blocks
+### Frames
 
-If the name is a **block** — a multi-file composition — `add` installs it as a self-contained folder under `components/blocks/<name>/`. When the block declares a route, it also writes `app/<route>/page.tsx`, so the block renders at a URL immediately:
+If the name is a **frame** — a multi-file page composition — `add` installs it as a self-contained folder under `components/frames/<name>/`. When the frame declares a route, it also writes `app/<route>/page.tsx`, so the frame renders at a URL immediately:
 
 ```bash
 npx @tokiui/cli add sidebar-shell

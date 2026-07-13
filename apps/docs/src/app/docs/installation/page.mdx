@@ -204,22 +204,22 @@ npm run dev
 
 ---
 
-## Blocks
+## Frames
 
-Components are single files. **Blocks** are multi-file compositions — a full sidebar, a dashboard shell — that install as a self-contained folder, and when a block defines a route the CLI wires up a ready-to-use page for you.
+Components are single files. **Frames** are multi-file page compositions — a full sidebar, a dashboard shell — that install as a self-contained folder, and when a frame defines a route the CLI wires up a ready-to-use page for you.
 
 ```bash
 npx @tokiui/cli add sidebar-shell
 ```
 
-This drops the block into `components/blocks/sidebar-shell/` and creates `app/dashboard/page.tsx` (or `src/app/dashboard/page.tsx`) that renders it — so **/dashboard** works immediately, with no importing or wiring:
+This drops the frame into `components/frames/sidebar-shell/` and creates `app/dashboard/page.tsx` (or `src/app/dashboard/page.tsx`) that renders it — so **/dashboard** works immediately, with no importing or wiring:
 
 ```text
-✔ Added block sidebar-shell
+✔ Added frame sidebar-shell
   ✓ ready at /dashboard  (app/dashboard/page.tsx)
 ```
 
-Blocks pull their primitives from the `@tokiui/ui` you already installed, so there's nothing extra to configure — edit the files under `components/blocks/` to make them yours. Browse what's available in the [Frames gallery](/frames).
+Frames pull their primitives from the `@tokiui/ui` you already installed, so there's nothing extra to configure — edit the files under `components/frames/` to make them yours. Browse what's available in the [Frames gallery](/frames).
 
 ---
 
