@@ -32,10 +32,10 @@ const REGISTRY_BASE =
 const SOURCE_BASE =
   `${ALLOWED_FETCH_ORIGIN}${REGISTRY_REF}/packages/ui/src`
 
-// Blocks (multi-file compositions) live in the docs app's registry dir, which
+// Frames (multi-file page compositions) live in the docs app's registry dir, which
 // doubles as the live preview source — one source feeds both preview and install.
-const BLOCK_BASE =
-  `${ALLOWED_FETCH_ORIGIN}${REGISTRY_REF}/apps/docs/src/registry/blocks`
+const FRAME_BASE =
+  `${ALLOWED_FETCH_ORIGIN}${REGISTRY_REF}/apps/docs/src/registry/frames`
 
 // All outbound fetch calls go through this wrapper, which enforces that the URL
 // starts with the expected GitHub origin — prevents any misdirected request.
@@ -58,18 +58,18 @@ export interface RegistryComponent {
   registryDependencies: string[]
 }
 
-export interface RegistryBlock {
+export interface RegistryFrame {
   name: string
   files: string[]
   dependencies: string[]
   registryDependencies: string[]
-  /** Optional route slug — when set, `add` also writes app/<route>/page.tsx that renders the block. */
+  /** Optional route slug — when set, `add` also writes app/<route>/page.tsx that renders the frame. */
   route?: string
 }
 
 export interface RegistryIndex {
   components: Array<{ name: string; label: string; description: string }>
-  blocks?: Array<{ name: string; label: string; description: string }>
+  frames?: Array<{ name: string; label: string; description: string }>
 }
 
 // ── Security: allowed npm dependency scopes and packages ──────────────────────
@@ -199,9 +199,9 @@ export async function fetchComponentSource(name: string, file: string): Promise<
   return res.text()
 }
 
-// ── Block fetchers ──────────────────────────────────────────────────────────
+// ── Frame fetchers ────────────────────────────────────────────────────────────
 
-function assertRegistryBlock(data: unknown): asserts data is RegistryBlock {
+function assertRegistryFrame(data: unknown): asserts data is RegistryFrame {
   const obj = data as Record<string, unknown>
   const valid =
     typeof data === 'object' && data !== null &&
@@ -215,26 +215,26 @@ function assertRegistryBlock(data: unknown): asserts data is RegistryBlock {
 
   if (!valid) {
     throw new Error(
-      `Received an invalid block definition for "${String(obj.name ?? 'unknown')}" from the registry.`,
+      `Received an invalid frame definition for "${String(obj.name ?? 'unknown')}" from the registry.`,
     )
   }
 }
 
-// Returns null when no block by this name exists, so `add` can fall back to a component.
-export async function fetchBlock(name: string): Promise<RegistryBlock | null> {
+// Returns null when no frame by this name exists, so `add` can fall back to a component.
+export async function fetchFrame(name: string): Promise<RegistryFrame | null> {
   assertSafeComponentName(name)
-  const res = await safeFetch(`${BLOCK_BASE}/${name}/block.json`)
+  const res = await safeFetch(`${FRAME_BASE}/${name}/frame.json`)
   if (res.status === 404) return null
-  if (!res.ok) throw new Error(`Failed to fetch block "${name}": ${res.statusText}`)
+  if (!res.ok) throw new Error(`Failed to fetch frame "${name}": ${res.statusText}`)
   const data: unknown = await res.json()
-  assertRegistryBlock(data)
+  assertRegistryFrame(data)
   return data
 }
 
-export async function fetchBlockSource(name: string, file: string): Promise<string> {
+export async function fetchFrameSource(name: string, file: string): Promise<string> {
   assertSafeComponentName(name)
   assertSafeFilePath(file)
-  const res = await safeFetch(`${BLOCK_BASE}/${name}/${file}`)
-  if (!res.ok) throw new Error(`Failed to fetch source for block ${name}/${file}`)
+  const res = await safeFetch(`${FRAME_BASE}/${name}/${file}`)
+  if (!res.ok) throw new Error(`Failed to fetch source for frame ${name}/${file}`)
   return res.text()
 }
