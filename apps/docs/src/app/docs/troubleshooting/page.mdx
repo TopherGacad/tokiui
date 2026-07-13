@@ -24,6 +24,24 @@ This almost always means another stylesheet's theme is overriding tokiui's token
 
 and that any custom `:root` / `@theme` / `prefers-color-scheme` rules come **after** the tokiui import and don't redefine its tokens by accident. See [Theming](/docs/theming).
 
+## The sidebar block — or any imported component — renders unstyled
+
+Components you import from `@tokiui/ui` need Tailwind to generate the utility classes they use internally. Recent `@tokiui/ui` (0.6.1+) does this for you — its `styles.css` tells Tailwind to scan the package. If you're on an older version and a component (commonly the **sidebar block**) renders structurally but with no background, border, or spacing, either upgrade:
+
+```bash
+npm install @tokiui/ui@latest
+```
+
+or add an `@source` to your `globals.css` pointing at the package (path is relative to your CSS file):
+
+```css
+@import "tailwindcss";
+@source "../node_modules/@tokiui/ui/dist";  /* use ../../ if globals.css is under src/app/ */
+@import "@tokiui/ui/styles.css";
+```
+
+Components you copied in with `add` don't need this — Tailwind already scans your own project.
+
 ## I'm on Tailwind CSS v3
 
 tokiui requires **Tailwind v4** — its tokens are defined with v4's `@theme`. If a `tailwind.config.ts` / `.js` exists, `init` warns but continues; tokiui's tokens won't resolve until you [migrate to v4](https://tailwindcss.com/docs/upgrade-guide) and remove the config file.

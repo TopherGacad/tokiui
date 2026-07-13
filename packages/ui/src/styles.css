@@ -1,5 +1,12 @@
 /* Import this file AFTER @import "tailwindcss" in your app's globals.css */
 
+/* Make Tailwind scan the compiled components so the utility classes they use
+   (e.g. the Sidebar's border/width classes) are generated in the consumer's
+   build. Without this, components imported from @tokiui/ui render unstyled
+   because Tailwind v4 doesn't scan node_modules by default. Path is relative
+   to this file: <pkg>/src/styles.css -> <pkg>/dist. */
+@source "../dist";
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
