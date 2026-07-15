@@ -181,6 +181,11 @@
       "name": "login",
       "label": "Login & Auth",
       "description": "Centered sign-in with social providers."
+    },
+    {
+      "name": "settings",
+      "label": "Settings",
+      "description": "Tabbed account settings and forms."
     }
   ]
 }
