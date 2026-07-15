@@ -2,7 +2,8 @@
 
 // Hero. The announcement pill is a tokiui Badge and the CTAs + copy button are tokiui Buttons.
 // The install-command bar itself stays bespoke (a specialized widget; no matching component).
-import { Button, Badge } from '@tokiui/ui'
+import Link from 'next/link'
+import { Button, Badge, buttonVariants } from '@tokiui/ui'
 import { useCopy } from './use-copy'
 import { Icon } from './icons'
 
@@ -33,12 +34,12 @@ export function Hero() {
             Used in 14 of our internal apps.
           </p>
           <div className="hero__ctas">
-            <Button size="lg">
+            <Link href="/docs/components/button" className={buttonVariants({ size: 'lg' })}>
               Browse Components <Icon.arrow />
-            </Button>
-            <Button variant="outline" size="lg">
+            </Link>
+            <Link href="/playground" className={buttonVariants({ variant: 'outline', size: 'lg' })}>
               Open Playground
-            </Button>
+            </Link>
           </div>
 
           <div className="hero__install" role="group" aria-label="Install command">
