@@ -272,7 +272,7 @@ function CardHead({ title, children }: { title: React.ReactNode; children?: Reac
 
 /* =============================== Frame =============================== */
 
-export function SalesFrame() {
+export default function SalesPage() {
   const [platform, setPlatform] = useState<PlatformMetric>('revenue')
   const [expanded, setExpanded] = useState(true)
   const [navOpen, setNavOpen] = useState(false)

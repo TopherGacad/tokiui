@@ -186,6 +186,16 @@
       "name": "settings",
       "label": "Settings",
       "description": "Tabbed account settings and forms."
+    },
+    {
+      "name": "dashboard",
+      "label": "Dashboard",
+      "description": "App shell — sidebar, stat cards, activity, and a table."
+    },
+    {
+      "name": "sales-analytics",
+      "label": "Sales analytics",
+      "description": "Dense sales report — KPIs, referrers, charts, and a per-rep table."
     }
   ]
 }

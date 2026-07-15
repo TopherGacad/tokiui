@@ -94,7 +94,7 @@ const sidebarTheme = {
   '--primary-foreground': 'oklch(0.16 0 0)',
 } as React.CSSProperties
 
-export function DashboardFrame() {
+export default function DashboardPage() {
   const isDesktop = useMediaQuery('(min-width: 1024px)')
   const [open, setOpen] = useState(true)
   useEffect(() => { setOpen(isDesktop) }, [isDesktop])

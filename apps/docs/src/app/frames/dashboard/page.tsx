@@ -1,20 +1,21 @@
-import { DashboardFrame } from '@/components/frames/dashboard-frame'
+import FramePage from '@/registry/frames/dashboard/page'
 import { FrameChrome } from '@/components/frames/frame-chrome'
 import { getFrameSource } from '@/lib/get-frame-source'
 
 export const metadata = { title: 'Dashboard' }
 
-export default async function DashboardPage() {
-  const files = await getFrameSource([
-    'src/components/frames/dashboard-frame.tsx',
-  ])
+const FRAME = 'src/registry/frames/dashboard'
+
+export default async function DashboardFramePage() {
+  const files = await getFrameSource([`${FRAME}/page.tsx`])
   return (
     <>
-      <DashboardFrame />
+      <FramePage />
       <FrameChrome
         title="Dashboard"
         files={files}
-        deps={['card', 'badge', 'button', 'avatar', 'input', 'progress', 'tabs', 'select', 'pagination', 'sidebar', 'chart']}
+        deps={['dashboard']}
+        usage="Requires a tokiui project (run npx @tokiui/cli init first). Installing drops the frame into components/frames/dashboard/ and wires a ready route at /dashboard."
       />
     </>
   )

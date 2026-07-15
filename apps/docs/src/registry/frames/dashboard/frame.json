@@ -1,0 +1,12 @@
+{
+  "name": "dashboard",
+  "type": "frame",
+  "title": "Dashboard",
+  "description": "Full app-shell dashboard — sidebar, KPI cards, revenue chart, channel donut, transactions table, and targets.",
+  "route": "dashboard",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "page.tsx"
+  ]
+}
