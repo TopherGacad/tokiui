@@ -176,6 +176,11 @@
       "name": "sidebar-shell",
       "label": "Sidebar",
       "description": "A collapsible app sidebar — nested nav, badges, icon-rail collapse, and a user footer."
+    },
+    {
+      "name": "login",
+      "label": "Login & Auth",
+      "description": "Centered sign-in with social providers."
     }
   ]
 }

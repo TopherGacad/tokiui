@@ -1,0 +1,12 @@
+{
+  "name": "login",
+  "type": "frame",
+  "title": "Login & Auth",
+  "description": "Centered sign-in card — social providers, email + password, and remember-me.",
+  "route": "login",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "page.tsx"
+  ]
+}
