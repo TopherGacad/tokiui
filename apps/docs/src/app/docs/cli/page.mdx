@@ -56,9 +56,15 @@ npx @tokiui/cli add sidebar-shell
 
 ## theme
 
-<Callout type="warning">
-The playground → project round-trip is being reworked. For now, apply a theme by clicking **Copy CSS variables** in the [playground](/playground) and pasting the result into your `globals.css`. See [Theming](/docs/theming).
-</Callout>
+Apply a theme you designed in the [playground](/playground) to your project's global stylesheet.
+
+```bash
+npx @tokiui/cli theme apply <encoded>
+```
+
+In the playground, tune your tokens and click **Copy CLI command**, then run the copied command at your project root. It writes your light (`:root`) and dark (`[data-theme="dark"]`) tokens into `globals.css`, wrapped in `/* tokiui theme:start */ … /* tokiui theme:end */` markers — so re-running `apply` replaces that block in place instead of stacking. Restart your dev server to see the change.
+
+Prefer to paste it yourself? **Copy CSS variables** in the playground gives you the raw `:root` / `[data-theme="dark"]` blocks to drop into `globals.css`. See [Theming](/docs/theming).
 
 ## Registry & versioning
 

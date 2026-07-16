@@ -134,6 +134,7 @@ The quickest way to get every value is the [playground](/playground) — select 
 
 The [playground](/playground) is a live editor for all tokens, with light and dark side by side and real components to preview against. Pick one of the five presets to start, or tune from scratch, then use the toolbar:
 
+- **Copy CLI command** — copies `npx @tokiui/cli theme apply <token>`. Run it at your project root and the CLI writes your light + dark tokens into `globals.css` (inside `/* tokiui theme */` markers, so re-running replaces the block cleanly). The fastest way to move a playground theme into a real app.
 - **Copy CSS variables** — copies a complete `:root { … }` and `[data-theme="dark"] { … }` block. Paste it into `globals.css` **after** the tokiui import and it overrides the defaults wholesale.
 - **Copy theme URL** — copies a shareable link that reopens the playground with your exact tokens.
 
