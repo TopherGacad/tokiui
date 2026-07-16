@@ -1,6 +1,6 @@
 {
   "name": "@tokiui/mcp",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "MCP server exposing the tokiui component + frame registry to AI assistants",
   "license": "MIT",
   "author": "Topher Gacad",
