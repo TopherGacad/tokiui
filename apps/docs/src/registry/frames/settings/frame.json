@@ -1,0 +1,12 @@
+{
+  "name": "settings",
+  "type": "frame",
+  "title": "Settings",
+  "description": "Tabbed account settings — profile, account, and notification preferences.",
+  "route": "settings",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "page.tsx"
+  ]
+}

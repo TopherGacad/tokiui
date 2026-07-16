@@ -1,18 +1,21 @@
-import { SettingsFrame } from '@/components/frames/settings-frame'
+import FramePage from '@/registry/frames/settings/page'
 import { FrameChrome } from '@/components/frames/frame-chrome'
 import { getFrameSource } from '@/lib/get-frame-source'
 
 export const metadata = { title: 'Settings' }
 
-export default async function SettingsPage() {
-  const files = await getFrameSource(['src/components/frames/settings-frame.tsx'])
+const FRAME = 'src/registry/frames/settings'
+
+export default async function SettingsFramePage() {
+  const files = await getFrameSource([`${FRAME}/page.tsx`])
   return (
     <>
-      <SettingsFrame />
+      <FramePage />
       <FrameChrome
         title="Settings"
         files={files}
-        deps={['card', 'tabs', 'input', 'textarea', 'button', 'switch', 'select', 'avatar', 'separator']}
+        deps={['settings']}
+        usage="Requires a tokiui project (run npx @tokiui/cli init first). Installing drops the frame into components/frames/settings/ and wires a ready route at /settings."
       />
     </>
   )

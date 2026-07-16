@@ -4,7 +4,7 @@ import {
   Select, SelectTrigger, SelectValue, SelectContent, SelectItem,
 } from '@tokiui/ui'
 
-export function SettingsFrame() {
+export default function SettingsPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-12">
       <div className="mb-8">

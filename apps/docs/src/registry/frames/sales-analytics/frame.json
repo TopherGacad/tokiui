@@ -1,0 +1,12 @@
+{
+  "name": "sales-analytics",
+  "type": "frame",
+  "title": "Sales analytics",
+  "description": "Dense sales report — KPIs, referrers, revenue and channel charts, and a per-rep table.",
+  "route": "sales",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "page.tsx"
+  ]
+}

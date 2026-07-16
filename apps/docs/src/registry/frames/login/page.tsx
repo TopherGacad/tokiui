@@ -20,7 +20,7 @@ function GoogleIcon() {
   )
 }
 
-export function LoginFrame() {
+export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-6 py-12">
       <Card shadow="sm" className="w-full max-w-sm p-7">

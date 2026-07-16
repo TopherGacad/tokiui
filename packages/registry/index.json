@@ -176,6 +176,26 @@
       "name": "sidebar-shell",
       "label": "Sidebar",
       "description": "A collapsible app sidebar — nested nav, badges, icon-rail collapse, and a user footer."
+    },
+    {
+      "name": "login",
+      "label": "Login & Auth",
+      "description": "Centered sign-in with social providers."
+    },
+    {
+      "name": "settings",
+      "label": "Settings",
+      "description": "Tabbed account settings and forms."
+    },
+    {
+      "name": "dashboard",
+      "label": "Dashboard",
+      "description": "App shell — sidebar, stat cards, activity, and a table."
+    },
+    {
+      "name": "sales-analytics",
+      "label": "Sales analytics",
+      "description": "Dense sales report — KPIs, referrers, charts, and a per-rep table."
     }
   ]
 }
