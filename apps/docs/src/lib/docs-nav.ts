@@ -10,6 +10,7 @@ export const nav: NavSection[] = [
       { label: 'CLI',             href: '/docs/cli',             pill: 'new' },
       { label: 'Configuration',   href: '/docs/configuration',   pill: 'new' },
       { label: 'Theming',         href: '/docs/theming',         pill: 'new' },
+      { label: 'MCP',             href: '/docs/mcp',             pill: 'new' },
       { label: 'Troubleshooting', href: '/docs/troubleshooting', pill: 'new' },
     ],
   },

@@ -1,0 +1,120 @@
+export const metadata = { title: 'MCP' }
+
+# MCP server
+
+tokiui ships an [MCP](https://modelcontextprotocol.io) server, **`@tokiui/mcp`**, so your AI coding assistant can work with tokiui directly — browse the catalog, read real component and frame source, and get the exact `add` command — without you pasting docs into the chat.
+
+## Does my assistant already know about tokiui?
+
+**Not until you connect it.** Out of the box, Claude Code, Cursor, and other assistants have no live access to the tokiui catalog — at best they're guessing from training data, which goes stale. Adding the tokiui MCP server changes that.
+
+The setup is a **one-time entry in your assistant's config** (below). After that it's automatic:
+
+- Your assistant connects to the server and **discovers the tools on its own** — MCP tools are self-describing, so there's nothing to teach it and nothing to paste.
+- You just ask in plain language; the assistant decides when to call `list_components`, `get_frame`, etc.
+- Nothing is installed globally or into your project for this — the server runs on demand via `npx`.
+
+## What it can do
+
+Once connected, the assistant has these tools:
+
+| Tool | What it returns |
+|---|---|
+| `list_components` | Every component (name, label, description); optional search filter |
+| `list_frames` | Every frame — the multi-file page compositions |
+| `get_component` | A component's metadata, install command, npm deps, and full source |
+| `get_frame` | A frame's metadata, install command, ready route, and full source |
+| `search` | Components + frames matched by name, label, or description |
+
+## Setup
+
+**Prerequisites:** Node.js 18+ (for `npx`) and an MCP-capable assistant.
+
+### Claude Code
+
+Add it with one command (from your project, or add `-s user` for all projects):
+
+```bash
+claude mcp add tokiui -- npx -y @tokiui/mcp
+```
+
+Or add it to a project `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "tokiui": {
+      "command": "npx",
+      "args": ["-y", "@tokiui/mcp"]
+    }
+  }
+}
+```
+
+Run `/mcp` in Claude Code to confirm **tokiui** is connected and its tools are listed.
+
+### Cursor
+
+Add it to `.cursor/mcp.json` (project) or your global MCP config:
+
+```json
+{
+  "mcpServers": {
+    "tokiui": {
+      "command": "npx",
+      "args": ["-y", "@tokiui/mcp"]
+    }
+  }
+}
+```
+
+Then enable **tokiui** under **Settings → MCP**.
+
+### Other clients (VS Code, Windsurf, …)
+
+Any MCP client works — use the same `command` / `args` shape in that client's MCP configuration file.
+
+<Callout>
+The config is identical across clients: launch `npx -y @tokiui/mcp` over stdio. The `-y` lets `npx` fetch the package the first time without a prompt.
+</Callout>
+
+## Using it
+
+Just talk to your assistant normally — it reaches for the tools when relevant:
+
+- *"What tokiui components are available?"*
+- *"Show me the tokiui table component."*
+- *"Is there a tokiui sidebar?"*
+- *"Add the tokiui dashboard frame to my app."*
+
+It gets the real source and the correct `npx @tokiui/cli@latest add …` command back, so it can build with tokiui instead of guessing at names or props.
+
+## Making the `add` commands actually work
+
+The MCP server is **read-only** — it hands your assistant source and the `add` command; it never touches your files. For the commands it suggests to run, your project needs to be a tokiui project:
+
+```bash
+npx @tokiui/cli init
+```
+
+Run that once (see [Installation](/docs/installation)). Browsing and reading the catalog works in any project; **installing** a component or frame needs an initialized tokiui project.
+
+## Configuration
+
+- **`TOKIUI_REGISTRY_REF`** — the git ref the catalog is read from. Defaults to the current catalog on `main`; set a `cli-v*` tag to pin to a specific release. Set it in the server's `env` in your MCP config if needed:
+
+```json
+{
+  "mcpServers": {
+    "tokiui": {
+      "command": "npx",
+      "args": ["-y", "@tokiui/mcp"],
+      "env": { "TOKIUI_REGISTRY_REF": "cli-v0.4.2" }
+    }
+  }
+}
+```
+
+## How it works
+
+The server fetches the registry — component and frame manifests plus source — over HTTPS from the tokiui repository, the same source [`@tokiui/cli`](/docs/cli) installs from, restricted to that one origin. It only ever reads. Your assistant gets the source and the `add` command; the CLI does the installing.
