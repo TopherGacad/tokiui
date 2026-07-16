@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { Button } from '@tokiui/ui'
-import { Icon } from './icons'
+import { SiteSearch } from './command-menu'
 import { ThemeToggle } from './theme-toggle'
 
 interface HeaderProps {
@@ -23,17 +22,7 @@ export function Header({ mobileNav }: HeaderProps) {
           <Link href="/playground">Playground</Link>
         </nav>
         <div className="header-right">
-          <Button
-            variant="outline"
-            aria-label="Search components (⌘K)"
-            // overrides to match .header-search: 34h, 200 min-w, left-aligned, muted bg, 13px, no shadow
-            className="h-[34px] min-w-[200px] justify-start gap-2 rounded-[var(--radius-sm)] border-border bg-muted px-3 text-[13px] font-normal text-muted-foreground shadow-none active:scale-100 hover:bg-muted hover:text-foreground hover:border-[var(--border-strong)]"
-          >
-            <Icon.search />
-            <span className="flex-1 text-left">Search</span>
-            {/* tokiui has no Kbd keycap styling baked in yet — keeping the bespoke ⌘K */}
-            <span className="kbd">⌘K</span>
-          </Button>
+          <SiteSearch />
           <ThemeToggle />
         </div>
       </div>
