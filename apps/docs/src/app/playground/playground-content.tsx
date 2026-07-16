@@ -23,7 +23,7 @@ export function PlaygroundContent() {
   const [darkTokens, setDarkTokens] = useState<ThemeTokens>(
     defaultTheme.dark as ThemeTokens
   )
-  const [copied, setCopied] = useState<'url' | 'css' | null>(null)
+  const [copied, setCopied] = useState<'url' | 'css' | 'cli' | null>(null)
 
   useEffect(() => {
     if (themeParam) {
@@ -80,6 +80,13 @@ export function PlaygroundContent() {
     setTimeout(() => setCopied(null), 2000)
   }
 
+  async function copyCliCommand() {
+    const encoded = encodeTheme(lightTokens, darkTokens)
+    await navigator.clipboard.writeText(`npx @tokiui/cli@latest theme apply ${encoded}`)
+    setCopied('cli')
+    setTimeout(() => setCopied(null), 2000)
+  }
+
   const activeTokens = mode === 'light' ? lightTokens : darkTokens
   const activeVars = tokensToCssVars(activeTokens)
 
@@ -117,6 +124,9 @@ export function PlaygroundContent() {
 
         <main className="flex flex-1 flex-col">
           <div className="flex items-center justify-end gap-2 border-b px-4 py-2">
+            <Button variant="outline" size="sm" onClick={copyCliCommand}>
+              {copied === 'cli' ? 'Copied!' : 'Copy CLI command'}
+            </Button>
             <Button variant="outline" size="sm" onClick={copyThemeUrl}>
               {copied === 'url' ? 'Copied!' : 'Copy theme URL'}
             </Button>
