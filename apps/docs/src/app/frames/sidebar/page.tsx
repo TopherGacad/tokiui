@@ -22,7 +22,7 @@ export default async function SidebarFramePage() {
         title="Sidebar"
         files={files}
         deps={['sidebar-shell']}
-        usage="Requires a tokiui project (run npx @tokiui/cli init first). Installing drops the frame into components/frames/sidebar-shell/ and wires a ready route at /dashboard — open it and the sidebar is there, no importing needed."
+        usage="Requires a tokiui project (run npx @tokiui/cli init first). Installing drops the frame into components/frames/sidebar-shell/ and wires a ready route at /sidebar — open it and the sidebar is there, no importing needed."
       />
     </>
   )
