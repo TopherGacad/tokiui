@@ -5,6 +5,7 @@ import { FramePreview } from '@/components/frames/frame-preview'
 export const metadata = { title: 'Frames' }
 
 const FRAMES = [
+  { href: '/frames/calendar', title: 'Calendar', desc: 'Month, week, and day views — events, click-to-add, and a live time indicator.' },
   { href: '/frames/dashboard', title: 'Dashboard', desc: 'App shell — sidebar, stat cards, activity, and a table.' },
   { href: '/frames/sales-analytics', title: 'Sales analytics', desc: 'Dense sales report — KPIs, referrers, charts, and a per-rep table.' },
   { href: '/frames/sidebar', title: 'Sidebar', desc: 'Composable app sidebar — collapsible icon rail, nested groups, badges, and a user footer.' },

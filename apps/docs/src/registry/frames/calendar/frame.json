@@ -1,0 +1,19 @@
+{
+  "name": "calendar",
+  "type": "frame",
+  "title": "Calendar",
+  "description": "A responsive calendar with month, week, and day views — colored event blocks, overlap-aware layout, a live now-indicator, click-to-add, and event detail.",
+  "route": "calendar",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    "date-utils.ts",
+    "events.ts",
+    "icons.tsx",
+    "time-grid.tsx",
+    "month-view.tsx",
+    "week-view.tsx",
+    "day-view.tsx",
+    "page.tsx"
+  ]
+}
