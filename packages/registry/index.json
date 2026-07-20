@@ -196,6 +196,11 @@
       "name": "sales-analytics",
       "label": "Sales analytics",
       "description": "Dense sales report — KPIs, referrers, charts, and a per-rep table."
+    },
+    {
+      "name": "calendar",
+      "label": "Calendar",
+      "description": "Month, week, and day views with events, click-to-add, and detail."
     }
   ]
 }
